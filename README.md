@@ -1,1 +1,1 @@
-From https://developers.arcgis.com/javascript/beta/sample-code/sandbox/sandbox.html?sample=layers-vectortilelayer
+From https://developers.arcgis.com/javascript/beta/sample-code/layers-vectortilelayer/index.html
