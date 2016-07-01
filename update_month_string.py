@@ -14,7 +14,7 @@ months = {1:"January",
         11:"November",
         12:"December"}
 
-mxd = arcpy.mapping.MapDocument(r"C:\Users\dann7982\Desktop\month.mxd")
+mxd = arcpy.mapping.MapDocument(r"") # path to MXD
 
 print "Scanning ",mxd
 
