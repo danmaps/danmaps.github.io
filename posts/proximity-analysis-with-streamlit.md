@@ -156,5 +156,5 @@ distance_threshold_meters = feet_to_meters(distance_threshold_feet)
 
 This project was a significant learning experience. By refining user requirements, exploring open-source alternatives, and thoughtfully choosing the right delivery model, I developed a robust and flexible tool for spatial proximity analysis. This automation not only saves time but also ensures consistency and reproducibility, making this kind of analysis trivial in the future.
 
-So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It’s a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.
+So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It's a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.
         

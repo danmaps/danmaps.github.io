@@ -1,3 +1,9 @@
+/* Force a vertical scrollbar to always appear */
+html {
+    overflow-y: scroll;
+}
+
+
 /* Dark Mode CSS */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -119,7 +125,7 @@ button:disabled, .btn:disabled {
 
 .copy-button {
     background-color: #343434;
-    color: white;
+    color: #888;
     border: none;
     border-radius: 3px;
     padding: 2px 6px;
@@ -131,7 +137,8 @@ button:disabled, .btn:disabled {
 }
 
 .copy-button:hover {
-    background-color: #000000;
+    background-color: #343434;
+    color: #888;
 }
 
 pre {
