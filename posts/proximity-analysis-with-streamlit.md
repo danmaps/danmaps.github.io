@@ -65,6 +65,7 @@ def handle_file_upload():
 ```
 
 ### Proximity Analysis:
+
 ```python
 def process_data(df, lat_col, lon_col, distance_threshold, id_col=None):
     # Convert DataFrame to GeoDataFrame and set the coordinate reference system (CRS)
