@@ -21,7 +21,8 @@ def post(post_name):
         html_content = markdown(content)
 
         # Check if 'streamlit' is in the post_name to decide whether to embed the app
-        embed_streamlit = 'streamlit' in post_name
+        embed_streamlit = 'streamlit' in post_name.lower()
+        # print(f"Embedding Streamlit: {embed_streamlit} for post: {post_name}")
 
         return render_template('post.html', content=html_content, title=post_name, embed_streamlit=embed_streamlit)
     except FileNotFoundError:
