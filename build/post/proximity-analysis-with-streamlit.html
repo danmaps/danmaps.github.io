@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proximity-analysis-with-streamlit</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/"><h2>Danny McVey</h2></a>
+            </nav>
+        </header>
+        <main>
+            
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container">
+    <article>
+        <h1>Enhancing Spatial Analysis: Lessons Learned from Automating Proximity Analysis</h1>
+<p>I recently took on a work project that began with a simple goal: perform spatial proximity analysis for a user. Initially, this was a manual task using ArcGIS Pro, but I ended up turning it into a fully automated tool. Here's a detailed look at what I learned, how I refined user requirements, leveraged open-source tools, and ultimately turned this into a useful and flexible tool.</p>
+<h2>The Manual Approach</h2>
+<p>Initially, I performed the analysis manually using ArcGIS Pro. This involved several time-consuming steps:</p>
+<ol>
+<li><strong>Data Preparation</strong>: Cleaning and organizing the data to ensure accuracy.</li>
+<li><strong>Running Geoprocessing Tools</strong>: Using ArcGIS Pro to perform spatial proximity analysis. This involves several ArcGIS geoprocessing tools, including the following:<ul>
+<li><strong>Near Table</strong>: Identifying points within a specified distance of another point.</li>
+<li><strong>Buffer</strong>: Creating a buffer around each point.</li>
+<li><strong>Dissolve</strong>: Merging the buffers together to create distinct polygons representing each group.</li>
+<li><strong>Spatial Join</strong>: Joining the buffers with the original data to get the original attributes for each group and summing a field of interest.</li>
+</ul>
+</li>
+<li><strong>Creating a Web App</strong>: Developing a web application in ArcGIS Online to display the results interactively.</li>
+</ol>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpFUNtugkAQ_ZXNPGmCZEUQoUkTL01j0iam9qnAwxRW3ZRlybA0UvXfXalp52nOmTNnLifIdSEghj1hfWAvbw9pxWzMB8nTMRdlNmSj0eN5rWpNhmFVsFxX34LMmS2S5B0_S5Fl957FTbocJHPKn9dbtiGdDe-lZe-yEbTTpFhTo5FYspr0USppOmuMZdfI5sxWyX1wBg4oQQplYdc73XxSMAehRAqxTQukrxTS6mJ12Bq97aocYkOtcIB0uz9AvMOysaitCzRiJdHeqP5YUUij6fX3-v4JDtRYfWj9r7EY4hMcIQ4m3PWC2TgIp17Aw7EDnSV9N7JgEnHP55HHJxcHfvp-7s6sMvL9ceiF0TTks8sVcl9wLA"><img alt="" src="https://mermaid.ink/img/pako:eNpFUNtugkAQ_ZXNPGmCZEUQoUkTL01j0iam9qnAwxRW3ZRlybA0UvXfXalp52nOmTNnLifIdSEghj1hfWAvbw9pxWzMB8nTMRdlNmSj0eN5rWpNhmFVsFxX34LMmS2S5B0_S5Fl957FTbocJHPKn9dbtiGdDe-lZe-yEbTTpFhTo5FYspr0USppOmuMZdfI5sxWyX1wBg4oQQplYdc73XxSMAehRAqxTQukrxTS6mJ12Bq97aocYkOtcIB0uz9AvMOysaitCzRiJdHeqP5YUUij6fX3-v4JDtRYfWj9r7EY4hMcIQ4m3PWC2TgIp17Aw7EDnSV9N7JgEnHP55HHJxcHfvp-7s6sMvL9ceiF0TTks8sVcl9wLA?type=png" /></a></p>
+<p>While this approach worked, it was labor-intensive and required significant effort for each new dataset. It became clear that automating this process would save time and ensure consistency.</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpFUMtuwjAQ_BVrTyAFZEJCHpUqFeitlaqiXkhyWMWbYDWOI8epSIF_r6Go3dPO7szs4wSlFgQp1Aa7A3t5f8hb5uJpkj0fS2qKKZvNHs8fXaNRMGwFK3X7Rcae2TrLatICLVYGFRXFXbq-KjaTbGcNoWqkLab3zubm9Uam0kaxvkMrsWGd0UeppB2dPTZjL_sz22b38QV4oMgolMItebr65GAPpCiH1KUCzWcOeXtxPBys3o1tCak1A3lg9FAfIK2w6R0aOrcqbSW6S9VflYS02rz-_uD2Cg86bPda_3MchvQER0jDJZ_7YbwIo5Uf8mjhweiKwTxxYJlwP-CJz5cXD75vej6PHTMJgkXkR8kq4vHlB7xoc3k"><img alt="" src="https://mermaid.ink/img/pako:eNpFUMtuwjAQ_BVrTyAFZEJCHpUqFeitlaqiXkhyWMWbYDWOI8epSIF_r6Go3dPO7szs4wSlFgQp1Aa7A3t5f8hb5uJpkj0fS2qKKZvNHs8fXaNRMGwFK3X7Rcae2TrLatICLVYGFRXFXbq-KjaTbGcNoWqkLab3zubm9Uam0kaxvkMrsWGd0UeppB2dPTZjL_sz22b38QV4oMgolMItebr65GAPpCiH1KUCzWcOeXtxPBys3o1tCak1A3lg9FAfIK2w6R0aOrcqbSW6S9VflYS02rz-_uD2Cg86bPda_3MchvQER0jDJZ_7YbwIo5Uf8mjhweiKwTxxYJlwP-CJz5cXD75vej6PHTMJgkXkR8kq4vHlB7xoc3k?type=png" /></a>    </p>
+<h2>Refining User Requirements</h2>
+<p>I first needed to understand the users' needs better. I decided that users would need:</p>
+<ul>
+<li>The ability to upload their own datasets.</li>
+<li>Dynamic selection of columns for latitude, longitude, and IDs.</li>
+<li>Interactive adjustment of proximity thresholds.</li>
+<li>Immediate visualization and downloadable results.</li>
+</ul>
+<p>These choices guided the development of a more robust tool.</p>
+<h2>Leveraging Open-Source Tools as an Alternative to Arcpy</h2>
+<p>In my professional experience, I've extensively used Arcpy for geospatial analysis. However, I had to explore open-source alternatives for this project. I chose Geopandas for the analysis and Folium inside Streamlit for the UI, which offered several benefits:</p>
+<ul>
+<li><strong>Geopandas</strong>: Provides powerful data structures for working with geospatial data in Python, similar to how Pandas handles tabular data. It enabled seamless conversion between dataframes and geospatial dataframes. Figuring ou how to match the geoprocessing operations avilable in ArcGIS Pro was a breakthrough.</li>
+<li><strong>Folium</strong>: Facilitates the creation of interactive maps directly from geospatial data. It integrates well with Streamlit, allowing for a smooth user experience. I also knew that Streamlit allows for easy upload and download of data files including Excel.</li>
+</ul>
+<p>The choice of these tools was influenced by their flexibility and the growing ecosystem of geospatial libraries in the open-source community. They provide a cost-effective and versatile alternative to proprietary solutions, aligning with the broader movement towards open-source in geospatial analysis. Crucially, this allows the tool to be run anywhere (including here on <code>streamlit.app</code>) because it does not depend on proprietary software licensing.</p>
+<h2>Self-Serve Tool vs. Delivering Analysis Results</h2>
+<p>One of the key decisions I face (often) is whether to provide a self-serve tool or to deliver analysis results directly to customers. Each approach has its merits:</p>
+<ul>
+<li><strong>Self-Serve Tool</strong>: Empowers users to explore their data independently. It's flexible and scalable, allowing users to upload their datasets, configure analysis parameters, and obtain results instantly. This approach aligns well with the trend towards democratizing data analysis.</li>
+<li><strong>Delivering Analysis Results</strong>: Suitable for users who need specific insights without the need to interact with the tool. It involves processing the data on behalf of the user and delivering a polished report.</li>
+</ul>
+<p>For this project, I created a self-serve tool, leveraging Streamlit's capabilities to create an interactive and user-friendly interface. This decision was based on the goal of enabling users to perform their analysis independently, saving everyone time and effort. Whether they'll actually want to use it in the future remains to be seen... Either way, I'm glad I have this tool to use for myself, and to potentially repurpose it in the future.</p>
+<h2>The Automated Tool: A practical utility with a lot going on under the hood</h2>
+<p>Here's a brief overview of some of the functionality implemented in the automated tool:</p>
+<h3>File Upload and Data Handling:</h3>
+<pre><code class="language-python">
+def handle_file_upload():
+    uploaded_file = st.file_uploader("Choose a .xlsx file", type="xlsx")
+    if uploaded_file:
+        df = pd.read_excel(uploaded_file)
+    else:
+        df = pd.DataFrame(sample_data)  # Use sample data if no file is uploaded
+    return df, uploaded_file
+</code></pre>
+
+<h3>Proximity Analysis:</h3>
+<pre><code class="language-python">
+def process_data(df, lat_col, lon_col, distance_threshold, id_col=None):
+    # Convert DataFrame to GeoDataFrame and set the coordinate reference system (CRS)
+    gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df[lon_col], df[lat_col]))
+    projected_gdf = gdf.to_crs(epsg=32611)
+
+    # Spatial analysis logic:
+    # 1. Initialize spatial index for efficient querying of nearby points
+    tree = projected_gdf.sindex
+
+    # 2. Create a list to store the results
+    nearby_points = []
+
+    # 3. Iterate through each point in the GeoDataFrame
+    for index, row in projected_gdf.iterrows():
+        # 4. Create a buffer around each point with the given distance threshold
+        buffer = row.geometry.buffer(distance_threshold)
+
+        # 5. Find all points within the buffer using the spatial index
+        possible_matches_index = list(tree.intersection(buffer.bounds))
+        possible_matches = projected_gdf.iloc[possible_matches_index]
+
+        # 6. Filter these points to only include those within the exact distance threshold
+        precise_matches = possible_matches[
+            possible_matches.distance(row.geometry) <= distance_threshold
+        ]
+
+        # 7. Exclude the point itself from the results
+        precise_matches = precise_matches[precise_matches.index != index]
+
+        # 8. Collect information about each nearby point
+        for _, pm_row in precise_matches.iterrows():
+            nearby_point_info = {
+                "index": index,
+                "distance_feet": round(pm_row.geometry.distance(row.geometry) * 3.28084, 2),  # Convert distance to feet
+            }
+            if id_col:
+                nearby_point_info[f"nearby_{id_col}"] = pm_row[id_col]
+            nearby_points.append(nearby_point_info)
+
+    # 9. Convert the list of results into a DataFrame
+    nearby_df = pd.DataFrame(nearby_points)
+
+    # 10. Merge the original GeoDataFrame with the nearby points DataFrame
+    if not nearby_df.empty:
+        processed_gdf = gdf.merge(nearby_df, how="left", left_index=True, right_on="index")
+    else:
+        processed_gdf = gdf
+
+    return processed_gdf
+
+</code></pre>
+<h3>Details of Steps of Proximity Analysis</h3>
+<ol>
+<li>
+<p><strong>Convert DataFrame to GeoDataFrame</strong>: This converts the input DataFrame <code>df</code> into a GeoDataFrame <code>gdf</code> with geometry based on the latitude (<code>lat_col</code>) and longitude (<code>lon_col</code>) columns. The CRS is initially set to EPSG:4326 (WGS 84) and then projected to EPSG:32611 (UTM zone 11N) for accurate distance calculations.</p>
+</li>
+<li>
+<p><strong>Spatial Indexing</strong>: A spatial index (<code>tree</code>) is created for the projected GeoDataFrame to allow efficient spatial querying. </p>
+</li>
+</ol>
+<details>
+  <summary>Why Use a Spatial Index?</summary>
+  A spatial index is used for performance optimization. Without it, finding all nearby points for each point would require comparing each point against every other point, resulting in a quadratic number of distance calculations (O(n^2)). The spatial index reduces this complexity by quickly narrowing down the list of potential nearby points using spatial relationships (like bounding boxes).
+</details>
+
+<ol>
+<li>
+<p><strong>Buffer Creation and Matching</strong>: For each point in the GeoDataFrame, a buffer with the specified distance threshold is created. The spatial index is used to find all possible points within the buffer bounds.</p>
+</li>
+<li>
+<p><strong>Distance Filtering</strong>: The possible matches are filtered to include only those within the exact distance threshold. The point itself is excluded from the matches.</p>
+</li>
+<li>
+<p><strong>Result Collection</strong>: Information about each nearby point, including the distance in feet and optional ID columns, is collected and stored in a list.</p>
+</li>
+<li>
+<p><strong>Merge Results</strong>: The results are converted to a DataFrame (<code>nearby_df</code>) and merged with the original GeoDataFrame (<code>gdf</code>) to create the final processed GeoDataFrame (<code>processed_gdf</code>).</p>
+</li>
+</ol>
+<h3>Interactive Map Creation:</h3>
+<pre><code class="language-python">
+def create_folium_map(gdf, distance_threshold_meters, lat_col, lon_col, id_col):
+    m = folium.Map(tiles="cartodb-dark-matter", width='100%', height='100%')
+    folium_static(m)
+</code></pre>
+
+<h3>User Interface with Streamlit:</h3>
+<pre><code class="language-python">
+st.set_page_config(page_title="Spatial Proximity Excel Enrichment", layout="wide")
+distance_threshold_feet = st.slider("Distance threshold in feet", 25, 800, 100)
+distance_threshold_meters = feet_to_meters(distance_threshold_feet)
+</code></pre>
+
+<h2>Conclusion</h2>
+<p>This project was a significant learning experience. By refining user requirements, exploring open-source alternatives, and thoughtfully choosing the right delivery model, I developed a robust and flexible tool for spatial proximity analysis. This automation not only saves time but also ensures consistency and reproducibility, making this kind of analysis trivial in the future.</p>
+<p>So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It's a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.</p>
+    </article>
+
+    
+    <h2>Interactive App</h2>
+    <iframe src="https://proximity-analysis-excel.streamlit.app/" width="100%" height="800px" frameborder="0"></iframe>
+    
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+        </main>
+    </div>
+</body>
+</html>

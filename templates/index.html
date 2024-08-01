@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<ul>
+    {% for post in posts %}
+    <li><a href="{{ url_for('post', post_name=post) }}">{{ post }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
