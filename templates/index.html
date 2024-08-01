@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Danny McVey{% endblock %}
 
 {% block content %}
 <ul>
-    {% for post in posts %}
-    <li><a href="{{ url_for('post', post_name=post) }}">{{ post }}</a></li>
-    {% endfor %}
+  {% for post in posts %}
+    <li>{{ post.date.strftime('%Y-%m-%d') }} - <a href="{{ url_for('post', post_name=post['name']) }}">{{ post.title }}</a></li>
+  {% endfor %}
 </ul>
+
 {% endblock %}

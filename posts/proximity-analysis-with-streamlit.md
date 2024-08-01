@@ -1,3 +1,8 @@
+---
+title: Automating Proximity Analysis
+date: 2024-01-02
+---
+
 # Enhancing Spatial Analysis: Lessons Learned from Automating Proximity Analysis
 
 I recently took on a work project that began with a simple goal: perform spatial proximity analysis for a user. Initially, this was a manual task using ArcGIS Pro, but I ended up turning it into a fully automated tool. Here's a detailed look at what I learned, how I refined user requirements, leveraged open-source tools, and ultimately turned this into a useful and flexible tool.

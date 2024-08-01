@@ -10,11 +10,6 @@
     <article>
         {{ content | safe }}
     </article>
-
-    {% if embed_streamlit %}
-    <h2>Interactive App</h2>
-    <iframe src="https://proximity-analysis-excel.streamlit.app/" width="100%" height="800px" frameborder="0"></iframe>
-    {% endif %}
 </div>
 
 <script src="{{ url_for('static', filename='copy-code.js') }}"></script>
