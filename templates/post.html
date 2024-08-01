@@ -8,6 +8,17 @@
 </style>
 <div class="container">
     <article>
+        <!-- Display the tags at the top -->
+        {% if tags %}
+        <p class="post-tags">
+            Tags: 
+            {% for tag in tags %}
+                <span class="post-tag">{{ tag }}</span>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        {% endif %}
+
+        <!-- Post content -->
         {{ content | safe }}
     </article>
 </div>

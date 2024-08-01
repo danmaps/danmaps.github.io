@@ -47,7 +47,6 @@ app = Flask(__name__)
 
 # Path to your markdown files
 POSTS_DIR = 'posts'
-
 @app.route('/')
 def index():
     posts = []
@@ -64,7 +63,6 @@ def index():
                         _, front_matter, body = content.split('---\n', 2)
                         metadata = yaml.safe_load(front_matter)
                 except (ValueError, IndexError, yaml.YAMLError):
-                    # If parsing fails, metadata remains empty
                     pass
 
                 # Extract or default title and date
@@ -78,7 +76,7 @@ def index():
                 elif isinstance(date_str, date):
                     # Convert date to datetime for consistency
                     date_obj = datetime.combine(date_str, datetime.min.time())
-                else: 
+                else:
                     # Fallback to the file's creation date
                     file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f))
                     date_obj = datetime.fromtimestamp(file_creation_time)
@@ -86,13 +84,16 @@ def index():
                 posts.append({
                     'name': f[:-3],  # Remove the .md extension
                     'title': title,
-                    'date': date_obj
+                    'date': date_obj,
+                    'tags': metadata.get('tags', []),
                 })
 
     # Sort posts by date in descending order (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
 
     return render_template('index.html', posts=posts)
+
+
 @app.route('/post/<post_name>.html')
 def post(post_name):
     try:

@@ -3,10 +3,9 @@ html {
     overflow-y: scroll;
 }
 
-/* name-link class */
-.name-link {
-    color: #569cd6;
-    text-decoration: none;
+/* home-link class */
+.home-link {
+    color: #5c5c5c;
 }
 
 /* header */
@@ -166,4 +165,24 @@ pre code {
 
 .codehilite {
     margin: 0;
+}
+
+/* tags */
+.post-tags {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.post-tag {
+    background-color: #f0f0f0;
+    padding: 3px 6px;
+    margin-right: 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #333;
+}
+
+.post-tag:hover {
+    background-color: #e0e0e0;
 }
