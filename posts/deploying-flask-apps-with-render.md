@@ -1,6 +1,7 @@
 ---
-title: Deploying Flask Apps with Render
 date: 2024-08-01
+tags: []
+title: Deploying Flask Apps with Render
 ---
 
 # Deploying Flask Apps with Render

@@ -1,6 +1,9 @@
 ---
-title: Introduction to Geopandas
 date: 2024-08-01
+tags:
+- Introduction
+- Overview
+title: Introduction to Geopandas
 ---
 
 # Introduction to Geopandas

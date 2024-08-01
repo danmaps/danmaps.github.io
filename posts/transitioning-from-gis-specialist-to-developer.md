@@ -1,6 +1,9 @@
 ---
-title: Transitioning from GIS Specialist to Developer
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Transitioning from GIS Specialist to Developer
 ---
 
 # Transitioning from GIS Specialist to Developer

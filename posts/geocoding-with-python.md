@@ -1,6 +1,9 @@
 ---
-title: Geocoding with Python
 date: 2024-08-01
+tags:
+- Programming
+- Python
+title: Geocoding with Python
 ---
 
 # Geocoding with Python

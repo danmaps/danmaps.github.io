@@ -1,6 +1,9 @@
 ---
-title: Creating Custom Map Styles with Mapbox
 date: 2024-08-01
+tags:
+- Cartography
+- Mapping
+title: Creating Custom Map Styles with Mapbox
 ---
 
 # Creating Custom Map Styles with Mapbox

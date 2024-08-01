@@ -1,6 +1,9 @@
 ---
-title: GIS for Environmental Monitoring
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: GIS for Environmental Monitoring
 ---
 
 # GIS for Environmental Monitoring

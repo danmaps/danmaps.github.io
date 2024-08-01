@@ -1,6 +1,9 @@
 ---
-title: Best Practices for GIS Data Management
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Best Practices for GIS Data Management
 ---
 
 # Best Practices for GIS Data Management

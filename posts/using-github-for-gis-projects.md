@@ -1,6 +1,9 @@
 ---
-title: Using GitHub for GIS Projects
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Using GitHub for GIS Projects
 ---
 
 # Using GitHub for GIS Projects

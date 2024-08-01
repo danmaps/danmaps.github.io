@@ -1,6 +1,9 @@
 ---
-title: Enhancing GIS Analysis with Jupyter Widgets
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Enhancing GIS Analysis with Jupyter Widgets
 ---
 
 # Enhancing GIS Analysis with Jupyter Widgets

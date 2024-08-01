@@ -1,6 +1,11 @@
 ---
-title: Using ArcGIS Online for Collaborative Projects
 date: 2024-08-01
+tags:
+- ArcGIS
+- GIS
+- Geospatial
+- Esri
+title: Using ArcGIS Online for Collaborative Projects
 ---
 
 # Using ArcGIS Online for Collaborative Projects

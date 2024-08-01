@@ -1,6 +1,9 @@
 ---
-title: GIS and Cloud Computing: A Perfect Match
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: GIS and Cloud Computing - A Perfect Match
 ---
 
 # GIS and Cloud Computing: A Perfect Match

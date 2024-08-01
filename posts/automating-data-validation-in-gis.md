@@ -1,6 +1,9 @@
 ---
-title: Automating Data Validation in GIS
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Automating Data Validation in GIS
 ---
 
 # Automating Data Validation in GIS

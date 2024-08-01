@@ -1,6 +1,11 @@
 ---
-title: Introduction to Remote Sensing with Python
 date: 2024-08-01
+tags:
+- Introduction
+- Overview
+- Programming
+- Python
+title: Introduction to Remote Sensing with Python
 ---
 
 # Introduction to Remote Sensing with Python

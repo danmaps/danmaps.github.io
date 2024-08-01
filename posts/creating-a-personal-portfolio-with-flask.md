@@ -1,6 +1,7 @@
 ---
-title: Creating a Personal Portfolio with Flask
 date: 2024-08-01
+tags: []
+title: Creating a Personal Portfolio with Flask
 ---
 
 # Creating a Personal Portfolio with Flask

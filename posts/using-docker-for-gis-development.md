@@ -1,6 +1,9 @@
 ---
-title: Using Docker for GIS Development
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Using Docker for GIS Development
 ---
 
 # Using Docker for GIS Development

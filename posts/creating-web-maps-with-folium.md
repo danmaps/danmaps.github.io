@@ -1,6 +1,9 @@
 ---
-title: Creating Web Maps with Folium
 date: 2024-08-01
+tags:
+- Cartography
+- Mapping
+title: Creating Web Maps with Folium
 ---
 
 # Creating Web Maps with Folium

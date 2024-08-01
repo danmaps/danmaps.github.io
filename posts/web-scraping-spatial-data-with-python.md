@@ -1,6 +1,9 @@
 ---
-title: Web Scraping Spatial Data with Python
 date: 2024-08-01
+tags:
+- Programming
+- Python
+title: Web Scraping Spatial Data with Python
 ---
 
 # Web Scraping Spatial Data with Python

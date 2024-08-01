@@ -1,6 +1,9 @@
 ---
-title: Automating Report Generation with Python
 date: 2024-08-01
+tags:
+- Programming
+- Python
+title: Automating Report Generation with Python
 ---
 
 # Automating Report Generation with Python

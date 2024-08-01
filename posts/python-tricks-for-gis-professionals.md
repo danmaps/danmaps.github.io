@@ -1,6 +1,11 @@
 ---
-title: Python Tricks for GIS Professionals
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+- Programming
+- Python
+title: Python Tricks for GIS Professionals
 ---
 
 # Python Tricks for GIS Professionals

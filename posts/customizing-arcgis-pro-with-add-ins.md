@@ -1,6 +1,12 @@
 ---
-title: Customizing ArcGIS Pro with Add-Ins
 date: 2024-08-01
+tags:
+- ArcGIS
+- Geospatial
+- Esri
+- ArcGIS Pro
+- GIS
+title: Customizing ArcGIS Pro with Add-Ins
 ---
 
 # Customizing ArcGIS Pro with Add-Ins

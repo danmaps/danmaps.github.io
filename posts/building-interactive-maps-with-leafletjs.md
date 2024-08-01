@@ -1,6 +1,9 @@
 ---
-title: Building Interactive Maps with Leaflet.js
 date: 2024-08-01
+tags:
+- Cartography
+- Mapping
+title: Building Interactive Maps with Leaflet.js
 ---
 
 # Building Interactive Maps with Leaflet.js

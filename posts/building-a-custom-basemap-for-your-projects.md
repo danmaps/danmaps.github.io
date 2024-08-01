@@ -1,6 +1,9 @@
 ---
-title: Building a Custom Basemap for Your Projects
 date: 2024-08-01
+tags:
+- Cartography
+- Mapping
+title: Building a Custom Basemap for Your Projects
 ---
 
 # Building a Custom Basemap for Your Projects

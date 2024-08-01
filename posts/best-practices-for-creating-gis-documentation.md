@@ -1,6 +1,9 @@
 ---
-title: Best Practices for Creating GIS Documentation
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Best Practices for Creating GIS Documentation
 ---
 
 # Best Practices for Creating GIS Documentation

@@ -1,6 +1,9 @@
 ---
-title: Managing Spatial Data with SQL
 date: 2024-08-01
+tags:
+- SQL
+- Database
+title: Managing Spatial Data with SQL
 ---
 
 # Managing Spatial Data with SQL

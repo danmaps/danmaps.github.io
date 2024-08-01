@@ -1,6 +1,9 @@
 ---
-title: Building a Data Pipeline for GIS Data
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Building a Data Pipeline for GIS Data
 ---
 
 # Building a Data Pipeline for GIS Data

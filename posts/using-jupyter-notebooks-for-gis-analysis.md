@@ -1,6 +1,9 @@
 ---
-title: Using Jupyter Notebooks for GIS Analysis
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Using Jupyter Notebooks for GIS Analysis
 ---
 
 # Using Jupyter Notebooks for GIS Analysis

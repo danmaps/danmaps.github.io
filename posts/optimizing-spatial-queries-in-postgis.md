@@ -1,6 +1,9 @@
 ---
-title: Optimizing Spatial Queries in PostGIS
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Optimizing Spatial Queries in PostGIS
 ---
 
 # Optimizing Spatial Queries in PostGIS

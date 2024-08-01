@@ -1,6 +1,9 @@
 ---
-title: Data Visualization in Python with Plotly
 date: 2024-08-01
+tags:
+- Programming
+- Python
+title: Data Visualization in Python with Plotly
 ---
 
 # Data Visualization in Python with Plotly

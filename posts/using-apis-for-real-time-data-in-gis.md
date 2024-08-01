@@ -1,6 +1,9 @@
 ---
-title: Using APIs for Real-Time Data in GIS
 date: 2024-08-01
+tags:
+- GIS
+- Geospatial
+title: Using APIs for Real-Time Data in GIS
 ---
 
 # Using APIs for Real-Time Data in GIS

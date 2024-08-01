@@ -1,6 +1,9 @@
 ---
-title: Using Machine Learning for Spatial Prediction
 date: 2024-08-01
+tags:
+- Machine Learning
+- AI
+title: Using Machine Learning for Spatial Prediction
 ---
 
 # Using Machine Learning for Spatial Prediction

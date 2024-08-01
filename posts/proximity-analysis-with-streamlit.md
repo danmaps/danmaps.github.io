@@ -1,7 +1,20 @@
 ---
+author: Your Name
+categories:
+- GIS
+- Python Tutorials
+date: 2024-02-01
+layout: post
+summary: Learn how to automate proximity analysis in GIS using Python.
+tags: 
+    - Spatial Analysis
+    - Python
+    - Streamlit
+    - Proximity Analysis
+thumbnail: /images/thumbnails/proximity-analysis.png
 title: Automating Proximity Analysis
-date: 2024-01-02
 ---
+
 
 # Enhancing Spatial Analysis: Lessons Learned from Automating Proximity Analysis
 
