@@ -2,3 +2,4 @@ Flask==2.3.2
 markdown==3.4.4
 Flask-Markdown==0.3
 Pygments==2.15.1
+Flask-Frozen==0.18
