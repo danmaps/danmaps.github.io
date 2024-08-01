@@ -3,6 +3,11 @@ html {
     overflow-y: scroll;
 }
 
+/* name-link class */
+.name-link {
+    color: #569cd6;
+    text-decoration: none;
+}
 
 /* header */
 header {
