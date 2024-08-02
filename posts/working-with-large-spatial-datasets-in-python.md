@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - Programming
 - Python
+- stub
 title: Working with Large Spatial Datasets in Python
 ---
 

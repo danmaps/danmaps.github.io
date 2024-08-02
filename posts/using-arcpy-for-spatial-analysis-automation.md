@@ -4,6 +4,7 @@ tags:
 - Workflow
 - Spatial Analysis
 - Automation
+- stub
 title: Using ArcPy for Spatial Analysis Automation
 ---
 

@@ -5,6 +5,7 @@ tags:
 - Overview
 - AI
 - Generative AI
+- stub
 title: Introduction to GeoAI
 ---
 

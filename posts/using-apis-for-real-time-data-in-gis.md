@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - GIS
 - Geospatial
+- stub
 title: Using APIs for Real-Time Data in GIS
 ---
 

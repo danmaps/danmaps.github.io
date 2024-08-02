@@ -1,6 +1,7 @@
 ---
 date: 2024-08-01
-tags: []
+tags:
+- stub
 title: Using Pandas for Spatial Data Manipulation
 ---
 

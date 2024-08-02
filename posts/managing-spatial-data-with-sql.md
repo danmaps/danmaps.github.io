@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - SQL
 - Database
+- stub
 title: Managing Spatial Data with SQL
 ---
 

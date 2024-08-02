@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - GIS
 - Geospatial
+- stub
 title: Optimizing Spatial Queries in PostGIS
 ---
 

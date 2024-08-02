@@ -5,6 +5,7 @@ tags:
 - GIS
 - Geospatial
 - Esri
+- stub
 title: Creating Custom Geoprocessing Tools in ArcGIS
 ---
 

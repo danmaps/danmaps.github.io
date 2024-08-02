@@ -5,6 +5,7 @@ tags:
 - Introduction
 - Overview
 - Data Science
+- stub
 title: Introduction to Spatial Data Science
 ---
 

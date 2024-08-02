@@ -5,6 +5,7 @@ tags:
 - GIS
 - Geospatial
 - Esri
+- stub
 title: Using ArcGIS Online for Collaborative Projects
 ---
 

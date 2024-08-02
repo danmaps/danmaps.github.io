@@ -5,6 +5,7 @@ tags:
 - Geospatial
 - AI
 - Generative AI
+- stub
 title: Integrating AI with GIS
 ---
 

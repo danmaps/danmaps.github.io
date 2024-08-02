@@ -7,6 +7,7 @@ from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.preprocessors import Preprocessor
 import yaml
 from datetime import datetime, date
+import random
 
 class CodeHiliteWithLanguageExtension(Extension):
     def extendMarkdown(self, md):
@@ -91,11 +92,9 @@ def index():
     # Sort posts by date in descending order (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
     # sort posts randomly
-    import random
     posts.sort(key=lambda x: random.random())
 
     return render_template('index.html', posts=posts)
-
 
 @app.route('/post/<post_name>.html')
 def post(post_name):
@@ -105,9 +104,29 @@ def post(post_name):
 
         # Split the content to remove the YAML front matter
         try:
-            _, front_matter, body = content.split('---', 2)  # Splits into three parts
-        except ValueError:
+            _, front_matter, body = content.split('---', 2)
+            metadata = yaml.safe_load(front_matter)
+        except (ValueError, IndexError, yaml.YAMLError):
+            metadata = {}
             body = content  # If there's no front matter, use the whole content
+
+        # Extract title, tags, and date from metadata
+        title = metadata.get('title', post_name)
+        tags = metadata.get('tags', [])
+        date_str = metadata.get('date')
+
+        # Handle date conversion if needed
+        if isinstance(date_str, str):
+            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+        elif isinstance(date_str, datetime):
+            date_obj = date_str
+        elif isinstance(date_str, date):
+            # Convert date to datetime for consistency
+            date_obj = datetime.combine(date_str, datetime.min.time())
+        else:
+            # Fallback to the file's creation date
+            file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f'{post_name}.md'))
+            date_obj = datetime.fromtimestamp(file_creation_time)
 
         # Convert markdown to HTML with syntax highlighting
         html_content = markdown.markdown(body, extensions=[
@@ -121,12 +140,11 @@ def post(post_name):
         formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
         pygments_css = formatter.get_style_defs()
 
-        # Check if 'streamlit' is in the post_name to decide whether to embed the app
-        embed_streamlit = 'streamlit' in post_name.lower() 
-
-        return render_template('post.html', content=html_content, title=post_name, pygments_css=pygments_css, embed_streamlit=embed_streamlit)
+        # Render the template with all necessary data
+        return render_template('post.html', content=html_content, title=title, pygments_css=pygments_css, tags=tags, date=date_obj)
     except FileNotFoundError:
         abort(404)
+
 
 
 if __name__ == '__main__':

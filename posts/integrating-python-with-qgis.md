@@ -5,6 +5,7 @@ tags:
 - Geospatial
 - Programming
 - Python
+- stub
 title: Integrating Python with QGIS
 ---
 

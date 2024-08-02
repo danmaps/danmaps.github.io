@@ -5,6 +5,7 @@ tags:
 - Overview
 - Programming
 - Python
+- stub
 title: Introduction to Remote Sensing with Python
 ---
 

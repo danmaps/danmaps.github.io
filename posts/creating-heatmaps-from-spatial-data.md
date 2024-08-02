@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - Cartography
 - Mapping
+- stub
 title: Creating Heatmaps from Spatial Data
 ---
 

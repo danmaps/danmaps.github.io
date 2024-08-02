@@ -5,8 +5,10 @@
 {% block content %}
 <ul>
   {% for post in posts %}
+    {# Only show posts if there is no 'stub' tag #}
+    {% if 'stub' not in post.tags %}
     <li>{{ post.date.strftime('%Y-%m-%d') }} - <a href="{{ url_for('post', post_name=post['name']) }}">{{ post.title }}</a></li>
+    {% endif %}
   {% endfor %}
 </ul>
-
 {% endblock %}

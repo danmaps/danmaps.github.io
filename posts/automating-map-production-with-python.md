@@ -5,6 +5,7 @@ tags:
 - Programming
 - Cartography
 - Python
+- stub
 title: Automating Map Production with Python
 ---
 

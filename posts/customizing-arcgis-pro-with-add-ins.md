@@ -6,6 +6,7 @@ tags:
 - Esri
 - ArcGIS Pro
 - GIS
+- stub
 title: Customizing ArcGIS Pro with Add-Ins
 ---
 

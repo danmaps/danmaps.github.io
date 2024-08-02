@@ -8,6 +8,7 @@ tags:
 - ArcGIS Pro
 - Workflow
 - GIS
+- stub
 title: Using ArcGIS Pro Tasks for Workflow Automation
 ---
 

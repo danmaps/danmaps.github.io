@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - GIS
 - Geospatial
+- stub
 title: Exploring Time Series Data in GIS
 ---
 

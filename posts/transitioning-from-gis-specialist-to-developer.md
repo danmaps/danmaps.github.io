@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - GIS
 - Geospatial
+- stub
 title: Transitioning from GIS Specialist to Developer
 ---
 

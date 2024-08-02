@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - Cartography
 - Mapping
+- stub
 title: Building a Custom Basemap for Your Projects
 ---
 

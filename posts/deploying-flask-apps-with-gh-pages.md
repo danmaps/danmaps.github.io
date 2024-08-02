@@ -1,7 +1,8 @@
 ---
 date: 2024-08-01
-tags: 
-    - Web Development
+tags:
+- Web Development
+- stub
 title: Deploying Flask Apps with Github Pages
 ---
 

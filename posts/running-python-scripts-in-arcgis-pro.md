@@ -8,6 +8,7 @@ tags:
 - Programming
 - GIS
 - Python
+- stub
 title: Running Python Scripts in ArcGIS Pro
 ---
 

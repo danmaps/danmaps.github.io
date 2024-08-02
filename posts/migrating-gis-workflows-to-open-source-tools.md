@@ -3,6 +3,7 @@ date: 2024-08-01
 tags:
 - GIS
 - Geospatial
+- stub
 title: Migrating GIS Workflows to Open Source Tools
 ---
 
