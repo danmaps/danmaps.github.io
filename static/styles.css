@@ -11,9 +11,33 @@ html {
 /* header */
 header {
     background-color: #333333;
-    padding: 5px;
-    padding-left: 15px;
+    padding: 5px 15px;
     border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Align items in the header */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+/* Style for the "About Me" link */
+nav .about-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+nav .about-link:hover {
+    color: #00aaff;
+    text-decoration: underline;
 }
 
 body {
@@ -105,13 +129,16 @@ button:disabled, .btn:disabled {
 }
 
 .container {
-    max-width: 1000px;
+    width: 1000px;
     margin: 2em auto;
     padding: 1em;
     background: #252526;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     color: #d4d4d4;
+    display: flex;
+    justify-content: center; /* Or another alignment */
+    align-items: center;
 }
 
 /* Container for code language label and copy button */

@@ -9,17 +9,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
 
-</head>
 <body>
-    <div class="container">
-        <header>
-            <nav>
-                <a href="{{ url_for('index') }}"><h2 class="home-link">Danny McVey</h2></a>
-            </nav>
-        </header>
-        <main>
-            {% block content %}{% endblock %}
-        </main>
-    </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ url_for('index') }}" class="home-link"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="{{ url_for('about_me') }}" class="about-link">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
 </body>
 </html>
+

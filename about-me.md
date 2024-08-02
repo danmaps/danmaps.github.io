@@ -1,13 +1,13 @@
 ---
-date: 2024-01-01
+date: 2024-08-02
 tags:
 - personal
 title: About me
 ---
 
-# About Me
-
 ## Hi, I'm Danny.
+
+![Danny McVey](static/images/danny.jpg)
 
 I'm a seasoned GIS Technical Specialist with over a decade of experience in designing, implementing, and administering enterprise GIS solutions. I have a strong background in geospatial analysis, data management, and workflow automation. My expertise lies in leveraging the ArcGIS platform, developing Python scripts, and integrating GIS with other enterprise systems to enhance data accessibility and operational efficiency.
 

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<style>
+    {{ pygments_css | safe }}
+</style>
+<div class="container">
+    <article>
+        {{ content | safe }}
+    </article>
+</div>
+
+{% endblock %}
