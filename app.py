@@ -90,6 +90,9 @@ def index():
 
     # Sort posts by date in descending order (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
+    # sort posts randomly
+    import random
+    posts.sort(key=lambda x: random.random())
 
     return render_template('index.html', posts=posts)
 

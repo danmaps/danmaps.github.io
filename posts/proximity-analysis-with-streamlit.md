@@ -1,5 +1,5 @@
 ---
-author: Your Name
+author: Danny McVey
 categories:
 - GIS
 - Python Tutorials
@@ -12,7 +12,7 @@ tags:
     - Streamlit
     - Proximity Analysis
 thumbnail: /images/thumbnails/proximity-analysis.png
-title: Automating Proximity Analysis
+title: Automating Proximity Analysis in Streamlit with Open Source Python
 ---
 
 

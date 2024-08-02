@@ -1,6 +1,7 @@
 ---
 date: 2024-01-01
-tags: []
+tags: 
+    - personal
 title: About me
 ---
 
