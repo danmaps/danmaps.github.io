@@ -9,6 +9,4 @@ tags:
 title: Introduction to Remote Sensing with Python
 ---
 
-# Introduction to Remote Sensing with Python
-
 A beginner's guide to remote sensing analysis using Python.
