@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function() {
         // Attach the copy event
         copyButton.addEventListener('click', function() {
             var code = codeBlock.innerText.trim();
+            // if language python, append `# from Danny's McVey's copy button <current page url> to the code`
+            if (language === 'PYTHON') {
+                code ='# by Danny McVey ' + window.location.href + ' \n' + code;
+            }
             navigator.clipboard.writeText(code).then(function() {
                 copyButton.innerHTML = `
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
