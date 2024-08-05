@@ -6,7 +6,7 @@ tags:
     - motivation
     - productivity
 ---
-While knowledge work, particularly in fields like Data analysis or Software Engineering, is intellectually stimulating, it can take a toll on your physical health. The cognitive demands are high, but the physical demands—or rather, the lack thereof—pose their own challenges. Balancing mental and physical well-being is essential for long-term success and productivity.
+While knowledge work, particularly in fields like Data analysis or Software Engineering, is intellectually stimulating, it can take a toll on your physical health. The cognitive demands are high, but the physical demands---or rather, the lack thereof---pose their own challenges. Balancing mental and physical well-being is essential for long-term success and productivity.
 
 #### Rethinking the Workspace
 
@@ -16,7 +16,7 @@ A well-designed workspace can prevent the aches and pains that often accompany d
 
 **Standing Desks and Movement**
 
-Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, it’s important to move regularly—take a quick stretch, walk around, or simply shift your weight.
+Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, it’s important to move regularly---take a quick stretch, walk around, or simply shift your weight.
 
 #### Incorporating Physical Activity
 
@@ -32,7 +32,7 @@ Regular exercise is crucial, not just for physical health but also for mental we
 
 **Importance of Breaks**
 
-Taking regular breaks is essential to avoid burnout and maintain mental clarity. Techniques like the Pomodoro method can help structure these breaks, but even a few minutes away from the screen can make a difference. Step outside, stretch, or just close your eyes and breathe—it all helps.
+Taking regular breaks is essential to avoid burnout and maintain mental clarity. Techniques like the Pomodoro method can help structure these breaks, but even a few minutes away from the screen can make a difference. Step outside, stretch, or just close your eyes and breathe---it all helps.
 
 **Meditation and Mindfulness**
 
@@ -50,4 +50,4 @@ Staying hydrated is often overlooked but critical for maintaining focus and prod
 
 #### Conclusion
 
-Maintaining health as a knowledge worker requires a holistic approach. By making small, sustainable changes—like improving your workspace, incorporating movement, practicing mindfulness, and paying attention to your diet—you can boost your well-being and set yourself up for long-term success. Remember, taking care of your health is an investment in your career and life.
+Maintaining health as a knowledge worker requires a holistic approach. By making small, sustainable changes---like improving your workspace, incorporating movement, practicing mindfulness, and paying attention to your diet---you can boost your well-being and set yourself up for long-term success. Remember, taking care of your health is an investment in your career and life.
