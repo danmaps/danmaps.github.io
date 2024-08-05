@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Attach the copy event
         copyButton.addEventListener('click', function() {
             var code = codeBlock.innerText.trim();
-            // if language python, append `# from Danny's McVey's copy button <current page url> to the code`
+            // if language python, add `# by Danny McVey <current page url>` before the code
             if (language === 'PYTHON') {
                 code ='# by Danny McVey ' + window.location.href + ' \n' + code;
             }
