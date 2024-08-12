@@ -3,6 +3,7 @@ import markdown
 from pygments.formatters import HtmlFormatter
 import os
 from markdown.extensions import Extension
+from markdown.extensions import tables
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.preprocessors import Preprocessor
 import yaml
@@ -132,6 +133,7 @@ def post(post_name):
         html_content = markdown.markdown(body, extensions=[
             'fenced_code',
             'codehilite',
+            'tables',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])
