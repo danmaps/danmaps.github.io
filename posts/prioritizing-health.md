@@ -12,7 +12,7 @@ While knowledge work, particularly in fields like Data analysis or Software Engi
 
 **Ergonomics Matter**
 
-A well-designed workspace can prevent the aches and pains that often accompany desk jobs. Simple adjustments like screen position, chair support, and keyboard placement can make a world of difference. Your desk setup should be tailored to your body’s needs, minimizing strain and discomfort.
+A well-designed workspace can prevent the aches and pains that often accompany desk jobs. Simple adjustments like screen position, chair support, and keyboard placement can make a world of difference. Your desk setup should be tailored to your body's needs, minimizing strain and discomfort.
 
 **Standing Desks and Movement**
 
@@ -22,11 +22,11 @@ Alternating between sitting and standing can help alleviate stiffness and keep y
 
 **The Power of Short Walks**
 
-Short walks can serve as a mental reset, helping to clear your mind and improve focus. Whether it’s a quick stroll around the block during a break or a walk to a nearby coffee shop, these moments of movement can boost creativity and energy. Incorporating a 10-15 minute walk into your daily routine can have significant benefits.
+Short walks can serve as a mental reset, helping to clear your mind and improve focus. Whether it's a quick stroll around the block during a break or a walk to a nearby coffee shop, these moments of movement can boost creativity and energy. Incorporating a 10-15 minute walk into your daily routine can have significant benefits.
 
 **Exercise as a Non-Negotiable**
 
-Regular exercise is crucial, not just for physical health but also for mental well-being. Exercise improves mood, boosts energy levels, and enhances cognitive function. Finding time for exercise can be challenging, but it’s important to make it a priority. Whether it’s a morning run, a lunchtime workout, or an evening yoga session, keeping active is key.
+Regular exercise is crucial, not just for physical health but also for mental well-being. Exercise improves mood, boosts energy levels, and enhances cognitive function. Finding time for exercise can be challenging, but it's important to make it a priority. Whether it's a morning run, a lunchtime workout, or an evening yoga session, keeping active is key.
 
 #### Mindful Practices for Mental Health
 

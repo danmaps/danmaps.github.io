@@ -7,7 +7,7 @@
 {% block content %}
 <div class="post-list">
   {% for post in posts %}
-    {% if 'stub' not in post.tags %}
+    {% if 'Stub' not in post.tags %}
     <div class="container">
       <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
         <div class="post-card">

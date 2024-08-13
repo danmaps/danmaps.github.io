@@ -83,17 +83,22 @@ def index():
                     file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f))
                     date_obj = datetime.fromtimestamp(file_creation_time)
 
+                               
+                # Make tags title case, if the tag is not already all caps
+                tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
+
+
                 posts.append({
                     'name': f[:-3],  # Remove the .md extension
                     'title': title,
                     'date': date_obj,
-                    'tags': metadata.get('tags', []),
+                    'tags': tags,
                 })
 
     # Sort posts by date in descending order (newest first)
     posts.sort(key=lambda x: x['date'], reverse=True)
     # sort posts randomly
-    posts.sort(key=lambda x: random.random())
+    # posts.sort(key=lambda x: random.random())
 
     return render_template('index.html', posts=posts)
 
@@ -116,6 +121,9 @@ def post(post_name):
         tags = metadata.get('tags', [])
         date_str = metadata.get('date')
 
+        # Make tags proper case, if the tag is not already all caps
+        tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
+
         # Handle date conversion if needed
         if isinstance(date_str, str):
             date_obj = datetime.strptime(date_str, '%Y-%m-%d')
@@ -137,6 +145,12 @@ def post(post_name):
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])
+
+        # various replacements to clean up output from chatgpt
+        # replace â€™ with ' in html_content to fix issue where '’' shows up in html as 'â€™'
+        html_content = html_content.replace('â€™', '\'')
+        html_content = html_content.replace('---', '—')
+        html_content = html_content.replace('â€”', '—')
 
         # Include the CSS for Pygments
         formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
