@@ -3,86 +3,6 @@ html {
     overflow-y: scroll;
 }
 
-/* home-link class */
-.home-link {
-    color: white;
-}
-
-/* header */
-header {
-    background-color: #333333;
-    padding: 5px 15px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Align items in the header */
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-}
-
-/* Style for the "About Me" link */
-nav .about-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-    margin-left: 20px;
-    transition: color 0.3s ease;
-}
-
-nav .about-link:hover {
-    color: #00aaff;
-    text-decoration: underline;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1e1e1e;
-    color: #d4d4d4;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffffff;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 2.5em;
-    font-weight: 600;
-}
-
-h2 {
-    font-size: 2em;
-    font-weight: 500;
-}
-
-h3 {
-    font-size: 1.75em;
-    font-weight: 500;
-}
-
-p {
-    margin: 0 0 1.5em;
-    font-size: 1.1em;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
 
 blockquote {
     border-left: 4px solid #569cd6;
@@ -106,40 +26,6 @@ pre {
     padding: 0.5em;
 }
 
-/* Buttons - Dark mode style */
-button, .btn {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    padding: 0.6em 1.2em;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-button:hover, .btn:hover {
-    background-color: #005f99;
-}
-
-button:disabled, .btn:disabled {
-    background-color: #333333;
-    cursor: not-allowed;
-}
-
-.container {
-    width: 1000px;
-    margin: 2em auto;
-    padding: 1em;
-    background: #252526;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    color: #d4d4d4;
-    display: block;
-    justify-content: center; /* Or another alignment */
-    align-items: center;
-}
 
 /* Container for code language label and copy button */
 .code-controls {
@@ -329,3 +215,9 @@ th {
 /* tr:nth-child(even) {
     background-color: #303030;
 } */
+
+
+/* Override the bg-dark class to make it black */
+.bg-dark {
+    background-color: #000 !important;
+}

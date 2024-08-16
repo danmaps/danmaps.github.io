@@ -6,17 +6,17 @@
 <style>
     {{ pygments_css | safe }}
 </style>
-<div class="container">
+<div class="container bg-dark text-light">
     <article>
         <!-- Display the tags at the top -->
         {% if tags %}
-        <p class="post-tags">
+        <p class="post-tags text-light">
             {% for tag in tags %}
                 <span class="post-tag">{{ tag }}</span>{% if not loop.last %} {% endif %}
             {% endfor %}
         </p>
         {% endif %}
-        <h1>{{ title }}</h1>
+        <h1 class="text-light">{{ title }}</h1>
         <!-- Post content -->
         {{ content | safe }}
     </article>

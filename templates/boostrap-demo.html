@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Danny McVey - Personal Website</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+    <!-- Optional: Custom CSS -->
+    <style>
+        /* Add any custom styles here */
+        .home-link {
+            text-decoration: none;
+        }
+        .home-link h4 {
+            margin: 0;
+        }
+    </style>
 </head>
 <body class="bg-dark">
     <header class="bg-dark py-3">
-        <div class="container bg-dark">
+        <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <a href="{{ url_for('index') }}" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <a href="#" class="home-link text-light"><h2 class="h4">Danny McVey</h2></a>
                 <nav>
-                    <a href="{{ url_for('about_me') }}" class="about-link btn btn-outline-light">About Me</a>
+                    <a href="#" class="btn btn-outline-light">About Me</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main class="container my-4">
-        {% block content %}{% endblock %}
+    <main class="container bg-dark my-4">
+        <div class="card bg-dark ">
+            <div class="card-body bg-dark border">
+                <h5 class="card-title text-light">Welcome to My Website</h5>
+                <p class="card-text text-light">This is an example of a Bootstrap card component.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
     </main>
 
     <footer class="bg-dark py-3">

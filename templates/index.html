@@ -5,25 +5,26 @@
 {% endblock %}
 
 {% block content %}
-<div class="post-list">
+<div class="post-list bg-dark">
   {% for post in posts %}
     {% if 'Stub' not in post.tags %}
-    <div class="container">
+    <div class="container bg-dark">
       <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
-        <div class="post-card">
-          <div class="post-header">
-            <h2 class="post-title">{{ post.title }}</h2>
-            <div class="post-meta">
+        <div class="card bg-dark">
+        <div class="card-body bg-dark border">
+          <div class="post-header text-light">
+            <h2 class="post-title text-light">{{ post.title }}</h2>
+            <div class="post-meta bg-dark">
               <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
               {% if post.tags %}
-              <div class="post-tags">
+              <div class="post-tags bg-dark">
                 {% for tag in post.tags %}
                   <span class="post-tag">{{ tag }}</span>
                 {% endfor %}
               </div>
               {% endif %}
             </div>
-          </div>
+          </div></div>
         </div>
       </div>
     </a>
