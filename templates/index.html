@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Danny McVey
+Danny McVey
 {% endblock %}
 
 {% block content %}
 <div class="post-list bg-dark">
   {% for post in posts %}
-    {% if 'Stub' not in post.tags %}
-    <div class="container bg-dark">
-      <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
-        <div class="post-card card bg-dark">
+  {% if 'Stub' not in post.tags %}
+  <div class="container bg-dark">
+    <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
+      <div class="post-card card bg-dark">
         <div class="card-body bg-dark border">
           <div class="post-header text-light">
             <h2 class="post-title text-light">{{ post.title }}</h2>
@@ -19,16 +19,17 @@
               {% if post.tags %}
               <div class="post-tags bg-dark">
                 {% for tag in post.tags %}
-                  <span class="post-tag">{{ tag }}</span>
+                <span class="post-tag">{{ tag }}</span>
                 {% endfor %}
               </div>
               {% endif %}
             </div>
-          </div></div>
+          </div>
         </div>
       </div>
-    </a>
-    {% endif %}
+  </div>
+  </a>
+  {% endif %}
   {% endfor %}
 </div>
 {% endblock %}
