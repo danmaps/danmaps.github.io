@@ -105,17 +105,18 @@ pre code {
 }
 
 .post-card {
-    background-color: #2c2c2c;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* padding: 15px; */
+    /* margin-bottom: 20px; */
+    /* border-radius: 8px; */
+    box-shadow: 0 2px 4px rgba(127, 127, 127, 0.1);
     /* animation */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
 }
 
 .post-header {
@@ -180,7 +181,8 @@ pre code {
 
 .post-card-link:hover .post-card {
     transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgb(131, 131, 131);
+    background-color: #555;
 }
 
 .post-card-link h2.post-title a {

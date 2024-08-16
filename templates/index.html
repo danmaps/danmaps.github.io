@@ -10,7 +10,7 @@
     {% if 'Stub' not in post.tags %}
     <div class="container bg-dark">
       <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
-        <div class="card bg-dark">
+        <div class="post-card card bg-dark">
         <div class="card-body bg-dark border">
           <div class="post-header text-light">
             <h2 class="post-title text-light">{{ post.title }}</h2>
