@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prioritizing Health as a Knowledge Worker</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/styles.css">
+
+    <!-- Prism CSS (for code highlighting) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-
-<body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="/" class="home-link"><h2>Danny McVey</h2></a>
+</head>
+<body class="bg-dark">
+    <header class="bg-dark py-3">
+        <div class="container bg-dark">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
                 <nav>
-                    <a href="/about-me.html" class="about-link">About Me</a>
+                    <a href="/about-me.html" class="about-link btn btn-outline-light">About Me</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main>
+    <main class="container my-4">
         
 <style>
     pre { line-height: 125%; }
@@ -108,11 +117,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
 .codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
 </style>
-<div class="container">
+<div class="container bg-dark text-light">
     <article>
         <!-- Display the tags at the top -->
         
-        <p class="post-tags">
+        <p class="post-tags text-light">
             
                 <span class="post-tag">Health</span> 
             
@@ -122,7 +131,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
         </p>
         
-        <h1>Prioritizing Health as a Knowledge Worker</h1>
+        <h1 class="text-light">Prioritizing Health as a Knowledge Worker</h1>
         <!-- Post content -->
         <p>While knowledge work, particularly in fields like Data analysis or Software Engineering, is intellectually stimulating, it can take a toll on your physical health. The cognitive demands are high, but the physical demands—or rather, the lack thereof—pose their own challenges. Balancing mental and physical well-being is essential for long-term success and productivity.</p>
 <h4>Rethinking the Workspace</h4>
@@ -155,10 +164,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     </main>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2024 Danny McVey. All rights reserved.</p>
-    </div>
-</footer>
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light">
+            <p>&copy; 2024 Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
