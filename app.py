@@ -161,41 +161,6 @@ def post(post_name):
     except FileNotFoundError:
         abort(404)
 
-@app.route('/about-me.html')
-def about_me():
-    try:
-        # Open and read the about me markdown file
-        with open('about-me.md', 'r') as f:
-            content = f.read()
-
-        # Split the content to remove the YAML front matter (if it exists)
-        try:
-            _, front_matter, body = content.split('---', 2)
-            metadata = yaml.safe_load(front_matter)
-        except (ValueError, IndexError, yaml.YAMLError):
-            metadata = {}
-            body = content  # If there's no front matter, use the whole content
-
-        # Extract title and other metadata if needed
-        title = metadata.get('title', 'About Me')
-        tags = metadata.get('tags', [])
-
-        # Convert markdown to HTML with syntax highlighting
-        html_content = markdown.markdown(body, extensions=[
-            'fenced_code',
-            'codehilite',
-            CodeHiliteWithLanguageExtension(),
-            CodeHiliteExtension(pygments_style='monokai', noclasses=True)
-        ])
-
-        # Include the CSS for Pygments
-        formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
-        pygments_css = formatter.get_style_defs()
-
-        # Render the template with all necessary data
-        return render_template('about.html', content=html_content, title=title, pygments_css=pygments_css, tags=tags)
-    except FileNotFoundError:
-        abort(404)
 
 
 if __name__ == '__main__':
