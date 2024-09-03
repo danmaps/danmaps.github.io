@@ -24,7 +24,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
                 <nav>
-                    <a href="/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
                 </nav>
             </div>
         </div>
@@ -144,13 +144,33 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h4>What is a Vector?</h4>
 <p>At its most basic, a vector is an ordered list of numbers. You can think of it as a set of coordinates that define a point in space. For example, in two-dimensional space, a vector could represent a point with an x and y coordinate, like (3, 4). In three-dimensional space, a vector would have three components, such as (3, 4, 5). The concept of vectors is fundamental in mathematics and physics, where they are used to represent quantities that have both magnitude and direction, like velocity or force.</p>
 <p>But vectors are not limited to physical space. In the world of computing, vectors can represent more abstract concepts. For example, a vector can be used to capture the meaning of a word in a text, an image in a photo, or even a user’s preferences in a recommendation system. In these cases, the vector’s components are numerical values that capture various aspects or features of the item it represents.</p>
-<h4>Vectors in Everyday Life</h4>
-<p>Vectors are all around us, even if we don’t usually think of them in those terms. Consider directions: when you give someone directions to your house, you’re essentially describing a vector—go north for two blocks, then west for one block. Another example is the way we represent forces in physics; a force has both a magnitude (how strong it is) and a direction (which way it pushes or pulls), making it a vector.</p>
-<p>In more abstract terms, vectors are also used to represent data in fields like machine learning and artificial intelligence. For instance, when a recommendation system suggests a movie to you based on your past viewing habits, it’s using vectors to represent your preferences and compare them with other movies. The closer two vectors are in this abstract space, the more similar they are, allowing the system to find movies you’re likely to enjoy.</p>
-<h4>Vectors in Computing</h4>
-<p>In computing, vectors are essential for handling complex data. When we talk about vectors in this context, we’re often referring to high-dimensional vectors—those with many components. For example, if we want to represent a word as a vector in a natural language processing (NLP) system, we might use a 300-dimensional vector where each component captures some aspect of the word’s meaning.</p>
-<p>These high-dimensional vectors are incredibly powerful because they allow us to perform operations like similarity searches. By comparing vectors, we can determine how similar two items are, whether they are words, images, or user profiles. This capability is at the heart of many AI applications, from search engines to recommendation systems.</p>
-<p>However, working with high-dimensional vectors presents challenges, especially when it comes to storing and querying them efficiently. This is where vector databases come into play, providing the specialized tools needed to handle these complex data types effectively.</p>
+<h3>Understanding Scalars vs. Vectors</h3>
+<p>Before diving deeper into vector databases, it's crucial to understand the difference between scalars and vectors, as this distinction lies at the heart of why vector databases exist.</p>
+<h4>Scalars</h4>
+<p>A <strong>scalar</strong> is a single numerical value that represents quantity. Scalars are used in everyday situations to describe simple measurements, such as:</p>
+<ul>
+<li><strong>Temperature</strong>: <code>25°C</code></li>
+<li><strong>Weight</strong>: <code>70 kg</code></li>
+<li><strong>Speed</strong>: <code>60 km/h</code></li>
+</ul>
+<p>In the context of databases, scalars are typically the values stored in columns. For example, a traditional database might store a person's age as a single scalar value like <code>30</code> or a product price as <code>19.99</code>. These values are easy to manage, aggregate, and query using standard database operations.</p>
+<h4>Vectors</h4>
+<p>A <strong>vector</strong>, on the other hand, is a quantity that has both magnitude and direction. Vectors are more complex because they capture more information than scalars. Examples of vectors include:</p>
+<ul>
+<li><strong>Velocity</strong>: <code>60 km/h to the northeast</code> (magnitude + direction)</li>
+<li><strong>Force</strong>: <code>5 N to the east</code></li>
+<li><strong>Position in space</strong>: <code>(3, 4, 5)</code> representing coordinates in a 3D space</li>
+</ul>
+<p>Vectors are not just about magnitude; they also tell you where or how that magnitude is applied. In the context of computing and data science, vectors can represent more abstract concepts like:</p>
+<ul>
+<li><strong>Word embeddings</strong>: Representing the meaning of words in a high-dimensional space.</li>
+<li><strong>Image features</strong>: Capturing the essential characteristics of an image.</li>
+<li><strong>User preferences</strong>: Summarizing a user's behavior in a multi-dimensional profile.</li>
+</ul>
+<h4>Why This Distinction Matters</h4>
+<p>The distinction between scalars and vectors is crucial when choosing the right database for your needs. Traditional databases are optimized for handling scalar values—simple, individual data points that can be easily stored, queried, and manipulated. However, as we move into more complex data-driven applications, such as those involving AI and machine learning, we often need to work with vectors, which represent data in multiple dimensions simultaneously.</p>
+<p>For example, consider a recommendation system that needs to compare user profiles with thousands of products. Each profile and product might be represented as a vector with hundreds of dimensions, capturing various features like preferences, behavior, and ratings. Comparing these vectors to find the most similar items is a task that traditional databases are not designed to handle efficiently.</p>
+<p>This is where <strong>vector databases</strong> come in—they are specifically designed to store, index, and query high-dimensional vector data, enabling operations like similarity search, nearest neighbor search, and more, all of which are fundamental in modern AI applications.</p>
 <p><strong>Vector databases</strong> are specialized databases designed to store, index, and query high-dimensional data, typically in the form of vectors. These vectors are often the result of embedding techniques used in machine learning and natural language processing (NLP) to represent data such as text, images, or other types of unstructured data in a numerical format that captures semantic relationships.</p>
 <ul>
 <li>
@@ -176,26 +196,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>Example Databases</strong>: Apache Parquet, Amazon Redshift, and ClickHouse are examples of columnar databases.</p>
 </li>
 </ul>
-<h4>Comparison</h4>
-<h5>1. <strong>Purpose</strong>:</h5>
+<h3>Comparison</h3>
+<h5>1. <strong>Primary Operations</strong>:</h5>
 <ul>
-<li><strong>Vector Databases</strong>: Optimized for similarity search and other ML-driven tasks that require efficient querying of high-dimensional vectors.</li>
-<li><strong>Columnar Databases</strong>: Optimized for read-heavy analytical queries and aggregations across large datasets.</li>
+<li><strong>Vector Databases</strong>: Handle operations like similarity searches and finding nearest neighbors in high-dimensional data. These are key for AI and machine learning tasks.</li>
+<li><strong>Columnar Databases</strong>: Focus on operations like summing, averaging, and filtering large datasets, which are essential for data analysis and reporting.</li>
 </ul>
 <h5>2. <strong>Data Structure</strong>:</h5>
 <ul>
-<li><strong>Vector Databases</strong>: Use data structures and algorithms optimized for nearest neighbor search in high-dimensional spaces.</li>
-<li><strong>Columnar Databases</strong>: Store data in columns, allowing for efficient reading and writing of specific attributes.</li>
+<li><strong>Vector Databases</strong>: Built to store and search high-dimensional vectors efficiently.</li>
+<li><strong>Columnar Databases</strong>: Store data in columns, making it easy to perform fast aggregations and retrievals.</li>
 </ul>
 <h5>3. <strong>Use Cases</strong>:</h5>
 <ul>
-<li><strong>Vector Databases</strong>: Best for applications involving AI and machine learning, such as recommendation engines, image search, or NLP.</li>
-<li><strong>Columnar Databases</strong>: Best for analytics, business intelligence, and scenarios where aggregating large amounts of data quickly is crucial.</li>
+<li><strong>Vector Databases</strong>: Best for AI-driven tasks like recommendation engines, image searches, and natural language processing.</li>
+<li><strong>Columnar Databases</strong>: Ideal for business intelligence and analytical queries that require fast access to summarized data.</li>
 </ul>
 <h5>4. <strong>Performance</strong>:</h5>
 <ul>
-<li><strong>Vector Databases</strong>: Optimized for the performance of similarity searches in high-dimensional data.</li>
-<li><strong>Columnar Databases</strong>: Optimized for the performance of aggregate queries across many rows but fewer columns.</li>
+<li><strong>Vector Databases</strong>: Optimized for fast searches and comparisons in complex, high-dimensional data.</li>
+<li><strong>Columnar Databases</strong>: Optimized for quickly aggregating and analyzing large amounts of simpler data.</li>
 </ul>
 <table>
 <thead>
@@ -207,43 +227,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </thead>
 <tbody>
 <tr>
-<td><strong>Primary Use Case</strong></td>
-<td>Similarity search, machine learning, AI</td>
-<td>Analytical queries, data warehousing</td>
+<td><strong>Primary Operations</strong></td>
+<td>Similarity search, nearest neighbor search</td>
+<td>Summing, averaging, filtering</td>
 </tr>
 <tr>
 <td><strong>Data Structure</strong></td>
-<td>Vectors (high-dimensional)</td>
-<td>Columns (attribute-based storage)</td>
+<td>High-dimensional vectors</td>
+<td>Columns</td>
 </tr>
 <tr>
 <td><strong>Optimization</strong></td>
-<td>Nearest neighbor search</td>
-<td>Aggregations and analytical queries</td>
-</tr>
-<tr>
-<td><strong>Common Algorithms</strong></td>
-<td>k-d trees, LSH, HNSW</td>
-<td>Compression, indexing (e.g., bitmap)</td>
+<td>Fast vector operations</td>
+<td>Fast aggregations</td>
 </tr>
 <tr>
 <td><strong>Performance</strong></td>
-<td>Optimized for similarity searches</td>
-<td>Optimized for read-heavy aggregation</td>
-</tr>
-<tr>
-<td><strong>Example Databases</strong></td>
-<td>Pinecone, Milvus, Weaviate</td>
-<td>Apache Parquet, Amazon Redshift, ClickHouse</td>
+<td>Optimized for AI tasks</td>
+<td>Optimized for data analysis</td>
 </tr>
 <tr>
 <td><strong>Typical Applications</strong></td>
 <td>Recommendation systems, image search, NLP</td>
-<td>Business intelligence, OLAP workloads</td>
+<td>Business intelligence, reporting</td>
 </tr>
 </tbody>
 </table>
-<p>In summary, vector databases and columnar databases are optimized for different types of tasks. Vector databases excel in AI and machine learning contexts where high-dimensional data needs to be queried efficiently, while columnar databases are designed to handle large-scale analytical queries with a focus on performance and compression.</p>
+<h3>Summary</h3>
+<p>Vector databases are designed for complex AI tasks that involve searching and comparing high-dimensional data, while columnar databases are optimized for quickly analyzing and aggregating large datasets.</p>
     </article>
 </div>
 
