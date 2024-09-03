@@ -4,6 +4,7 @@ tags:
 - Python
 - GIS
 - ArcGIS Pro
+- stub
 title: Damn field mappings!
 ---
 
