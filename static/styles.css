@@ -83,20 +83,7 @@ pre code {
 .post-tags {
     margin-bottom: 0em;
     font-size: 0.9em;
-    color: #555;
-}
-
-.post-tag {
-    background-color: #424242;
-    padding: 3px 6px;
-    margin-right: 5px;
-    border-radius: 3px;
-    text-decoration: none;
-    color: #9c9c9c;
-}
-
-.post-tag:hover {
-    background-color: #4e4e4e;
+    color: #ff0000;
 }
 
 /* Post List and Cards */
@@ -155,7 +142,7 @@ pre code {
 }
 
 .post-tag {
-    background-color: #444;
+    background-color: #1c1c1c;
     color: #ddd;
     padding: 5px 8px;
     border-radius: 4px;
@@ -218,8 +205,19 @@ th {
     background-color: #303030;
 } */
 
+/* header and footer container id*/
+
+
+#footer-container, #header-container {
+    background-color: #1c1c1c !important;
+    padding: 1em;
+    border-radius: 10px;
+}
+
 
 /* Override the bg-dark class to make it black */
 .bg-dark {
     background-color: #000 !important;
+    
 }
+

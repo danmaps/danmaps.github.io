@@ -20,7 +20,7 @@
 </head>
 <body class="bg-dark">
     <header class="bg-dark py-3">
-        <div class="container bg-dark">
+        <div class="container bg-dark", id="header-container">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
                 <nav>
@@ -119,19 +119,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <div class="container bg-dark text-light">
     <article>
-        <!-- Display the tags at the top -->
-        
-        <p class="post-tags text-light">
-            
-                <span class="post-tag">Spatial Analysis</span> 
-            
-                <span class="post-tag">Python</span> 
-            
-                <span class="post-tag">Streamlit</span> 
-            
-                <span class="post-tag">Proximity Analysis</span>
-            
-        </p>
         
         <h1 class="text-light">Automating Proximity Analysis in Streamlit with Open Source Python</h1>
         <!-- Post content -->
@@ -286,6 +273,20 @@ distance_threshold_meters = feet_to_meters(distance_threshold_feet)
 <h2>Conclusion</h2>
 <p>This project was a significant learning experience. By refining user requirements, exploring open-source alternatives, and thoughtfully choosing the right delivery model, I developed a robust and flexible tool for spatial proximity analysis. This automation not only saves time but also ensures consistency and reproducibility, making this kind of analysis trivial in the future.</p>
 <p>So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It's a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <span class="post-tag">Spatial Analysis</span> 
+            
+                <span class="post-tag">Python</span> 
+            
+                <span class="post-tag">Streamlit</span> 
+            
+                <span class="post-tag">Proximity Analysis</span>
+            
+        </p>
+        
     </article>
 </div>
 
@@ -295,7 +296,7 @@ distance_threshold_meters = feet_to_meters(distance_threshold_feet)
     </main>
 
     <footer class="bg-dark py-3">
-        <div class="container text-center text-light">
+        <div class="container text-center text-light", id="footer-container">
             <p>&copy; 2024 Danny McVey. All rights reserved.</p>
         </div>
     </footer>

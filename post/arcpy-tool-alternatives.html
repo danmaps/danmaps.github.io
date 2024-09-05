@@ -20,7 +20,7 @@
 </head>
 <body class="bg-dark">
     <header class="bg-dark py-3">
-        <div class="container bg-dark">
+        <div class="container bg-dark", id="header-container">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
                 <nav>
@@ -119,19 +119,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <div class="container bg-dark text-light">
     <article>
-        <!-- Display the tags at the top -->
-        
-        <p class="post-tags text-light">
-            
-                <span class="post-tag">GIS</span> 
-            
-                <span class="post-tag">Geoprocessing</span> 
-            
-                <span class="post-tag">Python</span> 
-            
-                <span class="post-tag">Open Source</span>
-            
-        </p>
         
         <h1 class="text-light">Open source alternatives to ArcPy</h1>
         <!-- Post content -->
@@ -204,6 +191,20 @@ print(f"ArcPy area: {arcpy_area}, GeoPandas area: {gpd_area}")
 <h2>Conclusion</h2>
 <p>ArcPy is a powerful tool, and for many GIS professionals, it’s the default option for spatial analysis. However, as we've seen, there are robust open-source alternatives that can handle many of the same tasks, often with fewer dependencies and more flexibility in terms of deployment.</p>
 <p>Whether you're looking to build lightweight web apps, run scripts on a server, or just explore what’s possible outside of ArcGIS Pro, tools like GeoPandas, Shapely, and Fiona offer powerful geospatial capabilities that are worth considering. The best tool is the one you have with you, and with these open-source libraries, you can have a pretty powerful toolbox wherever you go.</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <span class="post-tag">GIS</span> 
+            
+                <span class="post-tag">Geoprocessing</span> 
+            
+                <span class="post-tag">Python</span> 
+            
+                <span class="post-tag">Open Source</span>
+            
+        </p>
+        
     </article>
 </div>
 
@@ -213,7 +214,7 @@ print(f"ArcPy area: {arcpy_area}, GeoPandas area: {gpd_area}")
     </main>
 
     <footer class="bg-dark py-3">
-        <div class="container text-center text-light">
+        <div class="container text-center text-light", id="footer-container">
             <p>&copy; 2024 Danny McVey. All rights reserved.</p>
         </div>
     </footer>
