@@ -149,8 +149,10 @@ def post(post_name):
         # various replacements to clean up output from chatgpt
         # replace â€™ with ' in html_content to fix issue where '’' shows up in html as 'â€™'
         html_content = html_content.replace('â€™', '\'')
+        html_content = html_content.replace('\\n---\\n', '\\n<hr>')
         html_content = html_content.replace('---', '—')
         html_content = html_content.replace('â€”', '—')
+        html_content = html_content.replace('â€˜', '\'')
 
         # Include the CSS for Pygments
         formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
