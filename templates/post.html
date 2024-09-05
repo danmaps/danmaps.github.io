@@ -8,7 +8,11 @@
 </style>
 <div class="container bg-dark text-light">
     <article>
-        <!-- Display the tags at the top -->
+        
+        <h1 class="text-light">{{ title }}</h1>
+        <!-- Post content -->
+        {{ content | safe }}
+        <!-- Display the tags at the bottom -->
         {% if tags %}
         <p class="post-tags text-light">
             {% for tag in tags %}
@@ -16,9 +20,6 @@
             {% endfor %}
         </p>
         {% endif %}
-        <h1 class="text-light">{{ title }}</h1>
-        <!-- Post content -->
-        {{ content | safe }}
     </article>
 </div>
 
