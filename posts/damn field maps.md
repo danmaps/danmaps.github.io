@@ -4,40 +4,32 @@ tags:
 - Python
 - GIS
 - ArcGIS Pro
-- stub
-title: Damn field mappings!
+title: Field Mapping Frustrations in GIS - Automating Spatial Joins
 ---
 
+Last week, I ran into an issue with a batch spatial join tool that ran smoothly on several feature classes, each with slightly different schemas. However, without any warning, the tool produced outputs with a bunch of null values. If you’ve ever worked with field mapping in GIS, you might be familiar with this problem. I wanted to write about my experience and the solution I found, so I don’t forget it in the future.
 
-Today, I created a batch spatial join tool and it happily ran on three different feature classes with slightly different schemas. without warning, it created null values in the output.
+Here’s an example of the tool setup:
 
-I have to remember this going forward, so i'm writing about it.
-
-```python 
-arcpy.ImportToolbox(r"C:\Users\mcveydb\AppData\Local\Temp\ArcGISProTemp33628\Tmp.atbx")
-arcpy.Tmp.BatchSpatialJoin(
-    target_features=r"AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans",
-    join_features=r"\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_2024_Fall.shp",
-    out_feature_class=r"\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_Fall_2024.gdb\%Name%_join",
+```python
+arcpy.ImportToolbox(r"C:\Temp\MyToolbox.atbx")
+arcpy.MyToolbox.BatchSpatialJoin(
+    target_features=r"Data\City_Parcels.shp",
+    join_features=r"Data\Park_Boundaries.shp",
+    out_feature_class=r"Output\Parcels_With_Parks.gdb\Parcels_Parks_Join",
     join_operation="JOIN_ONE_TO_ONE",
     join_type="KEEP_ALL",
-    field_mapping=r'GESW_GESW_ID "GESW_GESW_ID" true true false 8 Double 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,GESW_GESW_ID,-1,-1;M3D_SCE_FID_GESW_COND "M3D_SCE_FID_GESW_COND" true true false 8 Double 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,M3D_SCE_FID_GESW_COND,-1,-1;CDS_CIRCUIT_NAME "CDS_CIRCUIT_NAME" true true false 150 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,CDS_CIRCUIT_NAME,0,149;CDS_CIRCUIT_CONCAT "CDS_CIRCUIT_CONCAT" true true false 251 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,CDS_CIRCUIT_CONCAT,0,250;M3D_SCE_ID_OH_UG_VAL "M3D_SCE_ID_OH_UG_VAL" true true false 255 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,M3D_SCE_ID_OH_UG_VAL,0,254;M3D_ID_CONDUCTOR_TYPE_VAL "M3D_ID_CONDUCTOR_TYPE_VAL" true true false 255 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,M3D_ID_CONDUCTOR_TYPE_VAL,0,254;M3D_ID_VOLTAGE_VAL "M3D_ID_VOLTAGE_VAL" true true false 255 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,M3D_ID_VOLTAGE_VAL,0,254;M3D_SCE_ID_NO_OF_WIRES_VAL "M3D_SCE_ID_NO_OF_WIRES_VAL" true true false 255 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,M3D_SCE_ID_NO_OF_WIRES_VAL,0,254;CDS_ANNOTATION_TEXT "CDS_ANNOTATION_TEXT" true true false 2000 Text 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,CDS_ANNOTATION_TEXT,0,1999;StaticObjID "StaticObjID" true true false 4 Long 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,StaticObjID,-1,-1;Shape_Length "Shape_Length" false true true 8 Double 0 0,First,#,AOC_2024_FALL_TRANS\AOC_2024_Fall_Trans,Shape_Length,-1,-1;OBJECTID "OBJECTID" true true false 10 Long 0 10,First,#,\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_2024_Fall.shp,OBJECTID,-1,-1;Area_Name "Area_Name" true true false 100 Text 0 0,First,#,\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_2024_Fall.shp,Area_Name,0,99;Tier "Tier" true true false 50 Text 0 0,First,#,\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_2024_Fall.shp,Tier,0,49;FCZ "FCZ" true true false 50 Text 0 0,First,#,\\sce\workgroup\CRE3\SMG\PROJECTS\Special_Projects\2020_Emergent_Dry_ Fuel_Work\2024\AOC_Fall_2024\AOC_2024_Fall.shp,FCZ,0,49',
-    match_option="INTERSECT",
-    search_radius=None,
-    distance_field_name="",
-    match_fields=None
+    field_mapping=r'PARCEL_ID "PARCEL_ID" true true false 8 Long 0 0,First,#,City_Parcels,PARCEL_ID,-1,-1;PARK_NAME "PARK_NAME" true true false 255 Text 0 0,First,#,Park_Boundaries,PARK_NAME,0,254',
+    match_option="INTERSECT"
 )
 ```
 
-Look at that field_mapping, what a mess! It won't work at all for datasets with different names, let alone different fields. When running the tool manually over and over again, the field mapping parameter is set during parameter validation based on the value of the "target_features". 
+Notice that **field_mapping**—it looks complicated! The issue here is that the field mapping won’t work well when there are differences in field names or schemas between datasets. When running a tool manually, this mapping is handled during parameter validation. However, when automating via Python or ModelBuilder, it silently fails, resulting in null values.
 
-When running in batch mode or automated with python or model builder, there isn't an error produced. It might just run and create a bunch of null values in the output.
+At first, I tried editing the field mapping string manually, but that process turned out to be error-prone and tedious. After some trial and error, I created a function to automate the process of generating field mappings in a more reliable way.
 
-Does this happen with other methods? Like tabular joins, or similiar joins in pandas or geopandas? To be explored.
+Here’s the function that helped:
 
-At first I tried to manually edit the field_mapping string itself, but that proved to be a fragile annoying process. I'm automating to avoid error prone tedium, not increase it!
-
-Throught trial and error, i was able to make this work using the following function:
 ```python
 def create_field_mappings(target, join, join_field, output_field_name=None, merge_rule=None, delimiter=', ', output_field_length=255):
     """
@@ -67,10 +59,6 @@ def create_field_mappings(target, join, join_field, output_field_name=None, merg
     out_field = arcpy.Field()
     out_field.name = output_field_name if output_field_name else join_field
     out_field.aliasName = out_field.name
-    if output_field_name == 'COUNTY':
-        out_field.type = "String"  # Explicitly set as text type
-        out_field.length = output_field_length  # Set length to 255
-
     if merge_rule:
         field_map.mergeRule = merge_rule
         if merge_rule.lower() == 'join':
@@ -84,4 +72,6 @@ def create_field_mappings(target, join, join_field, output_field_name=None, merg
     return field_mappings
 ```
 
-The goal was to recreated, effectively, the field_mapping creation that happens when running the tool manually, but in a different context. It works!
+This function effectively recreates the field mapping behavior you'd expect when running the tool manually, but with more control and automation. Using it saved me time and eliminated the frustration of manually editing long field mapping strings.
+
+The key takeaway: when working with batch processes or automated tools in GIS, don’t rely on silent errors to reveal themselves later—create automated solutions for common pitfalls like field mappings. It’s worth the effort!

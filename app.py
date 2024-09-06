@@ -84,8 +84,11 @@ def index():
                     date_obj = datetime.fromtimestamp(file_creation_time)
 
                                
-                # Make tags title case, if the tag is not already all caps
+                # Make tags proper case, if the tag is not already all caps
                 tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
+                # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
+                if "Arcgis Pro" in tags:
+                    tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
 
 
                 posts.append({
@@ -123,6 +126,22 @@ def post(post_name):
 
         # Make tags proper case, if the tag is not already all caps
         tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
+        # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
+        if "Arcgis Pro" in tags:
+            tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
+
+        # Handle date conversion if needed
+        if isinstance(date_str, str):
+            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+        elif isinstance(date_str, datetime):
+            date_obj = date_str
+        elif isinstance(date_str, date):
+            # Convert date to datetime for consistency
+            date_obj = datetime.combine(date_str, datetime.min.time())
+        else:
+            # Fallback to the file's creation date
+            file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f'{post_name}.md'))
+            date_obj = datetime.fromtimestamp(file_creation_time)
 
         # Handle date conversion if needed
         if isinstance(date_str, str):
