@@ -10,9 +10,9 @@ title: AI enhanced GP tools in ArcGIS Pro
 
 One of the biggest challenges with AI in the GIS world right now is its lack of situational awareness and the inability to provide actionable results without heavy user intervention.
 
-Tools like Copilot are promising, but they're blind to the specific environment they operate in. Users have to do the heavy lifting, supplying all the context and guidance needed. It's like asking someone for help, and they respond with, "Sure, but you'll have to tell me where everything is first."
+Tools like Copilot are so promising, but they're blind to the specific environment the users operates in. Users have to do the heavy lifting, supplying all the context and guidance needed. It's like asking someone for help, and they respond with, "Sure, but you'll have to tell me where everything is first."
 
-To tackle this, I've been working on an "AI Assistant" tool for ArcGIS Pro. This tool feeds the AI the necessary context through system prompts and allows it to execute the code it generates directly within the software.
+To help tackle this, I've been working on a set "AI Assistant" tools for ArcGIS Pro. The main innovation here is attepmpting to feed the AI the necessary context through system prompts. 
 
 The next step is to make this integration smarter—having the AI inspect the environment before and after actions, evaluate outcomes, and then make recommendations based on those evaluations. By doing so, the tool becomes more than just a code generator; it becomes an intelligent partner in decision-making.
 
