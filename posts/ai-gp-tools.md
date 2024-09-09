@@ -12,7 +12,9 @@ One of the biggest challenges with AI in the GIS world right now is its lack of 
 
 Tools like Copilot are so promising, but they're blind to the specific environment the users operates in. Users have to do the heavy lifting, supplying all the context and guidance needed. It's like asking someone for help, and they respond with, "Sure, but you'll have to tell me where everything is first."
 
-To help tackle this, I've been working on a set "AI Assistant" tools for ArcGIS Pro. The main innovation here is attepmpting to feed the AI the necessary context through system prompts. 
+To help tackle this, I've been working on a set of "AI Assistant" geoprocessing tools for ArcGIS Pro. The main innovation here is attepmpting to feed the AI the necessary context through system prompts. I used python to bridge the gap between ArcGIS Pro and OpenAI's API.
+
+One interesting technical note is that I avoided using the OpenAI python package in favor of directly interfacing with the API using the `requests` library. This avoids dependency on the OpenAI package and makes it easier for anyone to use these tools without cloning the default python environment.
 
 The next step is to make this integration smarter—having the AI inspect the environment before and after actions, evaluate outcomes, and then make recommendations based on those evaluations. By doing so, the tool becomes more than just a code generator; it becomes an intelligent partner in decision-making.
 
