@@ -103,7 +103,14 @@ def index():
     # sort posts randomly
     # posts.sort(key=lambda x: random.random())
 
-    return render_template('index.html', posts=posts)
+    apps = [{
+        'name': 'app',
+        'title': 'Interactive JS App Page',
+        'date': datetime.today(),
+        'tags': ['app']
+        }]
+
+    return render_template('index.html', posts=posts, apps=apps)
 
 @app.route('/post/<post_name>.html')
 def post(post_name):
@@ -179,9 +186,10 @@ def post(post_name):
 
         # Render the template with all necessary data
         return render_template('post.html', content=html_content, title=title, pygments_css=pygments_css, tags=tags, date=date_obj)
+        
+    
     except FileNotFoundError:
         abort(404)
-
 
 
 if __name__ == '__main__':
