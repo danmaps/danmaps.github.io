@@ -224,3 +224,82 @@ th {
 hr {
     border-top: 1px solid #4b5563;
 }
+
+/* retro terminal effect on text */
+
+/* Apply general retro effect to text */
+.retro-text {
+    font-family: 'Courier New', Courier, monospace; /* Retro font */
+    /* font-size: 4rem; */
+    /* text-align: center; */
+    display: inline-block;
+    position: relative;
+    color: white;
+    background-color: black;
+    padding: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 
+                 0 0 10px rgba(255, 255, 255, 0.5), 
+                 0 0 20px rgba(255, 255, 255, 0.2); /* Glow effect */
+    
+    /* Simulate pixelation */
+    transform: scale(1.02); /* Slight zoom for pixelated look */
+    filter: blur(0.4px); /* Apply slight blur */
+    image-rendering: pixelated; /* Pixel rendering for any background image */
+  }
+  
+  /* Scanline effect using background */
+  .retro-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.15) 50%, 
+      transparent 50%
+    );
+    background-size: 100% 2px; /* Spacing between lines to simulate scanlines */
+    z-index: 1;
+    pointer-events: none; /* Don't block text interaction */
+  }
+  
+  /* Optional animation to simulate old CRT flicker */
+  .retro-text.flicker {
+    animation: flicker 0.1s infinite alternate;
+  }
+
+/* Retro cursor on hover */
+.post-title:hover::after {
+    content: '█'; /* Retro block cursor */
+    animation: blink 0.7s infinite steps(1, start); /* Sharp blink effect */
+  }
+  
+  /* Keyframes for blinking without easing */
+  @keyframes blink {
+    0% {
+      opacity: 1; /* Fully visible */
+    }
+    50% {
+      opacity: 0; /* Fully invisible */
+    }
+    100% {
+      opacity: 1; /* Fully visible */
+    }
+  }
+  
+
+  
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.95;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
