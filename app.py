@@ -103,14 +103,7 @@ def index():
     # sort posts randomly
     # posts.sort(key=lambda x: random.random())
 
-    apps = [{
-        'name': 'app',
-        'title': 'Interactive JS App Page',
-        'date': datetime.today(),
-        'tags': ['app']
-        }]
-
-    return render_template('index.html', posts=posts, apps=apps)
+    return render_template('index.html', posts=posts)
 
 @app.route('/post/<post_name>.html')
 def post(post_name):

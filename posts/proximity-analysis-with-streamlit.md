@@ -53,7 +53,7 @@ In my professional experience, I've extensively used Arcpy for geospatial analys
 - **Geopandas**: Provides powerful data structures for working with geospatial data in Python, similar to how Pandas handles tabular data. It enabled seamless conversion between dataframes and geospatial dataframes. Figuring ou how to match the geoprocessing operations avilable in ArcGIS Pro was a breakthrough.
 - **Folium**: Facilitates the creation of interactive maps directly from geospatial data. It integrates well with Streamlit, allowing for a smooth user experience. I also knew that Streamlit allows for easy upload and download of data files including Excel.
 
-The choice of these tools was influenced by their flexibility and the growing ecosystem of geospatial libraries in the open-source community. They provide a cost-effective and versatile alternative to proprietary solutions, aligning with the broader movement towards open-source in geospatial analysis. Crucially, this allows the tool to be run anywhere (including here on `streamlit.app`) because it does not depend on proprietary software licensing.
+The choice of these tools was influenced by their flexibility and the growing ecosystem of geospatial libraries in the open-source community. They provide a cost-effective and versatile alternative to proprietary solutions, aligning with the broader movement towards open-source in geospatial analysis. Crucially, this allows the tool to be run anywhere (including on `streamlit.app`) because it does not depend on proprietary software licensing.
 
 ## Self-Serve Tool vs. Delivering Analysis Results
 
