@@ -21,7 +21,7 @@ blockquote {
 }
 
 pre {
-    background: #1e1e1e !important; /* Black background */
+    background: #000000 !important; /* Black background */
     /* some padding */
     padding: 0.5em;
 }
@@ -100,11 +100,11 @@ pre code {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.post-card:hover {
+/* .post-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
-}
+} */
 
 .post-header {
     display: flex;
@@ -166,11 +166,11 @@ pre code {
     text-decoration: none;
 }
 
-.post-card-link:hover .post-card {
+/* .post-card-link:hover .post-card {
     transform: translateY(-5px);
     box-shadow: 0 4px 6px rgb(131, 131, 131);
     background-color: #555;
-}
+} */
 
 .post-card-link h2.post-title a {
     text-decoration: none;
@@ -271,35 +271,32 @@ hr {
   }
 
 /* Retro cursor on hover */
-.post-title:hover::after {
+.post-card:hover .post-title::after {
     content: '█'; /* Retro block cursor */
-    animation: blink 0.7s infinite steps(1, start); /* Sharp blink effect */
+    animation: blink 0.5s infinite steps(1, start); /* Sharp blink effect */
   }
   
-  /* Keyframes for blinking without easing */
-  @keyframes blink {
+/* Keyframes for blinking without easing */
+@keyframes blink {
     0% {
-      opacity: 1; /* Fully visible */
+        opacity: 1; /* Fully visible */
     }
     50% {
-      opacity: 0; /* Fully invisible */
+        opacity: 0; /* Fully invisible */
     }
     100% {
-      opacity: 1; /* Fully visible */
+        opacity: 1; /* Fully visible */
     }
-  }
-  
+}
 
-  
-  @keyframes flicker {
+@keyframes flicker {
     0% {
-      opacity: 1;
+        opacity: 1;
     }
     50% {
-      opacity: 0.95;
+        opacity: 0.95;
     }
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  
+}
