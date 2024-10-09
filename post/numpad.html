@@ -130,6 +130,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Another useful feature of this script is its ability to handle alt-codes. By holding down CapsLock along with the Alt key, I can type an alt-code, and when I release Alt, the corresponding symbol is sent. For example:</p>
 <p>♥ &lt;- <code>Alt</code> + <code>9731</code></p>
 <p>This setup has significantly improved my workflow, allowing me to maintain a clean desk space while retaining the functionality I need for efficient input.</p>
+<h2>The Script</h2>
 <pre><code class="language-AutoHotkey">
 #Requires AutoHotkey v2.0
 
@@ -173,6 +174,9 @@ CreateNumpadKeys() {
     }
 }
 </code></pre>
+
+<h2>Making this run at startup</h2>
+<p>I made this script run when I log into Windows. To do so, I created a shortcut to the script in <code>%appdata%\Microsoft\Windows\Start Menu\Programs\Startup</code>.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
