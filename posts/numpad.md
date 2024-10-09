@@ -21,6 +21,7 @@ Another useful feature of this script is its ability to handle alt-codes. By hol
 
 This setup has significantly improved my workflow, allowing me to maintain a clean desk space while retaining the functionality I need for efficient input.
 
+## The Script
 
 ```AutoHotkey
 #Requires AutoHotkey v2.0
@@ -65,3 +66,7 @@ CreateNumpadKeys() {
     }
 }
 ```
+
+## Making this run at startup
+
+I made this script run when I log into Windows. To do so, I created a shortcut to the script in `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup`.
