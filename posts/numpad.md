@@ -8,14 +8,16 @@ title: Creating a Virtual Numpad with AutoHotKey
 ---
 
 
-<iframe width="100%" height="500" frameborder="0"
-  src="https://observablehq.com/embed/@59335169eee5a8a6/numpad@339?cell=*"></iframe>
-
 I recently built a virtual numpad using AutoHotKey to adapt to my new keyboard setup. I switched to a Freestyle2 Blue keyboard, which lacks the built-in numpad I was accustomed to. This became particularly frustrating when starting my workday, as I needed to enter an authenticator code to connect to the corporate VPN. After a few days of struggling with the top-row numbers, I realized I needed a numpad solution that would not add extra hardware to my desk. Separate numpads seemed inefficient and impractical.
 
 ## Initial Challenges and Solution
 
 Initially, I explored remapping keys using my keyboard's configuration tools, but this approach proved to be cumbersome. Eventually, I found a simple yet effective solution with AutoHotKey. I configured it so that when I hold down the CapsLock key, the letter keys under 7, 8, and 9 remap to function as a full numpad. This allows me to comfortably touch-type numbers with my right hand while holding CapsLock with my left pinky. The script also ensures that CapsLock does not activate inadvertently—it remains off unless explicitly pressed.
+
+Here's a simulation of the experience:
+
+<iframe width="100%" height="305" frameborder="0"
+  src="../static/numpad_assets/index.html"></iframe>
 
 ## Alt-Code Functionality
 

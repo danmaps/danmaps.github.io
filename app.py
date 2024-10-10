@@ -53,8 +53,10 @@ POSTS_DIR = 'posts'
 def index():
     posts = []
     for f in os.listdir(POSTS_DIR):
+        # print file name for debugging
+        print(f)
         if f.endswith('.md'):
-            with open(os.path.join(POSTS_DIR, f), 'r') as file:
+            with open(os.path.join(POSTS_DIR, f), 'r', errors='ignore') as file:
                 content = file.read()
                 metadata = {}
                 body = content
