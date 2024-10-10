@@ -39,6 +39,7 @@ pre {
     padding: 0.5em;
     /* don't move when the parent is scrolled horizontally */
     position: sticky;
+    top: 0;
 }
 
 .code-language {
