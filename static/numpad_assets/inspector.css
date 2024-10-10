@@ -114,7 +114,8 @@ label {
     color: white;
 }
 
-body > div:nth-child(4) > span > span.observablehq--boolean {
+/* Hide the value under the toggle*/
+body > div:nth-child(4) {
     display: none;
 }
 
