@@ -37,6 +37,8 @@ pre {
     /* grey background */
     background-color: #343434;
     padding: 0.5em;
+    /* don't move when the parent is scrolled horizontally */
+    position: sticky;
 }
 
 .code-language {
