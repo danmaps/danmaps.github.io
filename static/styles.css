@@ -300,9 +300,3 @@ hr {
         opacity: 1;
     }
 }
-
-/* Observable embed overrides */
-.observablehq h1 {
-    display: none;
-}
-
