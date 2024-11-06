@@ -8,7 +8,7 @@ title: Creating a Virtual Numpad with AutoHotKey
 ---
 
 
-I recently built a virtual numpad using AutoHotKey to adapt to my new keyboard setup. I switched to a Freestyle2 Blue keyboard, which lacks the built-in numpad I was accustomed to. This became particularly frustrating when starting my workday, as I needed to enter an authenticator code to connect to the corporate VPN. After a few days of struggling with the top-row numbers, I realized I needed a numpad solution that would not add extra hardware to my desk. Separate numpads seemed inefficient and impractical.
+I recently built a virtual numpad using AutoHotKey to adapt to my new keyboard setup. I switched to a Kinesis Freestyle2 Blue keyboard, which lacks the built-in numpad I was accustomed to. This became particularly frustrating when starting my workday, as I needed to enter an authenticator code to connect to the corporate VPN. After a few days of struggling with the top-row numbers, I realized I needed a numpad solution that would not add extra hardware to my desk. Separate numpads seemed inefficient and impractical.
 
 ## Initial Challenges and Solution
 
