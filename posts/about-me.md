@@ -9,11 +9,11 @@ title: About me
 
 ![Danny McVey](..\static/images/danny.jpg)
 
-I'm a seasoned GIS Technical Specialist with over a decade of experience in designing, implementing, and administering enterprise GIS solutions. I have a strong background in geospatial analysis, data management, and workflow automation. My expertise lies in leveraging the ArcGIS platform, developing Python scripts, and integrating GIS with other enterprise systems to enhance data accessibility and operational efficiency.
+With over a decade of experience under my belt, I've honed my skills as a GIS Technical Specialist, focusing on the design, implementation, and administration of large-scale GIS solutions. My roots run deep in geospatial analysis, data management, and workflow automation. I excel at harnessing the power of ArcGIS, crafting Python scripts, and merging GIS capabilities with other enterprise systems to make data more accessible and operations more streamlined.
 
 ### Professional Experience
 
-Currently, I work at Southern California Edison, where I deliver high-level technical expertise as a key member of my team, ensuring the successful execution of complex GIS projects. My role involves applying deep knowledge of Esri products and services to manage GIS data operations effectively.
+I am currently employed at Southern California Edison, where I contribute my technical expertise to my team. My primary responsibility is to ensure the smooth execution of complex GIS projects. This involves leveraging my in-depth knowledge of Esri products and services to effectively manage GIS data operations.
 
 ### Key Skills
 
@@ -24,10 +24,10 @@ Currently, I work at Southern California Edison, where I deliver high-level tech
 
 ### Passion and Goals
 
-My passion for GIS technology and problem-solving drives my work. I enjoy collaborating with cross-functional teams to deliver impactful projects that make a difference in communities. As I continue to grow in my career, I aim to transition from a GIS technician to a developer, focusing on creating innovative tools and solutions that leverage the power of geospatial data and generative AI.
+I'm fueled by my enthusiasm for GIS technology and tackling complex problems. Working alongside diverse teams to bring meaningful projects to life, making a real impact on communities, is what gets me going. Looking ahead, I'm excited to evolve from a GIS technician to a developer, crafting cutting-edge tools and solutions that harness the potential of geospatial data and generative AI.
 
 ### Personal Interests
 
-Outside of work, I enjoy running and CrossFit, which help me stay active and clear-headed. I also love experimenting with AI tools and exploring new ways to integrate them into my professional work.
+When I'm not working, you can find me pounding the pavement or pushing weights at CrossFit. These activities help me stay energized and focused. I'm also passionate about tinkering with AI tools and finding innovative ways to apply them to my work.
 
-Feel free to explore my portfolio to learn more about my projects and experience. Let's [connect](https://www.linkedin.com/in/dannymcvey/) and see how we can collaborate to drive the future of GIS and data technology together.
+Take a look at my portfolio to get a better sense of my projects and background. I'd love to [connect](https://www.linkedin.com/in/dannymcvey/) and explore how we can work together to shape the future of GIS and data technology.
