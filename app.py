@@ -4,6 +4,7 @@ from pygments.formatters import HtmlFormatter
 import os
 from markdown.extensions import Extension
 from markdown.extensions import tables
+from markdown.extensions import lists
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.preprocessors import Preprocessor
 import yaml
