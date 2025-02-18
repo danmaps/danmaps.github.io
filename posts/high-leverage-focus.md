@@ -7,8 +7,6 @@ tags:
 title: High-Leverage Focus - Maximizing Impact
 ---
 
-# **High-Leverage Focus: Maximizing Impact in GIS and AI**
-
 ## **The Power of High-Leverage Activities**
 
 GIS and AI are evolving fast, and the best way to stay ahead is by focusing on high-leverage activities—those that deliver the biggest impact for the effort put in. Here’s how I’m making the most of my time and energy while avoiding unnecessary work.
