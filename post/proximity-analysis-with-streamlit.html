@@ -243,7 +243,7 @@ def process_data(df, lat_col, lon_col, distance_threshold, id_col=None):
   A spatial index is used for performance optimization. Without it, finding all nearby points for each point would require comparing each point against every other point, resulting in a quadratic number of distance calculations (O(n^2)). The spatial index reduces this complexity by quickly narrowing down the list of potential nearby points using spatial relationships (like bounding boxes).
 </details>
 
-<ol>
+<ol start="3">
 <li>
 <p><strong>Buffer Creation and Matching</strong>: For each point in the GeoDataFrame, a buffer with the specified distance threshold is created. The spatial index is used to find all possible points within the buffer bounds.</p>
 </li>
