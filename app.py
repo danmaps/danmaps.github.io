@@ -4,7 +4,7 @@ from pygments.formatters import HtmlFormatter
 import os
 from markdown.extensions import Extension
 from markdown.extensions import tables
-from markdown.extensions import lists
+from markdown.extensions import sane_lists
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.preprocessors import Preprocessor
 import yaml
@@ -152,7 +152,7 @@ def post(post_name):
             'codehilite',
             'tables',
             'nl2br',
-            'lists',
+            'sane_lists',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])
