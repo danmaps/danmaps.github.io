@@ -1,5 +1,5 @@
 ---
-date: 2024-08-15
+date: 2025-02-17
 tags:
 - productivity
 - strategy
