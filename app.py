@@ -145,24 +145,13 @@ def post(post_name):
             file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f'{post_name}.md'))
             date_obj = datetime.fromtimestamp(file_creation_time)
 
-        # Handle date conversion if needed
-        if isinstance(date_str, str):
-            date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-        elif isinstance(date_str, datetime):
-            date_obj = date_str
-        elif isinstance(date_str, date):
-            # Convert date to datetime for consistency
-            date_obj = datetime.combine(date_str, datetime.min.time())
-        else:
-            # Fallback to the file's creation date
-            file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f'{post_name}.md'))
-            date_obj = datetime.fromtimestamp(file_creation_time)
-
         # Convert markdown to HTML with syntax highlighting
         html_content = markdown.markdown(body, extensions=[
             'fenced_code',
             'codehilite',
             'tables',
+            'nl2br',
+            'lists',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])
