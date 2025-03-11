@@ -1,10 +1,10 @@
 ---
 date: 2024-08-20
 tags:
-- Programming
-- Python
-- Teamwork
-- Notebooks
+- programming
+- python
+- teamwork
+- notebooks
 title: Sharing Python Tools - Practical Solutions and Considerations
 ---
 

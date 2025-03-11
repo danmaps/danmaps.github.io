@@ -1,9 +1,9 @@
 ---
 date: 2024-09-11
 tags:
-- Programming
-- Python
-- Education
+- programming
+- python
+- education
 - stub
 
 title: Thinking like a programmer

@@ -1,9 +1,9 @@
 ---
 date: 2024-09-09
 tags:
-- AI
-- ArcGIS Pro
-- Geoprocessing
+- ai
+- arcgis
+- gis
 
 title: AI enhanced GP tools in ArcGIS Pro
 ---

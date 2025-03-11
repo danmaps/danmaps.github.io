@@ -1,9 +1,9 @@
 ---
 date: 2024-10-09
 tags:
-- AutoHotKey
-- Productivity
-- Work
+- tools
+- productivity
+- work
 title: Creating a Virtual Numpad with AutoHotKey
 ---
 

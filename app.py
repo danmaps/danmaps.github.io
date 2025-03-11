@@ -92,6 +92,10 @@ def index():
                 # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
                 if "Arcgis Pro" in tags:
                     tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
+                if "Ai" in tags:
+                    tags = [tag.replace("Ai", "AI") for tag in tags]
+                if "Gis" in tags:
+                    tags = [tag.replace("Gis", "GIS") for tag in tags]
 
 
                 posts.append({
