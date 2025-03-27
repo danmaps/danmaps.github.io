@@ -8,8 +8,6 @@ tags:
 title: The Evolution of GIS Careers in the Age of Advanced AI
 ---
 
-## The Evolution of GIS Careers in the Age of Advanced AI
-
 As someone who's spent over a decade as a GIS Technical Specialist, I've witnessed numerous technological shifts in our industry. But the rapid advancement of AI—particularly generative AI and automation tools—presents perhaps the most significant transformation yet for GIS professionals. Let's explore how these technologies are reshaping our field and what it means for those in traditional GIS roles.
 
 ### The Current GIS Landscape
