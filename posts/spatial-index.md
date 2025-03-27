@@ -2,7 +2,7 @@
 title: What is a Spatial Index and Why Should I Care?
 date: 2024-09-27
 tags:
-    - GIS
+    - gis
     - data
     - work
     - stub

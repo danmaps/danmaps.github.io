@@ -4,6 +4,7 @@ from pygments.formatters import HtmlFormatter
 import os
 from markdown.extensions import Extension
 from markdown.extensions import tables
+from markdown.extensions import sane_lists
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.preprocessors import Preprocessor
 import yaml
@@ -91,6 +92,10 @@ def index():
                 # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
                 if "Arcgis Pro" in tags:
                     tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
+                if "Ai" in tags:
+                    tags = [tag.replace("Ai", "AI") for tag in tags]
+                if "Gis" in tags:
+                    tags = [tag.replace("Gis", "GIS") for tag in tags]
 
 
                 posts.append({
@@ -151,7 +156,7 @@ def post(post_name):
             'codehilite',
             'tables',
             'nl2br',
-            'lists',
+            'sane_lists',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])

@@ -1,10 +1,9 @@
 ---
 date: 2024-08-13
 tags:
-- GIS
-- Geoprocessing
-- Python
-- Open Source
+- gis
+- python
+- open-source
 
 title: Open source alternatives to ArcPy
 ---

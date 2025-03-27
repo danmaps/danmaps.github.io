@@ -2,7 +2,6 @@
 title: Purpose-Driven Process
 date: 2024-09-26
 tags:
-    - motivation
     - productivity
     - work
     - stub
