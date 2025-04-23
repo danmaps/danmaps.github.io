@@ -5,7 +5,7 @@ tags:
 - career
 - productivity
 - technology
-title: Too Easy to Start: How AI Tools Shifted My Bottleneck from Building to Shipping
+title: Too Easy to Start - AI Tools Shifted My Bottleneck from Building to Shipping
 
 ---
 
