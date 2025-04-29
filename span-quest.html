@@ -1,0 +1,358 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Span Quest — draggable-terrain MVP (2025-04-26)</title>
+<style>
+html,body{margin:0;height:100%;font-family:system-ui,Arial,sans-serif}
+#wrap{display:flex;height:100%}
+#left{flex:3;min-width:620px}
+#right{flex:1;background:#222;color:#eee;box-shadow:-2px 0 4px #0006;
+       padding:8px 10px;font-size:14px}
+canvas{width:100%;height:100%;background:#000;display:block;cursor:crosshair}
+label{display:block;margin:4px 0}
+input[type=number]{width:72px}
+input,button{background:#111;border:1px solid #555;color:#eee}
+h3{margin:6px 0 8px;color:#0af}
+.fail{color:#f33;font-weight:700}.ok{color:#3f6}
+</style>
+
+<div id="wrap">
+  <div id="left"><canvas id="cv" width="800" height="400"></canvas></div>
+
+  <div id="right">
+    <h3>Constraints</h3>
+    <label><input id="ckSpan"  type="checkbox" checked>max span <input id="maxSpan" type="number" value="100"> ft</label>
+    <label><input id="ckDep"   type="checkbox" checked>max departure angle <input id="maxDep" type="number" value="11"> °</label>
+    <label><input id="ckClr"   type="checkbox">ground clearance <input id="clrG"  type="number" value="25"> ft</label>
+    <label><input id="ckBudget"type="checkbox">budget $<input id="budget" type="number" value="20000"></label>
+    <label>pole cost $<input id="costPole" type="number" value="1000"></label>
+
+    <label>tension
+      <input id="T" type="range" min="1" max="200" value="50">
+      <span id="Tval">50</span> kN
+    </label>
+    <label><input id="ckInfT" type="checkbox">straight mode (∞ tension)</label>
+
+    <hr style="border:0;border-top:1px solid #444;margin:6px 0">
+    <label><input id="ckFailVis" type="checkbox">show failures</label>
+    <label><input id="ckShowAllAngles" type="checkbox">show all angles</label>
+
+    <p id="stats"></p>
+    <button onclick="resetPoles()">reset added poles</button>
+    
+    <div id="poleZoomWrap" style="margin-top:18px">
+      <h3 style="margin-bottom:4px;color:#0af">Pole Top</h3>
+      <canvas id="poleZoom" width="200" height="200" style="background:#111;border:1px solid #333;width:100%;max-width:200px;display:block;"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── constants & helpers ───────────────────────────────────────────── */
+const cvs=document.getElementById('cv'), ctx=cvs.getContext('2d'),
+      W=cvs.width, H=cvs.height, $=id=>document.getElementById(id);
+
+const FT_PER_PX        = 1;        // 1 px ≈ 1 ft
+const CTRL_SPACING     = 40;       // ground vertex spacing (px)
+const HANDLE_R         = 6;        // ground-handle radius
+const HEAD             = 60;       // pole head above ground (ft → px)
+const LABEL_DY_SPAN    = -8;       // span text offset
+const LABEL_DY_ANGLE   = -18;      // angle text offset
+
+/* geometry helpers */
+const distFt =(a,b)=>Math.hypot((a.x-b.x)*FT_PER_PX,(a.y-b.y)*FT_PER_PX);
+const rad2deg=r=>r*180/Math.PI;
+const slopeDeg=s=>rad2deg(Math.atan(s));
+
+/* global state */
+let ctrlPts=[], ground=[], poles=[], hoverIdx=-1,
+    hoverCP=-1, draggingCP=-1;
+
+/* ── departure angle (signed) ──────────────────────────────────────── */
+function departureLR(p0,p1,T){
+  if(!isFinite(T)){                        // straight mode: chord slope
+    const m=(p1.y-p0.y)/(p1.x-p0.x);
+    const d=slopeDeg(m); return [d,d];
+  }
+  const L=(p1.x-p0.x)*FT_PER_PX,
+        sag=L*L/(8*T)/10,
+        a=4*sag/(L*L),
+        b=((p1.y-p0.y)*FT_PER_PX/L)-a*L;
+  return [ slopeDeg(b), slopeDeg(2*a*L+b) ];
+}
+
+function departureLR_horizontal(p0,p1,T){
+  // Returns departure angles from horizontal (0° = right, +up, -down)
+  if(!isFinite(T)){
+    const m=(p1.y-p0.y)/(p1.x-p0.x);
+    const d=Math.atan2(p1.y-p0.y, p1.x-p0.x)*180/Math.PI;
+    return [d,d];
+  }
+  const L=(p1.x-p0.x)*FT_PER_PX,
+        sag=L*L/(8*T),
+        a=4*sag/(L*L),
+        b=((p1.y-p0.y)*FT_PER_PX/L)-a*L;
+  // Departure slopes at left and right (dy/dx)
+  const slopeL = b;
+  const slopeR = 2*a*L + b;
+  // Convert to angle from horizontal
+  return [Math.atan(slopeL)*180/Math.PI, Math.atan(slopeR)*180/Math.PI];
+}
+
+/* ── terrain generation & rebuild ──────────────────────────────────── */
+function makeCtrlPts(){
+  ctrlPts=[];
+  for(let x=0;x<=W;x+=CTRL_SPACING){
+    const seg=Math.floor(x/(CTRL_SPACING*5));
+    const flat=(seg%2===0);               // flat / hill toggle
+    const base=300, amp=flat?0:40;
+    ctrlPts.push({x, y: base + amp*Math.sin(x/120)});
+  }
+}
+function buildGround(){
+  ground.length=0;
+  for(let i=0;i<ctrlPts.length-1;i++){
+    const a=ctrlPts[i], b=ctrlPts[i+1],
+          dx=b.x-a.x, dy=b.y-a.y;
+    for(let x=0;x<dx;x++){
+      ground[a.x+x]=a.y + dy*(x/dx);
+    }
+  }
+  ground[W]=ctrlPts.at(-1).y;
+}
+
+/* ── poles (endpoints & refresh) ───────────────────────────────────── */
+function initPoles(){
+  poles=[
+    {x:50      , y:ground[50   ]-HEAD, endpoint:true},
+    {x:W-50    , y:ground[W-50 ]-HEAD, endpoint:true}
+  ];
+}
+function refreshEndpoints(){
+  if(poles.length>=2){
+    poles[0].y     = ground[Math.round(poles[0].x)] - HEAD;
+    poles[poles.length-1].y = ground[Math.round(poles[poles.length-1].x)] - HEAD;
+  }
+}
+
+/* ── validation & stats ───────────────────────────────────────────── */
+function validate(skipBudget=false){
+  const Lmax= +$('maxSpan').value,
+        Amax= +$('maxDep').value,
+        clr = +$('clrG').value,
+        cost= +$('costPole').value,
+        budget= +$('budget').value,
+        T   = $('ckInfT').checked?Infinity:+$('T').value,
+        ck  = id=>$(id).checked;
+
+  let fails=[], spent=(poles.length-2)*cost;
+
+  for(let i=0;i<poles.length-1;i++){
+    const a=poles[i], b=poles[i+1];
+    if(ck('ckSpan') && distFt(a,b)>Lmax) fails.push({i});
+    if(ck('ckDep')){
+      const [dL,dR]=departureLR(a,b,T);
+      if(Math.abs(dL)>Amax||Math.abs(dR)>Amax) fails.push({i});
+    }
+    if(ck('ckClr')){
+      const midX=Math.round((a.x+b.x)/2),
+            midSag=isFinite(T)?((b.x-a.x)*FT_PER_PX)**2/(8*T)/FT_PER_PX:0,
+            yMid=(a.y+b.y)/2+midSag;
+      if(ground[midX]-yMid<clr) fails.push({i});
+    }
+  }
+  if(!skipBudget && ck('ckBudget') && spent>budget) fails.push({budget:1});
+
+  $('stats').innerHTML =
+    `poles added ${poles.length-2}  cost $${spent.toLocaleString()}`
+    +(ck('ckBudget')?` / $${budget}`:'')
+    +(fails.length ? ` <span class=fail>⚠ ${fails.length} fail</span>`
+                   : ` <span class=ok>✓ all good</span>`);
+  return fails;
+}
+
+/* ── drawing ───────────────────────────────────────────────────────── */
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  refreshEndpoints();
+
+  /* ground line */
+  ctx.strokeStyle='#555'; ctx.lineWidth=1.5; ctx.beginPath();
+  ctx.moveTo(0,ground[0]); for(let x=1;x<=W;x++) ctx.lineTo(x,ground[x]);
+  ctx.stroke();
+
+  /* handles (hover/drag) */
+  if(hoverCP!==-1||draggingCP!==-1){
+    const cp=ctrlPts[draggingCP!==-1?draggingCP:hoverCP];
+    ctx.fillStyle='#fff'; ctx.beginPath();
+    ctx.arc(cp.x,cp.y,HANDLE_R,0,2*Math.PI); ctx.fill();
+  }
+
+  /* conductor */
+  const T=$('ckInfT').checked?Infinity:+$('T').value;
+  if(poles.length>2){
+    ctx.strokeStyle='rgba(0,160,255,.4)'; ctx.lineWidth=2;
+    for(let i=1;i<poles.length;i++){
+      const a=poles[i-1],b=poles[i];
+      ctx.beginPath(); ctx.moveTo(a.x,a.y);
+      if(isFinite(T)){
+        const sag=(b.x-a.x)*(b.x-a.x)/(8*T)/10;
+        ctx.quadraticCurveTo((a.x+b.x)/2,(a.y+b.y)/2+sag,b.x,b.y);
+      }else ctx.lineTo(b.x,b.y);
+      ctx.stroke();
+    }
+  }
+
+  /* poles */
+  for(const p of poles){
+    const gY=ground[Math.round(p.x)];
+    ctx.strokeStyle=p.endpoint?'#0ff':'#6cf';
+    ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(p.x,gY); ctx.lineTo(p.x,p.y); ctx.stroke();
+    ctx.fillStyle=ctx.strokeStyle; ctx.fillRect(p.x-3,p.y-6,6,6);
+  }
+
+  /* hover labels */
+  const showAll = $('ckShowAllAngles').checked;
+  for(let i=0;i<poles.length;i++){
+    if(!showAll && i!==hoverIdx) continue;
+    const p=poles[i], Tdisp=T;
+    ctx.fillStyle='#0f0'; ctx.font='12px monospace';
+    if(i>0){
+      const a=poles[i-1],
+            midX=(a.x+p.x)/2, midY=(a.y+p.y)/2,
+            span=distFt(a,p).toFixed(1);
+      ctx.textAlign='center'; ctx.fillText(`${span} ft`, midX, midY+LABEL_DY_SPAN);
+      const [dL]=departureLR(a,p,Tdisp);
+      ctx.textAlign='right'; ctx.fillText(`${dL.toFixed(1)}°`, p.x-8, p.y+LABEL_DY_ANGLE);
+    }
+    if(i<poles.length-1){
+      const b=poles[i+1],
+            midX=(p.x+b.x)/2, midY=(p.y+b.y)/2,
+            span=distFt(p,b).toFixed(1);
+      ctx.textAlign='center'; ctx.fillText(`${span} ft`, midX, midY+LABEL_DY_SPAN);
+      const [,dR]=departureLR(p,b,Tdisp);
+      ctx.textAlign='left'; ctx.fillText(`${dR.toFixed(1)}°`, p.x+8, p.y+LABEL_DY_ANGLE);
+    }
+  }
+
+  /* failure overlay */
+  if($('ckFailVis').checked){
+    ctx.strokeStyle='#f33'; ctx.lineWidth=3;
+    validate(true).forEach(f=>{
+      const a=poles[f.i],b=poles[f.i+1];
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    });
+  }
+}
+
+function drawPoleZoom(idx) {
+  const zoom = document.getElementById('poleZoom');
+  const zctx = zoom.getContext('2d');
+  zctx.clearRect(0,0,zoom.width,zoom.height);
+  if(idx===-1) return;
+  const p = poles[idx];
+  let prev = idx>0 ? poles[idx-1] : null;
+  let next = idx<poles.length-1 ? poles[idx+1] : null;
+  const T = $('ckInfT').checked?Infinity:+$('T').value;
+  // Center pole top in canvas
+  const cx = 100, cy = 140, poleH = 80, poleW = 18;
+  // Draw pole
+  zctx.strokeStyle = '#0ff';
+  zctx.lineWidth = 7;
+  zctx.beginPath();
+  zctx.moveTo(cx,cy+poleH/2);
+  zctx.lineTo(cx,cy-poleH/2);
+  zctx.stroke();
+  zctx.fillStyle = '#0ff';
+  zctx.fillRect(cx-poleW/2,cy-poleH/2-8,poleW,16);
+
+  // Draw conductors and yellow arcs using main canvas departure angles
+  zctx.lineWidth = 5;
+  zctx.font = '20px monospace';
+  zctx.textBaseline = 'middle';
+  const arcR = 64;
+  // Helper: draw a line and arc for a given angle (deg), label
+  function drawConductorAndArc(angleDeg, label, baseDeg, alignLeft) {
+    // baseDeg: 0 for right, 180 for left
+    const ang = (baseDeg + angleDeg) * Math.PI/180;
+    // Blue conductor
+    zctx.strokeStyle = '#0af';
+    zctx.beginPath();
+    zctx.moveTo(cx,cy-poleH/2);
+    zctx.lineTo(cx+80*Math.cos(ang),cy-poleH/2+80*Math.sin(ang));
+    zctx.stroke();
+    // Yellow arc from base to ang
+    zctx.strokeStyle = '#fa0';
+    zctx.lineWidth = 3;
+    zctx.beginPath();
+    zctx.arc(cx,cy-poleH/2,arcR,baseDeg*Math.PI/180,ang,angleDeg<0);
+    zctx.stroke();
+    // Label at arc midpoint
+    const midAng = baseDeg*Math.PI/180 + (ang-baseDeg*Math.PI/180)/2;
+    zctx.fillStyle = '#fa0';
+    zctx.textAlign = alignLeft ? 'left' : 'right';
+    zctx.fillText(label, cx+arcR*Math.cos(midAng), cy-poleH/2+arcR*Math.sin(midAng));
+  }
+  // Previous span (left)
+  if(prev) {
+    const [dL] = departureLR(prev, p, T); // main canvas left angle
+    drawConductorAndArc(dL, dL.toFixed(1)+'°', 180, true);
+  }
+  // Next span (right)
+  if(next) {
+    const [,dR] = departureLR(p, next, T); // main canvas right angle
+    drawConductorAndArc(dR, dR.toFixed(1)+'°', 0, false);
+  }
+}
+
+/* ── mouse interactions ────────────────────────────────────────────── */
+function canvasXY(e){ const r=cvs.getBoundingClientRect();
+  return [(e.clientX-r.left)*(W/r.width),(e.clientY-r.top)*(H/r.height)];
+}
+/* add poles */
+cvs.addEventListener('click',e=>{
+  if(draggingCP!==-1) return;
+  const [mx,my]=canvasXY(e), gY=ground[Math.round(mx)];
+  if(my>gY-10) return;
+
+  const cost=+$('costPole').value,budget=+$('budget').value;
+  if($('ckBudget').checked&&(poles.length-1)*cost>budget) return;
+
+  poles.push({x:mx,y:my}); poles.sort((a,b)=>a.x-b.x);
+  draw();
+  validate(); // Ensure stats are updated after adding a pole
+});
+/* hover & drag handles / poles */
+cvs.addEventListener('mousemove',e=>{
+  const [mx,my]=canvasXY(e);
+  hoverIdx=poles.findIndex(p=>Math.hypot(p.x-mx,p.y-my)<8);
+
+  hoverCP=-1;
+  for(let i=0;i<ctrlPts.length;i++){
+    const cp=ctrlPts[i];
+    if(Math.hypot(cp.x-mx,cp.y-my)<HANDLE_R+2){hoverCP=i;break;}
+  }
+  if(draggingCP!==-1){
+    const cp=ctrlPts[draggingCP];
+    cp.y=Math.min(H-40,Math.max(60,my));         // clamp within view
+    buildGround(); refreshEndpoints();
+  }
+  draw();
+  drawPoleZoom(hoverIdx);
+});
+cvs.addEventListener('mouseleave',()=>{hoverIdx=-1;hoverCP=-1;draw();drawPoleZoom(-1);});
+cvs.addEventListener('mousedown',()=>{ if(hoverCP!==-1) draggingCP=hoverCP; });
+window.addEventListener('mouseup',()=>{ draggingCP=-1; });
+
+/* ── UI bindings ───────────────────────────────────────────────────── */
+$('T').oninput=e=>{ $('Tval').textContent=e.target.value; draw(); };
+$('ckInfT').onchange=()=>{ $('T').disabled=$('ckInfT').checked; draw(); };
+document.querySelectorAll('#right input').forEach(inp=>{
+  if(inp.id!=='T'&&inp.type!=='checkbox') inp.oninput=()=>draw();
+});
+$('ckFailVis').onchange=()=>draw();
+function resetPoles(){ poles=poles.filter(p=>p.endpoint); draw(); }
+
+/* ── boot ─────────────────────────────────────────────────────────── */
+makeCtrlPts(); buildGround(); initPoles(); draw(); drawPoleZoom(-1);
+</script>
