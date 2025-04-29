@@ -1,62 +1,67 @@
 import arcpy
 import os
 
-def assign_next_structure(points_fc, line_fc, output_fc):
+def assign_next_structure_with_m(points_fc, line_fc, output_fc):
     arcpy.env.overwriteOutput = True
+    gdb = arcpy.env.scratchGDB
 
-    # 1. Copy points_fc to output_fc so we can edit it
-    arcpy.management.CopyFeatures(points_fc, output_fc)
-
-    # 2. Add fields: projected_measure and next_id
-    if not [f.name for f in arcpy.ListFields(output_fc) if f.name.lower() == "proj_m"]:
-        arcpy.management.AddField(output_fc, "proj_m", "DOUBLE")
-    if not [f.name for f in arcpy.ListFields(output_fc) if f.name.lower() == "next_id"]:
-        arcpy.management.AddField(output_fc, "next_id", "TEXT", field_length=50)
-
-    # 3. Create near table with location along the line
-    near_table = os.path.join(arcpy.env.scratchGDB, "near_table")
-    arcpy.analysis.GenerateNearTable(
-        in_features=output_fc,
-        near_features=line_fc,
-        out_table=near_table,
-        search_radius="100 Meters",
-        location="LOCATION",
-        angle="NO_ANGLE",
-        closest="CLOSEST",
-        closest_count=1
+    # Step 1: Create a Route from the circuit line
+    route_fc = os.path.join(gdb, "circuit_route")
+    arcpy.lr.CreateRoutes(
+        in_line_features=line_fc,
+        route_id_field="OBJECTID",  # assuming one line or unique ID
+        out_feature_class=route_fc,
+        measure_source="LENGTH"
     )
 
-    # 4. Read projected points with measure along the line
-    oid_to_measure = {}
-    with arcpy.da.SearchCursor(near_table, ["IN_FID", "NEAR_DIST", "NEAR_X", "NEAR_Y"]) as cursor:
-        for oid, near_dist, near_x, near_y in cursor:
-            # For now, store NEAR_X as a proxy for along-line location (approximate)
-            oid_to_measure[oid] = (near_x, near_y)
+    # Step 2: Locate structures along the route
+    located_fc = os.path.join(gdb, "located_points")
+    arcpy.lr.LocateFeaturesAlongRoutes(
+        in_features=points_fc,
+        in_routes=route_fc,
+        route_id_field="OBJECTID",
+        out_table=located_fc,
+        search_radius="50 Meters",
+        distance_field="MEAS_DIST",
+        route_location_fields="ROUTE_ID LINE_M"
+    )
 
-    # 5. Write proj_m values into points
-    with arcpy.da.UpdateCursor(output_fc, ["OID@", "proj_m"]) as cursor:
-        for oid, proj_m in cursor:
-            if oid in oid_to_measure:
-                near_x, near_y = oid_to_measure[oid]
-                cursor.updateRow((oid, near_x))  # using NEAR_X for now; could use smarter linear referencing if available
+    # Step 3: Copy located points to output and add fields
+    arcpy.management.CopyFeatures(located_fc, output_fc)
 
-    # 6. Build list of structures ordered by proj_m
-    ordered_poles = []
-    with arcpy.da.SearchCursor(output_fc, ["OID@", "proj_m"]) as cursor:
-        for oid, proj_m in cursor:
-            if proj_m is not None:
-                ordered_poles.append((oid, proj_m))
-    ordered_poles.sort(key=lambda x: x[1])  # Sort by measure
+    existing_fields = [f.name.lower() for f in arcpy.ListFields(output_fc)]
 
-    # 7. Assign next_id
-    oid_to_next = {ordered_poles[i][0]: ordered_poles[i+1][0] for i in range(len(ordered_poles)-1)}
+    if "next_id" not in existing_fields:
+        arcpy.management.AddField(output_fc, "next_id", "TEXT", field_length=50)
+    if "distance_to_next" not in existing_fields:
+        arcpy.management.AddField(output_fc, "distance_to_next", "DOUBLE")
 
-    with arcpy.da.UpdateCursor(output_fc, ["OID@", "next_id"]) as cursor:
-        for oid, next_id in cursor:
-            if oid in oid_to_next:
-                cursor.updateRow((oid, str(oid_to_next[oid])))
+    # Step 4: Build sorted list by LINE_M (M-value)
+    poles = []
+    with arcpy.da.SearchCursor(output_fc, ["OID@", "pole_id", "LINE_M"]) as cursor:
+        for oid, pid, m in cursor:
+            if m is not None:
+                poles.append((oid, pid, m))
 
-    print(f"Assigned next_id for {len(oid_to_next)} structures.")
+    poles.sort(key=lambda x: x[2])  # Sort by M-value increasing
+
+    # Step 5: Prepare next_id and distance_to_next mapping
+    oid_to_next_info = {
+        poles[i][0]: (poles[i+1][1], poles[i+1][2] - poles[i][2])
+        for i in range(len(poles) - 1)
+    }
+
+    # Step 6: Update next_id and distance_to_next fields
+    with arcpy.da.UpdateCursor(output_fc, ["OID@", "next_id", "distance_to_next"]) as cursor:
+        for row in cursor:
+            oid = row[0]
+            if oid in oid_to_next_info:
+                next_id, dist = oid_to_next_info[oid]
+                row[1] = next_id
+                row[2] = dist
+                cursor.updateRow(row)
+
+    print(f"Assigned next_id and distance_to_next for {len(oid_to_next_info)} structures.")
 
 # Example usage:
-# assign_next_structure("Structures", "CircuitLine", "Structures_With_Next")
+# assign_next_structure_with_m("Structures", "CircuitLine", "Structures_With_Next")
