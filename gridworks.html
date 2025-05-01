@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GridScaper Prototype – Variable Pole Height</title>
+  <style>
+    html,body,#c { margin:0; height:100%; overflow:hidden; font-family:sans-serif; }
+    #hud { position:fixed; top:8px; left:8px; background:#0008; color:#fff; padding:6px 10px; font-size:12px; line-height:1.4; border-radius:6px; user-select:none; }
+    #hud input[type="range"]{ vertical-align:middle; }
+    #hud label{ margin-right:4px; }
+  </style>
+  <!-- Three.js (global build) -->
+  <script src="https://unpkg.com/three@0.139.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.139.2/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="hud">
+    <div><strong>Left‑click</strong>: add pole | <strong>SHIFT+click</strong>: reset</div>
+    <label for="heightSlider">Pole height:</label>
+    <input id="heightSlider" type="range" min="1" max="40" step="1" value="20" />
+    <span id="heightLabel">20</span> ft
+  </div>
+  <canvas id="c"></canvas>
+
+  <script>
+    /* ----- UI state ----- */
+    const slider = document.getElementById('heightSlider');
+    const heightLabel = document.getElementById('heightLabel');
+    let currentHeightFt = +slider.value; // feet
+    slider.addEventListener('input', () => {
+      currentHeightFt = +slider.value;
+      heightLabel.textContent = currentHeightFt;
+    });
+
+    /* ----- scene setup ----- */
+    const canvas   = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+    renderer.setSize(innerWidth, innerHeight);
+    const scene  = new THREE.Scene();
+    scene.background = new THREE.Color(0x87ceeb);
+
+    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 1000);
+    camera.position.set(40, 40, 40);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    /* lighting */
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+    dir.position.set(10, 40, 20);
+    scene.add(dir);
+
+    /* ground & helper */
+    const SIZE = 120;
+    scene.add(new THREE.GridHelper(SIZE, SIZE));
+    const ground = new THREE.Mesh(
+      new THREE.PlaneBufferGeometry(SIZE, SIZE).rotateX(-Math.PI/2),
+      new THREE.MeshBasicMaterial({visible:false})
+    );
+    scene.add(ground);
+
+    /* pole & line materials */
+    const BASE_POLE_H = 10; // geometry is 10 ft tall; scale for other heights
+    const POLE_R = 0.2;
+    const poleGeo = new THREE.CylinderBufferGeometry(POLE_R, POLE_R, BASE_POLE_H, 8);
+    const poleMat = new THREE.MeshStandardMaterial({color:0x8b5a2b});
+    const lineMat = new THREE.LineBasicMaterial({color:0x000000});
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const poles = []; // {x,z,h,obj}
+
+    /* interaction */
+    window.addEventListener('pointerdown', (e)=>{
+      if(e.shiftKey){ resetScene(); return; }
+      mouse.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+      raycaster.setFromCamera(mouse, camera);
+      const hit = raycaster.intersectObject(ground)[0];
+      if(!hit) return;
+      const {x, z} = hit.point.clone().round();
+      addPole(x, z, currentHeightFt);
+    });
+
+    function addPole(x, z, heightFt){
+      if(poles.find(p => p.x === x && p.z === z)) return; // no duplicates
+      const pole = new THREE.Mesh(poleGeo, poleMat);
+      pole.scale.y = heightFt / BASE_POLE_H;
+      pole.position.set(x, heightFt / 2, z);
+      scene.add(pole);
+      const poleData = {x, z, h: heightFt, obj:pole};
+      poles.push(poleData);
+      if(poles.length > 1){
+        const a = poles[poles.length - 2];
+        const b = poles[poles.length - 1];
+        createSpan(a, b);
+      }
+    }
+
+    function createSpan(a, b){
+      const dist = Math.hypot(b.x - a.x, b.z - a.z);
+      const sag = Math.max(0.1, dist * 0.05); // crude sag depth (scaled)
+      const pts = [];
+      const steps = 24;
+      for(let i = 0; i <= steps; i++){
+        const t = i / steps;
+        const x = THREE.MathUtils.lerp(a.x, b.x, t);
+        const z = THREE.MathUtils.lerp(a.z, b.z, t);
+        const yLinear = THREE.MathUtils.lerp(a.h, b.h, t);
+        const y = yLinear - sag * Math.sin(Math.PI * t);
+        pts.push(new THREE.Vector3(x, y, z));
+      }
+      const geo = new THREE.BufferGeometry().setFromPoints(pts);
+      const line = new THREE.Line(geo, lineMat);
+      scene.add(line);
+    }
+
+    function resetScene(){
+      poles.length = 0;
+      scene.children = scene.children.filter(o => {
+        if(o.type === 'Line' || (o.geometry && o.geometry.type === 'CylinderBufferGeometry')){
+          o.geometry.dispose();
+          return false;
+        }
+        return true;
+      });
+    }
+
+    /* resize */
+    window.addEventListener('resize', ()=>{
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+
+    /* render loop */
+    (function animate(){
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    })();
+  </script>
+</body>
+</html>

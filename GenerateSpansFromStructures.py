@@ -3,7 +3,7 @@ import statistics
 
 class Toolbox:
     def __init__(self):
-        self.label = "Span Generation Toolbox"
+        self.label = "Span Generation"
         self.alias = "spangenerator"
         self.tools = [GenerateSpansFromStructures]
 
