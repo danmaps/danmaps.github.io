@@ -3,57 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <title>GridScaper Prototype — Span-to-Span Clearance</title>
+  <link rel="stylesheet" href="jsonview.scss" />
   <style>
     html,body,#c{margin:0;height:100%;overflow:hidden;font-family:sans-serif}
     #hud{position:fixed;top:8px;left:8px;background:#0008;color:#fff;padding:6px 10px;font-size:12px;line-height:1.4;border-radius:6px;user-select:none}
     #hud input[type="range"],#hud select{vertical-align:middle}
     #hud label{margin-right:4px}
     #jsonPanel{
-      display:none;
-      width:300px;
-      height:calc(100vh - 20px);
-      overflow:auto;
-      background:rgba(0, 0, 0, 0.8);
-      color:#ddd;
-      padding:6px 10px;
-      font-family:monospace;
-      font-size:12px;
-      position:fixed;
-      top:10px;
-      right:10px;
-      bottom:10px;
-      border-radius:6px;
-      z-index:1000;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(3px);
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 310px;
+      margin: 8px;
+      background-color: #1a1a1a;
+      color: #efefef;
+      font-family: 'Lucida Grande', sans-serif;
+      font-size: 11px;
+      border-radius: 6px;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-    .json-key { color: #88ddff; }
-    .json-string { color: #a5d6a7; }
-    .json-number { color: #ef9a9a; }
-    .json-boolean { color: #ce93d8; }
-    .json-null { color: #b0bec5; }
-    .json-collapsible { 
+    .panel-title {
+      padding: 8px;
+      background: #323232;
+      color: #efefef;
+      font-weight: bold;
       cursor: pointer;
       user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2c2c2c;
     }
-    .json-collapsible::before {
-      content: '▼';
-      display: inline-block;
-      margin-right: 5px;
-      transition: transform 0.2s;
+    .panel-title:hover {
+      background: #3a3a3a;
     }
-    .json-collapsed::before {
-      transform: rotate(-90deg);
+    .panel-content {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
     }
-    .json-collapsed + .json-content {
-      display: none;
+    .panel-folder {
+      margin-bottom: 4px;
+      border-bottom: 1px solid #2c2c2c;
     }
-    .json-content {
-      padding-left: 20px;
+    .panel-folder-title {
+      padding: 8px;
+      cursor: pointer;
+      background-color: #262626;
+      display: flex;
+      justify-content: space-between;
+    }
+    .panel-folder-title:hover {
+      background-color: #2f2f2f;
+    }
+    .panel-folder-content {
+      padding: 8px;
+      overflow: hidden;
+      transition: height 0.3s ease;
+      background-color: #1a1a1a;
+    }
+    .folder-collapsed .panel-folder-content {
+      height: 0 !important;
+      padding: 0;
+    }
+    .json-key { color: #9cdcfe; }
+    .json-string { color: #ce9178; }
+    .json-number { color: #b5cea8; }
+    .json-boolean { color: #569cd6; }
+    .json-null { color: #777777; }
+    .json-row {
+      padding: 4px 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .json-row:nth-child(odd) {
+      background-color: #222222;
+    }
+    .json-value {
+      text-align: right;
     }
   </style>
   <script src="https://unpkg.com/three@0.139.2/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.139.2/examples/js/controls/OrbitControls.js"></script>
+  <script type="module" src="json-view.js"></script>
 </head>
 <body>
   <div id="hud">
@@ -61,16 +94,19 @@
     <label>New pole height: <input id="heightSlider" type="range" min="1" max="40" step="1" value="20"></label>
     <span id="heightLabel">20</span> ft
     &nbsp;&nbsp;|&nbsp;&nbsp;
-    <label>Terrain: <select id="terrainSelect"><option value="flat">Flat</option><option value="hills">Rolling Hills</option><option value="hillsTrees" selected>Hills + Trees</option></select></label>
+    <label>Terrain: <select id="terrainSelect"><option value="flat" selected>Flat</option><option value="hills">Rolling Hills</option><option value="hillsTrees">Hills + Trees</option></select></label>
     &nbsp;&nbsp;|&nbsp;&nbsp;
-    <label>Tension: <input id="tensionSlider" type="range" min="0.2" max="2" step="0.1" value="1"></label>
+    <label>Tension: <input id="tensionSlider" type="range" min="0.2" max="5" step="0.1" value="1"></label>
     <span id="tensionLabel">1.0×</span>
     &nbsp;&nbsp;|&nbsp;&nbsp;
-    <button id="toggleJSON">Show JSON</button>
+    <button id="toggleJSON">Hide JSON</button>
     <button id="downloadJSON">Download</button>
   </div>
   <canvas id="c"></canvas>
-  <div id="jsonPanel"></div>
+  <div id="jsonPanel">
+    <div class="panel-title">Structure Details <span class="panel-toggle-icon">▼</span></div>
+    <div id="json-container" class="panel-content"></div>
+  </div>
 
 <script>
 /* ------- constants ------- */
@@ -262,13 +298,13 @@ function calculateCatenaryAngles(p1, p2, tensionFactor) {
   const height2 = p2.base + p2.h;
   const heightDiff = height2 - height1;
   
-  const baseSag = Math.max(0.1, horizontalDistance * 0.05) * tensionFactor;
+  const sag = Math.max(0.1, horizontalDistance * 0.05) / tensionFactor;
   
-  const departureSlope = (heightDiff / horizontalDistance) + (Math.PI * baseSag / horizontalDistance);
-  const arrivalSlope = (heightDiff / horizontalDistance) - (Math.PI * baseSag / horizontalDistance);
+  const baseSlopeAngle = Math.atan2(heightDiff, horizontalDistance);
+  const sagEffect = Math.atan(Math.PI * sag / horizontalDistance);
   
-  const departureAngle = Math.atan(departureSlope) * (180 / Math.PI);
-  const arrivalAngle = Math.atan(arrivalSlope) * (180 / Math.PI);
+  const departureAngle = (baseSlopeAngle + sagEffect) * (180 / Math.PI);
+  const arrivalAngle = (baseSlopeAngle - sagEffect) * (180 / Math.PI);
   
   return { departureAngle, arrivalAngle };
 }
@@ -313,46 +349,66 @@ function calculateTopAngle(p1, p2, p3) {
 
 /* ------- JSON Viewer ------- */
 const jsonPanel = document.getElementById('jsonPanel');
+const panelTitle = document.querySelector('.panel-title');
+const panelContent = document.querySelector('.panel-content');
 const toggleJSON = document.getElementById('toggleJSON');
 const downloadJSON = document.getElementById('downloadJSON');
 
-function createJsonElement(key, value) {
-  const element = document.createElement('div');
-  if (typeof value === 'object' && value !== null) {
-    element.className = 'json-collapsible';
-    element.textContent = key;
-    const content = document.createElement('div');
-    content.className = 'json-content';
-    for (const [subKey, subValue] of Object.entries(value)) {
-      content.appendChild(createJsonElement(subKey, subValue));
-    }
-    element.appendChild(content);
-    element.onclick = () => {
-      element.classList.toggle('json-collapsed');
-    };
+panelTitle.addEventListener('click', () => {
+  panelTitle.classList.toggle('active');
+  
+  if (panelContent.style.maxHeight) {
+    panelContent.style.maxHeight = null;
   } else {
-    const keySpan = document.createElement('span');
-    keySpan.className = 'json-key';
-    keySpan.textContent = key + ': ';
-    const valueSpan = document.createElement('span');
-    if (typeof value === 'string') {
-      valueSpan.className = 'json-string';
-      valueSpan.textContent = `"${value}"`;
-    } else if (typeof value === 'number') {
-      valueSpan.className = 'json-number';
-      valueSpan.textContent = value;
-    } else if (typeof value === 'boolean') {
-      valueSpan.className = 'json-boolean';
-      valueSpan.textContent = value;
-    } else if (value === null) {
-      valueSpan.className = 'json-null';
-      valueSpan.textContent = 'null';
-    }
-    element.appendChild(keySpan);
-    element.appendChild(valueSpan);
+    panelContent.style.maxHeight = panelContent.scrollHeight + "px";
   }
-  return element;
+  
+  toggleJSON.textContent = panelTitle.classList.contains('active') ? 'Hide JSON' : 'Show JSON';
+});
+
+function updateJsonView() {
+  const data = collectData();
+  const jsonContainer = document.getElementById('json-container');
+  jsonContainer.innerHTML = '';
+  
+  // Use the module's default export when available
+  if (window.JSONView) {
+    window.JSONView.renderJSON(data, jsonContainer);
+  } else {
+    // Fallback to direct JSON display
+    const pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(data, null, 2);
+    jsonContainer.appendChild(pre);
+  }
+  
+  setTimeout(() => {
+    panelContent.style.maxHeight = panelContent.scrollHeight + "px";
+  }, 100);
 }
+
+// Initialize panel collapse functionality 
+document.addEventListener("DOMContentLoaded", () => {
+  panelContent.style.maxHeight = panelContent.scrollHeight + "px";
+});
+
+toggleJSON.onclick = () => {
+  const coll = document.querySelector('.panel-title');
+  coll.click();
+  toggleJSON.textContent = coll.classList.contains('active') ? 'Hide JSON' : 'Show JSON';
+};
+
+downloadJSON.onclick = () => {
+  const blob = new Blob(
+    [JSON.stringify(collectData(), null, 2)],
+    { type: 'application/json' }
+  );
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: 'gridscaper.json'
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
 
 function collectData() {
   const polesData = poles.map((p, index) => {
@@ -366,12 +422,12 @@ function collectData() {
     let arrivalAngle = null;
     
     if (nextPole) {
-      const angles = calculateCatenaryAngles(p, nextPole, 1/currentTension);
+      const angles = calculateCatenaryAngles(p, nextPole, currentTension);
       departureAngle = angles.departureAngle;
     }
     
     if (prevPole) {
-      const angles = calculateCatenaryAngles(prevPole, p, 1/currentTension);
+      const angles = calculateCatenaryAngles(prevPole, p, currentTension);
       arrivalAngle = angles.arrivalAngle;
     }
     
@@ -397,7 +453,8 @@ function collectData() {
     const b = poles[i + 1];
     const distance = calculateDistance(a, b);
     const sag = Math.max(0.1, distance * 0.05) / currentTension;
-    const angles = calculateCatenaryAngles(a, b, 1/currentTension);
+    const angles = calculateCatenaryAngles(a, b, currentTension);
+    const straightLineSlope = calculateInclinationAngle(a, b);
     
     const span = scene.children.find(o => 
       o.userData.span && 
@@ -413,6 +470,7 @@ function collectData() {
       departureAngle: round2(angles.departureAngle),
       arrivalAngle: round2(angles.arrivalAngle),
       sagDistance: round2(sag),
+      straightLineSlope: round2(straightLineSlope),
       valid: span ? span.material === mGood : false
     });
   }
@@ -425,43 +483,14 @@ function collectData() {
   };
 }
 
-function updateJsonView() {
-  if (jsonPanel.style.display !== 'none') {
-    jsonPanel.innerHTML = '';
-    const data = collectData();
-    for (const [key, value] of Object.entries(data)) {
-      jsonPanel.appendChild(createJsonElement(key, value));
-    }
-  }
-}
+(function loop(){ 
+  requestAnimationFrame(loop); 
+  controls.update(); 
+  renderer.render(scene,camera);
+})();
 
-toggleJSON.onclick = () => {
-  const open = jsonPanel.style.display !== 'none';
-  jsonPanel.style.display = open ? 'none' : 'block';
-  toggleJSON.textContent = open ? 'Show JSON' : 'Hide JSON';
-  if (!open) {
-    jsonPanel.innerHTML = '';
-    const data = collectData();
-    for (const [key, value] of Object.entries(data)) {
-      jsonPanel.appendChild(createJsonElement(key, value));
-    }
-  }
-};
-
-downloadJSON.onclick = () => {
-  const blob = new Blob(
-    [JSON.stringify(collectData(), null, 2)],
-    { type: 'application/json' }
-  );
-  const a = Object.assign(document.createElement('a'), {
-    href: URL.createObjectURL(blob),
-    download: 'gridscaper.json'
-  });
-  a.click();
-  URL.revokeObjectURL(a.href);
-};
-
-(function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera);})();
+// Initialize JSON view on page load
+updateJsonView();
 </script>
 </body>
 </html>
