@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GridScaper Prototype — Span-to-Span Clearance</title>
+  <style>
+    html,body,#c{margin:0;height:100%;overflow:hidden;font-family:sans-serif}
+    #hud{position:fixed;top:8px;left:8px;background:#0008;color:#fff;padding:6px 10px;font-size:12px;line-height:1.4;border-radius:6px;user-select:none}
+    #hud input[type="range"],#hud select{vertical-align:middle}
+    #hud label{margin-right:4px}
+    #jsonPanel{
+      display:none;
+      width:300px;
+      height:calc(100vh - 20px);
+      overflow:auto;
+      background:rgba(0, 0, 0, 0.8);
+      color:#ddd;
+      padding:6px 10px;
+      font-family:monospace;
+      font-size:12px;
+      position:fixed;
+      top:10px;
+      right:10px;
+      bottom:10px;
+      border-radius:6px;
+      z-index:1000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+    }
+    .json-key { color: #88ddff; }
+    .json-string { color: #a5d6a7; }
+    .json-number { color: #ef9a9a; }
+    .json-boolean { color: #ce93d8; }
+    .json-null { color: #b0bec5; }
+    .json-collapsible { 
+      cursor: pointer;
+      user-select: none;
+    }
+    .json-collapsible::before {
+      content: '▼';
+      display: inline-block;
+      margin-right: 5px;
+      transition: transform 0.2s;
+    }
+    .json-collapsed::before {
+      transform: rotate(-90deg);
+    }
+    .json-collapsed + .json-content {
+      display: none;
+    }
+    .json-content {
+      padding-left: 20px;
+    }
+  </style>
+  <script src="https://unpkg.com/three@0.139.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.139.2/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="hud">
+    <div><strong>Left-click</strong>: add pole • <strong>Ctrl+click</strong>: delete pole/tree • <strong>Drag pole</strong>: adjust height • <strong>Shift+click</strong>: reset • <strong>Drag empty</strong>: orbit</div>
+    <label>New pole height: <input id="heightSlider" type="range" min="1" max="40" step="1" value="20"></label>
+    <span id="heightLabel">20</span> ft
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label>Terrain: <select id="terrainSelect"><option value="flat">Flat</option><option value="hills">Rolling Hills</option><option value="hillsTrees" selected>Hills + Trees</option></select></label>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label>Tension: <input id="tensionSlider" type="range" min="0.2" max="2" step="0.1" value="1"></label>
+    <span id="tensionLabel">1.0×</span>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <button id="toggleJSON">Show JSON</button>
+    <button id="downloadJSON">Download</button>
+  </div>
+  <canvas id="c"></canvas>
+  <div id="jsonPanel"></div>
+
+<script>
+/* ------- constants ------- */
+const CLEARANCE = 1;          // ft span‑to‑span
+const SAMPLES   = 32;         // points per span
+const DRAG_SENS = 0.05;       // ft per pixel when dragging pole
+const MINH = 1, MAXH = 40;
+const SNAP = v=>Math.round(v);
+
+/* ------- UI refs ------- */
+const slider = document.getElementById('heightSlider');
+const hLabel = document.getElementById('heightLabel');
+const terrainSel = document.getElementById('terrainSelect');
+const tensionSlider = document.getElementById('tensionSlider');
+const tensionLabel = document.getElementById('tensionLabel');
+let currentH = +slider.value;
+let currentTension = +tensionSlider.value;
+slider.oninput = ()=>{ currentH=+slider.value; hLabel.textContent=currentH; updateGhost(); };
+terrainSel.onchange = ()=>{ buildTerrain(); resetScene(); };
+tensionSlider.oninput = ()=>{ currentTension=+tensionSlider.value; tensionLabel.textContent=currentTension.toFixed(1)+'×'; rebuild(); };
+
+/* ------- three basics ------- */
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setSize(innerWidth,innerHeight);
+const scene = new THREE.Scene(); scene.background=new THREE.Color(0x87ceeb);
+const camera = new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,1000);
+camera.position.set(40,40,40);
+const controls = new THREE.OrbitControls(camera,renderer.domElement); controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1));
+const sun = new THREE.DirectionalLight(0xffffff,0.6); sun.position.set(10,40,20); scene.add(sun);
+
+/* ------- terrain & trees ------- */
+const SIZE=120, SEG=120;
+let terrain=null; const trees=new THREE.Group(); scene.add(trees); const treeData=[]; // {x,z,yTop,ref}
+function hAt(x,z){ return terrainSel.value==='flat'?0:Math.sin(x*0.09)*5+Math.cos(z*0.11)*3+Math.sin((x+z)*0.04)*2; }
+function buildTerrain(){
+  if(terrain){scene.remove(terrain); terrain.geometry.dispose();}
+  trees.clear(); treeData.length=0;
+  const g=new THREE.PlaneGeometry(SIZE,SIZE,SEG,SEG); g.rotateX(-Math.PI/2);
+  const p=g.attributes.position;
+  for(let i=0;i<p.count;i++) p.setY(i,hAt(p.getX(i),p.getZ(i)));
+  p.needsUpdate=true; g.computeVertexNormals();
+  terrain=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x5ca55c,flatShading:true})); scene.add(terrain);
+  if(terrainSel.value==='hillsTrees') addTrees();
+}
+function addTrees(){
+  const trunkG=new THREE.CylinderGeometry(0.15,0.15,1,6);
+  const folG=new THREE.ConeGeometry(0.75,2,8);
+  const trunkM=new THREE.MeshStandardMaterial({color:0x8b5a2b});
+  const folM=new THREE.MeshStandardMaterial({color:0x2e8b57});
+  const cluster=20,radius=6;
+  for(let cx=-SIZE/2;cx<=SIZE/2;cx+=cluster){
+    for(let cz=-SIZE/2;cz<=SIZE/2;cz+=cluster){ if(Math.random()<0.35){
+      const n=THREE.MathUtils.randInt(6,15);
+      for(let i=0;i<n;i++){
+        const ang=Math.random()*Math.PI*2, r=Math.random()*radius;
+        const x=cx+Math.cos(ang)*r, z=cz+Math.sin(ang)*r, y=hAt(x,z); const s=THREE.MathUtils.randFloat(0.8,1.6);
+        const trunk=new THREE.Mesh(trunkG,trunkM); trunk.scale.y=s; trunk.position.set(x,y+s*0.5,z);
+        const fol=new THREE.Mesh(folG,folM); fol.scale.setScalar(s); fol.position.set(x,y+s*1.5,z);
+        const t=new THREE.Group(); t.add(trunk); t.add(fol); t.userData.tree=true; trees.add(t);
+        treeData.push({x,z,yTop:y+s*1.5,ref:t});
+      } }} }
+}
+buildTerrain();
+
+/* ------- materials ------- */
+const BASE_H=10, R=0.2;
+const poleGeo = new THREE.CylinderGeometry(R,R,BASE_H,8);
+const mPole   = new THREE.MeshStandardMaterial({color:0x8b5a2b});
+const mPoleHL = new THREE.MeshStandardMaterial({color:0xffe66d});
+const mGood   = new THREE.LineBasicMaterial({color:0x000000});
+const mBad    = new THREE.LineBasicMaterial({color:0xff0000});
+const mGhost  = new THREE.MeshStandardMaterial({color:0x46c9ff,transparent:true,opacity:0.4});
+const mTreeHL = new THREE.MeshStandardMaterial({color:0xffff8d});
+
+/* ------- data stores ------- */
+const poles=[]; // {x,z,h,base,obj}
+const ray=new THREE.Raycaster(); const mouse=new THREE.Vector2();
+
+/* ------- span build & check ------- */
+function violates(samples,aObj,bObj){
+  for(const v of samples){
+    if(v.y<=hAt(v.x,v.z)+0.1) return true; // ground
+    for(const t of treeData){ if(Math.hypot(v.x-t.x,v.z-t.z)<1 && v.y<=t.yTop) return true; }
+    for(const p of poles){ if(p.obj===aObj||p.obj===bObj) continue; if(Math.hypot(v.x-p.x,v.z-p.z)<R+0.1 && v.y<=p.base+p.h) return true; }
+  }
+  const others=scene.children.filter(l=>l.userData.span&&![aObj,bObj].includes(l.userData.a)&&![aObj,bObj].includes(l.userData.b));
+  for(const o of others){ const pos=o.geometry.attributes.position; for(let i=0;i<pos.count;i+=4){ const q=new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)); for(const v of samples){ if(v.distanceTo(q)<CLEARANCE) return true; } } }
+  return false;
+}
+function drawSpan(a,b){
+  const yA=a.base+a.h, yB=b.base+b.h; 
+  const d=Math.hypot(b.x-a.x,b.z-a.z); 
+  const sag=Math.max(0.1,d*0.05) / currentTension;
+  const pts=[]; 
+  for(let i=0;i<=SAMPLES;i++){
+    const t=i/SAMPLES; 
+    const x=THREE.MathUtils.lerp(a.x,b.x,t); 
+    const z=THREE.MathUtils.lerp(a.z,b.z,t); 
+    const y=THREE.MathUtils.lerp(yA,yB,t)-sag*Math.sin(Math.PI*t); 
+    pts.push(new THREE.Vector3(x,y,z));
+  }
+  const bad=violates(pts,a.obj,b.obj);
+  const geo=new THREE.BufferGeometry().setFromPoints(pts);
+  const line=new THREE.Line(geo,bad?mBad:mGood); 
+  line.userData={span:true,a:a.obj,b:b.obj}; 
+  scene.add(line);
+}
+function rebuild(){ scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); for(let i=1;i<poles.length;i++) drawSpan(poles[i-1],poles[i]); updateJsonView(); }
+
+/* ------- pole helpers ------- */
+function addPole(x,z,h){ if(poles.some(p=>p.x===x&&p.z===z)) return; const base=hAt(x,z); const mesh=new THREE.Mesh(poleGeo,mPole); mesh.scale.y=h/BASE_H; mesh.position.set(x,base+h/2,z); mesh.userData.pole=true; scene.add(mesh); poles.push({x,z,h,base,obj:mesh}); rebuild(); }
+function removePole(obj){ const i=poles.findIndex(p=>p.obj===obj); if(i>-1){scene.remove(obj); poles.splice(i,1); rebuild();}}
+
+/* ------- ghost pole ------- */
+let ghost=new THREE.Mesh(poleGeo,mGhost); ghost.visible=false; scene.add(ghost);
+let hoverPt=null, hoverPole=null, hoverTree=null;
+function updateGhost(){ ghost.visible=false; if(!hoverPt||hoverPole||hoverTree) return; if(poles.some(p=>p.x===hoverPt.x&&p.z===hoverPt.z)) return; const h=currentH, base=hAt(hoverPt.x,hoverPt.z); ghost.scale.y=h/BASE_H; ghost.position.set(hoverPt.x,base+h/2,hoverPt.z); ghost.visible=true; }
+
+/* ------- picking helpers ------- */
+function pick(evt,list){ mouse.set((evt.clientX/innerWidth)*2-1,-(evt.clientY/innerHeight)*2+1); ray.setFromCamera(mouse,camera); return ray.intersectObjects(list,true)[0]?.object||null; }
+const poleMeshes=()=>poles.map(p=>p.obj);
+function setTreeHL(t,on){ t.traverse(m=>{if(m.isMesh)m.material=on?mTreeHL:(m.geometry.type==='CylinderGeometry'?new THREE.MeshStandardMaterial({color:0x8b5a2b}):new THREE.MeshStandardMaterial({color:0x2e8b57}));}); }
+
+/* ------- interaction state ------- */
+let drag=null,startY=0,startH=0,clickStart=null;
+
+window.addEventListener('pointermove',e=>{
+  const pPick=pick(e,poleMeshes()); if(pick!==hoverPole){ if(hoverPole) hoverPole.material=mPole; hoverPole=pPick; if(hoverPole) hoverPole.material=mPoleHL; }
+  const tPick=pick(e,trees.children); if(tPick!==hoverTree){ if(hoverTree) setTreeHL(hoverTree,false); hoverTree=tPick; if(hoverTree) setTreeHL(hoverTree,true);}  
+  mouse.set((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1); ray.setFromCamera(mouse,camera); const hit=ray.intersectObject(terrain)[0]; hoverPt=hit?{x:SNAP(hit.point.x),z:SNAP(hit.point.z)}:null;
+  if(drag){ const dy=startY-e.clientY; let nh=startH+dy*DRAG_SENS; nh=Math.max(MINH,Math.min(MAXH,nh)); const rec=poles.find(p=>p.obj===drag); rec.h=nh; drag.scale.y=nh/BASE_H; drag.position.y=rec.base+nh/2; rebuild(); }
+  updateGhost();
+});
+
+window.addEventListener('pointerdown',e=>{
+  if(e.shiftKey){ resetScene(); return; }
+  const tPick=pick(e,trees.children); if(e.ctrlKey&&tPick){ trees.remove(tPick); treeData.splice(treeData.findIndex(t=>t.ref===tPick),1); rebuild(); return; }
+  const pPick=pick(e,poleMeshes()); if(pPick){ if(e.ctrlKey){ removePole(pPick); return;} drag=pPick; startY=e.clientY; startH=poles.find(p=>p.obj===drag).h; controls.enabled=false; return; }
+  clickStart=[e.clientX,e.clientY];
+});
+
+window.addEventListener('pointerup',e=>{
+  if(drag){ 
+    drag=null; 
+    controls.enabled=true; 
+    updateJsonView();
+    return; 
+  }
+  if(!clickStart) return; const [dx,dy]=[Math.abs(e.clientX-clickStart[0]),Math.abs(e.clientY-clickStart[1])]; clickStart=null; if(dx<5&&dy<5&&hoverPt){ addPole(hoverPt.x,hoverPt.z,currentH); updateGhost(); }
+});
+
+function resetScene(){ poles.forEach(p=>scene.remove(p.obj)); poles.length=0; scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); updateGhost(); updateJsonView(); }
+
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ------- geometric calculations ------- */
+function round2(value) {
+  return value === null ? null : parseFloat(value.toFixed(2));
+}
+
+function calculateDistance(p1, p2) {
+  return Math.hypot(p2.x - p1.x, p2.z - p1.z);
+}
+
+function calculateAngle(p1, p2) {
+  return Math.atan2(p2.z - p1.z, p2.x - p1.x) * (180 / Math.PI);
+}
+
+function calculateInclinationAngle(p1, p2) {
+  const dx = p2.x - p1.x;
+  const dz = p2.z - p1.z;
+  const dy = (p2.base + p2.h) - (p1.base + p1.h);
+  const horizontalDistance = Math.hypot(dx, dz);
+  
+  return Math.atan2(dy, horizontalDistance) * (180 / Math.PI);
+}
+
+function calculateCatenaryAngles(p1, p2, tensionFactor) {
+  const horizontalDistance = calculateDistance(p1, p2);
+  if (horizontalDistance === 0) return { departureAngle: 0, arrivalAngle: 0 };
+  
+  const height1 = p1.base + p1.h;
+  const height2 = p2.base + p2.h;
+  const heightDiff = height2 - height1;
+  
+  const baseSag = Math.max(0.1, horizontalDistance * 0.05) * tensionFactor;
+  
+  const departureSlope = (heightDiff / horizontalDistance) + (Math.PI * baseSag / horizontalDistance);
+  const arrivalSlope = (heightDiff / horizontalDistance) - (Math.PI * baseSag / horizontalDistance);
+  
+  const departureAngle = Math.atan(departureSlope) * (180 / Math.PI);
+  const arrivalAngle = Math.atan(arrivalSlope) * (180 / Math.PI);
+  
+  return { departureAngle, arrivalAngle };
+}
+
+function calculateSpanLength(p1, p2, sag) {
+  const distance = calculateDistance(p1, p2);
+  if (distance === 0) return 0;
+  
+  // Approximate the conductor length with discrete integration over catenary curve
+  const segments = 50;
+  let length = 0;
+  const height1 = p1.base + p1.h;
+  const height2 = p2.base + p2.h;
+  
+  for (let i = 0; i < segments; i++) {
+    const t1 = i / segments;
+    const t2 = (i + 1) / segments;
+    
+    const x1 = p1.x + (p2.x - p1.x) * t1;
+    const z1 = p1.z + (p2.z - p1.z) * t1;
+    const y1 = height1 + (height2 - height1) * t1 - sag * Math.sin(Math.PI * t1);
+    
+    const x2 = p1.x + (p2.x - p1.x) * t2;
+    const z2 = p1.z + (p2.z - p1.z) * t2;
+    const y2 = height1 + (height2 - height1) * t2 - sag * Math.sin(Math.PI * t2);
+    
+    length += Math.hypot(x2 - x1, y2 - y1, z2 - z1);
+  }
+  
+  return length;
+}
+
+function calculateTopAngle(p1, p2, p3) {
+  const angle1 = calculateAngle(p2, p1);
+  const angle2 = calculateAngle(p2, p3);
+  
+  let diff = Math.abs(angle2 - angle1);
+  if (diff > 180) diff = 360 - diff;
+  
+  return diff;
+}
+
+/* ------- JSON Viewer ------- */
+const jsonPanel = document.getElementById('jsonPanel');
+const toggleJSON = document.getElementById('toggleJSON');
+const downloadJSON = document.getElementById('downloadJSON');
+
+function createJsonElement(key, value) {
+  const element = document.createElement('div');
+  if (typeof value === 'object' && value !== null) {
+    element.className = 'json-collapsible';
+    element.textContent = key;
+    const content = document.createElement('div');
+    content.className = 'json-content';
+    for (const [subKey, subValue] of Object.entries(value)) {
+      content.appendChild(createJsonElement(subKey, subValue));
+    }
+    element.appendChild(content);
+    element.onclick = () => {
+      element.classList.toggle('json-collapsed');
+    };
+  } else {
+    const keySpan = document.createElement('span');
+    keySpan.className = 'json-key';
+    keySpan.textContent = key + ': ';
+    const valueSpan = document.createElement('span');
+    if (typeof value === 'string') {
+      valueSpan.className = 'json-string';
+      valueSpan.textContent = `"${value}"`;
+    } else if (typeof value === 'number') {
+      valueSpan.className = 'json-number';
+      valueSpan.textContent = value;
+    } else if (typeof value === 'boolean') {
+      valueSpan.className = 'json-boolean';
+      valueSpan.textContent = value;
+    } else if (value === null) {
+      valueSpan.className = 'json-null';
+      valueSpan.textContent = 'null';
+    }
+    element.appendChild(keySpan);
+    element.appendChild(valueSpan);
+  }
+  return element;
+}
+
+function collectData() {
+  const polesData = poles.map((p, index) => {
+    const nextPole = index < poles.length - 1 ? poles[index + 1] : null;
+    const prevPole = index > 0 ? poles[index - 1] : null;
+    
+    const distanceToNext = nextPole ? calculateDistance(p, nextPole) : 0;
+    const sag = nextPole ? Math.max(0.1, distanceToNext * 0.05) / currentTension : 0;
+    
+    let departureAngle = null;
+    let arrivalAngle = null;
+    
+    if (nextPole) {
+      const angles = calculateCatenaryAngles(p, nextPole, 1/currentTension);
+      departureAngle = angles.departureAngle;
+    }
+    
+    if (prevPole) {
+      const angles = calculateCatenaryAngles(prevPole, p, 1/currentTension);
+      arrivalAngle = angles.arrivalAngle;
+    }
+    
+    const topAngle = (prevPole && nextPole) ? calculateTopAngle(prevPole, p, nextPole) : null;
+    
+    return {
+      id: index + 1,
+      x: round2(p.x),
+      z: round2(p.z),
+      height: round2(p.h),
+      baseElevation: round2(p.base),
+      nextPoleId: nextPole ? index + 2 : null,
+      distanceToNext: round2(distanceToNext),
+      arrivalAngle: round2(arrivalAngle),
+      departureAngle: round2(departureAngle),
+      topAngle: round2(topAngle)
+    };
+  });
+  
+  const spansData = [];
+  for (let i = 0; i < poles.length - 1; i++) {
+    const a = poles[i];
+    const b = poles[i + 1];
+    const distance = calculateDistance(a, b);
+    const sag = Math.max(0.1, distance * 0.05) / currentTension;
+    const angles = calculateCatenaryAngles(a, b, 1/currentTension);
+    
+    const span = scene.children.find(o => 
+      o.userData.span && 
+      o.userData.a === a.obj && 
+      o.userData.b === b.obj
+    );
+    
+    spansData.push({
+      fromPoleId: i + 1,
+      toPoleId: i + 2,
+      distance: round2(distance),
+      length: round2(calculateSpanLength(a, b, sag)),
+      departureAngle: round2(angles.departureAngle),
+      arrivalAngle: round2(angles.arrivalAngle),
+      sagDistance: round2(sag),
+      valid: span ? span.material === mGood : false
+    });
+  }
+  
+  return {
+    poles: polesData,
+    spans: spansData,
+    terrain: terrainSel.value,
+    tensionMultiplier: currentTension
+  };
+}
+
+function updateJsonView() {
+  if (jsonPanel.style.display !== 'none') {
+    jsonPanel.innerHTML = '';
+    const data = collectData();
+    for (const [key, value] of Object.entries(data)) {
+      jsonPanel.appendChild(createJsonElement(key, value));
+    }
+  }
+}
+
+toggleJSON.onclick = () => {
+  const open = jsonPanel.style.display !== 'none';
+  jsonPanel.style.display = open ? 'none' : 'block';
+  toggleJSON.textContent = open ? 'Show JSON' : 'Hide JSON';
+  if (!open) {
+    jsonPanel.innerHTML = '';
+    const data = collectData();
+    for (const [key, value] of Object.entries(data)) {
+      jsonPanel.appendChild(createJsonElement(key, value));
+    }
+  }
+};
+
+downloadJSON.onclick = () => {
+  const blob = new Blob(
+    [JSON.stringify(collectData(), null, 2)],
+    { type: 'application/json' }
+  );
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: 'gridscaper.json'
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+(function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera);})();
+</script>
+</body>
+</html>
