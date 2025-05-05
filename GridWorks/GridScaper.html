@@ -230,7 +230,8 @@ function calculateTerrainHeight(x, z) {
 let customGround = null;
 if (customPoles) {
   customGround = (x, z) => {
-    // Direct pole base elevation lookup
+    z = z - terrainOffsetZ;
+    // Boundary conditions
     if (z <= customPoles[0].x) return customPoles[0].elev;
     if (z >= customPoles[customPoles.length-1].x) return customPoles[customPoles.length-1].elev;
     
@@ -269,23 +270,32 @@ function buildTerrain() {
   let terrainLength = sizeY;
 
   if (customPoles && customPoles.length > 0) {
-    const minZ = Math.min(...customPoles.map(p => p.x));
-    const maxZ = Math.max(...customPoles.map(p => p.x));
-    const margin = Math.max(10, (maxZ - minZ) * 0.2);
-    terrainLength = maxZ - minZ + 2 * margin;
-
-    const centerZ = (minZ + maxZ) / 2;
-    terrainOffsetZ = centerZ;
+    const minZ = Math.min(...customPoles.map(p => p.x)) - 20;
+    const maxZ = Math.max(...customPoles.map(p => p.x)) + 20;
+    terrainLength = maxZ - minZ;
+    terrainOffsetZ = (minZ + maxZ) / 2;
   }
 
   const g = new THREE.PlaneGeometry(terrainWidth, terrainLength, SEG, SEG);
   g.rotateX(-Math.PI / 2);
   const p = g.attributes.position;
-  for (let i = 0; i < p.count; i++) p.setY(i, hAt(p.getX(i), p.getZ(i) + terrainOffsetZ));
+  
+  // Apply custom elevation to all terrain vertices
+  for (let i = 0; i < p.count; i++) {
+    const x = p.getX(i);
+    const rawZ = p.getZ(i);
+    const z = rawZ + terrainOffsetZ;
+    const elevation = customGround ? customGround(x, z) : calculateTerrainHeight(x, z);
+    p.setY(i, elevation);
+  }
+  
   p.needsUpdate = true;
   g.computeVertexNormals();
+  
   terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x5ca55c, flatShading: true }));
+  terrain.position.z = terrainOffsetZ;
   scene.add(terrain);
+  
   if (terrainSel.value === 'hillsTrees') addTrees();
 }
 
