@@ -11,3 +11,5 @@ function traverseObject(target, callback) {
     }
   }
 }
+
+export default traverseObject;

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>GridScaper Prototype — Span-to-Span Clearance</title>
-  <link rel="stylesheet" href="jsonview.scss" />
   <style>
     html,body,#c{margin:0;height:100%;overflow:hidden;font-family:sans-serif}
     #hud{position:fixed;top:8px;left:8px;background:#0008;color:#fff;padding:6px 10px;font-size:12px;line-height:1.4;border-radius:6px;user-select:none}
@@ -99,13 +98,10 @@
     <label>Tension: <input id="tensionSlider" type="range" min="0.2" max="5" step="0.1" value="1"></label>
     <span id="tensionLabel">1.0×</span>
     &nbsp;&nbsp;|&nbsp;&nbsp;
-    <button id="toggleJSON">Hide JSON</button>
     <button id="downloadJSON">Download</button>
+    <button id="clearScene">Clear Scene</button>
   </div>
   <canvas id="c"></canvas>
-  <div id="jsonPanel">
-    <div class="panel-title">Structure Details <span class="panel-toggle-icon">▼</span></div>
-    <div id="json-container" class="panel-content"></div>
   </div>
 
 <script>
@@ -141,18 +137,72 @@ const sun = new THREE.DirectionalLight(0xffffff,0.6); sun.position.set(10,40,20)
 
 /* ------- terrain & trees ------- */
 const SIZE=120, SEG=120;
-let terrain=null; const trees=new THREE.Group(); scene.add(trees); const treeData=[]; // {x,z,yTop,ref}
-function hAt(x,z){ return terrainSel.value==='flat'?0:Math.sin(x*0.09)*5+Math.cos(z*0.11)*3+Math.sin((x+z)*0.04)*2; }
-function buildTerrain(){
-  if(terrain){scene.remove(terrain); terrain.geometry.dispose();}
-  trees.clear(); treeData.length=0;
-  const g=new THREE.PlaneGeometry(SIZE,SIZE,SEG,SEG); g.rotateX(-Math.PI/2);
-  const p=g.attributes.position;
-  for(let i=0;i<p.count;i++) p.setY(i,hAt(p.getX(i),p.getZ(i)));
-  p.needsUpdate=true; g.computeVertexNormals();
-  terrain=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x5ca55c,flatShading:true})); scene.add(terrain);
-  if(terrainSel.value==='hillsTrees') addTrees();
+
+// Parse URL parameters for grid dimensions
+const urlParams = new URLSearchParams(window.location.search);
+const sizeX = parseInt(urlParams.get('size-x')) || SIZE;
+const sizeY = parseInt(urlParams.get('size-y')) || SIZE;
+
+// Parse pole parameters from URL
+const poleDistances = urlParams.get('poles-distances')?.split(',').map(Number).filter(v => !isNaN(v)) || [];
+const poleHeights = urlParams.get('poles-heights')?.split(',').map(Number).filter(v => !isNaN(v)) || [];
+const poleElevations = urlParams.get('poles-elevations')?.split(',').map(Number).filter(v => !isNaN(v)) || [];
+
+let customPoles = null;
+if (poleDistances.length && poleHeights.length && poleElevations.length && poleDistances.length === poleHeights.length && poleHeights.length === poleElevations.length) {
+  customPoles = poleDistances.map((x, i) => ({ x, h: poleHeights[i], elev: poleElevations[i] }));
 }
+
+// Define the base height calculation function
+function calculateTerrainHeight(x, z) {
+  return terrainSel.value === 'flat' ? 0 : Math.sin(x*0.09)*5 + Math.cos(z*0.11)*3 + Math.sin((x+z)*0.04)*2;
+}
+
+// Custom ground function for sloped surface through pole elevations
+let customGround = null;
+if (customPoles) {
+  customGround = (x) => {
+    if (x <= customPoles[0].x) return customPoles[0].elev;
+    if (x >= customPoles[customPoles.length-1].x) return customPoles[customPoles.length-1].elev;
+    for (let i = 1; i < customPoles.length; i++) {
+      if (x < customPoles[i].x) {
+        const t = (x - customPoles[i-1].x) / (customPoles[i].x - customPoles[i-1].x);
+        return customPoles[i-1].elev * (1-t) + customPoles[i].elev * t;
+      }
+    }
+    return customPoles[customPoles.length-1].elev;
+  };
+}
+
+// Height at specific location function
+function hAt(x, z) {
+  if (customGround) {
+    return customGround(x);
+  }
+  return calculateTerrainHeight(x, z);
+}
+
+let terrain=null; const trees=new THREE.Group(); scene.add(trees); const treeData=[]; // {x,z,yTop,ref}
+
+// Build terrain for custom poles
+function buildTerrain() {
+  if (terrain) {
+    scene.remove(terrain);
+    terrain.geometry.dispose();
+  }
+  trees.clear();
+  treeData.length = 0;
+  const g = new THREE.PlaneGeometry(50, sizeY, SEG, SEG);
+  g.rotateX(-Math.PI / 2);
+  const p = g.attributes.position;
+  for (let i = 0; i < p.count; i++) p.setY(i, hAt(p.getX(i), p.getZ(i)));
+  p.needsUpdate = true;
+  g.computeVertexNormals();
+  terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x5ca55c, flatShading: true }));
+  scene.add(terrain);
+  if (terrainSel.value === 'hillsTrees') addTrees();
+}
+
 function addTrees(){
   const trunkG=new THREE.CylinderGeometry(0.15,0.15,1,6);
   const folG=new THREE.ConeGeometry(0.75,2,8);
@@ -216,7 +266,7 @@ function drawSpan(a,b){
   line.userData={span:true,a:a.obj,b:b.obj}; 
   scene.add(line);
 }
-function rebuild(){ scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); for(let i=1;i<poles.length;i++) drawSpan(poles[i-1],poles[i]); updateJsonView(); }
+function rebuild(){ scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); for(let i=1;i<poles.length;i++) drawSpan(poles[i-1],poles[i]); }
 
 /* ------- pole helpers ------- */
 function addPole(x,z,h){ if(poles.some(p=>p.x===x&&p.z===z)) return; const base=hAt(x,z); const mesh=new THREE.Mesh(poleGeo,mPole); mesh.scale.y=h/BASE_H; mesh.position.set(x,base+h/2,z); mesh.userData.pole=true; scene.add(mesh); poles.push({x,z,h,base,obj:mesh}); rebuild(); }
@@ -243,24 +293,43 @@ window.addEventListener('pointermove',e=>{
   updateGhost();
 });
 
-window.addEventListener('pointerdown',e=>{
-  if(e.shiftKey){ resetScene(); return; }
-  const tPick=pick(e,trees.children); if(e.ctrlKey&&tPick){ trees.remove(tPick); treeData.splice(treeData.findIndex(t=>t.ref===tPick),1); rebuild(); return; }
-  const pPick=pick(e,poleMeshes()); if(pPick){ if(e.ctrlKey){ removePole(pPick); return;} drag=pPick; startY=e.clientY; startH=poles.find(p=>p.obj===drag).h; controls.enabled=false; return; }
-  clickStart=[e.clientX,e.clientY];
+window.addEventListener('pointerdown', e => {
+  if (e.shiftKey) {
+    // Do nothing for Shift+click
+    return;
+  }
+  const tPick = pick(e, trees.children);
+  if (e.ctrlKey && tPick) {
+    trees.remove(tPick);
+    treeData.splice(treeData.findIndex(t => t.ref === tPick), 1);
+    rebuild();
+    return;
+  }
+  const pPick = pick(e, poleMeshes());
+  if (pPick) {
+    if (e.ctrlKey) {
+      removePole(pPick);
+      return;
+    }
+    drag = pPick;
+    startY = e.clientY;
+    startH = poles.find(p => p.obj === drag).h;
+    controls.enabled = false;
+    return;
+  }
+  clickStart = [e.clientX, e.clientY];
 });
 
 window.addEventListener('pointerup',e=>{
   if(drag){ 
     drag=null; 
     controls.enabled=true; 
-    updateJsonView();
     return; 
   }
   if(!clickStart) return; const [dx,dy]=[Math.abs(e.clientX-clickStart[0]),Math.abs(e.clientY-clickStart[1])]; clickStart=null; if(dx<5&&dy<5&&hoverPt){ addPole(hoverPt.x,hoverPt.z,currentH); updateGhost(); }
 });
 
-function resetScene(){ poles.forEach(p=>scene.remove(p.obj)); poles.length=0; scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); updateGhost(); updateJsonView(); }
+function resetScene(){ poles.forEach(p=>scene.remove(p.obj)); poles.length=0; scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); updateGhost();}
 
 window.addEventListener('resize', () => {
   camera.aspect = innerWidth/innerHeight;
@@ -347,68 +416,6 @@ function calculateTopAngle(p1, p2, p3) {
   return diff;
 }
 
-/* ------- JSON Viewer ------- */
-const jsonPanel = document.getElementById('jsonPanel');
-const panelTitle = document.querySelector('.panel-title');
-const panelContent = document.querySelector('.panel-content');
-const toggleJSON = document.getElementById('toggleJSON');
-const downloadJSON = document.getElementById('downloadJSON');
-
-panelTitle.addEventListener('click', () => {
-  panelTitle.classList.toggle('active');
-  
-  if (panelContent.style.maxHeight) {
-    panelContent.style.maxHeight = null;
-  } else {
-    panelContent.style.maxHeight = panelContent.scrollHeight + "px";
-  }
-  
-  toggleJSON.textContent = panelTitle.classList.contains('active') ? 'Hide JSON' : 'Show JSON';
-});
-
-function updateJsonView() {
-  const data = collectData();
-  const jsonContainer = document.getElementById('json-container');
-  jsonContainer.innerHTML = '';
-  
-  // Use the module's default export when available
-  if (window.JSONView) {
-    window.JSONView.renderJSON(data, jsonContainer);
-  } else {
-    // Fallback to direct JSON display
-    const pre = document.createElement('pre');
-    pre.textContent = JSON.stringify(data, null, 2);
-    jsonContainer.appendChild(pre);
-  }
-  
-  setTimeout(() => {
-    panelContent.style.maxHeight = panelContent.scrollHeight + "px";
-  }, 100);
-}
-
-// Initialize panel collapse functionality 
-document.addEventListener("DOMContentLoaded", () => {
-  panelContent.style.maxHeight = panelContent.scrollHeight + "px";
-});
-
-toggleJSON.onclick = () => {
-  const coll = document.querySelector('.panel-title');
-  coll.click();
-  toggleJSON.textContent = coll.classList.contains('active') ? 'Hide JSON' : 'Show JSON';
-};
-
-downloadJSON.onclick = () => {
-  const blob = new Blob(
-    [JSON.stringify(collectData(), null, 2)],
-    { type: 'application/json' }
-  );
-  const a = Object.assign(document.createElement('a'), {
-    href: URL.createObjectURL(blob),
-    download: 'gridscaper.json'
-  });
-  a.click();
-  URL.revokeObjectURL(a.href);
-};
 
 function collectData() {
   const polesData = poles.map((p, index) => {
@@ -483,14 +490,27 @@ function collectData() {
   };
 }
 
+// Place custom poles on load
+if (customPoles) {
+  poles.length = 0;
+  for (const pole of customPoles) {
+    const mesh = new THREE.Mesh(poleGeo, mPole);
+    mesh.scale.y = pole.h / BASE_H;
+    mesh.position.set(pole.x, pole.elev + pole.h / 2, 0);
+    mesh.userData.pole = true;
+    scene.add(mesh);
+    poles.push({ x: pole.x, z: 0, h: pole.h, base: pole.elev, obj: mesh });
+  }
+  rebuild();
+}
+
 (function loop(){ 
   requestAnimationFrame(loop); 
   controls.update(); 
   renderer.render(scene,camera);
 })();
 
-// Initialize JSON view on page load
-updateJsonView();
+
 </script>
 </body>
 </html>
