@@ -98,6 +98,8 @@
     <label>Tension: <input id="tensionSlider" type="range" min="0.2" max="5" step="0.1" value="1"></label>
     <span id="tensionLabel">1.0×</span>
     &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label><input type="checkbox" id="showGridCheck" checked> Grid</label>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
     <button id="downloadJSON">Download</button>
     <button id="clearScene">Clear Scene</button>
   </div>
@@ -119,12 +121,14 @@ const terrainSel = document.getElementById('terrainSelect');
 const tensionSlider = document.getElementById('tensionSlider');
 const tensionLabel = document.getElementById('tensionLabel');
 const clearBtn = document.getElementById('clearScene');
+const showGridCheck = document.getElementById('showGridCheck');
 let currentH = +slider.value;
 let currentTension = +tensionSlider.value;
 slider.oninput = ()=>{ currentH=+slider.value; hLabel.textContent=currentH; updateGhost(); };
 terrainSel.onchange = ()=>{ buildTerrain(); resetScene(); };
 tensionSlider.oninput = ()=>{ currentTension=+tensionSlider.value; tensionLabel.textContent=currentTension.toFixed(1)+'×'; rebuild(); };
 clearBtn.onclick = resetScene;
+showGridCheck.onchange = ()=>{ toggleGridVisibility(showGridCheck.checked); };
 
 /* ------- three basics ------- */
 const canvas = document.getElementById('c');
@@ -355,6 +359,18 @@ function addGridLines() {
   scene.add(gridGroup);
 }
 
+function toggleGridVisibility(visible) {
+  scene.children.filter(o => o.userData.grid).forEach(g => {
+    g.visible = visible;
+    
+    if (g.userData.labels) {
+      g.userData.labels.forEach(label => {
+        label.element.style.display = visible ? 'block' : 'none';
+      });
+    }
+  });
+}
+
 function buildTerrain() {
   if (terrain) {
     scene.remove(terrain);
@@ -431,7 +447,9 @@ buildTerrain();
 /* ------- materials ------- */
 const BASE_H=10, R=0.2;
 const poleGeo = new THREE.CylinderGeometry(R,R,BASE_H,8);
+const crossArmGeo = new THREE.BoxGeometry(3, 0.2, 0.2);
 const mPole   = new THREE.MeshStandardMaterial({color:0x8b5a2b});
+const mCrossArm = new THREE.MeshStandardMaterial({color:0x4d4d4d});
 const mPoleHL = new THREE.MeshStandardMaterial({color:0xffe66d});
 const mGood   = new THREE.LineBasicMaterial({color:0x000000});
 const mBad    = new THREE.LineBasicMaterial({color:0xff0000});
@@ -449,20 +467,24 @@ function drawSpan(a, b) {
   const yB = b.base + b.h;
   const d = Math.hypot(b.x - a.x, b.z - a.z);
   const sag = Math.max(0.1, d * 0.05) / currentTension;
-  const pts = [];
-
-  for (let i = 0; i <= SAMPLES; i++) {
-    const t = i / SAMPLES;
-    const x = THREE.MathUtils.lerp(a.x, b.x, t);
-    const z = THREE.MathUtils.lerp(a.z, b.z, t) + terrainOffsetZ;
-    const y = THREE.MathUtils.lerp(yA, yB, t) - sag * Math.sin(Math.PI * t);
-    pts.push(new THREE.Vector3(x, y, z));
+  
+  // Draw two parallel conductors
+  for (let conductorOffset = -1; conductorOffset <= 1; conductorOffset += 2) {
+    const pts = [];
+    
+    for (let i = 0; i <= SAMPLES; i++) {
+      const t = i / SAMPLES;
+      const x = THREE.MathUtils.lerp(a.x, b.x, t) + conductorOffset * 0.5;
+      const z = THREE.MathUtils.lerp(a.z, b.z, t) + terrainOffsetZ;
+      const y = THREE.MathUtils.lerp(yA, yB, t) - sag * Math.sin(Math.PI * t);
+      pts.push(new THREE.Vector3(x, y, z));
+    }
+    
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    const line = new THREE.Line(geo, mGood);
+    line.userData = { span: true, a: a.obj, b: b.obj };
+    scene.add(line);
   }
-
-  const geo = new THREE.BufferGeometry().setFromPoints(pts);
-  const line = new THREE.Line(geo, mGood);
-  line.userData = { span: true, a: a.obj, b: b.obj };
-  scene.add(line);
 }
 function rebuild() {
   scene.children.filter(o => o.userData.span).forEach(l => {
@@ -484,11 +506,15 @@ function rebuild() {
 function addPole(x, z, h) {
   if (poles.some(p => p.x === x && p.z === z)) return;
 
-  const base = hAt(x, z + terrainOffsetZ); // Adjusted to account for terrainOffsetZ
+  const base = hAt(x, z + terrainOffsetZ);
   const mesh = new THREE.Mesh(poleGeo, mPole);
   mesh.scale.y = h / BASE_H;
-  mesh.position.set(x, base + h / 2, z + terrainOffsetZ); // Adjusted to align with terrainOffsetZ
+  mesh.position.set(x, base + h / 2, z + terrainOffsetZ);
   mesh.userData.pole = true;
+
+  const crossArm = new THREE.Mesh(crossArmGeo, mCrossArm);
+  crossArm.position.y = 5;  
+  mesh.add(crossArm);
 
   scene.add(mesh);
   poles.push({ x, z, h, base, obj: mesh });
@@ -829,6 +855,12 @@ if (customPoles) {
     
     mesh.position.set(0, base + scaledHeight / 2, zPos + terrainOffsetZ);
     mesh.userData.pole = true;
+
+    // Add cross arm to the pole
+    const crossArm = new THREE.Mesh(crossArmGeo, mCrossArm);
+    crossArm.position.y = 5;
+    mesh.add(crossArm);
+
     scene.add(mesh);
     poles.push({ x: 0, z: zPos, h: scaledHeight, base, obj: mesh });
   }
@@ -841,7 +873,7 @@ if (customPoles) {
   
   // Update grid labels position if they exist
   scene.children.filter(o => o.userData.grid && o.userData.labels).forEach(grid => {
-    if (grid.userData.labels) {
+    if (grid.userData.labels && grid.visible) {
       grid.userData.labels.forEach(label => {
         const screenPosition = label.position.clone();
         screenPosition.project(camera);
@@ -857,6 +889,10 @@ if (customPoles) {
         } else {
           label.element.style.display = 'none';
         }
+      });
+    } else if (grid.userData.labels) {
+      grid.userData.labels.forEach(label => {
+        label.element.style.display = 'none';
       });
     }
   });
