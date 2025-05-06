@@ -89,7 +89,7 @@
 </head>
 <body>
   <div id="hud">
-    <div><strong>Left-click</strong>: add pole • <strong>Right-click</strong>: delete pole/tree • <strong>Drag pole</strong>: adjust height • <strong>Drag empty</strong>: orbit</div>
+    <div><strong>Left-click</strong>: add pole • <strong>Right-click</strong>: delete pole</div>
     <label>New pole height: <input id="heightSlider" type="range" min="1" max="40" step="1" value="20"></label>
     <span id="heightLabel">20</span> ft
     &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -118,11 +118,13 @@ const hLabel = document.getElementById('heightLabel');
 const terrainSel = document.getElementById('terrainSelect');
 const tensionSlider = document.getElementById('tensionSlider');
 const tensionLabel = document.getElementById('tensionLabel');
+const clearBtn = document.getElementById('clearScene');
 let currentH = +slider.value;
 let currentTension = +tensionSlider.value;
 slider.oninput = ()=>{ currentH=+slider.value; hLabel.textContent=currentH; updateGhost(); };
 terrainSel.onchange = ()=>{ buildTerrain(); resetScene(); };
 tensionSlider.oninput = ()=>{ currentTension=+tensionSlider.value; tensionLabel.textContent=currentTension.toFixed(1)+'×'; rebuild(); };
+clearBtn.onclick = resetScene;
 
 /* ------- three basics ------- */
 const canvas = document.getElementById('c');
@@ -160,68 +162,71 @@ if (poleDistances.length && poleHeights.length &&
     poleDistances.length === poleHeights.length && 
     poleDistances.length === useElevations.length) {
 
-  // Interpolate and scale values for large inputs
-  const normalizeDistances = () => {
+  // Maintain height-to-distance proportions during scaling
+  const normalizeData = () => {
     const maxDistance = Math.max(...poleDistances);
     const minDistance = Math.min(...poleDistances);
-    const range = maxDistance - minDistance;
+    const distRange = maxDistance - minDistance;
     
-    // Scale distances to fit within a reasonable view if too large
-    let scaledDistances = [...poleDistances];
-    let scaling = false;
-    
-    if (range > 100) {
-      scaling = true;
-      const targetRange = 50;
-      const scaleFactor = targetRange / range;
-      scaledDistances = poleDistances.map(d => minDistance + (d - minDistance) * scaleFactor);
-      console.log(`Scaling distances: Original range ${range} → ${targetRange} units (scale factor: ${scaleFactor.toFixed(2)})`);
-    }
-    
-    return { distances: scaledDistances, scaling };
-  };
-  
-  const normalizeHeights = () => {
     const maxHeight = Math.max(...poleHeights);
-    let scaledHeights = [...poleHeights];
-    let scaling = false;
+    const minHeight = Math.min(...poleHeights);
+    const heightRange = maxHeight - minHeight;
     
-    if (maxHeight > 40) {
-      scaling = true;
-      const scaleFactor = 35 / maxHeight; // Scale to reasonable max height
-      scaledHeights = poleHeights.map(h => h * scaleFactor);
-      console.log(`Scaling heights: Max height ${maxHeight} → 35 units (scale factor: ${scaleFactor.toFixed(2)})`);
-    }
-    
-    return { heights: scaledHeights, scaling };
-  };
-  
-  const normalizeElevations = () => {
     const maxElev = Math.max(...useElevations);
     const minElev = Math.min(...useElevations);
-    const range = maxElev - minElev;
+    const elevRange = maxElev - minElev;
+    
+    let scaledDistances = [...poleDistances];
+    let scaledHeights = [...poleHeights];
     let scaledElevations = [...useElevations];
     let scaling = false;
+    let heightToDistanceRatio = heightRange / Math.max(1, distRange);
     
-    if (range > 30) {
+    // Scale if any dimension is too large
+    if (distRange > 100 || maxHeight > 40 || elevRange > 30) {
       scaling = true;
-      const targetRange = 20;
-      const scaleFactor = targetRange / range;
-      scaledElevations = useElevations.map(e => minElev + (e - minElev) * scaleFactor);
-      console.log(`Scaling elevations: Original range ${range} → ${targetRange} units (scale factor: ${scaleFactor.toFixed(2)})`);
+      
+      // Scale distances if needed
+      if (distRange > 100) {
+        const targetDistRange = 50;
+        const distScaleFactor = targetDistRange / distRange;
+        scaledDistances = poleDistances.map(d => minDistance + (d - minDistance) * distScaleFactor);
+        console.log(`Scaling distances: ${distRange}ft → ${targetDistRange}ft (factor: ${distScaleFactor.toFixed(2)})`);
+        
+        // Proportionally adjust heights based on distance scaling to maintain aspect ratio
+        const targetHeightRange = heightRange * distScaleFactor;
+        scaledHeights = poleHeights.map(h => (h - minHeight) * distScaleFactor + minHeight);
+        console.log(`Proportionally adjusting heights to maintain ${heightToDistanceRatio.toFixed(2)} height-to-distance ratio`);
+      } 
+      // Independent height scaling if needed
+      else if (maxHeight > 40) {
+        const heightScaleFactor = 35 / maxHeight;
+        scaledHeights = poleHeights.map(h => h * heightScaleFactor);
+        console.log(`Scaling heights: max ${maxHeight}ft → 35ft (factor: ${heightScaleFactor.toFixed(2)})`);
+      }
+      
+      // Scale elevations if needed
+      if (elevRange > 30) {
+        const targetElevRange = 20;
+        const elevScaleFactor = targetElevRange / elevRange;
+        scaledElevations = useElevations.map(e => minElev + (e - minElev) * elevScaleFactor);
+        console.log(`Scaling elevations: range ${elevRange}ft → ${targetElevRange}ft (factor: ${elevScaleFactor.toFixed(2)})`);
+      }
+      
+      console.log("Proportional scaling applied to maintain realistic simulation");
     }
     
-    return { elevations: scaledElevations, scaling };
+    return { 
+      distances: scaledDistances, 
+      heights: scaledHeights, 
+      elevations: scaledElevations,
+      scaling 
+    };
   };
 
-  // Apply normalizations
-  const { distances, scaling: distScaling } = normalizeDistances();
-  const { heights, scaling: heightScaling } = normalizeHeights();
-  const { elevations, scaling: elevScaling } = normalizeElevations();
+  const { distances, heights, elevations, scaling } = normalizeData();
   
-  if (distScaling || heightScaling || elevScaling) {
-    console.log("Normalized parameters for better visualization while preserving relative proportions");
-  } else {
+  if (!scaling) {
     console.log("Using original pole parameters (no scaling needed)");
   }
 
@@ -237,21 +242,24 @@ function calculateTerrainHeight(x, z) {
 let customGround = null;
 if (customPoles) {
   customGround = (x, z) => {
-    // Convert worldZ to local coordinate system
+    // Convert world Z to local coordinate system
     const localZ = z - terrainOffsetZ;
     
-    // Direct pole base elevation lookup
+    // For points before the first pole or after the last pole
     if (localZ <= customPoles[0].x) return customPoles[0].elev;
     if (localZ >= customPoles[customPoles.length-1].x) return customPoles[customPoles.length-1].elev;
     
-    // Linear interpolation between pole elevations with precise positioning
+    // Find the two closest poles for interpolation
     for (let i = 1; i < customPoles.length; i++) {
-      if (localZ < customPoles[i].x) {
+      if (localZ <= customPoles[i].x) {
         const t = (localZ - customPoles[i-1].x) / (customPoles[i].x - customPoles[i-1].x);
+        // Linear interpolation between pole elevations
         return customPoles[i-1].elev * (1-t) + customPoles[i].elev * t;
       }
     }
-    return customPoles[customPoles.length-1].elev;
+    
+    // Fallback
+    return 0;
   };
 }
 
@@ -273,14 +281,14 @@ function addGridLines() {
     scene.remove(g);
     if (g.geometry) g.geometry.dispose();
   });
-  
+
   const gridGroup = new THREE.Group();
   gridGroup.userData.grid = true;
-  
+
   const gridMaterial = new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.3 });
-  
-  // Create grid lines at 50-foot intervals
-  for (let i = -SIZE / 2; i <= SIZE / 2; i += 50) {
+
+  // Create grid lines at 10-foot intervals
+  for (let i = -SIZE / 2; i <= SIZE / 2; i += 10) {
     // X-axis lines (along Z)
     const geometryX = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(i, 0.05, -SIZE / 2),
@@ -288,7 +296,7 @@ function addGridLines() {
     ]);
     const lineX = new THREE.Line(geometryX, gridMaterial);
     gridGroup.add(lineX);
-    
+
     // Z-axis lines (along X)
     const geometryZ = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(-SIZE / 2, 0.05, i),
@@ -296,7 +304,7 @@ function addGridLines() {
     ]);
     const lineZ = new THREE.Line(geometryZ, gridMaterial);
     gridGroup.add(lineZ);
-    
+
     // Skip label at origin (0,0)
     if (i !== 0) {
       // Create label for X coordinate
@@ -312,7 +320,7 @@ function addGridLines() {
       labelX.style.userSelect = 'none';
       labelX.style.pointerEvents = 'none';
       document.body.appendChild(labelX);
-      
+
       const labelPoints = new THREE.Vector3(i, 0.1, -SIZE / 2 + 5);
       gridGroup.userData.labels = gridGroup.userData.labels || [];
       gridGroup.userData.labels.push({
@@ -320,7 +328,7 @@ function addGridLines() {
         position: labelPoints,
         axis: 'x'
       });
-      
+
       // Create label for Z coordinate
       const labelZ = document.createElement('div');
       labelZ.className = 'grid-label';
@@ -334,7 +342,7 @@ function addGridLines() {
       labelZ.style.userSelect = 'none';
       labelZ.style.pointerEvents = 'none';
       document.body.appendChild(labelZ);
-      
+
       const labelZPoints = new THREE.Vector3(-SIZE / 2 + 5, 0.1, i);
       gridGroup.userData.labels.push({
         element: labelZ,
@@ -343,7 +351,7 @@ function addGridLines() {
       });
     }
   }
-  
+
   scene.add(gridGroup);
 }
 
@@ -359,46 +367,44 @@ function buildTerrain() {
   let terrainDepth = 100;
 
   if (customPoles && customPoles.length > 0) {
-    const minZ = Math.min(...customPoles.map(p => p.x)) - 20;
-    const maxZ = Math.max(...customPoles.map(p => p.x)) + 20;
-    terrainDepth = maxZ - minZ;
-    terrainOffsetZ = (minZ + maxZ) / 2;
+    const minZ = Math.min(...customPoles.map(p => p.x));
+    const maxZ = Math.max(...customPoles.map(p => p.x));
+    terrainDepth = (maxZ - minZ) + 40; // Add margin on both sides
+    terrainOffsetZ = 0; // Don't offset the terrain
   }
 
-  // Create flat geometry
+  console.log(`Building terrain surface: ${terrainWidth}x${terrainDepth} units`);
+  console.log(`X bounds: ${-terrainWidth/2} to ${terrainWidth/2}`);
+  console.log(`Z bounds: ${-20} to ${terrainDepth-20}`);
+
   const g = new THREE.PlaneGeometry(terrainWidth, terrainDepth, SEG, SEG);
   g.rotateX(-Math.PI / 2);
 
-  // Create mesh with flat geometry
   terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x5ca55c }));
-  terrain.position.z = terrainOffsetZ;
+  terrain.position.z = terrainDepth/2 - 20; // Position terrain to start at -20
   scene.add(terrain);
-  
-  // Deform vertices to match pole elevations
+
   const positions = terrain.geometry.attributes.position;
   for (let i = 0; i < positions.count; i++) {
     const x = positions.getX(i);
-    // Convert from local space to world space for height lookup
     const localZ = positions.getZ(i);
-    const worldZ = localZ + terrainOffsetZ;
-    
-    // Get height at this position
+    const worldZ = localZ + terrain.position.z;
+
     let elevation = 0;
     if (customGround) {
       elevation = customGround(x, worldZ);
     } else {
       elevation = calculateTerrainHeight(x, worldZ);
     }
-    
+
     positions.setY(i, elevation);
   }
-  
+
   positions.needsUpdate = true;
   terrain.geometry.computeVertexNormals();
-  
-  // Add grid lines at 50-foot intervals
+
   addGridLines();
-  
+
   if (terrainSel.value === 'hillsTrees') addTrees();
 }
 
@@ -438,46 +444,54 @@ const poles=[]; // {x,z,h,base,obj}
 const ray=new THREE.Raycaster(); const mouse=new THREE.Vector2();
 
 /* ------- span build & check ------- */
-function violates(samples,aObj,bObj){
-  for(const v of samples){
-    if(v.y<=hAt(v.x,v.z)+0.1) return true; // ground
-    for(const t of treeData){ if(Math.hypot(v.x-t.x,v.z-t.z)<1 && v.y<=t.yTop) return true; }
-    for(const p of poles){ if(p.obj===aObj||p.obj===bObj) continue; if(Math.hypot(v.x-p.x,v.z-p.z)<R+0.1 && v.y<=p.base+p.h) return true; }
+function drawSpan(a, b) {
+  const yA = a.base + a.h;
+  const yB = b.base + b.h;
+  const d = Math.hypot(b.x - a.x, b.z - a.z);
+  const sag = Math.max(0.1, d * 0.05) / currentTension;
+  const pts = [];
+
+  for (let i = 0; i <= SAMPLES; i++) {
+    const t = i / SAMPLES;
+    const x = THREE.MathUtils.lerp(a.x, b.x, t);
+    const z = THREE.MathUtils.lerp(a.z, b.z, t) + terrainOffsetZ;
+    const y = THREE.MathUtils.lerp(yA, yB, t) - sag * Math.sin(Math.PI * t);
+    pts.push(new THREE.Vector3(x, y, z));
   }
-  const others=scene.children.filter(l=>l.userData.span&&![aObj,bObj].includes(l.userData.a)&&![aObj,bObj].includes(l.userData.b));
-  for(const o of others){ const pos=o.geometry.attributes.position; for(let i=0;i<pos.count;i+=4){ const q=new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)); for(const v of samples){ if(v.distanceTo(q)<CLEARANCE) return true; } } }
-  return false;
-}
-function drawSpan(a,b){
-  const yA=a.base+a.h, yB=b.base+b.h; 
-  const d=Math.hypot(b.x-a.x,b.z-a.z); 
-  const sag=Math.max(0.1,d*0.05) / currentTension;
-  const pts=[]; 
-  for(let i=0;i<=SAMPLES;i++){
-    const t=i/SAMPLES; 
-    const x=THREE.MathUtils.lerp(a.x,b.x,t); 
-    const z=THREE.MathUtils.lerp(a.z,b.z,t); 
-    const y=THREE.MathUtils.lerp(yA,yB,t)-sag*Math.sin(Math.PI*t); 
-    pts.push(new THREE.Vector3(x,y,z));
-  }
-  const bad=violates(pts,a.obj,b.obj);
-  const geo=new THREE.BufferGeometry().setFromPoints(pts);
-  const line=new THREE.Line(geo,bad?mBad:mGood); 
-  line.userData={span:true,a:a.obj,b:b.obj}; 
+
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geo, mGood);
+  line.userData = { span: true, a: a.obj, b: b.obj };
   scene.add(line);
 }
-function rebuild(){ scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); for(let i=1;i<poles.length;i++) drawSpan(poles[i-1],poles[i]); }
+function rebuild() {
+  scene.children.filter(o => o.userData.span).forEach(l => {
+    l.geometry.dispose();
+    scene.remove(l);
+  });
+  
+  const initialLoad = !window.spansInitialized;
+  if (initialLoad && customPoles) {
+    window.spansInitialized = true;
+  }
+  
+  for (let i = 1; i < poles.length; i++) {
+    drawSpan(poles[i-1], poles[i]);
+  }
+}
 
 /* ------- pole helpers ------- */
-function addPole(x,z,h) {
-  if(poles.some(p=>p.x===x && p.z===z)) return; 
-  const base = hAt(x,z + terrainOffsetZ); 
-  const mesh = new THREE.Mesh(poleGeo,mPole); 
-  mesh.scale.y = h/BASE_H; 
-  mesh.position.set(x, base + h/2, z);
-  mesh.userData.pole = true; 
-  scene.add(mesh); 
-  poles.push({x, z, h, base, obj:mesh}); 
+function addPole(x, z, h) {
+  if (poles.some(p => p.x === x && p.z === z)) return;
+
+  const base = hAt(x, z + terrainOffsetZ); // Adjusted to account for terrainOffsetZ
+  const mesh = new THREE.Mesh(poleGeo, mPole);
+  mesh.scale.y = h / BASE_H;
+  mesh.position.set(x, base + h / 2, z + terrainOffsetZ); // Adjusted to align with terrainOffsetZ
+  mesh.userData.pole = true;
+
+  scene.add(mesh);
+  poles.push({ x, z, h, base, obj: mesh });
   rebuild();
 }
 function removePole(obj){ const i=poles.findIndex(p=>p.obj===obj); if(i>-1){scene.remove(obj); poles.splice(i,1); rebuild();}}
@@ -493,10 +507,10 @@ function updateGhost() {
   if (poles.some(p => p.x === hoverPt.x && p.z === hoverPt.z)) return;
 
   const h = currentH;
-  const base = hAt(hoverPt.x, hoverPt.z + terrainOffsetZ);
+  const base = hAt(hoverPt.x, hoverPt.z + terrainOffsetZ); // Adjusted to account for terrainOffsetZ
 
   ghost.scale.y = h / BASE_H;
-  ghost.position.set(hoverPt.x, base + h / 2, hoverPt.z);
+  ghost.position.set(hoverPt.x, base + h / 2, hoverPt.z + terrainOffsetZ); // Adjusted to align with terrainOffsetZ
   ghost.visible = true;
 }
 
@@ -507,6 +521,7 @@ function setTreeHL(t,on){ t.traverse(m=>{if(m.isMesh)m.material=on?mTreeHL:(m.ge
 
 /* ------- interaction state ------- */
 let drag=null,startY=0,startH=0,clickStart=null;
+let dragStartPos = null, dragStartHeight = null, dragMode = null;
 
 window.addEventListener('contextmenu', e => {
   e.preventDefault(); // Prevent the default context menu
@@ -525,7 +540,62 @@ window.addEventListener('contextmenu', e => {
   }
 });
 
+window.addEventListener('pointerdown', e => {
+  if (e.shiftKey) {
+    return;
+  }
+
+  const pPick = pick(e, poleMeshes());
+  if (pPick) {
+    drag = pPick;
+    startY = e.clientY;
+    startX = e.clientX;
+    const pole = poles.find(p => p.obj === drag);
+    dragStartPos = { x: pole.x, z: pole.z };
+    dragStartHeight = pole.h;
+    controls.enabled = false;
+    
+    // If Alt key is pressed, prepare for height adjustment
+    if (e.altKey) {
+      dragMode = 'height';
+    } else {
+      dragMode = 'position';
+    }
+    return;
+  }
+  clickStart = [e.clientX, e.clientY];
+});
+
 window.addEventListener('pointermove', e => {
+  // Handle pole dragging
+  if (drag) {
+    mouse.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+    ray.setFromCamera(mouse, camera);
+    const hit = ray.intersectObject(terrain, true)[0];
+    
+    if (hit) {
+      const pole = poles.find(p => p.obj === drag);
+      
+      if (dragMode === 'position') {
+        pole.x = SNAP(hit.point.x);
+        pole.z = SNAP(hit.point.z - terrainOffsetZ);
+        
+        const base = hAt(pole.x, pole.z + terrainOffsetZ);
+        pole.base = base;
+        pole.obj.position.set(pole.x, base + pole.h / 2, pole.z + terrainOffsetZ);
+      } else if (dragMode === 'height') {
+        const deltaY = startY - e.clientY;
+        const newHeight = Math.max(MINH, Math.min(MAXH, dragStartHeight + deltaY * DRAG_SENS));
+        pole.h = SNAP(newHeight);
+        pole.obj.scale.y = pole.h / BASE_H;
+        pole.obj.position.y = pole.base + pole.h / 2;
+      }
+      
+      rebuild();
+    }
+    return;
+  }
+
   const pPick = pick(e, poleMeshes());
   if (pPick !== hoverPole) {
     if (hoverPole) hoverPole.material = mPole;
@@ -554,23 +624,6 @@ window.addEventListener('pointermove', e => {
   }
 
   updateGhost();
-});
-
-window.addEventListener('pointerdown', e => {
-  if (e.shiftKey) {
-    // Do nothing for Shift+click
-    return;
-  }
-
-  const pPick = pick(e, poleMeshes());
-  if (pPick) {
-    drag = pPick;
-    startY = e.clientY;
-    startH = poles.find(p => p.obj === drag).h;
-    controls.enabled = false;
-    return;
-  }
-  clickStart = [e.clientX, e.clientY];
 });
 
 window.addEventListener('pointerup', e => {
@@ -754,17 +807,30 @@ function collectData() {
 // Place custom poles on load
 if (customPoles) {
   poles.length = 0;
+  
+  // Extract any scaling factor that was applied to the elevations
+  let elevScaleFactor = 1;
+  const elevRange = Math.max(...useElevations) - Math.min(...useElevations);
+  if (elevRange > 30) {
+    const targetElevRange = 20;
+    elevScaleFactor = targetElevRange / elevRange;
+    console.log(`Using elevation scale factor for pole heights: ${elevScaleFactor.toFixed(2)}`);
+  }
+  
   for (const pole of customPoles) {
     const mesh = new THREE.Mesh(poleGeo, mPole);
-    mesh.scale.y = pole.h / BASE_H;
+    
+    // Scale pole height proportionally if elevations were scaled
+    const scaledHeight = elevScaleFactor !== 1 ? pole.h * elevScaleFactor : pole.h;
+    mesh.scale.y = scaledHeight / BASE_H;
     
     const zPos = pole.x;
     const base = pole.elev;
     
-    mesh.position.set(0, base + pole.h / 2, zPos);
+    mesh.position.set(0, base + scaledHeight / 2, zPos + terrainOffsetZ);
     mesh.userData.pole = true;
     scene.add(mesh);
-    poles.push({ x: 0, z: zPos, h: pole.h, base, obj: mesh });
+    poles.push({ x: 0, z: zPos, h: scaledHeight, base, obj: mesh });
   }
   rebuild();
 }
