@@ -89,7 +89,7 @@
 </head>
 <body>
   <div id="hud">
-    <div><strong>Left-click</strong>: add pole • <strong>Ctrl+click</strong>: delete pole/tree • <strong>Drag pole</strong>: adjust height • <strong>Shift+click</strong>: reset • <strong>Drag empty</strong>: orbit</div>
+    <div><strong>Left-click</strong>: add pole • <strong>Right-click</strong>: delete pole/tree • <strong>Drag pole</strong>: adjust height • <strong>Drag empty</strong>: orbit</div>
     <label>New pole height: <input id="heightSlider" type="range" min="1" max="40" step="1" value="20"></label>
     <span id="heightLabel">20</span> ft
     &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -145,13 +145,20 @@ const poleDistances = urlParams.get('poles-distances')?.split(',').map(Number).f
 const poleHeights = urlParams.get('poles-heights')?.split(',').map(Number).filter(v => !isNaN(v)) || [];
 const poleElevations = urlParams.get('poles-elevations')?.split(',').map(Number).filter(v => !isNaN(v)) || [];
 
+// Create default elevations (zeros) if distances and heights exist but elevations are missing
+let useElevations = poleElevations;
+if (poleDistances.length > 0 && poleHeights.length > 0 && poleElevations.length === 0) {
+  useElevations = Array(Math.min(poleDistances.length, poleHeights.length)).fill(0);
+}
+
 // Parse URL parameters for grid dimensions
 const sizeX = Math.max(parseInt(urlParams.get('size-x')) || SIZE, Math.max(...poleDistances) + 20);
 const sizeY = Math.max(parseInt(urlParams.get('size-y')) || SIZE, Math.max(...poleDistances) + 20);
 
 let customPoles = null;
-if (poleDistances.length && poleHeights.length && poleElevations.length && 
-    poleDistances.length === poleHeights.length && poleHeights.length === poleElevations.length) {
+if (poleDistances.length && poleHeights.length && 
+    poleDistances.length === poleHeights.length && 
+    poleDistances.length === useElevations.length) {
 
   // Interpolate and scale values for large inputs
   const normalizeDistances = () => {
@@ -190,17 +197,17 @@ if (poleDistances.length && poleHeights.length && poleElevations.length &&
   };
   
   const normalizeElevations = () => {
-    const maxElev = Math.max(...poleElevations);
-    const minElev = Math.min(...poleElevations);
+    const maxElev = Math.max(...useElevations);
+    const minElev = Math.min(...useElevations);
     const range = maxElev - minElev;
-    let scaledElevations = [...poleElevations];
+    let scaledElevations = [...useElevations];
     let scaling = false;
     
     if (range > 30) {
       scaling = true;
       const targetRange = 20;
       const scaleFactor = targetRange / range;
-      scaledElevations = poleElevations.map(e => minElev + (e - minElev) * scaleFactor);
+      scaledElevations = useElevations.map(e => minElev + (e - minElev) * scaleFactor);
       console.log(`Scaling elevations: Original range ${range} → ${targetRange} units (scale factor: ${scaleFactor.toFixed(2)})`);
     }
     
@@ -259,7 +266,87 @@ function hAt(x, z) {
 let terrain=null; const trees=new THREE.Group(); scene.add(trees); const treeData=[]; // {x,z,yTop,ref}
 let terrainOffsetZ = 0;
 
-// Adjust terrain alignment and raycasting logic
+// Add grid lines and labels
+function addGridLines() {
+  // Remove any existing grid
+  scene.children.filter(o => o.userData.grid).forEach(g => {
+    scene.remove(g);
+    if (g.geometry) g.geometry.dispose();
+  });
+  
+  const gridGroup = new THREE.Group();
+  gridGroup.userData.grid = true;
+  
+  const gridMaterial = new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.3 });
+  
+  // Create grid lines at 50-foot intervals
+  for (let i = -SIZE / 2; i <= SIZE / 2; i += 50) {
+    // X-axis lines (along Z)
+    const geometryX = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(i, 0.05, -SIZE / 2),
+      new THREE.Vector3(i, 0.05, SIZE / 2)
+    ]);
+    const lineX = new THREE.Line(geometryX, gridMaterial);
+    gridGroup.add(lineX);
+    
+    // Z-axis lines (along X)
+    const geometryZ = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-SIZE / 2, 0.05, i),
+      new THREE.Vector3(SIZE / 2, 0.05, i)
+    ]);
+    const lineZ = new THREE.Line(geometryZ, gridMaterial);
+    gridGroup.add(lineZ);
+    
+    // Skip label at origin (0,0)
+    if (i !== 0) {
+      // Create label for X coordinate
+      const labelX = document.createElement('div');
+      labelX.className = 'grid-label';
+      labelX.textContent = `${i}`;
+      labelX.style.position = 'absolute';
+      labelX.style.color = 'black';
+      labelX.style.backgroundColor = 'rgba(255,255,255,0.5)';
+      labelX.style.padding = '2px 4px';
+      labelX.style.borderRadius = '2px';
+      labelX.style.fontSize = '10px';
+      labelX.style.userSelect = 'none';
+      labelX.style.pointerEvents = 'none';
+      document.body.appendChild(labelX);
+      
+      const labelPoints = new THREE.Vector3(i, 0.1, -SIZE / 2 + 5);
+      gridGroup.userData.labels = gridGroup.userData.labels || [];
+      gridGroup.userData.labels.push({
+        element: labelX,
+        position: labelPoints,
+        axis: 'x'
+      });
+      
+      // Create label for Z coordinate
+      const labelZ = document.createElement('div');
+      labelZ.className = 'grid-label';
+      labelZ.textContent = `${i}`;
+      labelZ.style.position = 'absolute';
+      labelZ.style.color = 'black';
+      labelZ.style.backgroundColor = 'rgba(255,255,255,0.5)';
+      labelZ.style.padding = '2px 4px';
+      labelZ.style.borderRadius = '2px';
+      labelZ.style.fontSize = '10px';
+      labelZ.style.userSelect = 'none';
+      labelZ.style.pointerEvents = 'none';
+      document.body.appendChild(labelZ);
+      
+      const labelZPoints = new THREE.Vector3(-SIZE / 2 + 5, 0.1, i);
+      gridGroup.userData.labels.push({
+        element: labelZ,
+        position: labelZPoints,
+        axis: 'z'
+      });
+    }
+  }
+  
+  scene.add(gridGroup);
+}
+
 function buildTerrain() {
   if (terrain) {
     scene.remove(terrain);
@@ -309,6 +396,9 @@ function buildTerrain() {
   positions.needsUpdate = true;
   terrain.geometry.computeVertexNormals();
   
+  // Add grid lines at 50-foot intervals
+  addGridLines();
+  
   if (terrainSel.value === 'hillsTrees') addTrees();
 }
 
@@ -341,6 +431,7 @@ const mGood   = new THREE.LineBasicMaterial({color:0x000000});
 const mBad    = new THREE.LineBasicMaterial({color:0xff0000});
 const mGhost  = new THREE.MeshStandardMaterial({color:0x46c9ff,transparent:true,opacity:0.4});
 const mTreeHL = new THREE.MeshStandardMaterial({color:0xffff8d});
+const mGrid   = new THREE.LineBasicMaterial({color:0x555555, transparent:true, opacity:0.5});
 
 /* ------- data stores ------- */
 const poles=[]; // {x,z,h,base,obj}
@@ -417,6 +508,23 @@ function setTreeHL(t,on){ t.traverse(m=>{if(m.isMesh)m.material=on?mTreeHL:(m.ge
 /* ------- interaction state ------- */
 let drag=null,startY=0,startH=0,clickStart=null;
 
+window.addEventListener('contextmenu', e => {
+  e.preventDefault(); // Prevent the default context menu
+  const tPick = pick(e, trees.children);
+  if (tPick) {
+    trees.remove(tPick);
+    treeData.splice(treeData.findIndex(t => t.ref === tPick), 1);
+    rebuild();
+    return;
+  }
+  
+  const pPick = pick(e, poleMeshes());
+  if (pPick) {
+    removePole(pPick);
+    return;
+  }
+});
+
 window.addEventListener('pointermove', e => {
   const pPick = pick(e, poleMeshes());
   if (pPick !== hoverPole) {
@@ -453,19 +561,9 @@ window.addEventListener('pointerdown', e => {
     // Do nothing for Shift+click
     return;
   }
-  const tPick = pick(e, trees.children);
-  if (e.ctrlKey && tPick) {
-    trees.remove(tPick);
-    treeData.splice(treeData.findIndex(t => t.ref === tPick), 1);
-    rebuild();
-    return;
-  }
+
   const pPick = pick(e, poleMeshes());
   if (pPick) {
-    if (e.ctrlKey) {
-      removePole(pPick);
-      return;
-    }
     drag = pPick;
     startY = e.clientY;
     startH = poles.find(p => p.obj === drag).h;
@@ -673,7 +771,30 @@ if (customPoles) {
 
 (function loop(){ 
   requestAnimationFrame(loop); 
-  controls.update(); 
+  controls.update();
+  
+  // Update grid labels position if they exist
+  scene.children.filter(o => o.userData.grid && o.userData.labels).forEach(grid => {
+    if (grid.userData.labels) {
+      grid.userData.labels.forEach(label => {
+        const screenPosition = label.position.clone();
+        screenPosition.project(camera);
+        
+        const x = (screenPosition.x * 0.5 + 0.5) * innerWidth;
+        const y = (-(screenPosition.y * 0.5) + 0.5) * innerHeight;
+        
+        if (screenPosition.z < 1) {
+          label.element.style.display = 'block';
+          label.element.style.transform = `translate(-50%, -50%)`;
+          label.element.style.left = `${x}px`;
+          label.element.style.top = `${y}px`;
+        } else {
+          label.element.style.display = 'none';
+        }
+      });
+    }
+  });
+  
   renderer.render(scene,camera);
 })();
 
