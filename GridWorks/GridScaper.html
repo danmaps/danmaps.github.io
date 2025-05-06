@@ -280,7 +280,6 @@ let terrainOffsetZ = 0;
 
 // Add grid lines and labels
 function addGridLines() {
-  // Remove any existing grid
   scene.children.filter(o => o.userData.grid).forEach(g => {
     scene.remove(g);
     if (g.geometry) g.geometry.dispose();
@@ -288,30 +287,37 @@ function addGridLines() {
 
   const gridGroup = new THREE.Group();
   gridGroup.userData.grid = true;
+  gridGroup.userData.labels = [];
 
   const gridMaterial = new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.3 });
+  
+  // Get terrain dimensions and position
+  let terrainWidth = 100;
+  let terrainDepth = 100;
+  let terrainPosition = { x: 0, z: 0 };
+  
+  if (terrain) {
+    terrainWidth = terrain.geometry.parameters.width;
+    terrainDepth = terrain.geometry.parameters.height;
+    terrainPosition.z = terrain.position.z;
+  }
+  
+  // Calculate grid bounds to match terrain
+  const startX = -terrainWidth / 2;
+  const endX = terrainWidth / 2;
+  const startZ = -terrainDepth / 2 + terrainPosition.z;
+  const endZ = terrainDepth / 2 + terrainPosition.z;
 
   // Create grid lines at 10-foot intervals
-  for (let i = -SIZE / 2; i <= SIZE / 2; i += 10) {
-    // X-axis lines (along Z)
+  for (let i = Math.ceil(startX / 10) * 10; i <= Math.floor(endX / 10) * 10; i += 10) {
     const geometryX = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(i, 0.05, -SIZE / 2),
-      new THREE.Vector3(i, 0.05, SIZE / 2)
+      new THREE.Vector3(i, 0.05, startZ),
+      new THREE.Vector3(i, 0.05, endZ)
     ]);
     const lineX = new THREE.Line(geometryX, gridMaterial);
     gridGroup.add(lineX);
 
-    // Z-axis lines (along X)
-    const geometryZ = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-SIZE / 2, 0.05, i),
-      new THREE.Vector3(SIZE / 2, 0.05, i)
-    ]);
-    const lineZ = new THREE.Line(geometryZ, gridMaterial);
-    gridGroup.add(lineZ);
-
-    // Skip label at origin (0,0)
     if (i !== 0) {
-      // Create label for X coordinate
       const labelX = document.createElement('div');
       labelX.className = 'grid-label';
       labelX.textContent = `${i}`;
@@ -325,15 +331,23 @@ function addGridLines() {
       labelX.style.pointerEvents = 'none';
       document.body.appendChild(labelX);
 
-      const labelPoints = new THREE.Vector3(i, 0.1, -SIZE / 2 + 5);
-      gridGroup.userData.labels = gridGroup.userData.labels || [];
       gridGroup.userData.labels.push({
         element: labelX,
-        position: labelPoints,
+        position: new THREE.Vector3(i, 0.1, startZ),
         axis: 'x'
       });
+    }
+  }
 
-      // Create label for Z coordinate
+  for (let i = Math.ceil(startZ / 10) * 10; i <= Math.floor(endZ / 10) * 10; i += 10) {
+    const geometryZ = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(startX, 0.05, i),
+      new THREE.Vector3(endX, 0.05, i)
+    ]);
+    const lineZ = new THREE.Line(geometryZ, gridMaterial);
+    gridGroup.add(lineZ);
+
+    if (i !== 0) {
       const labelZ = document.createElement('div');
       labelZ.className = 'grid-label';
       labelZ.textContent = `${i}`;
@@ -347,10 +361,9 @@ function addGridLines() {
       labelZ.style.pointerEvents = 'none';
       document.body.appendChild(labelZ);
 
-      const labelZPoints = new THREE.Vector3(-SIZE / 2 + 5, 0.1, i);
       gridGroup.userData.labels.push({
         element: labelZ,
-        position: labelZPoints,
+        position: new THREE.Vector3(startX, 0.1, i),
         axis: 'z'
       });
     }
@@ -379,7 +392,7 @@ function buildTerrain() {
   trees.clear();
   treeData.length = 0;
 
-  let terrainWidth = 50;
+  let terrainWidth = 100;
   let terrainDepth = 100;
 
   if (customPoles && customPoles.length > 0) {
