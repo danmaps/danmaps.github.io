@@ -396,10 +396,11 @@ function buildTerrain() {
   let terrainDepth = 100;
 
   if (customPoles && customPoles.length > 0) {
+    terrainWidth = 20;
     const minZ = Math.min(...customPoles.map(p => p.x));
     const maxZ = Math.max(...customPoles.map(p => p.x));
-    terrainDepth = (maxZ - minZ) + 40; // Add margin on both sides
-    terrainOffsetZ = 0; // Don't offset the terrain
+    terrainDepth = (maxZ - minZ) + 40;
+    terrainOffsetZ = 0;
   }
 
   console.log(`Building terrain surface: ${terrainWidth}x${terrainDepth} units`);
@@ -410,7 +411,7 @@ function buildTerrain() {
   g.rotateX(-Math.PI / 2);
 
   terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x5ca55c }));
-  terrain.position.z = terrainDepth/2 - 20; // Position terrain to start at -20
+  terrain.position.z = terrainDepth/2 - 20;
   scene.add(terrain);
 
   const positions = terrain.geometry.attributes.position;
