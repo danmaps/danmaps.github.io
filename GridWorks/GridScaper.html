@@ -100,6 +100,12 @@
     &nbsp;&nbsp;|&nbsp;&nbsp;
     <label><input type="checkbox" id="showGridCheck" checked> Grid</label>
     &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label>Setting: <select id="settingSelect"><option value="residential" selected>Residential</option><option value="commercial">Commercial</option><option value="urban">Urban</option><option value="rural">Rural</option></select></label>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label>Environment: <select id="environmentSelect"><option value="coastal" selected>Coastal</option><option value="mountain">Mountain</option><option value="desert">Desert</option><option value="city">City</option></select></label>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <label>Equipment: <select id="equipmentSelect"><option value="distribution" selected>Distribution</option><option value="subTransmission">Sub Transmission</option><option value="bulkTransmission">Bulk Transmission</option><option value="generation">Generation</option></select></label>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
     <button id="downloadJSON">Download</button>
     <button id="clearScene">Clear Scene</button>
   </div>
@@ -120,15 +126,23 @@ const hLabel = document.getElementById('heightLabel');
 const terrainSel = document.getElementById('terrainSelect');
 const tensionSlider = document.getElementById('tensionSlider');
 const tensionLabel = document.getElementById('tensionLabel');
+const settingSel = document.getElementById('settingSelect');
+const environmentSel = document.getElementById('environmentSelect');
+const equipmentSel = document.getElementById('equipmentSelect');
 const clearBtn = document.getElementById('clearScene');
 const showGridCheck = document.getElementById('showGridCheck');
 let currentH = +slider.value;
 let currentTension = +tensionSlider.value;
 slider.oninput = ()=>{ currentH=+slider.value; hLabel.textContent=currentH; updateGhost(); };
-terrainSel.onchange = ()=>{ buildTerrain(); resetScene(); };
+terrainSel.onchange = ()=>{ buildTerrain(); resetScene(); updateSceneElements(); };
 tensionSlider.oninput = ()=>{ currentTension=+tensionSlider.value; tensionLabel.textContent=currentTension.toFixed(1)+'×'; rebuild(); };
+
+if (settingSel) settingSel.onchange = updateSceneElements;
+if (environmentSel) environmentSel.onchange = ()=>{ updateSceneElements(); updateEnvironment(); };
+if (equipmentSel) equipmentSel.onchange = updateSceneElements;
+if (showGridCheck) showGridCheck.onchange = ()=>{ toggleGridVisibility(showGridCheck.checked); };
+
 clearBtn.onclick = resetScene;
-showGridCheck.onchange = ()=>{ toggleGridVisibility(showGridCheck.checked); };
 
 /* ------- three basics ------- */
 const canvas = document.getElementById('c');
@@ -384,11 +398,396 @@ function toggleGridVisibility(visible) {
   });
 }
 
+function clearSceneElements() {
+  scene.children.filter(o => o.userData.environmentElement).forEach(e => {
+    scene.remove(e);
+    if (e.geometry) e.geometry.dispose();
+  });
+}
+
+function updateEnvironment() {
+  // Clear existing environment elements
+  clearSceneElements();
+  
+  // Add environment-specific elements
+  if (environmentSel.value === 'coastal') {
+    addCoastalElements();
+  } else if (environmentSel.value === 'mountain') {
+    addMountainElements();
+  } else if (environmentSel.value === 'desert') {
+    addDesertElements();
+  } else if (environmentSel.value === 'city') {
+    addCityElements();
+  }
+  
+  // Update terrain color based on environment
+  updateTerrainColor();
+}
+
+function updateTerrainColor() {
+  if (!terrain) return;
+  
+  let terrainColor = 0x5ca55c; // Default green
+  
+  switch(environmentSel.value) {
+    case 'desert':
+      terrainColor = 0xd2b48c; // Beige for desert
+      break;
+    case 'coastal':
+      terrainColor = 0xf0e68c; // Khaki for sandy shores
+      break;
+    case 'mountain':
+      terrainColor = 0x4f7942; // Dark green for mountain vegetation
+      break;
+    case 'city':
+      terrainColor = 0x7ccd7c; // Lighter green for manicured urban grass
+      break;
+  }
+  
+  terrain.material.color.setHex(terrainColor);
+}
+
+function addCoastalElements() {
+  // Add water body
+  const waterWidth = 80;
+  const waterDepth = terrain ? terrain.geometry.parameters.height : 100;
+  const terrainPos = terrain ? terrain.position.z : 0;
+  const terrainWidth = terrain ? terrain.geometry.parameters.width : 100;
+  
+  const waterGeometry = new THREE.PlaneGeometry(waterWidth, waterDepth);
+  const waterMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x1e90ff, 
+    transparent: true, 
+    opacity: 0.8,
+    metalness: 0.2,
+    roughness: 0.1
+  });
+  
+  const water = new THREE.Mesh(waterGeometry, waterMaterial);
+  water.rotation.x = -Math.PI / 2;
+  water.position.set(-terrainWidth/2 - waterWidth/2, 0.1, terrainPos);
+  water.userData.environmentElement = true;
+  scene.add(water);
+  
+  // Add dock
+  const dockGeometry = new THREE.BoxGeometry(5, 0.5, 15);
+  const dockMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+  const dock = new THREE.Mesh(dockGeometry, dockMaterial);
+  dock.position.set(-terrainWidth/2 + 2.5, 0.3, terrainPos - 5);
+  dock.userData.environmentElement = true;
+  scene.add(dock);
+  
+  // Add palm trees
+  const trunkGeo = new THREE.CylinderGeometry(0.3, 0.5, 5, 8);
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0xcd853f });
+  const palmGeo = new THREE.SphereGeometry(2, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2);
+  palmGeo.scale(1, 0.3, 1);
+  const palmMat = new THREE.MeshStandardMaterial({ color: 0x32cd32 });
+  
+  for (let i = 0; i < 6; i++) {
+    const group = new THREE.Group();
+    
+    const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+    trunk.position.y = 2.5;
+    group.add(trunk);
+    
+    const palm = new THREE.Mesh(palmGeo, palmMat);
+    palm.position.y = 5;
+    palm.rotation.x = -Math.PI/6;
+    group.add(palm);
+    
+    // Position along shoreline with slight randomization
+    const x = Math.random() * 10 - terrainWidth/2 + 5;
+    const z = (Math.random() - 0.5) * waterDepth * 0.8 + terrainPos;
+    group.position.set(x, 0, z);
+    
+    group.userData.environmentElement = true;
+    scene.add(group);
+  }
+  
+  // Add a simple road
+  addRoad(terrainPos, terrainWidth, waterDepth);
+}
+
+function addMountainElements() {
+  if (!terrain) return;
+  
+  // Add pine trees
+  const terrainWidth = terrain.geometry.parameters.width;
+  const terrainDepth = terrain.geometry.parameters.height;
+  const terrainPos = terrain.position.z;
+  
+  // Pine trees
+  const trunkGeo = new THREE.CylinderGeometry(0.3, 0.4, 2, 8);
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x8b4513 });
+  const pineGeo = new THREE.ConeGeometry(1.5, 4, 8);
+  const pineMat = new THREE.MeshStandardMaterial({ color: 0x2f4f4f });
+  
+  for (let i = 0; i < 15; i++) {
+    const group = new THREE.Group();
+    
+    const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+    trunk.position.y = 1;
+    group.add(trunk);
+    
+    // Add 3 cone sections for the pine tree
+    for (let j = 0; j < 3; j++) {
+      const pine = new THREE.Mesh(pineGeo, pineMat);
+      const scale = 1 - j * 0.2;
+      pine.scale.set(scale, scale, scale);
+      pine.position.y = 3 + j * 1.2;
+      group.add(pine);
+    }
+    
+    // Random position avoiding center line
+    const xPos = (Math.random() - 0.5) * terrainWidth;
+    const xOffset = Math.abs(xPos) < 5 ? (xPos < 0 ? -3 : 3) : 0;
+    const finalX = xPos + xOffset;
+    
+    const zPos = (Math.random() - 0.5) * terrainDepth + terrainPos;
+    const yPos = hAt(finalX, zPos);
+    
+    group.position.set(finalX, yPos, zPos);
+    group.userData.environmentElement = true;
+    scene.add(group);
+  }
+  
+  // Rocks
+  const rockGeo = new THREE.DodecahedronGeometry(1, 0);
+  const rockMat = new THREE.MeshStandardMaterial({ color: 0x808080 });
+  
+  for (let i = 0; i < 12; i++) {
+    const rock = new THREE.Mesh(rockGeo, rockMat);
+    
+    // Random scaling and rotation for variety
+    const scale = 0.5 + Math.random() * 1.5;
+    rock.scale.set(
+      scale * (0.8 + Math.random() * 0.4),
+      scale * (0.7 + Math.random() * 0.6),
+      scale * (0.8 + Math.random() * 0.4)
+    );
+    
+    rock.rotation.set(
+      Math.random() * Math.PI,
+      Math.random() * Math.PI,
+      Math.random() * Math.PI
+    );
+    
+    // Position randomly
+    const xPos = (Math.random() - 0.5) * terrainWidth;
+    const zPos = (Math.random() - 0.5) * terrainDepth + terrainPos;
+    const yPos = hAt(xPos, zPos);
+    
+    rock.position.set(xPos, yPos, zPos);
+    rock.userData.environmentElement = true;
+    scene.add(rock);
+  }
+  
+  // Mountain path/road
+  const roadWidth = 3;
+  const roadGeometry = new THREE.PlaneGeometry(roadWidth, terrainDepth * 0.9);
+  const roadMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x8B4513,
+    roughness: 1
+  });
+  
+  const road = new THREE.Mesh(roadGeometry, roadMaterial);
+  road.rotation.x = -Math.PI / 2;
+  road.position.set(terrainWidth * 0.3, 0.05, terrainPos);
+  road.userData.environmentElement = true;
+  scene.add(road);
+}
+
+function addDesertElements() {
+  if (!terrain) return;
+  
+  const terrainWidth = terrain.geometry.parameters.width;
+  const terrainDepth = terrain.geometry.parameters.height;
+  const terrainPos = terrain.position.z;
+  
+  // Saguaro cacti
+  const cactusBodyGeo = new THREE.CylinderGeometry(0.5, 0.7, 6, 8);
+  const cactusArmGeo = new THREE.CylinderGeometry(0.3, 0.3, 2.5, 8);
+  const cactusMat = new THREE.MeshStandardMaterial({ color: 0x2F4F2F });
+  
+  for (let i = 0; i < 8; i++) {
+    const cactusGroup = new THREE.Group();
+    
+    // Main body
+    const body = new THREE.Mesh(cactusBodyGeo, cactusMat);
+    body.position.y = 3;
+    cactusGroup.add(body);
+    
+    // Add 1-3 arms
+    const armCount = Math.floor(Math.random() * 3) + 1;
+    
+    for (let a = 0; a < armCount; a++) {
+      const arm = new THREE.Mesh(cactusArmGeo, cactusMat);
+      const height = 2 + Math.random() * 2;
+      const side = a === 0 ? 1 : (a === 1 ? -1 : (Math.random() > 0.5 ? 1 : -1));
+      
+      arm.position.set(
+        0.6 * side,
+        height,
+        0
+      );
+      arm.rotation.z = side * Math.PI / 6;
+      cactusGroup.add(arm);
+    }
+    
+    // Position randomly on terrain
+    const xPos = (Math.random() - 0.5) * terrainWidth;
+    const xOffset = Math.abs(xPos) < 5 ? (xPos < 0 ? -3 : 3) : 0;
+    const finalX = xPos + xOffset;
+    
+    const zPos = (Math.random() - 0.5) * terrainDepth + terrainPos;
+    const yPos = hAt(finalX, zPos);
+    
+    cactusGroup.position.set(finalX, yPos, zPos);
+    cactusGroup.userData.environmentElement = true;
+    scene.add(cactusGroup);
+  }
+  
+  // Tumbleweeds
+  const tumbleweedGeo = new THREE.SphereGeometry(0.8, 8, 8);
+  const tumbleweedMat = new THREE.MeshStandardMaterial({ 
+    color: 0xA0522D, 
+    wireframe: true,
+    wireframeLinewidth: 2
+  });
+  
+  for (let i = 0; i < 6; i++) {
+    const tumbleweed = new THREE.Mesh(tumbleweedGeo, tumbleweedMat);
+    
+    // Random scale and rotation
+    const scale = 0.6 + Math.random() * 0.8;
+    tumbleweed.scale.set(scale, scale * 0.8, scale);
+    tumbleweed.rotation.set(
+      Math.random() * Math.PI,
+      Math.random() * Math.PI,
+      Math.random() * Math.PI
+    );
+    
+    // Position randomly
+    const xPos = (Math.random() - 0.5) * terrainWidth;
+    const zPos = (Math.random() - 0.5) * terrainDepth + terrainPos;
+    const yPos = hAt(xPos, zPos) + 0.4;
+    
+    tumbleweed.position.set(xPos, yPos, zPos);
+    tumbleweed.userData.environmentElement = true;
+    scene.add(tumbleweed);
+  }
+  
+  // Desert road
+  const roadWidth = 5;
+  const roadGeometry = new THREE.PlaneGeometry(roadWidth, terrainDepth);
+  const roadMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0xC2B280, 
+    roughness: 0.9
+  });
+  
+  const road = new THREE.Mesh(roadGeometry, roadMaterial);
+  road.rotation.x = -Math.PI / 2;
+  road.position.set(-terrainWidth * 0.3, 0.05, terrainPos);
+  road.userData.environmentElement = true;
+  scene.add(road);
+}
+
+function addCityElements() {
+  if (!terrain) return;
+  
+  const terrainWidth = terrain.geometry.parameters.width;
+  const terrainDepth = terrain.geometry.parameters.height;
+  const terrainPos = terrain.position.z;
+  
+  // Main road
+  const mainRoadWidth = 8;
+  const mainRoadGeometry = new THREE.PlaneGeometry(mainRoadWidth, terrainDepth);
+  const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+  
+  const mainRoad = new THREE.Mesh(mainRoadGeometry, roadMaterial);
+  mainRoad.rotation.x = -Math.PI / 2;
+  mainRoad.position.set(0, 0.05, terrainPos);
+  mainRoad.userData.environmentElement = true;
+  scene.add(mainRoad);
+  
+  // Cross streets
+  const crossRoadCount = 3;
+  const crossRoadWidth = 6;
+  
+  for (let i = 0; i < crossRoadCount; i++) {
+    const crossRoadGeometry = new THREE.PlaneGeometry(terrainWidth, crossRoadWidth);
+    const crossRoad = new THREE.Mesh(crossRoadGeometry, roadMaterial);
+    crossRoad.rotation.x = -Math.PI / 2;
+    
+    const offset = (i - 1) * terrainDepth / 3;
+    crossRoad.position.set(0, 0.06, terrainPos + offset);
+    crossRoad.userData.environmentElement = true;
+    scene.add(crossRoad);
+  }
+  
+  // Urban trees (round tops)
+  const trunkGeo = new THREE.CylinderGeometry(0.2, 0.3, 2, 8);
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
+  const canopyGeo = new THREE.SphereGeometry(1.2, 12, 12);
+  const canopyMat = new THREE.MeshStandardMaterial({ color: 0x228B22 });
+  
+  for (let i = 0; i < 12; i++) {
+    const tree = new THREE.Group();
+    
+    const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+    trunk.position.y = 1;
+    tree.add(trunk);
+    
+    const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+    canopy.position.y = 2.5;
+    tree.add(canopy);
+    
+    // Position along streets
+    const roadSide = Math.random() > 0.5;
+    const crossStreet = Math.floor(Math.random() * 3);
+    
+    let xPos, zPos;
+    
+    if (Math.random() > 0.5) {
+      // Along main road
+      xPos = mainRoadWidth/2 + 2;
+      if (roadSide) xPos = -xPos;
+      zPos = (Math.random() - 0.5) * (terrainDepth - 10) + terrainPos;
+    } else {
+      // Along cross streets
+      xPos = (Math.random() - 0.5) * (terrainWidth - 10);
+      const offset = (crossStreet - 1) * terrainDepth / 3;
+      zPos = offset + terrainPos + (roadSide ? 5 : -5);
+    }
+    
+    const yPos = hAt(xPos, zPos);
+    tree.position.set(xPos, yPos, zPos);
+    tree.userData.environmentElement = true;
+    scene.add(tree);
+  }
+}
+
+function addRoad(terrainPos, terrainWidth, terrainDepth) {
+  const roadWidth = 5;
+  const roadGeometry = new THREE.PlaneGeometry(roadWidth, terrainDepth * 0.8);
+  const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x444444 });
+  
+  const road = new THREE.Mesh(roadGeometry, roadMaterial);
+  road.rotation.x = -Math.PI / 2;
+  road.position.set(terrainWidth * 0.25, 0.05, terrainPos);
+  road.userData.environmentElement = true;
+  scene.add(road);
+}
+
 function buildTerrain() {
   if (terrain) {
     scene.remove(terrain);
     terrain.geometry.dispose();
   }
+  
+  // Clear existing scene elements
+  clearSceneElements();
   trees.clear();
   treeData.length = 0;
 
@@ -410,7 +809,13 @@ function buildTerrain() {
   const g = new THREE.PlaneGeometry(terrainWidth, terrainDepth, SEG, SEG);
   g.rotateX(-Math.PI / 2);
 
-  terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0x5ca55c }));
+  // Set terrain color based on environment
+  let terrainColor = 0x5ca55c; // Default green
+  if (environmentSel && environmentSel.value === 'desert') {
+    terrainColor = 0xd2b48c; // Beige for desert
+  }
+
+  terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: terrainColor }));
   terrain.position.z = terrainDepth/2 - 20;
   scene.add(terrain);
 
@@ -435,10 +840,15 @@ function buildTerrain() {
 
   addGridLines();
 
-  if (terrainSel.value === 'hillsTrees') addTrees();
+  if (terrainSel.value === 'hillsTrees') addDefaultTrees();
+  
+  // Add environment-specific elements
+  if (environmentSel) {
+    updateEnvironment();
+  }
 }
 
-function addTrees(){
+function addDefaultTrees(){
   const trunkG=new THREE.CylinderGeometry(0.15,0.15,1,6);
   const folG=new THREE.ConeGeometry(0.75,2,8);
   const trunkM=new THREE.MeshStandardMaterial({color:0x8b5a2b});
@@ -470,6 +880,7 @@ const mBad    = new THREE.LineBasicMaterial({color:0xff0000});
 const mGhost  = new THREE.MeshStandardMaterial({color:0x46c9ff,transparent:true,opacity:0.4});
 const mTreeHL = new THREE.MeshStandardMaterial({color:0xffff8d});
 const mGrid   = new THREE.LineBasicMaterial({color:0x555555, transparent:true, opacity:0.5});
+const mBird   = new THREE.MeshStandardMaterial({color:0x222222});
 
 /* ------- data stores ------- */
 const poles=[]; // {x,z,h,base,obj}
@@ -501,6 +912,10 @@ function drawSpan(a, b) {
   }
 }
 function rebuild() {
+  // Store existing spans before clearing
+  const oldSpans = scene.children.filter(o => o.userData.span);
+  
+  // Clear only spans
   scene.children.filter(o => o.userData.span).forEach(l => {
     l.geometry.dispose();
     scene.remove(l);
@@ -511,8 +926,14 @@ function rebuild() {
     window.spansInitialized = true;
   }
   
+  // Draw spans between poles
   for (let i = 1; i < poles.length; i++) {
     drawSpan(poles[i-1], poles[i]);
+  }
+  
+  // Only initialize birds if this is the first load or there were no spans before
+  if (initialLoad || oldSpans.length === 0) {
+    initBirds();
   }
 }
 
@@ -683,7 +1104,7 @@ window.addEventListener('pointerup', e => {
   }
 });
 
-function resetScene(){ poles.forEach(p=>scene.remove(p.obj)); poles.length=0; scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); updateGhost();}
+function resetScene(){ poles.forEach(p=>scene.remove(p.obj)); poles.length=0; scene.children.filter(o=>o.userData.span).forEach(l=>{l.geometry.dispose();scene.remove(l);}); updateGhost(); birds.length = 0;}
 
 window.addEventListener('resize', () => {
   camera.aspect = innerWidth/innerHeight;
@@ -881,6 +1302,371 @@ if (customPoles) {
   rebuild();
 }
 
+// Scene customization variables
+const sceneElements = {
+  buildings: [],
+}
+
+function updateSceneElements() {
+  console.log(`Updating scene for ${settingSel.value} setting in ${environmentSel.value} environment with ${equipmentSel.value} equipment`);
+  
+  // Remove existing buildings
+  sceneElements.buildings.forEach(b => scene.remove(b));
+  sceneElements.buildings = [];
+  
+  // Update pole colors and materials based on equipment type
+  updatePoleAppearance();
+  
+  // Add buildings based on setting type
+  addRandomBuildings();
+}
+
+function updatePoleAppearance() {
+  let poleColor, crossArmColor;
+  
+  // Set colors based on equipment type
+  switch(equipmentSel.value) {
+    case 'distribution':
+      poleColor = 0x8b5a2b; // Brown wood poles
+      crossArmColor = 0x4d4d4d; // Dark gray crossarms
+      break;
+    case 'subTransmission':
+      poleColor = 0x708090; // Gray steel poles
+      crossArmColor = 0x303030; // Darker gray crossarms/brackets
+      break;
+    case 'bulkTransmission':
+      poleColor = 0xa9a9a9; // Silver lattice towers
+      crossArmColor = 0xa9a9a9; // Same color for lattice crossarms
+      break;
+    case 'generation':
+      poleColor = 0x708090; // Gray steel
+      crossArmColor = 0x1e90ff; // Blue accent for generation
+      break;
+  }
+  
+  // Update all existing poles
+  poles.forEach(pole => {
+    pole.obj.material.color.setHex(poleColor);
+    
+    // Update crossarms if they exist
+    pole.obj.children.forEach(child => {
+      if (child.geometry.type === 'BoxGeometry') {
+        child.material.color.setHex(crossArmColor);
+      }
+    });
+  });
+  
+  // Update materials for future poles
+  mPole.color.setHex(poleColor);
+  mCrossArm.color.setHex(crossArmColor);
+}
+
+function addRandomBuildings() {
+  // Clear existing buildings
+  sceneElements.buildings.forEach(b => scene.remove(b));
+  sceneElements.buildings = [];
+  
+  if (!terrain) return;
+  
+  // Get terrain dimensions
+  const terrainWidth = terrain.geometry.parameters.width;
+  const terrainDepth = terrain.geometry.parameters.height;
+  const terrainPos = terrain.position.z;
+  
+  // Building density and size range based on setting
+  let buildingCount = 0;
+  let minSize = 1;
+  let maxSize = 3;
+  let maxHeight = 2;
+  
+  switch(settingSel.value) {
+    case 'residential':
+      buildingCount = 8; // Sparse houses
+      minSize = 2;
+      maxSize = 4;
+      maxHeight = 2.5;
+      break;
+    case 'commercial': 
+      buildingCount = 5; // Fewer but larger buildings
+      minSize = 4;
+      maxSize = 8;
+      maxHeight = 6;
+      break;
+    case 'urban':
+      buildingCount = 12; // Many buildings
+      minSize = 3;
+      maxSize = 8;
+      maxHeight = 15;
+      break;
+    case 'rural':
+      buildingCount = 3; // Very few structures
+      minSize = 2;
+      maxSize = 5;
+      maxHeight = 3;
+      break;
+  }
+  
+  // Building color based on environment
+  let buildingColor;
+  switch(environmentSel.value) {
+    case 'coastal':
+      buildingColor = 0xf5f5dc; // Beige/tan beach buildings
+      break;
+    case 'mountain':
+      buildingColor = 0x8b4513; // Brown wood cabins
+      break;
+    case 'desert':
+      buildingColor = 0xd2b48c; // Tan/adobe buildings
+      break;
+    case 'city':
+      buildingColor = 0xa9a9a9; // Gray city buildings
+      break;
+  }
+  
+  const buildingMaterial = new THREE.MeshStandardMaterial({ color: buildingColor });
+  
+  // Add random buildings
+  for (let i = 0; i < buildingCount; i++) {
+    // Random position within terrain bounds, but avoid the center path where poles are
+    const xPos = (Math.random() - 0.5) * (terrainWidth - 4);
+    // If abs(xPos) < 5, then we're too close to the center line, so push out
+    const xOffset = Math.abs(xPos) < 5 ? (xPos < 0 ? -5 : 5) : 0;
+    const finalX = xPos + xOffset;
+    
+    const zPos = (Math.random() - 0.5) * (terrainDepth - 4) + terrainPos;
+    const width = minSize + Math.random() * (maxSize - minSize);
+    const depth = minSize + Math.random() * (maxSize - minSize);
+    const height = 1 + Math.random() * (maxHeight - 1);
+    
+    const yPos = hAt(finalX, zPos) + height / 2;
+    
+    const buildingGeo = new THREE.BoxGeometry(width, height, depth);
+    const building = new THREE.Mesh(buildingGeo, buildingMaterial);
+    building.position.set(finalX, yPos, zPos);
+    
+    // Slightly rotate buildings for more natural look
+    building.rotation.y = Math.random() * Math.PI * 0.25;
+    
+    scene.add(building);
+    sceneElements.buildings.push(building);
+  }
+}
+
+/* ------- bird creation ------- */
+const birds = [];
+const birdSettings = {
+  count: 3,      // Reduced count from 8 to 3
+  perchHeight: 0.1,
+  flySpeed: 5.0,
+  wingSpeed: 0.2,
+  spawnChance: 0.25  // 25% chance of birds appearing
+};
+
+function createBird() {
+  const group = new THREE.Group();
+  
+  // Bird body
+  const bodyGeo = new THREE.ConeGeometry(0.15, 0.5, 4);
+  bodyGeo.rotateX(Math.PI / 2);
+  const body = new THREE.Mesh(bodyGeo, mBird);
+  group.add(body);
+  
+  // Head
+  const headGeo = new THREE.SphereGeometry(0.08, 8, 8);
+  const head = new THREE.Mesh(headGeo, mBird);
+  head.position.set(0.2, 0.08, 0);
+  group.add(head);
+  
+  // Wings
+  const wingGeo = new THREE.PlaneGeometry(0.3, 0.2);
+  
+  const leftWing = new THREE.Mesh(
+    wingGeo,
+    new THREE.MeshStandardMaterial({ color: 0x222222, side: THREE.DoubleSide })
+  );
+  leftWing.position.set(0, 0, 0.15);
+  leftWing.rotation.y = Math.PI / 4;
+  group.add(leftWing);
+  
+  const rightWing = new THREE.Mesh(
+    wingGeo,
+    new THREE.MeshStandardMaterial({ color: 0x222222, side: THREE.DoubleSide })
+  );
+  rightWing.position.set(0, 0, -0.15);
+  rightWing.rotation.y = -Math.PI / 4;
+  group.add(rightWing);
+  
+  // Bird properties
+  const bird = {
+    obj: group,
+    perched: false,
+    flying: false,
+    targetPosition: null,
+    span: null,
+    spanPoint: null,
+    spanOffset: null,
+    wingDirection: 1,
+    wingAngle: 0,
+    lookDirection: new THREE.Vector3(1, 0, 0),
+    update: function(delta) {
+      if (this.flying) {
+        this.updateFlying(delta);
+      } else if (this.perched) {
+        this.updatePerched(delta);
+      } else {
+        this.findPerch();
+      }
+    },
+    updateFlying: function(delta) {
+      if (!this.targetPosition) {
+        this.findPerch();
+        return;
+      }
+
+      // Move toward target
+      const moveSpeed = birdSettings.flySpeed * delta;
+      const direction = new THREE.Vector3().subVectors(this.targetPosition, this.obj.position).normalize();
+      this.obj.position.add(direction.multiplyScalar(moveSpeed));
+      this.lookDirection.lerp(direction, 0.1);
+      
+      // Set bird orientation
+      this.obj.lookAt(this.obj.position.clone().add(this.lookDirection));
+      
+      // Flap wings
+      this.wingAngle += birdSettings.wingSpeed * this.wingDirection;
+      if (Math.abs(this.wingAngle) >= 0.5) {
+        this.wingDirection *= -1;
+      }
+      
+      this.obj.children[2].rotation.z = this.wingAngle; // Left wing
+      this.obj.children[3].rotation.z = -this.wingAngle; // Right wing
+      
+      // Check if we've reached the target
+      if (this.obj.position.distanceTo(this.targetPosition) < 0.2) {
+        if (this.span) {
+          this.perched = true;
+          this.flying = false;
+          this.wingAngle = 0;
+          this.obj.children[2].rotation.z = 0;
+          this.obj.children[3].rotation.z = 0;
+        } else {
+          this.findPerch();
+        }
+      }
+    },
+    updatePerched: function() {
+      // Occasionally look around or adjust position
+      if (Math.random() < 0.005) {
+        this.obj.rotation.y += (Math.random() - 0.5) * 0.2;
+      }
+      
+      // If the span is removed, fly away
+      if (!scene.children.includes(this.span)) {
+        this.flyAway();
+      }
+    },
+    findPerch: function() {
+      const spans = scene.children.filter(o => o.userData.span);
+      if (spans.length === 0) {
+        this.flyAway();
+        return;
+      }
+      
+      // Pick a random span
+      const span = spans[Math.floor(Math.random() * spans.length)];
+      
+      // Pick a random point along the span
+      const positions = span.geometry.attributes.position;
+      const pointIndex = Math.floor(Math.random() * (positions.count - 2) + 1);
+      
+      // Get the position on the span
+      const point = new THREE.Vector3(
+        positions.getX(pointIndex),
+        positions.getY(pointIndex) + birdSettings.perchHeight,
+        positions.getZ(pointIndex)
+      );
+      
+      this.span = span;
+      this.targetPosition = point;
+      this.spanPoint = pointIndex;
+      this.spanOffset = birdSettings.perchHeight;
+      
+      // If not already flying, start flying
+      if (!this.flying) {
+        this.flying = true;
+        this.perched = false;
+        
+        // If bird isn't in the scene yet, position it randomly above
+        if (!scene.children.includes(this.obj)) {
+          const randomPos = new THREE.Vector3(
+            point.x + (Math.random() - 0.5) * 20,
+            point.y + 10 + Math.random() * 10,
+            point.z + (Math.random() - 0.5) * 20
+          );
+          this.obj.position.copy(randomPos);
+          scene.add(this.obj);
+        }
+        
+        // Look toward the target
+        this.lookDirection = new THREE.Vector3().subVectors(this.targetPosition, this.obj.position).normalize();
+      }
+    },
+    flyAway: function() {
+      this.span = null;
+      this.perched = false;
+      this.flying = true;
+      
+      // Fly up and slightly away
+      const flyDirection = new THREE.Vector3(
+        (Math.random() - 0.5) * 2,
+        1,
+        (Math.random() - 0.5) * 2
+      ).normalize();
+      
+      this.targetPosition = new THREE.Vector3().addVectors(
+        this.obj.position,
+        flyDirection.multiplyScalar(15)
+      );
+      
+      // After flying away, try to find a new perch
+      setTimeout(() => {
+        if (this.obj && scene.children.includes(this.obj)) {
+          this.findPerch();
+        }
+      }, 2000 + Math.random() * 3000);
+    }
+  };
+  
+  return bird;
+}
+
+function initBirds() {
+  // Clear any existing birds
+  birds.forEach(bird => {
+    if (bird.obj && scene.children.includes(bird.obj)) {
+      scene.remove(bird.obj);
+    }
+  });
+  birds.length = 0;
+  
+  // Only create birds if we have spans
+  const spans = scene.children.filter(o => o.userData.span);
+  if (spans.length === 0) return;
+  
+  // Create birds
+  for (let i = 0; i < birdSettings.count; i++) {
+    if (Math.random() < birdSettings.spawnChance) {
+      const bird = createBird();
+      birds.push(bird);
+      
+      // Stagger the initialization so birds don't all appear at once
+      setTimeout(() => {
+        bird.findPerch();
+      }, i * 500);
+    }
+  }
+}
+
 (function loop(){ 
   requestAnimationFrame(loop); 
   controls.update();
@@ -910,6 +1696,10 @@ if (customPoles) {
       });
     }
   });
+  
+  // Update birds
+  const delta = 0.016; // Approximate frame time
+  birds.forEach(bird => bird.update(delta));
   
   renderer.render(scene,camera);
 })();
