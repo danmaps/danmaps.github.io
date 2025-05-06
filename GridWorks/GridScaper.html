@@ -322,12 +322,17 @@ function addGridLines() {
   const startZ = -terrainDepth / 2 + terrainPosition.z;
   const endZ = terrainDepth / 2 + terrainPosition.z;
 
-  // Create grid lines at 10-foot intervals
+  // Create grid lines at 10-foot intervals (X direction)
   for (let i = Math.ceil(startX / 10) * 10; i <= Math.floor(endX / 10) * 10; i += 10) {
-    const geometryX = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(i, 0.05, startZ),
-      new THREE.Vector3(i, 0.05, endZ)
-    ]);
+    const points = [];
+    
+    // Sample points along Z-axis to follow terrain
+    for (let z = startZ; z <= endZ; z += 1) {
+      const y = hAt(i, z) + 0.05; // Slight offset to avoid z-fighting
+      points.push(new THREE.Vector3(i, y, z));
+    }
+    
+    const geometryX = new THREE.BufferGeometry().setFromPoints(points);
     const lineX = new THREE.Line(geometryX, gridMaterial);
     gridGroup.add(lineX);
 
@@ -347,17 +352,23 @@ function addGridLines() {
 
       gridGroup.userData.labels.push({
         element: labelX,
-        position: new THREE.Vector3(i, 0.1, startZ),
+        position: new THREE.Vector3(i, hAt(i, startZ) + 0.1, startZ),
         axis: 'x'
       });
     }
   }
 
+  // Create grid lines at 10-foot intervals (Z direction)
   for (let i = Math.ceil(startZ / 10) * 10; i <= Math.floor(endZ / 10) * 10; i += 10) {
-    const geometryZ = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(startX, 0.05, i),
-      new THREE.Vector3(endX, 0.05, i)
-    ]);
+    const points = [];
+    
+    // Sample points along X-axis to follow terrain
+    for (let x = startX; x <= endX; x += 1) {
+      const y = hAt(x, i) + 0.05; // Slight offset to avoid z-fighting
+      points.push(new THREE.Vector3(x, y, i));
+    }
+    
+    const geometryZ = new THREE.BufferGeometry().setFromPoints(points);
     const lineZ = new THREE.Line(geometryZ, gridMaterial);
     gridGroup.add(lineZ);
 
@@ -377,7 +388,7 @@ function addGridLines() {
 
       gridGroup.userData.labels.push({
         element: labelZ,
-        position: new THREE.Vector3(startX, 0.1, i),
+        position: new THREE.Vector3(startX, hAt(startX, i) + 0.1, i),
         axis: 'z'
       });
     }
@@ -454,20 +465,51 @@ function addCoastalElements() {
   const terrainPos = terrain ? terrain.position.z : 0;
   const terrainWidth = terrain ? terrain.geometry.parameters.width : 100;
   
-  const waterGeometry = new THREE.PlaneGeometry(waterWidth, waterDepth);
+  // Create reflective water material
   const waterMaterial = new THREE.MeshStandardMaterial({ 
     color: 0x1e90ff, 
     transparent: true, 
     opacity: 0.8,
-    metalness: 0.2,
-    roughness: 0.1
+    metalness: 0.9,
+    roughness: 0.1,
+    envMapIntensity: 1.5
   });
   
+  // Main water body
+  const waterGeometry = new THREE.PlaneGeometry(waterWidth, waterDepth, 32, 24);
   const water = new THREE.Mesh(waterGeometry, waterMaterial);
   water.rotation.x = -Math.PI / 2;
   water.position.set(-terrainWidth/2 - waterWidth/2, 0.1, terrainPos);
   water.userData.environmentElement = true;
+  water.userData.isWater = true;
   scene.add(water);
+  
+  // Create gentle waves by animating vertices
+  const waterPositions = water.geometry.attributes.position;
+  water.userData.waveInfo = {
+    originalPositions: [...Array(waterPositions.count)].map((_, i) => ({
+      x: waterPositions.getX(i),
+      y: waterPositions.getY(i),
+      z: waterPositions.getZ(i)
+    })),
+    time: 0
+  };
+  
+  // Add foam at shoreline
+  const foamGeometry = new THREE.PlaneGeometry(2, waterDepth, 1, 8);
+  const foamMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffffff,
+    transparent: true,
+    opacity: 0.7,
+    side: THREE.DoubleSide
+  });
+  
+  const foam = new THREE.Mesh(foamGeometry, foamMaterial);
+  foam.rotation.x = -Math.PI / 2;
+  foam.position.set(-terrainWidth/2, 0.12, terrainPos);
+  foam.userData.environmentElement = true;
+  foam.userData.isWaterFoam = true;
+  scene.add(foam);
   
   // Add dock
   const dockGeometry = new THREE.BoxGeometry(5, 0.5, 15);
@@ -815,7 +857,10 @@ function buildTerrain() {
     terrainColor = 0xd2b48c; // Beige for desert
   }
 
-  terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: terrainColor }));
+  terrain = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ 
+    color: terrainColor, 
+    side: THREE.DoubleSide 
+  }));
   terrain.position.z = terrainDepth/2 - 20;
   scene.add(terrain);
 
@@ -881,6 +926,16 @@ const mGhost  = new THREE.MeshStandardMaterial({color:0x46c9ff,transparent:true,
 const mTreeHL = new THREE.MeshStandardMaterial({color:0xffff8d});
 const mGrid   = new THREE.LineBasicMaterial({color:0x555555, transparent:true, opacity:0.5});
 const mBird   = new THREE.MeshStandardMaterial({color:0x222222});
+
+/* ------- bird creation ------- */
+const birds = [];
+const birdSettings = {
+  count: 3,
+  perchHeight: 0.1,
+  flySpeed: 5.0,
+  wingSpeed: 0.2,
+  spawnChance: 0.25
+};
 
 /* ------- data stores ------- */
 const poles=[]; // {x,z,h,base,obj}
@@ -1453,15 +1508,6 @@ function addRandomBuildings() {
 }
 
 /* ------- bird creation ------- */
-const birds = [];
-const birdSettings = {
-  count: 3,      // Reduced count from 8 to 3
-  perchHeight: 0.1,
-  flySpeed: 5.0,
-  wingSpeed: 0.2,
-  spawnChance: 0.25  // 25% chance of birds appearing
-};
-
 function createBird() {
   const group = new THREE.Group();
   
@@ -1641,7 +1687,6 @@ function createBird() {
 }
 
 function initBirds() {
-  // Clear any existing birds
   birds.forEach(bird => {
     if (bird.obj && scene.children.includes(bird.obj)) {
       scene.remove(bird.obj);
@@ -1649,17 +1694,24 @@ function initBirds() {
   });
   birds.length = 0;
   
-  // Only create birds if we have spans
   const spans = scene.children.filter(o => o.userData.span);
   if (spans.length === 0) return;
   
-  // Create birds
   for (let i = 0; i < birdSettings.count; i++) {
     if (Math.random() < birdSettings.spawnChance) {
       const bird = createBird();
+      
+      // Set bird color based on environment
+      if (environmentSel && environmentSel.value === 'coastal') {
+        bird.obj.children.forEach(part => {
+          if (part.isMesh) {
+            part.material.color.setHex(0xffffff);
+          }
+        });
+      }
+      
       birds.push(bird);
       
-      // Stagger the initialization so birds don't all appear at once
       setTimeout(() => {
         bird.findPerch();
       }, i * 500);
@@ -1700,6 +1752,51 @@ function initBirds() {
   // Update birds
   const delta = 0.016; // Approximate frame time
   birds.forEach(bird => bird.update(delta));
+  
+  // Update coastal water waves if present
+  const waterMesh = scene.children.find(o => o.userData.isWater);
+  if (waterMesh && waterMesh.userData.waveInfo) {
+    const waveInfo = waterMesh.userData.waveInfo;
+    waveInfo.time += delta * 0.5;
+    
+    // Animate water vertices to create gentle waves
+    const positions = waterMesh.geometry.attributes.position;
+    const originalPos = waveInfo.originalPositions;
+    
+    for (let i = 0; i < positions.count; i++) {
+      const orig = originalPos[i];
+      
+      // Get position relative to shoreline for wave intensity
+      const distFromShore = orig.x + 40; // Assuming shoreline is at x = -40
+      const waveMultiplier = Math.min(1, Math.max(0, distFromShore / 60)); // Stronger waves further from shore
+      
+      // Create gentle wave motion
+      // More intense near shore with direction toward shore
+      const wavePhase = waveInfo.time + orig.z * 0.05;
+      const waveHeight = 0.2 * waveMultiplier * Math.sin(wavePhase);
+      
+      // Additional smaller ripples
+      const ripplePhase1 = waveInfo.time * 1.2 + orig.x * 0.1;
+      const ripplePhase2 = waveInfo.time * 0.8 - orig.z * 0.08;
+      const rippleHeight = 0.05 * Math.sin(ripplePhase1) * Math.sin(ripplePhase2);
+      
+      positions.setY(i, orig.y + waveHeight + rippleHeight);
+    }
+    
+    positions.needsUpdate = true;
+    
+    // Animate foam at shoreline
+    const foam = scene.children.find(o => o.userData.isWaterFoam);
+    if (foam) {
+      // Make foam move slightly up and down with waves
+      const foamHeight = 0.12 + 0.05 * Math.sin(waveInfo.time * 1.2);
+      foam.position.y = foamHeight;
+      
+      // Vary foam opacity with wave motion
+      const foamOpacity = 0.6 + 0.2 * Math.sin(waveInfo.time);
+      foam.material.opacity = foamOpacity;
+    }
+  }
   
   renderer.render(scene,camera);
 })();
