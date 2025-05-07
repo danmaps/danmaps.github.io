@@ -265,7 +265,7 @@ if (customPoles) {
     
     // For points before the first pole or after the last pole
     if (localZ <= customPoles[0].x) return customPoles[0].elev;
-    if (localZ >= customPoles[customPoles.length-1].x) return customPoles[customPoles.length-1].elev;
+    if (localZ >= customPoles[customPoles.length-1].x) return customPoles[customPoles[customPoles.length-1].x];
     
     // Find the two closest poles for interpolation
     for (let i = 1; i < customPoles.length; i++) {
@@ -943,20 +943,42 @@ const ray=new THREE.Raycaster(); const mouse=new THREE.Vector2();
 
 /* ------- span build & check ------- */
 function drawSpan(a, b) {
-  const yA = a.base + a.h;
-  const yB = b.base + b.h;
+  // Calculate the crossarm position at the top of the pole
+  const crossarmHeightA = a.base + a.h; 
+  const crossarmHeightB = b.base + b.h;
+  
   const d = Math.hypot(b.x - a.x, b.z - a.z);
   const sag = Math.max(0.1, d * 0.05) / currentTension;
   
-  // Draw two parallel conductors
-  for (let conductorOffset = -1; conductorOffset <= 1; conductorOffset += 2) {
+  // Define the crossarm connection points (left, center, right)
+  const crossarmPositions = [-1.2, 0, 1.2];
+  
+  // Calculate the direction vector between poles to orient crossarms
+  const dirX = b.x - a.x;
+  const dirZ = b.z - a.z;
+  const dirLength = Math.sqrt(dirX * dirX + dirZ * dirZ);
+  const normalizedDirX = dirX / dirLength;
+  const normalizedDirZ = dirZ / dirLength;
+  
+  // Calculate perpendicular vector for crossarm orientation
+  const perpX = -normalizedDirZ;
+  const perpZ = normalizedDirX;
+  
+  crossarmPositions.forEach(offset => {
+    // Calculate exact start and end points on the crossarms
+    const startX = a.x + perpX * offset;
+    const startZ = a.z + perpZ * offset;
+    
+    const endX = b.x + perpX * offset;
+    const endZ = b.z + perpZ * offset;
+    
     const pts = [];
     
     for (let i = 0; i <= SAMPLES; i++) {
       const t = i / SAMPLES;
-      const x = THREE.MathUtils.lerp(a.x, b.x, t) + conductorOffset * 0.5;
-      const z = THREE.MathUtils.lerp(a.z, b.z, t) + terrainOffsetZ;
-      const y = THREE.MathUtils.lerp(yA, yB, t) - sag * Math.sin(Math.PI * t);
+      const x = THREE.MathUtils.lerp(startX, endX, t);
+      const z = THREE.MathUtils.lerp(startZ, endZ, t) + terrainOffsetZ;
+      const y = THREE.MathUtils.lerp(crossarmHeightA, crossarmHeightB, t) - sag * Math.sin(Math.PI * t);
       pts.push(new THREE.Vector3(x, y, z));
     }
     
@@ -964,30 +986,25 @@ function drawSpan(a, b) {
     const line = new THREE.Line(geo, mGood);
     line.userData = { span: true, a: a.obj, b: b.obj };
     scene.add(line);
-  }
+  });
 }
 function rebuild() {
-  // Store existing spans before clearing
+  // Store and clear existing spans
   const oldSpans = scene.children.filter(o => o.userData.span);
-  
-  // Clear only spans
-  scene.children.filter(o => o.userData.span).forEach(l => {
-    l.geometry.dispose();
-    scene.remove(l);
-  });
-  
+  scene.children.filter(o => o.userData.span).forEach(l => { l.geometry.dispose(); scene.remove(l); });
+
   const initialLoad = !window.spansInitialized;
-  if (initialLoad && customPoles) {
-    window.spansInitialized = true;
-  }
-  
+
   // Draw spans between poles
   for (let i = 1; i < poles.length; i++) {
     drawSpan(poles[i-1], poles[i]);
   }
-  
-  // Only initialize birds if this is the first load or there were no spans before
-  if (initialLoad || oldSpans.length === 0) {
+
+  // Initialize birds only on the first load or if spans were previously cleared
+  if (initialLoad) {
+    initBirds();
+    window.spansInitialized = true;
+  } else if (oldSpans.length === 0) {
     initBirds();
   }
 }
@@ -1005,12 +1022,65 @@ function addPole(x, z, h) {
   const crossArm = new THREE.Mesh(crossArmGeo, mCrossArm);
   crossArm.position.y = 5;  
   mesh.add(crossArm);
-
+  
   scene.add(mesh);
   poles.push({ x, z, h, base, obj: mesh });
   rebuild();
+  updateCrossarmOrientations();
 }
-function removePole(obj){ const i=poles.findIndex(p=>p.obj===obj); if(i>-1){scene.remove(obj); poles.splice(i,1); rebuild();}}
+
+function removePole(obj){ 
+  const i=poles.findIndex(p=>p.obj===obj); 
+  if(i>-1){
+    scene.remove(obj); 
+    poles.splice(i,1); 
+    rebuild();
+    updateCrossarmOrientations();
+  }
+}
+
+function updateCrossarmOrientations() {
+  poles.forEach((pole, index) => {
+    // remove any existing crossarms
+    pole.obj.children.filter(child => child.geometry.type === 'BoxGeometry')
+      .forEach(child => pole.obj.remove(child));
+
+    const prev = index > 0 ? poles[index-1] : null;
+    const next = index < poles.length-1 ? poles[index+1] : null;
+    const dirs = [];
+    let acuteCase = false;
+
+    if (prev && next) {
+      const v1 = new THREE.Vector3(prev.x - pole.x, 0, prev.z - pole.z).normalize();
+      const v2 = new THREE.Vector3(next.x - pole.x, 0, next.z - pole.z).normalize();
+      const topAngle = calculateTopAngle(prev, pole, next);
+      if (topAngle >= 90) {
+        // obtuse or right angle: two full-length crossarms
+        dirs.push(v1, v2);
+      } else {
+        // acute connection: two shorter crossarms aligned with each span direction
+        dirs.push(v1, v2);
+        acuteCase = true;
+      }
+    } else if (prev) {
+      dirs.push(new THREE.Vector3(prev.x - pole.x, 0, prev.z - pole.z).normalize());
+    } else if (next) {
+      dirs.push(new THREE.Vector3(next.x - pole.x, 0, next.z - pole.z).normalize());
+    }
+
+    // add crossarm(s)
+    dirs.forEach(dir => {
+      const perp = new THREE.Vector3(-dir.z, 0, dir.x).normalize();
+      const angle = -Math.atan2(perp.z, perp.x);
+      const arm = new THREE.Mesh(crossArmGeo, mCrossArm);
+      // shorten crossarm for acute angles
+      if (acuteCase) arm.scale.x = 0.7;
+      arm.position.y = 5;
+      arm.rotation.y = angle;
+      pole.obj.add(arm);
+    });
+  });
+}
 
 /* ------- ghost pole ------- */
 let ghost=new THREE.Mesh(poleGeo,mGhost); ghost.visible=false; scene.add(ghost);
@@ -1071,6 +1141,14 @@ window.addEventListener('pointerdown', e => {
     dragStartHeight = pole.h;
     controls.enabled = false;
     
+    // Stop birds while dragging
+    birds.forEach(b => {
+      if (b.obj && scene.children.includes(b.obj)) {
+        scene.remove(b.obj);
+      }
+    });
+    birds.length = 0;
+
     // If Alt key is pressed, prepare for height adjustment
     if (e.altKey) {
       dragMode = 'height';
@@ -1108,6 +1186,7 @@ window.addEventListener('pointermove', e => {
       }
       
       rebuild();
+      updateCrossarmOrientations();
     }
     return;
   }
