@@ -139,8 +139,8 @@
 
   function resizeCanvas() {
     const dpr = window.devicePixelRatio || 1;
-    const displayWidth = Math.floor(canvas.clientWidth * dpr);
-    const displayHeight = Math.floor(canvas.clientHeight * dpr);
+    const displayWidth = Math.floor(window.innerWidth * dpr);
+    const displayHeight = Math.floor(window.innerHeight * dpr);
 
     if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
       canvas.width = displayWidth;
@@ -148,12 +148,7 @@
     }
   }
 
-  if (window.ResizeObserver) {
-    const resizeObserver = new ResizeObserver(resizeCanvas);
-    resizeObserver.observe(document.body);
-  } else {
-    window.addEventListener('resize', resizeCanvas, { passive: true });
-  }
+  window.addEventListener('resize', resizeCanvas, { passive: true });
   resizeCanvas();
 
   let rafId = null;
