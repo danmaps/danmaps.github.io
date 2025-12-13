@@ -4,7 +4,11 @@
 Danny McVey
 {% endblock %}
 
+{% block body_class %}home{% endblock %}
+{% block main_class %}home-main{% endblock %}
+
 {% block content %}
+<canvas id="home-splash" aria-hidden="true"></canvas>
 <div class="post-list bg-dark">
   {% for post in posts %}
   {% if 'Stub' not in post.tags %}
@@ -32,4 +36,9 @@ Danny McVey
   {% endif %}
   {% endfor %}
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+{{ super() }}
+<script type="module" src="{{ url_for('static', filename='home-splash.js') }}"></script>
 {% endblock %}
