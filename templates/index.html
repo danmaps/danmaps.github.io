@@ -7,8 +7,11 @@ Danny McVey
 {% block body_class %}home{% endblock %}
 {% block main_class %}home-main{% endblock %}
 
-{% block content %}
+{% block background_layer %}
 <canvas id="home-splash" aria-hidden="true"></canvas>
+{% endblock %}
+
+{% block content %}
 <div class="post-list bg-dark">
   {% for post in posts %}
   {% if 'Stub' not in post.tags %}
