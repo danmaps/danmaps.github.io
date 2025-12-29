@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const title = post.data.title ?? post.slug;
+const formattedDate = post.data.date
+  ? new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(post.data.date)
+  : undefined;
+---
+<BaseLayout title={title}>
+  <article>
+    <p style="margin: 0 0 0.35rem;">
+      <a href="/beta/">← Back to beta index</a>
+    </p>
+    <h1 style="margin: 0 0 0.5rem;">{title}</h1>
+    {formattedDate && <div style="color: #cbd5e1; margin-bottom: 1rem;">{formattedDate}</div>}
+    {post.data.tags && post.data.tags.length > 0 && (
+      <div style="margin-bottom: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        {post.data.tags.map((tag) => (
+          <span style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem;">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+    <div class="post-body">
+      <Content />
+    </div>
+  </article>
+  <style>
+    .post-body {
+      padding: 1.25rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .post-body img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .post-body pre {
+      background: #0b1220;
+      border-radius: 10px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .post-body code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95rem;
+    }
+
+    .post-body h2,
+    .post-body h3,
+    .post-body h4 {
+      margin-top: 1.5rem;
+    }
+
+    .post-body p {
+      margin: 0.85rem 0;
+    }
+
+    .post-body ul,
+    .post-body ol {
+      padding-left: 1.25rem;
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts')).sort((a, b) => {
+  const aDate = a.data.date ?? new Date(0);
+  const bDate = b.data.date ?? new Date(0);
+  return bDate.getTime() - aDate.getTime();
+});
+
+const formatDate = (value: Date | undefined) =>
+  value ? new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(value) : undefined;
+---
+<BaseLayout title="Astro beta blog">
+  <section>
+    <h1 style="margin-top: 0;">Astro beta blog</h1>
+    <p>
+      This is a beta Astro rendering of the existing Markdown posts. Content is read directly from <code>/posts</code> and served
+      under <code>/beta</code> for safe experimentation.
+    </p>
+    <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+      {posts.map((post) => (
+        <article style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 1rem 1.25rem;">
+          <h2 style="margin: 0 0 0.35rem;">
+            <a href={`post/${post.slug}/`} style="color: inherit;">
+              {post.data.title ?? post.slug}
+            </a>
+          </h2>
+          {formatDate(post.data.date) && (
+            <div style="color: #cbd5e1; font-size: 0.95rem;">{formatDate(post.data.date)}</div>
+          )}
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.35rem;">
+              {post.data.tags.map((tag) => (
+                <span style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem;">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
