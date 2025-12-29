@@ -20,7 +20,7 @@ When I started in GIS, everything fit in a tight loop:
 
 Sometimes that output was a map. Sometimes a table. Sometimes a shapefile handed to someone with quick instructions about what it meant and how carefully they should treat it. The loop was clean, self-contained, and rewarded skill: the better you were at GIS, the faster and more accurate you moved through it. For the world GIS was born into, that model was exactly right.
 
-But the world shifted quietly underneath it.
+But the world shifted underneath it.
 
 ## The project mindset
 
