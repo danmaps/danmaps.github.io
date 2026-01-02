@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>A GIS Analyst From the Future</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
+        
+        <h1 class="text-light">A GIS Analyst From the Future</h1>
+        <!-- Post content -->
+        <p>Imagine opening a GIS project you have never seen before.</p>
+<p>Not a demo. A real one. Messy. Half-documented. Layers named by someone who left three years ago. Fields that almost make sense.</p>
+<p>Today, the first thing you do is triage. You click around. You scan attribute tables. You try to reconstruct intent from leftovers.</p>
+<p>In the future, you ask the map to explain itself.</p>
+<p>This post is about what that future looks like, and how we get there without replacing analysts, breaking workflows, or pretending AI is magic.</p>
+<p>Along the way, you will see interactive maps and tables. They are not screenshots. They are live examples of the same ideas, running in the browser, driven by the same system prompts I use in ArcGIS Pro.</p>
+<hr />
+<h2>Step 1: Let the map speak first</h2>
+<p>Before doing analysis, a good analyst builds context.</p>
+<p>What layers are here?<br />
+What coordinate system are we in?<br />
+Which fields look authoritative and which look improvised?</p>
+<p>This information exists, but it is scattered across dialogs, panels, and institutional memory.</p>
+<p>In the future, context is extracted once and reused everywhere.</p>
+<p><strong>Interactive example:</strong><br />
+<em>A live map with several layers. Click "Explain this map."</em></p>
+<p>What the system does is simple:</p>
+<ul>
+<li>Reads the map state</li>
+<li>Extracts layers, fields, symbology, extents</li>
+<li>Produces structured context, not prose</li>
+</ul>
+<p>Nothing intelligent has happened yet. This is just compression. But compression matters.</p>
+<p>Once context is explicit, everything downstream improves.</p>
+<hr />
+<h2>Step 2: Attributes that explain themselves</h2>
+<p>Most GIS attributes answer the wrong question.</p>
+<p>They tell you <em>what</em> something is coded as, not <em>why it matters</em>.</p>
+<p>Look at this table.</p>
+<p><strong>Interactive example:</strong><br />
+<em>A table of features. Toggle a column called "AI summary."</em></p>
+<p>Each row now has a short explanation written in plain language. Not documentation. Interpretation.</p>
+<p>This is not meant to replace metadata. It complements it.</p>
+<p>The key idea is locality.<br />
+The explanation lives with the feature it describes.</p>
+<p>You do not have to leave the map to understand the data.</p>
+<hr />
+<h2>Step 3: Cleaning data without leaving the thought</h2>
+<p>Every analyst recognizes this moment.</p>
+<p>You notice a field that is almost numeric:</p>
+<ul>
+<li>"~30 ft"</li>
+<li>"115kV"</li>
+<li>"approx. 12"</li>
+</ul>
+<p>You know what to do, but doing it breaks flow.</p>
+<p>Open a notebook.<br />
+Write a regex.<br />
+Test edge cases.<br />
+Hope you did not miss one.</p>
+<p>In the future, you state intent.</p>
+<p><strong>Interactive example:</strong><br />
+<em>Select a column. Click "Convert to numeric."</em></p>
+<p>The system infers units, strips text, preserves uncertainty where needed.</p>
+<p>The important thing is not that AI cleaned the data.<br />
+It is that the analyst never left the problem they were thinking about.</p>
+<hr />
+<h2>Step 4: Asking for what is missing</h2>
+<p>Now we do something different.</p>
+<p>Instead of analyzing what exists, we ask what <em>should</em> exist.</p>
+<p><strong>Interactive example:</strong><br />
+<em>A button labeled "Create hypothesis layer."</em></p>
+<p>Prompt:</p>
+<blockquote>
+<p>Create a layer representing likely inspection gaps based on distance from substations and asset age.</p>
+</blockquote>
+<p>The result is explicitly marked as hypothetical.<br />
+It behaves like any other layer, but it does not pretend to be truth.</p>
+<p>This is one of the most important shifts.</p>
+<p>AI in GIS should propose, not assert.</p>
+<hr />
+<h2>Step 5: Code as a translation layer, not a test</h2>
+<p>Eventually, you need code.</p>
+<p>Select features within a buffer.<br />
+Join attributes.<br />
+Summarize by category.</p>
+<p>Today, this is where momentum often dies.</p>
+<p>In the future, code is generated from intent and local context.</p>
+<p><strong>Interactive example:</strong><br />
+<em>A panel shows Python code generated for the current map state.</em></p>
+<p>Layer names match.<br />
+Fields are correct.<br />
+The code is readable.</p>
+<p>The analyst still owns it.<br />
+But they are no longer fighting syntax to express a spatial idea.</p>
+<hr />
+<h2>Step 6: The map documents itself</h2>
+<p>At the end of the session, something subtle happens.</p>
+<p>The map now contains:</p>
+<ul>
+<li>Cleaner fields</li>
+<li>New layers</li>
+<li>Embedded explanations</li>
+</ul>
+<p><strong>Interactive example:</strong><br />
+<em>Click "Summarize changes."</em></p>
+<p>The system produces a short narrative of what changed and why.</p>
+<p>This is not for management.<br />
+It is for the next analyst. Or future you.</p>
+<hr />
+<h2>What this is really about</h2>
+<p>This is not about replacing GIS analysts.</p>
+<p>It is about removing the tax of translation:</p>
+<ul>
+<li>Between thought and tool</li>
+<li>Between data and meaning</li>
+<li>Between analysis and explanation</li>
+</ul>
+<p>The analyst from the future still thinks spatially.<br />
+They just spend less time fighting software.</p>
+<hr />
+<h2>Try it yourself</h2>
+<p>The browser examples in this post are powered by the same system prompts I use inside ArcGIS Pro.</p>
+<p>If you want this workflow in your own projects:</p>
+<ul>
+<li>Download the ArcGIS Pro AI Toolbox</li>
+<li>Bring your own model</li>
+<li>Stay in control of your data</li>
+</ul>
+<p>I am also writing more like this.<br />
+About geospatial AI adoption, change management, and how we evolve workflows without breaking trust.</p>
+<p>If that interests you, subscribe for email updates.</p>
+<p>The future of GIS is not flashy.<br />
+It is calmer, clearer, and easier to think in.</p>
+<p>And it is already here.</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <span class="post-tag">AI</span> 
+            
+                <span class="post-tag">GIS</span> 
+            
+                <span class="post-tag">Workflows</span> 
+            
+                <span class="post-tag">Automation</span>
+            
+        </p>
+        
+    </article>
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; 2025 Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
