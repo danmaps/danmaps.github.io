@@ -36,33 +36,28 @@ const posts = (await getCollection('posts'))
     };
   });
 ---
-<BaseLayout title="Astro beta blog">
+<BaseLayout title="Danny's Blog">
   <section>
-    <h1 style="margin-top: 0;">Astro beta blog</h1>
-    <p>
-      This is a beta Astro rendering of the existing Markdown posts. Content is read directly from <code>/posts</code> and served
-      under <code>/beta</code> for safe experimentation.
-    </p>
     <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
       {posts.slice(0, 20).map((post) => (
-        <article style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 1.1rem 1.3rem;">
+        <article style="background: #111111; border: 1px solid #202020; border-radius: 12px; padding: 1.1rem 1.3rem;">
           <h2 style="margin: 0 0 0.35rem;">
             <a href={postHref(post.slug)} style="color: inherit;">
               {post.data.title ?? post.slug}
             </a>
           </h2>
           {formatDate(post.data.date) && (
-            <div style="color: #cbd5e1; font-size: 0.95rem;">{formatDate(post.data.date)}</div>
+            <div style="color: #bfbfbf; font-size: 0.95rem;">{formatDate(post.data.date)}</div>
           )}
           {post.preview && (
-            <p style="margin: 0.75rem 0 0.65rem; color: #e2e8f0;">{post.preview}</p>
+            <p style="margin: 0.75rem 0 0.65rem; color: #dedede;">{post.preview}</p>
           )}
           {post.tagLinks.length > 0 && (
             <div style="margin-top: 0.25rem; display: flex; flex-wrap: wrap; gap: 0.35rem;">
               {post.tagLinks.map((tag) => (
                 <a
                   href={tag.href}
-                  style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.07);"
+                  style="background: #1a1a1a; color: #f5f5f5; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; border: 1px solid #2c2c2c;"
                 >
                   {tag.name}
                 </a>
@@ -70,7 +65,7 @@ const posts = (await getCollection('posts'))
             </div>
           )}
           <div style="margin-top: 0.75rem;">
-            <a href={postHref(post.slug)} style="font-weight: 600;">Read more</a>
+            <a href={postHref(post.slug)} style="font-weight: 600; color: #f2f2f2;">Read more</a>
           </div>
         </article>
       ))}

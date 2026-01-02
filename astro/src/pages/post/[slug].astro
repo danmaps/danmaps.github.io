@@ -24,17 +24,17 @@ const tags = (post.data.tags ?? [])
 <BaseLayout title={title}>
   <article>
     <p style="margin: 0 0 0.35rem;">
-      <a href="/beta/">← Back to beta index</a>
+      <a href="/beta/">← back home</a>
     </p>
     <h1 style="margin: 0 0 0.5rem;">{title}</h1>
-    {formattedDate && <div style="color: #cbd5e1; margin-bottom: 1rem;">{formattedDate}</div>}
+    {formattedDate && <div style="color: #bdbdbd; margin-bottom: 1rem;">{formattedDate}</div>}
     {tags.length > 0 && (
       <div style="margin-bottom: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
-        <strong style="font-size: 0.95rem; color: #e2e8f0;">Tags:</strong>
+        <strong style="font-size: 0.95rem; color: #dedede;">Tags:</strong>
         {tags.map((tag) => (
           <a
             href={tag.href}
-            style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);"
+            style="background: #1a1a1a; color: #f4f4f4; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid #2a2a2a;"
           >
             {tag.name}
           </a>
@@ -49,8 +49,9 @@ const tags = (post.data.tags ?? [])
     .post-body {
       padding: 1.25rem;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #111111;
+      border: 1px solid #1f1f1f;
+      color: #f2f2f2;
     }
 
     .post-body img {
@@ -61,10 +62,11 @@ const tags = (post.data.tags ?? [])
     }
 
     .post-body pre {
-      background: #0b1220;
+      background: #050505;
       border-radius: 10px;
       padding: 1rem;
       overflow-x: auto;
+      border: 1px solid #1f1f1f;
     }
 
     .post-body code {
