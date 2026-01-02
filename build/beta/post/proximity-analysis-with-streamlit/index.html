@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-37fxchfa> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Automating Proximity Analysis in Streamlit with Open Source Python</title><style>:root{color-scheme:light dark;--accent: #6c5ce7;--text: #f5f5f5;--bg: #0f172a;--panel: #111827}[data-astro-cid-37fxchfa]{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}a[data-astro-cid-37fxchfa]{color:#a5b4fc;text-decoration:none}a[data-astro-cid-37fxchfa]:hover{text-decoration:underline}header[data-astro-cid-37fxchfa]{background:linear-gradient(120deg,#6c5ce7e6,#4f46e5e6);color:#fff;padding:1rem 1.5rem;position:sticky;top:0;z-index:10;box-shadow:0 4px 20px #00000040}.banner[data-astro-cid-37fxchfa]{display:flex;align-items:center;gap:1rem;max-width:960px;margin:0 auto}.badge[data-astro-cid-37fxchfa]{background:#ffffff29;color:#fff;padding:.3rem .75rem;border-radius:999px;font-size:.85rem;letter-spacing:.02em}.container[data-astro-cid-37fxchfa]{max-width:960px;margin:1.5rem auto 4rem;padding:0 1.25rem}footer[data-astro-cid-37fxchfa]{max-width:960px;margin:0 auto 2rem;padding:0 1.25rem;color:#cbd5e1}
+.post-body[data-astro-cid-ztig7rse]{padding:1.25rem;border-radius:12px;background:#ffffff0a;border:1px solid rgba(255,255,255,.06)}.post-body[data-astro-cid-ztig7rse] img[data-astro-cid-ztig7rse]{max-width:100%;height:auto;display:block;margin:1rem auto}.post-body[data-astro-cid-ztig7rse] pre[data-astro-cid-ztig7rse]{background:#0b1220;border-radius:10px;padding:1rem;overflow-x:auto}.post-body[data-astro-cid-ztig7rse] code[data-astro-cid-ztig7rse]{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;font-size:.95rem}.post-body[data-astro-cid-ztig7rse] h2[data-astro-cid-ztig7rse],.post-body[data-astro-cid-ztig7rse] h3[data-astro-cid-ztig7rse],.post-body[data-astro-cid-ztig7rse] h4[data-astro-cid-ztig7rse]{margin-top:1.5rem}.post-body[data-astro-cid-ztig7rse] p[data-astro-cid-ztig7rse]{margin:.85rem 0}.post-body[data-astro-cid-ztig7rse] ul[data-astro-cid-ztig7rse],.post-body[data-astro-cid-ztig7rse] ol[data-astro-cid-ztig7rse]{padding-left:1.25rem}
+</style></head> <body data-astro-cid-37fxchfa> <header data-astro-cid-37fxchfa> <div class="banner" data-astro-cid-37fxchfa> <span class="badge" data-astro-cid-37fxchfa>Astro beta</span> <div data-astro-cid-37fxchfa> <div style="font-weight: 700; font-size: 1.1rem" data-astro-cid-37fxchfa>Experimental Astro blog</div> <div style="font-size: 0.95rem; color: rgba(255,255,255,0.85)" data-astro-cid-37fxchfa>Preview served from /beta without touching the main site.</div> </div> <div style="margin-left: auto; font-size: 0.95rem;" data-astro-cid-37fxchfa> <a href="/" data-astro-cid-37fxchfa>Return to main site</a> </div> </div> </header> <main class="container" data-astro-cid-37fxchfa>  <article data-astro-cid-ztig7rse> <p style="margin: 0 0 0.35rem;" data-astro-cid-ztig7rse> <a href="/beta/" data-astro-cid-ztig7rse>← Back to beta index</a> </p> <h1 style="margin: 0 0 0.5rem;" data-astro-cid-ztig7rse>Automating Proximity Analysis in Streamlit with Open Source Python</h1> <div style="color: #cbd5e1; margin-bottom: 1rem;" data-astro-cid-ztig7rse>June 30, 2024</div> <div style="margin-bottom: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;" data-astro-cid-ztig7rse> <strong style="font-size: 0.95rem; color: #e2e8f0;" data-astro-cid-ztig7rse>Tags:</strong> <a href="/beta/tags/gis/" style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);" data-astro-cid-ztig7rse> gis </a><a href="/beta/tags/python/" style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);" data-astro-cid-ztig7rse> python </a><a href="/beta/tags/streamlit/" style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);" data-astro-cid-ztig7rse> streamlit </a><a href="/beta/tags/spatial-analysis/" style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);" data-astro-cid-ztig7rse> spatial-analysis </a> </div> <div class="post-body" data-astro-cid-ztig7rse> <p>I recently took on a work project that began with a simple goal: perform spatial proximity analysis for a user. Initially, this was a manual task using ArcGIS Pro, but I ended up turning it into a fully automated tool. Here’s a detailed look at what I learned, how I refined user requirements, leveraged open-source tools, and ultimately turned this into a useful and flexible tool.</p>
+<h2 id="the-manual-approach">The Manual Approach</h2>
+<p>Initially, I performed the analysis manually using ArcGIS Pro. This involved several time-consuming steps:</p>
+<ol>
+<li><strong>Data Preparation</strong>: Cleaning and organizing the data to ensure accuracy.</li>
+<li><strong>Running Geoprocessing Tools</strong>: Using ArcGIS Pro to perform spatial proximity analysis. This involves several ArcGIS geoprocessing tools, including the following:
+<ul>
+<li><strong>Near Table</strong>: Identifying points within a specified distance of another point.</li>
+<li><strong>Buffer</strong>: Creating a buffer around each point.</li>
+<li><strong>Dissolve</strong>: Merging the buffers together to create distinct polygons representing each group.</li>
+<li><strong>Spatial Join</strong>: Joining the buffers with the original data to get the original attributes for each group and summing a field of interest.</li>
+</ul>
+</li>
+<li><strong>Creating a Web App</strong>: Developing a web application in ArcGIS Online to display the results interactively.</li>
+</ol>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpFUNtugkAQ_ZXNPGmCZEUQoUkTL01j0iam9qnAwxRW3ZRlybA0UvXfXalp52nOmTNnLifIdSEghj1hfWAvbw9pxWzMB8nTMRdlNmSj0eN5rWpNhmFVsFxX34LMmS2S5B0_S5Fl957FTbocJHPKn9dbtiGdDe-lZe-yEbTTpFhTo5FYspr0USppOmuMZdfI5sxWyX1wBg4oQQplYdc73XxSMAehRAqxTQukrxTS6mJ12Bq97aocYkOtcIB0uz9AvMOysaitCzRiJdHeqP5YUUij6fX3-v4JDtRYfWj9r7EY4hMcIQ4m3PWC2TgIp17Aw7EDnSV9N7JgEnHP55HHJxcHfvp-7s6sMvL9ceiF0TTks8sVcl9wLA"><img src="https://mermaid.ink/img/pako:eNpFUNtugkAQ_ZXNPGmCZEUQoUkTL01j0iam9qnAwxRW3ZRlybA0UvXfXalp52nOmTNnLifIdSEghj1hfWAvbw9pxWzMB8nTMRdlNmSj0eN5rWpNhmFVsFxX34LMmS2S5B0_S5Fl957FTbocJHPKn9dbtiGdDe-lZe-yEbTTpFhTo5FYspr0USppOmuMZdfI5sxWyX1wBg4oQQplYdc73XxSMAehRAqxTQukrxTS6mJ12Bq97aocYkOtcIB0uz9AvMOysaitCzRiJdHeqP5YUUij6fX3-v4JDtRYfWj9r7EY4hMcIQ4m3PWC2TgIp17Aw7EDnSV9N7JgEnHP55HHJxcHfvp-7s6sMvL9ceiF0TTks8sVcl9wLA?type=png" alt=""></a></p>
+<p>While this approach worked, it was labor-intensive and required significant effort for each new dataset. It became clear that automating this process would save time and ensure consistency.</p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit#pako:eNpFUMtuwjAQ_BVrTyAFZEJCHpUqFeitlaqiXkhyWMWbYDWOI8epSIF_r6Go3dPO7szs4wSlFgQp1Aa7A3t5f8hb5uJpkj0fS2qKKZvNHs8fXaNRMGwFK3X7Rcae2TrLatICLVYGFRXFXbq-KjaTbGcNoWqkLab3zubm9Uam0kaxvkMrsWGd0UeppB2dPTZjL_sz22b38QV4oMgolMItebr65GAPpCiH1KUCzWcOeXtxPBys3o1tCak1A3lg9FAfIK2w6R0aOrcqbSW6S9VflYS02rz-_uD2Cg86bPda_3MchvQER0jDJZ_7YbwIo5Uf8mjhweiKwTxxYJlwP-CJz5cXD75vej6PHTMJgkXkR8kq4vHlB7xoc3k"><img src="https://mermaid.ink/img/pako:eNpFUMtuwjAQ_BVrTyAFZEJCHpUqFeitlaqiXkhyWMWbYDWOI8epSIF_r6Go3dPO7szs4wSlFgQp1Aa7A3t5f8hb5uJpkj0fS2qKKZvNHs8fXaNRMGwFK3X7Rcae2TrLatICLVYGFRXFXbq-KjaTbGcNoWqkLab3zubm9Uam0kaxvkMrsWGd0UeppB2dPTZjL_sz22b38QV4oMgolMItebr65GAPpCiH1KUCzWcOeXtxPBys3o1tCak1A3lg9FAfIK2w6R0aOrcqbSW6S9VflYS02rz-_uD2Cg86bPda_3MchvQER0jDJZ_7YbwIo5Uf8mjhweiKwTxxYJlwP-CJz5cXD75vej6PHTMJgkXkR8kq4vHlB7xoc3k?type=png" alt=""></a></p>
+<h2 id="refining-user-requirements">Refining User Requirements</h2>
+<p>I first needed to understand the users’ needs better. I decided that users would need:</p>
+<ul>
+<li>The ability to upload their own datasets.</li>
+<li>Dynamic selection of columns for latitude, longitude, and IDs.</li>
+<li>Interactive adjustment of proximity thresholds.</li>
+<li>Immediate visualization and downloadable results.</li>
+</ul>
+<p>These choices guided the development of a more robust tool.</p>
+<h2 id="leveraging-open-source-tools-as-an-alternative-to-arcpy">Leveraging Open-Source Tools as an Alternative to Arcpy</h2>
+<p>In my professional experience, I’ve extensively used Arcpy for geospatial analysis. However, I had to explore open-source alternatives for this project. I chose Geopandas for the analysis and Folium inside Streamlit for the UI, which offered several benefits:</p>
+<ul>
+<li><strong>Geopandas</strong>: Provides powerful data structures for working with geospatial data in Python, similar to how Pandas handles tabular data. It enabled seamless conversion between dataframes and geospatial dataframes. Figuring ou how to match the geoprocessing operations avilable in ArcGIS Pro was a breakthrough.</li>
+<li><strong>Folium</strong>: Facilitates the creation of interactive maps directly from geospatial data. It integrates well with Streamlit, allowing for a smooth user experience. I also knew that Streamlit allows for easy upload and download of data files including Excel.</li>
+</ul>
+<p>The choice of these tools was influenced by their flexibility and the growing ecosystem of geospatial libraries in the open-source community. They provide a cost-effective and versatile alternative to proprietary solutions, aligning with the broader movement towards open-source in geospatial analysis. Crucially, this allows the tool to be run anywhere (including on <code>streamlit.app</code>) because it does not depend on proprietary software licensing.</p>
+<h2 id="self-serve-tool-vs-delivering-analysis-results">Self-Serve Tool vs. Delivering Analysis Results</h2>
+<p>One of the key decisions I face (often) is whether to provide a self-serve tool or to deliver analysis results directly to customers. Each approach has its merits:</p>
+<ul>
+<li><strong>Self-Serve Tool</strong>: Empowers users to explore their data independently. It’s flexible and scalable, allowing users to upload their datasets, configure analysis parameters, and obtain results instantly. This approach aligns well with the trend towards democratizing data analysis.</li>
+<li><strong>Delivering Analysis Results</strong>: Suitable for users who need specific insights without the need to interact with the tool. It involves processing the data on behalf of the user and delivering a polished report.</li>
+</ul>
+<p>For this project, I created a self-serve tool, leveraging Streamlit’s capabilities to create an interactive and user-friendly interface. This decision was based on the goal of enabling users to perform their analysis independently, saving everyone time and effort. Whether they’ll actually want to use it in the future remains to be seen… Either way, I’m glad I have this tool to use for myself, and to potentially repurpose it in the future.</p>
+<h2 id="the-automated-tool-a-practical-utility-with-a-lot-going-on-under-the-hood">The Automated Tool: A practical utility with a lot going on under the hood</h2>
+<p>Here’s a brief overview of some of the functionality implemented in the automated tool:</p>
+<h3 id="file-upload-and-data-handling">File Upload and Data Handling:</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> handle_file_upload</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    uploaded_file </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.file_uploader(</span><span style="color:#9ECBFF">"Choose a .xlsx file"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">type</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"xlsx"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> uploaded_file:</span></span>
+<span class="line"><span style="color:#E1E4E8">        df </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.read_excel(uploaded_file)</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        df </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.DataFrame(sample_data)  </span><span style="color:#6A737D"># Use sample data if no file is uploaded</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> df, uploaded_file</span></span>
+<span class="line"></span></code></pre>
+<h3 id="proximity-analysis">Proximity Analysis:</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> process_data</span><span style="color:#E1E4E8">(df, lat_col, lon_col, distance_threshold, id_col</span><span style="color:#F97583">=</span><span style="color:#79B8FF">None</span><span style="color:#E1E4E8">):</span></span>
+<span class="line"><span style="color:#6A737D">    # Convert DataFrame to GeoDataFrame and set the coordinate reference system (CRS)</span></span>
+<span class="line"><span style="color:#E1E4E8">    gdf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> gpd.GeoDataFrame(df, </span><span style="color:#FFAB70">geometry</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">gpd.points_from_xy(df[lon_col], df[lat_col]))</span></span>
+<span class="line"><span style="color:#E1E4E8">    projected_gdf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> gdf.to_crs(</span><span style="color:#FFAB70">epsg</span><span style="color:#F97583">=</span><span style="color:#79B8FF">32611</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Spatial analysis logic:</span></span>
+<span class="line"><span style="color:#6A737D">    # 1. Initialize spatial index for efficient querying of nearby points</span></span>
+<span class="line"><span style="color:#E1E4E8">    tree </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> projected_gdf.sindex</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # 2. Create a list to store the results</span></span>
+<span class="line"><span style="color:#E1E4E8">    nearby_points </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # 3. Iterate through each point in the GeoDataFrame</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> index, row </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> projected_gdf.iterrows():</span></span>
+<span class="line"><span style="color:#6A737D">        # 4. Create a buffer around each point with the given distance threshold</span></span>
+<span class="line"><span style="color:#E1E4E8">        buffer </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> row.geometry.buffer(distance_threshold)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        # 5. Find all points within the buffer using the spatial index</span></span>
+<span class="line"><span style="color:#E1E4E8">        possible_matches_index </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> list</span><span style="color:#E1E4E8">(tree.intersection(buffer.bounds))</span></span>
+<span class="line"><span style="color:#E1E4E8">        possible_matches </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> projected_gdf.iloc[possible_matches_index]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        # 6. Filter these points to only include those within the exact distance threshold</span></span>
+<span class="line"><span style="color:#E1E4E8">        precise_matches </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> possible_matches[</span></span>
+<span class="line"><span style="color:#E1E4E8">            possible_matches.distance(row.geometry) </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> distance_threshold</span></span>
+<span class="line"><span style="color:#E1E4E8">        ]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        # 7. Exclude the point itself from the results</span></span>
+<span class="line"><span style="color:#E1E4E8">        precise_matches </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> precise_matches[precise_matches.index </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> index]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        # 8. Collect information about each nearby point</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> _, pm_row </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> precise_matches.iterrows():</span></span>
+<span class="line"><span style="color:#E1E4E8">            nearby_point_info </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">                "index"</span><span style="color:#E1E4E8">: index,</span></span>
+<span class="line"><span style="color:#9ECBFF">                "distance_feet"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">round</span><span style="color:#E1E4E8">(pm_row.geometry.distance(row.geometry) </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 3.28084</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">),  </span><span style="color:#6A737D"># Convert distance to feet</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> id_col:</span></span>
+<span class="line"><span style="color:#E1E4E8">                nearby_point_info[</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"nearby_</span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">id_col</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pm_row[id_col]</span></span>
+<span class="line"><span style="color:#E1E4E8">            nearby_points.append(nearby_point_info)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # 9. Convert the list of results into a DataFrame</span></span>
+<span class="line"><span style="color:#E1E4E8">    nearby_df </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.DataFrame(nearby_points)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # 10. Merge the original GeoDataFrame with the nearby points DataFrame</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> not</span><span style="color:#E1E4E8"> nearby_df.empty:</span></span>
+<span class="line"><span style="color:#E1E4E8">        processed_gdf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> gdf.merge(nearby_df, </span><span style="color:#FFAB70">how</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"left"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">left_index</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">right_on</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"index"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">        processed_gdf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> gdf</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> processed_gdf</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<h3 id="details-of-steps-of-proximity-analysis">Details of Steps of Proximity Analysis</h3>
+<ol>
+<li>
+<p><strong>Convert DataFrame to GeoDataFrame</strong>: This converts the input DataFrame <code>df</code> into a GeoDataFrame <code>gdf</code> with geometry based on the latitude (<code>lat_col</code>) and longitude (<code>lon_col</code>) columns. The CRS is initially set to EPSG:4326 (WGS 84) and then projected to EPSG:32611 (UTM zone 11N) for accurate distance calculations.</p>
+</li>
+<li>
+<p><strong>Spatial Indexing</strong>: A spatial index (<code>tree</code>) is created for the projected GeoDataFrame to allow efficient spatial querying.</p>
+</li>
+</ol>
+<details>
+  <summary>Why Use a Spatial Index?</summary>
+  A spatial index is used for performance optimization. Without it, finding all nearby points for each point would require comparing each point against every other point, resulting in a quadratic number of distance calculations (O(n^2)). The spatial index reduces this complexity by quickly narrowing down the list of potential nearby points using spatial relationships (like bounding boxes).
+</details>
+<ol start="3">
+<li>
+<p><strong>Buffer Creation and Matching</strong>: For each point in the GeoDataFrame, a buffer with the specified distance threshold is created. The spatial index is used to find all possible points within the buffer bounds.</p>
+</li>
+<li>
+<p><strong>Distance Filtering</strong>: The possible matches are filtered to include only those within the exact distance threshold. The point itself is excluded from the matches.</p>
+</li>
+<li>
+<p><strong>Result Collection</strong>: Information about each nearby point, including the distance in feet and optional ID columns, is collected and stored in a list.</p>
+</li>
+<li>
+<p><strong>Merge Results</strong>: The results are converted to a DataFrame (<code>nearby_df</code>) and merged with the original GeoDataFrame (<code>gdf</code>) to create the final processed GeoDataFrame (<code>processed_gdf</code>).</p>
+</li>
+</ol>
+<h3 id="interactive-map-creation">Interactive Map Creation:</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> create_folium_map</span><span style="color:#E1E4E8">(gdf, distance_threshold_meters, lat_col, lon_col, id_col):</span></span>
+<span class="line"><span style="color:#E1E4E8">    m </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> folium.Map(</span><span style="color:#FFAB70">tiles</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"cartodb-dark-matter"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">width</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'100%'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">height</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'100%'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    folium_static(m)</span></span>
+<span class="line"></span></code></pre>
+<h3 id="user-interface-with-streamlit">User Interface with Streamlit:</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#E1E4E8">st.set_page_config(</span><span style="color:#FFAB70">page_title</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Spatial Proximity Excel Enrichment"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">layout</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"wide"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">distance_threshold_feet </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.slider(</span><span style="color:#9ECBFF">"Distance threshold in feet"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">800</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">distance_threshold_meters </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> feet_to_meters(distance_threshold_feet)</span></span>
+<span class="line"></span></code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project was a significant learning experience. By refining user requirements, exploring open-source alternatives, and thoughtfully choosing the right delivery model, I developed a robust and flexible tool for spatial proximity analysis. This automation not only saves time but also ensures consistency and reproducibility, making this kind of analysis trivial in the future.</p>
+<p>So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It’s a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.</p> </div> </article>   </main> <footer data-astro-cid-37fxchfa> <p data-astro-cid-37fxchfa>This is an Astro-powered beta that reads Markdown directly from <code data-astro-cid-37fxchfa>/posts</code>. Content edits remain single-sourced.</p> </footer> </body></html>

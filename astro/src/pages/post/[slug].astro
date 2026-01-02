@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { buildTagLink, type TagLink } from '../../utils/tags';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -16,6 +17,9 @@ const title = post.data.title ?? post.slug;
 const formattedDate = post.data.date
   ? new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(post.data.date)
   : undefined;
+const tags = (post.data.tags ?? [])
+  .map(buildTagLink)
+  .filter((tag): tag is TagLink => Boolean(tag));
 ---
 <BaseLayout title={title}>
   <article>
@@ -24,12 +28,16 @@ const formattedDate = post.data.date
     </p>
     <h1 style="margin: 0 0 0.5rem;">{title}</h1>
     {formattedDate && <div style="color: #cbd5e1; margin-bottom: 1rem;">{formattedDate}</div>}
-    {post.data.tags && post.data.tags.length > 0 && (
-      <div style="margin-bottom: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-        {post.data.tags.map((tag) => (
-          <span style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem;">
-            {tag}
-          </span>
+    {tags.length > 0 && (
+      <div style="margin-bottom: 1.25rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+        <strong style="font-size: 0.95rem; color: #e2e8f0;">Tags:</strong>
+        {tags.map((tag) => (
+          <a
+            href={tag.href}
+            style="background: rgba(108, 92, 231, 0.2); color: #e0e7ff; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.08);"
+          >
+            {tag.name}
+          </a>
         ))}
       </div>
     )}

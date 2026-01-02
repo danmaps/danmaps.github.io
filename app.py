@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, send_from_directory
 import markdown
 from pygments.formatters import HtmlFormatter
 import os
@@ -48,8 +48,33 @@ class CodeHiliteWithLanguagePreprocessor(Preprocessor):
 
 app = Flask(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Path to your markdown files
-POSTS_DIR = 'posts'
+POSTS_DIR = os.path.join(BASE_DIR, 'posts')
+BETA_BUILD_DIR = os.path.join(BASE_DIR, 'build', 'beta')
+
+
+def _resolve_beta_resource(resource: str) -> str | None:
+    """Return the relative path to a beta asset if it exists."""
+    if not os.path.isdir(BETA_BUILD_DIR):
+        return None
+
+    cleaned = (resource or '').strip()
+    cleaned = cleaned.lstrip('/\\')
+    cleaned = cleaned.rstrip('/\\')
+    if not cleaned:
+        cleaned = 'index.html'
+
+    candidate = os.path.join(BETA_BUILD_DIR, cleaned)
+    if os.path.isdir(candidate):
+        cleaned = os.path.join(cleaned, 'index.html')
+        candidate = os.path.join(BETA_BUILD_DIR, cleaned)
+
+    if os.path.isfile(candidate):
+        return cleaned.replace('\\', '/')
+
+    return None
+
 @app.route('/')
 def index():
     posts = []
@@ -57,7 +82,7 @@ def index():
         # print file name for debugging
         print(f)
         if f.endswith('.md'):
-            with open(os.path.join(POSTS_DIR, f), 'r', errors='ignore') as file:
+            with open(os.path.join(POSTS_DIR, f), 'r', encoding='utf-8', errors='ignore') as file:
                 content = file.read()
                 metadata = {}
                 body = content
@@ -112,10 +137,20 @@ def index():
 
     return render_template('index.html', posts=posts)
 
+
+@app.route('/beta', defaults={'resource': ''}, strict_slashes=False)
+@app.route('/beta/<path:resource>')
+def beta_static(resource: str):
+    resolved = _resolve_beta_resource(resource)
+    if not resolved:
+        abort(404)
+    return send_from_directory(BETA_BUILD_DIR, resolved)
+
+
 @app.route('/post/<post_name>.html')
 def post(post_name):
     try:
-        with open(os.path.join(POSTS_DIR, f'{post_name}.md'), 'r') as f:
+        with open(os.path.join(POSTS_DIR, f'{post_name}.md'), 'r', encoding='utf-8') as f:
             content = f.read()
 
         # Split the content to remove the YAML front matter

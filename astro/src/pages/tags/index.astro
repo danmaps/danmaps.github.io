@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { buildTagLink } from '../../utils/tags';
+
+const posts = await getCollection('posts');
+const tagMap = posts.reduce(
+  (acc, post) => {
+    (post.data.tags ?? []).forEach((rawTag) => {
+      const tag = buildTagLink(rawTag);
+      if (!tag) return;
+
+      const existing = acc.get(tag.slug);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        acc.set(tag.slug, { ...tag, count: 1 });
+      }
+    });
+    return acc;
+  },
+  new Map<
+    string,
+    {
+      name: string;
+      slug: string;
+      href: string;
+      count: number;
+    }
+  >()
+);
+
+const tags = Array.from(tagMap.values()).sort((a, b) =>
+  a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+);
+---
+<BaseLayout title="Tags">
+  <section>
+    <p style="margin: 0 0 0.75rem;">
+      <a href="/beta/">ƒ+? Back to beta index</a>
+    </p>
+    <h1 style="margin: 0 0 0.5rem;">Tags</h1>
+    <p style="color: #cbd5e1;">Browse the tags currently used across the beta blog posts.</p>
+
+    {tags.length === 0 ? (
+      <p style="color: #cbd5e1;">No tags found yet.</p>
+    ) : (
+      <ul style="list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.65rem;">
+        {tags.map((tag) => (
+          <li style="display: flex; align-items: center; gap: 0.6rem;">
+            <a
+              href={tag.href}
+              style="background: rgba(108, 92, 231, 0.18); color: #e0e7ff; padding: 0.3rem 0.9rem; border-radius: 999px; font-weight: 600; border: 1px solid rgba(255,255,255,0.08);"
+            >
+              {tag.name}
+            </a>
+            <span style="color: #cbd5e1;">{tag.count} post{tag.count === 1 ? '' : 's'}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
