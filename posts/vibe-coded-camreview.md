@@ -6,7 +6,7 @@ tags:
 - productivity
 - gis
 - javascript
-title: Vibe coding CamReview: a trail cam app I actually use
+title: "Vibe coding CamReview: a trail cam app I actually use"
 ---
 
 I built a small app called **CamReview** to review trail camera photos and videos.
