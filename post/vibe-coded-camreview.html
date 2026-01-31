@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>vibe-coded-camreview</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
+        
+        <h1 class="text-light">vibe-coded-camreview</h1>
+        <!-- Post content -->
+        <hr />
+<p>date: 2026-01-30<br />
+tags:<br />
+- AI<br />
+- side-projects<br />
+- productivity<br />
+- gis<br />
+- javascript<br />
+title: Vibe coding CamReview: a trail cam app I actually use</p>
+<hr />
+<p>I built a small app called <strong>CamReview</strong> to review trail camera photos and videos.</p>
+<p>Not “fast” in the benchmark sense. Fast in the only way I care about: I can sit down with my phone, thumb through a couple hundred captures, keep the good ones, trash the junk, and move on with my life.</p>
+<p>And yes, I vibe coded a lot of it.</p>
+<p>This post is what it felt like when the target wasn’t a demo or a portfolio piece, but a tool I use on my own files.</p>
+<h2>Trail cam review is a slog (and the tools don’t help)</h2>
+<p>Trail cameras produce a specific kind of annoyance:</p>
+<ul>
+<li>a ton of near-duplicates</li>
+<li>long stretches of nothing</li>
+<li>occasional gems you <em>really</em> want to keep</li>
+<li>files scattered across folders and SD cards</li>
+</ul>
+<p>Most tools for dealing with this fall into a few buckets:</p>
+<ul>
+<li><strong>Too heavy:</strong> cloud accounts, uploads, subscriptions</li>
+<li><strong>Too generic:</strong> image viewers with no “decision engine”</li>
+<li><strong>Too risky:</strong> deletes that feel permanent (or at least scary)</li>
+</ul>
+<p>I wanted something simpler.</p>
+<h2>My constraints (the whole point)</h2>
+<p>CamReview v0 has a few non‑negotiables, and the constraints basically <em>are</em> the product:</p>
+<ul>
+<li><strong>Local-only.</strong> No cloud. No accounts. No Docker.</li>
+<li><strong>Runs on Windows.</strong> That’s where the media lives.</li>
+<li><strong>Phone-first review loop.</strong> The decisions happen on a couch, not at a desk.</li>
+<li><strong>Safe deletes.</strong> Delete should mean “move into <code>Trash_YYYY-MM-DD/</code>”.</li>
+<li><strong>One-at-a-time decisions.</strong> Keep / Delete / Favorite.</li>
+<li><strong>Undo.</strong> Always.</li>
+</ul>
+<p>It also has some explicit non-goals:</p>
+<ul>
+<li>no renaming</li>
+<li>no permanent deletes</li>
+<li>no albums, collections, or edits</li>
+<li>no cloud sync</li>
+</ul>
+<p>If a feature didn’t help the core loop, it didn’t make the cut.</p>
+<h2>The shape of the app (boring on purpose)</h2>
+<p>CamReview is intentionally boring:</p>
+<ul>
+<li><strong>Node + Express</strong> backend</li>
+<li>a simple frontend</li>
+<li>a persistent JSON metadata file (<code>trailcam_review.json</code>)</li>
+<li>media served directly from disk</li>
+</ul>
+<p>You point it at a <code>mediaRoot</code> folder, start the server, and open it on your phone over LAN (or Tailscale).</p>
+<p>That’s it.</p>
+<h2>Mobile vs desktop: same data, different vibe</h2>
+<p>I didn’t want “a mobile version” and “a desktop version.” I wanted <em>one</em> app with one set of state.</p>
+<p>So the split is simple:</p>
+<ul>
+<li><strong>Desktop</strong> is power-user mode: library drawer, search/filter, keyboard shortcuts, optional AI batch tools.</li>
+<li><strong>Mobile</strong> is streamlined: big buttons + swipes, minimal chrome.</li>
+</ul>
+<p>Both share the same queue, metadata, and safe-delete behavior.</p>
+<h2>The part I’m proud of: safe deletes + trust</h2>
+<p>The most important thing in a personal media tool isn’t the UI.</p>
+<p>It’s trust.</p>
+<p>Delete in CamReview doesn’t delete. It moves files immediately into a dated folder under <code>mediaRoot</code>:</p>
+<ul>
+<li><code>Trash_YYYY-MM-DD/</code></li>
+<li><code>Keep_YYYY-MM-DD/</code></li>
+<li><code>Favorites_YYYY-MM-DD/</code></li>
+</ul>
+<p>Once you trust the tool not to hurt you, you start moving faster.</p>
+<p>That’s the whole game.</p>
+<h2>Video on phones is weird (so I made a fallback)</h2>
+<p>A big surprise was how finicky video playback can be on mobile browsers.</p>
+<p>So CamReview has a pragmatic fallback:</p>
+<ul>
+<li>Desktop tries to play the original MP4 with sound.</li>
+<li>If mobile playback is flaky, the server can generate a smaller H.264 MP4 (requires <code>ffmpeg</code>) and play that.</li>
+<li>For quick previews, it can generate low‑FPS preview frames.</li>
+</ul>
+<p>It may look choppier, but it stays reliable.</p>
+<h2>Optional AI: helpful, never required</h2>
+<p>CamReview has optional AI features (desktop-only) via OpenRouter:</p>
+<ul>
+<li>batch “critter detection” (move no‑animal photos to Trash)</li>
+<li>whimsical caption generation that’s always editable</li>
+</ul>
+<p>But the key word is <strong>optional</strong>.</p>
+<p>If AI is down, expensive, or annoying, the app still does the thing.</p>
+<h2>What vibe coding felt like</h2>
+<p>Vibe coding shines when:</p>
+<ul>
+<li>the problem is small enough to keep in your head</li>
+<li>you can iterate in tight loops</li>
+<li>you’re willing to read what the model writes</li>
+</ul>
+<p>CamReview fit that.</p>
+<p>But it also punished sloppy thinking.</p>
+<p>The easiest failure mode was “building UI instead of building product.” AI makes that dangerously easy: it removes friction that normally whispers, <em>this is not worth your time.</em></p>
+<p>So I tried to keep asking:</p>
+<ul>
+<li>Does this make review faster?</li>
+<li>Does this reduce risk?</li>
+<li>Does this reduce cognitive load?</li>
+</ul>
+<p>If not, it’s bike shedding.</p>
+<h2>What’s next</h2>
+<p>The next version is going to split into two pages:</p>
+<ul>
+<li><strong>Browse</strong>: a GitHub-style capture heatmap + a fast way to jump around</li>
+<li><strong>Review</strong>: the decision engine</li>
+</ul>
+<p>If I can make “find the interesting day” as frictionless as “keep/delete,” the whole thing levels up.</p>
+<hr />
+<p>If you want to check out the code, it’s on GitHub: https://github.com/danmaps/camreview</p>
+        <!-- Display the tags at the bottom -->
+        
+    </article>
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; 2025 Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
