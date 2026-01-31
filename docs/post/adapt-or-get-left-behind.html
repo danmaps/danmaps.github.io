@@ -176,7 +176,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <footer class="bg-dark py-3">
         <div class="container text-center text-light", id="footer-container">
-            <p>&copy; 2025 Danny McVey. All rights reserved.</p>
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
         </div>
     </footer>
 
@@ -185,5 +185,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
+<script>
+  (function(){
+    var el = document.getElementById('copyright-year');
+    if (el) el.textContent = new Date().getFullYear();
+  })();
+</script>
+
 </body>
 </html>
