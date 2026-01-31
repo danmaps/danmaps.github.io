@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>Vibe Coding, Bike Shedding, and the Real Work</title>
+    <title>Vibe coding CamReview: a trail cam app I actually use</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -124,50 +124,130 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">Vibe Coding, Bike Shedding, and the Real Work</h1>
+        <h1 class="text-light">Vibe coding CamReview: a trail cam app I actually use</h1>
         <!-- Post content -->
-        <p>I recently got GitHub Enterprise access from someone I met at a vibe coding hackathon. Overnight my Copilot usage limit quadrupled, so between that and my own projects I have been vibe coding constantly: at work, after work, and while building Advent of Code visualizations at night.</p>
-<p>I still hit those limits, which pushed me to try GPT-5 Codex through my $20/month ChatGPT plan. It works just as well, if not better. The VS Code extension feels familiar, the workflows rhyme, and the only downside is that I still need better muscle memory for undo.</p>
-<p>The net effect is simple: I now have an abundance of coding capacity. That abundance forced me to notice something uncomfortable.</p>
-<p>It is impossible to talk about vibe coding right now without acknowledging the controversy around it. There is a real risk of generating AI slop, including this very blog post if I am not careful. Using these tools thoughtlessly can turn code into something opaque, brittle, and unearned. Because of that, I try to be deliberate. I read as much code as I write. I step through it. I question it. I enjoy learning from what the model produces as much as I enjoy the end result. This does not feel lazy to me. It feels awkward because the tools are new, and we are still figuring out what good taste looks like when assistance is cheap.</p>
-<h3>When Friction Disappears, Mistakes Get Subtle</h3>
-<p>On a recent project I built a small frontend whose only real purpose was to surface a Python script. The script was the product. The frontend was just the delivery mechanism.</p>
-<p>And yet, with AI help, I found myself decorating the page with reckless abandon. I wrote and rewrote CSS like an amateur graffiti artist: colors, spacing, layout tweaks. Hundreds, then thousands, of barely structured styles.</p>
-<p>The problem was not that CSS is hard. The problem was that it was easy. AI removed the friction that normally whispers, "This is not worth your time." I did not have the taste, experience, or constraints to make good frontend decisions, but I had infinite suggestions and infinite patience from a machine.</p>
-<p>Eventually I stepped back and asked a basic question: why am I doing this at all? The answer was obvious. I was not building a design system. I was building a Python tool. So I migrated the whole thing to Streamlit. No bike shedding. No taste decisions. No pretending I cared about polish. Streamlit already built those defaults. The value lives in the Python logic underneath, and that is the tool. That decision felt less like giving up and more like leveling up.</p>
-<h3>A Puzzle That Rewarded Paying Attention</h3>
-<p>This reminded me of Advent of Code 2025, Day 12. For the final puzzle, Eric Wastl teased an NP-hard problem--the kind that makes you brace for exponential time and clever heuristics. On paper it looked scary.</p>
-<p>In reality, the input structure made the problem trivial. If you stopped thinking about the theoretical worst case and instead focused on the actual puzzle in front of you, it was arguably the easiest problem of the entire event.</p>
-<p>The people who struggled were not bad programmers. They were solving a different problem than the one they were given. The lesson was not about algorithms. It was about attention.</p>
-<h3>Product Thinking Is a Defense Mechanism</h3>
-<p>Technical people have a natural tendency to dive into the weeds. Implementation feels productive. It is measurable. It scratches the itch. AI amplifies that tendency. When every micro-decision is cheap, it becomes dangerously easy to spend all of your energy on low-leverage work that looks like progress.</p>
-<p>Product thinking is how you fight that.</p>
-<p>Product thinking asks:</p>
+        <p>I built a small app called <strong>CamReview</strong> to review trail camera photos and videos.</p>
+<p>Not “fast” in the benchmark sense. Fast in the only way I care about: I can sit down with my phone, thumb through a couple hundred captures, keep the good ones, trash the junk, and move on with my life.</p>
+<p>And yes, I vibe coded a lot of it.</p>
+<p>This post is what it felt like when the target wasn’t a demo or a portfolio piece, but a tool I use on my own files.</p>
+<h2>Trail cam review is a slog (and the tools don’t help)</h2>
+<p>Trail cameras produce a specific kind of annoyance:</p>
 <ul>
-<li>What is the actual goal?</li>
-<li>What decisions matter?</li>
-<li>What can I safely delegate to tools, frameworks, or defaults?</li>
-<li>What would success look like if I stripped this down to its essence?</li>
+<li>a ton of near-duplicates</li>
+<li>long stretches of nothing</li>
+<li>occasional gems you <em>really</em> want to keep</li>
+<li>files scattered across folders and SD cards</li>
 </ul>
-<p>This is not about doing less work. It is about choosing better work.</p>
-<h3>This Shows Up Outside of Code Too</h3>
-<p>I have started noticing this pattern everywhere. Emily is shopping for a new stroller for when Willow can sit up, which will be soon. There are overlapping criteria: trunk fit, weight, handling, and a standing spot for Rowan. The options are endless. Facebook Marketplace alone is a doom scroll of near-duplicates.</p>
-<p>This is a multidimensional data problem. The hard part is not finding options. It is assigning the right weights to each variable so the solution space collapses into something manageable. That is the same problem as software. The same problem as Advent of Code. The same problem as product management.</p>
-<h3>The Real Work</h3>
-<p>It is not just how hard you work. Depending on the situation, aiming the laser matters more than how bright it is.</p>
-<p>AI makes this unavoidable. When execution is cheap, judgment becomes everything: clarity about goals, willingness to ignore shiny distractions, and comfort with letting other people's good decisions stand in for your own.</p>
-<p>I have been circling this idea for a while. Lately it feels like it is coalescing across work, side projects, puzzles, and life. Maybe that is just how I see the world.</p>
+<p>Most tools for dealing with this fall into a few buckets:</p>
+<ul>
+<li><strong>Too heavy:</strong> cloud accounts, uploads, subscriptions</li>
+<li><strong>Too generic:</strong> image viewers with no “decision engine”</li>
+<li><strong>Too risky:</strong> deletes that feel permanent (or at least scary)</li>
+</ul>
+<p>I wanted something simpler.</p>
+<h2>My constraints (the whole point)</h2>
+<p>CamReview v0 has a few non‑negotiables, and the constraints basically <em>are</em> the product:</p>
+<ul>
+<li><strong>Local-only.</strong> No cloud. No accounts. No Docker.</li>
+<li><strong>Runs on Windows.</strong> That’s where the media lives.</li>
+<li><strong>Phone-first review loop.</strong> The decisions happen on a couch, not at a desk.</li>
+<li><strong>Safe deletes.</strong> Delete should mean “move into <code>Trash_YYYY-MM-DD/</code>”.</li>
+<li><strong>One-at-a-time decisions.</strong> Keep / Delete / Favorite.</li>
+<li><strong>Undo.</strong> Always.</li>
+</ul>
+<p>It also has some explicit non-goals:</p>
+<ul>
+<li>no renaming</li>
+<li>no permanent deletes</li>
+<li>no albums, collections, or edits</li>
+<li>no cloud sync</li>
+</ul>
+<p>If a feature didn’t help the core loop, it didn’t make the cut.</p>
+<h2>The shape of the app (boring on purpose)</h2>
+<p>CamReview is intentionally boring:</p>
+<ul>
+<li><strong>Node + Express</strong> backend</li>
+<li>a simple frontend</li>
+<li>a persistent JSON metadata file (<code>trailcam_review.json</code>)</li>
+<li>media served directly from disk</li>
+</ul>
+<p>You point it at a <code>mediaRoot</code> folder, start the server, and open it on your phone over LAN (or Tailscale).</p>
+<p>That’s it.</p>
+<h2>Mobile vs desktop: same data, different vibe</h2>
+<p>I didn’t want “a mobile version” and “a desktop version.” I wanted <em>one</em> app with one set of state.</p>
+<p>So the split is simple:</p>
+<ul>
+<li><strong>Desktop</strong> is power-user mode: library drawer, search/filter, keyboard shortcuts, optional AI batch tools.</li>
+<li><strong>Mobile</strong> is streamlined: big buttons + swipes, minimal chrome.</li>
+</ul>
+<p>Both share the same queue, metadata, and safe-delete behavior.</p>
+<h2>The part I’m proud of: safe deletes + trust</h2>
+<p>The most important thing in a personal media tool isn’t the UI.</p>
+<p>It’s trust.</p>
+<p>Delete in CamReview doesn’t delete. It moves files immediately into a dated folder under <code>mediaRoot</code>:</p>
+<ul>
+<li><code>Trash_YYYY-MM-DD/</code></li>
+<li><code>Keep_YYYY-MM-DD/</code></li>
+<li><code>Favorites_YYYY-MM-DD/</code></li>
+</ul>
+<p>Once you trust the tool not to hurt you, you start moving faster.</p>
+<p>That’s the whole game.</p>
+<h2>Video on phones is weird (so I made a fallback)</h2>
+<p>A big surprise was how finicky video playback can be on mobile browsers.</p>
+<p>So CamReview has a pragmatic fallback:</p>
+<ul>
+<li>Desktop tries to play the original MP4 with sound.</li>
+<li>If mobile playback is flaky, the server can generate a smaller H.264 MP4 (requires <code>ffmpeg</code>) and play that.</li>
+<li>For quick previews, it can generate low‑FPS preview frames.</li>
+</ul>
+<p>It may look choppier, but it stays reliable.</p>
+<h2>Optional AI: helpful, never required</h2>
+<p>CamReview has optional AI features (desktop-only) via OpenRouter:</p>
+<ul>
+<li>batch “critter detection” (move no‑animal photos to Trash)</li>
+<li>whimsical caption generation that’s always editable</li>
+</ul>
+<p>But the key word is <strong>optional</strong>.</p>
+<p>If AI is down, expensive, or annoying, the app still does the thing.</p>
+<h2>What vibe coding felt like</h2>
+<p>Vibe coding shines when:</p>
+<ul>
+<li>the problem is small enough to keep in your head</li>
+<li>you can iterate in tight loops</li>
+<li>you’re willing to read what the model writes</li>
+</ul>
+<p>CamReview fit that.</p>
+<p>But it also punished sloppy thinking.</p>
+<p>The easiest failure mode was “building UI instead of building product.” AI makes that dangerously easy: it removes friction that normally whispers, <em>this is not worth your time.</em></p>
+<p>So I tried to keep asking:</p>
+<ul>
+<li>Does this make review faster?</li>
+<li>Does this reduce risk?</li>
+<li>Does this reduce cognitive load?</li>
+</ul>
+<p>If not, it’s bike shedding.</p>
+<h2>What’s next</h2>
+<p>The next version is going to split into two pages:</p>
+<ul>
+<li><strong>Browse</strong>: a GitHub-style capture heatmap + a fast way to jump around</li>
+<li><strong>Review</strong>: the decision engine</li>
+</ul>
+<p>If I can make “find the interesting day” as frictionless as “keep/delete,” the whole thing levels up.</p>
+<hr />
+<p>If you want to check out the code, it’s on GitHub: https://github.com/danmaps/camreview</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
             
                 <span class="post-tag">AI</span> 
             
+                <span class="post-tag">Side-Projects</span> 
+            
                 <span class="post-tag">Productivity</span> 
             
-                <span class="post-tag">Strategy</span> 
+                <span class="post-tag">Gis</span> 
             
-                <span class="post-tag">Work</span>
+                <span class="post-tag">Javascript</span>
             
         </p>
         
