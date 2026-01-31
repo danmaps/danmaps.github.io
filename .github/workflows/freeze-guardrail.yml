@@ -1,0 +1,43 @@
+name: Freeze guardrail (docs up-to-date)
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  freeze-guardrail:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run freeze.py
+        run: |
+          python freeze.py
+          # Keep Pages behavior stable if you're serving /docs directly.
+          # (GitHub Pages disables Jekyll when a .nojekyll file exists.)
+          touch docs/.nojekyll
+
+      - name: Ensure generated output is committed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Generated output is out of date. Run: python freeze.py and commit the changes (typically docs/)."
+            echo "--- git status --porcelain ---"
+            git status --porcelain
+            echo "--- git diff (stat) ---"
+            git diff --stat
+            exit 1
+          fi
