@@ -11,15 +11,7 @@ tags:
 
 This project family covers the full range of GIS + AI interaction, from human-in-the-loop to fully agent-driven systems. Same domain, different assumptions about who is doing the thinking.
 
-```mermaid
-flowchart TB
-    sw["Spatial Workbench<br/>License-free, agent-native GIS<br/>(Turf, Leaflet, open tools)"]
-    intel["arcgispro-intelligence<br/>Opinionated agent tools<br/>(high-level GIS actions)"]
-    cli["arcgispro_cli<br/>Developer + AI tooling<br/>(Codex, Claude, Copilot)"]
-    ai["arcgispro_ai<br/>Human augmentation<br/>(ArcGIS Pro toolbox)"]
-
-    sw --> intel --> cli --> ai
-```
+<img src="/static/images/spatial-spectrum.jpg" alt="Human-in-the-loop to agent-first spectrum" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 10px;" />
 
 ## 1. arcgispro_ai
 **Human-first augmentation**
