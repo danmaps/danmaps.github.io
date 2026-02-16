@@ -16,8 +16,8 @@ This project family covers the full range of GIS + AI interaction, from human-in
 ## 1. arcgispro_ai
 **Human-first augmentation**
 
-Repo: https://github.com/danmaps/arcgispro_ai  
-PyPI: https://pypi.org/project/arcgispro_ai/
+Repo: [github.com/danmaps/arcgispro_ai](https://github.com/danmaps/arcgispro_ai)  
+PyPI: [pypi.org/project/arcgispro_ai](https://pypi.org/project/arcgispro_ai/)
 
 This is for Esri users working inside ArcGIS Pro who want to mix LLM capabilities into existing projects.
 
@@ -33,8 +33,8 @@ Use this when a human is still the decision maker and ArcGIS Pro is the center o
 ## 2. arcgispro_cli
 **Developer-first workflows**
 
-Repo: https://github.com/danmaps/arcgispro_cli  
-PyPI: https://pypi.org/project/arcgispro-cli/
+Repo: [github.com/danmaps/arcgispro_cli](https://github.com/danmaps/arcgispro_cli)  
+PyPI: [pypi.org/project/arcgispro-cli](https://pypi.org/project/arcgispro-cli/)
 
 This is for GIS developers who want modern AI coding tools to coexist with ArcGIS Pro workflows.
 
