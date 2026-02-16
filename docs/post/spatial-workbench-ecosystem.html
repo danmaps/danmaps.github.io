@@ -128,6 +128,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <!-- Post content -->
         <p><img src="/static/images/spatial-workbench-ecosystem.jpg" alt="Spatial Workbench ecosystem" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
 <p>This project family covers the full range of GIS + AI interaction, from human-in-the-loop to fully agent-driven systems. Same domain, different assumptions about who is doing the thinking.</p>
+<pre><code class="language-mermaid">
+flowchart TB
+    sw["Spatial Workbench<br/>License-free, agent-native GIS<br/>(Turf, Leaflet, open tools)"]
+    intel["arcgispro-intelligence<br/>Opinionated agent tools<br/>(high-level GIS actions)"]
+    cli["arcgispro_cli<br/>Developer + AI tooling<br/>(Codex, Claude, Copilot)"]
+    ai["arcgispro_ai<br/>Human augmentation<br/>(ArcGIS Pro toolbox)"]
+
+    sw --> intel --> cli --> ai
+</code></pre>
+
 <h2>1. arcgispro_ai</h2>
 <p><strong>Human-first augmentation</strong></p>
 <p>This is for Esri users working inside ArcGIS Pro who want to mix LLM capabilities into existing projects.</p>
