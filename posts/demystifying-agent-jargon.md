@@ -7,7 +7,7 @@ tags:
   - Workflow
 ---
 
-Lately I’ve felt myself getting a little lost in new AI jargon. Agents. Agent-first. Tools. Skills. Commands. Hooks. System prompts. Protect layers. None of these ideas are bad. Most of them are useful. But the vocabulary explosion is real, and it’s easy to feel like you’re behind if you can’t instantly map the words to something concrete. This post is my attempt to slow things down and rebuild a clean mental model. Not for research papers or hype decks. For real work.
+Lately I’ve felt myself getting a little lost in new AI jargon. Agents. Agent-first. Tools. Skills. Commands. Hooks. System prompts. Protect layers. None of these ideas are bad. Most of them are useful. But the vocabulary explosion is real, and it’s easy to feel like you’re behind if you can’t instantly map the words to something concrete. This post is my attempt to slow things down and rebuild a clean mental model. These concepts are completely LLM- and platform-agnostic. Not for research papers or hype decks. For real work.
 
 ## Most of the jargon points to the same few ideas
 When you strip things down, almost everything in agent land boils down to three questions:
