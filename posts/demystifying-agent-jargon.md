@@ -30,7 +30,11 @@ An agent can keep working without you typing the next sentence. That’s the def
 ## Tools are the hands
 Agent tools are the things that actually do work. They are callable functions with clear inputs and predictable outputs. No UI assumptions. No hidden state. Buffer a layer. Select features. Export a map. Run a script.
 
+In modern agent systems there’s also a distinction between local tools and externally exposed tools. Standards like the Model Context Protocol (MCP) let you expose tools over a structured boundary with clear schemas and predictable inputs and outputs. MCP isn’t magic. It’s just a well-defined way for agents to call functions safely and discover what’s available without embedding everything in the prompt. This helps readers bridge from “tools exist” to “here’s how tools are actually surfaced in real systems.”
+
 If an autonomous system did not exist, tools would still need to exist. That’s how you know they’re fundamental.
+
+Tools do the work. Skills tell the agent how to use those tools well. A skill is a reusable capability definition, not just a single API call, and it may bundle multiple tools plus procedural instructions that help an agent decide when and how to apply them. This aligns with broader usage where skills are treated as composable capability bundles rather than synonyms for tools.
 
 ## Skills are behavior, not capability
 This one gets overloaded fast. An agent skill is not a tool. It’s a bundle of behavior. Tone. Judgment style. Risk tolerance. Preferred depth. A QA skill behaves differently than a cartography skill, even if both have access to the same tools.
@@ -47,6 +51,16 @@ Hooks answer the when question. When a layer is added. When a tool fails. When n
 
 Hooks are what turn agents from chat participants into coworkers.
 
+## MCP and predictable external interactions
+In real deployments, agents don’t just have internal helpers. They interact with external systems too — databases, internal APIs, GIS servers, cloud services, and more. MCP standardizes how an agent calls these external capabilities, what inputs it expects, and what outputs it gets back.
+
+This separation matters because it keeps:
+- execution semantics deterministic
+- large schemas out of token context
+- authorization and credentials controlled outside the model
+
+Define and separate that from skill logic and agent reasoning.
+
 ## The hierarchy matters more than the terms
 The most important concept I’ve internalized is not another noun. It’s hierarchy.
 
@@ -60,6 +74,8 @@ A clean mental stack looks like this:
 
 Higher levels constrain lower ones. Never the other way around. This is how you stop autonomy from becoming chaos.
 
+There can also be access semantics layered into tools. For example, some tools or endpoints return a payment required response (HTTP 402 or x402) to indicate that the action isn’t free or allowed by default. Agents need a clear way to interpret that, decide whether to proceed, and retry with authorization or an approved budget. That belongs at the layer that constrains tool use, not at the behavioral skill layer.
+
 ## How I’m actually learning this
 Not by memorizing definitions. I’m learning by building vocabulary and playing with the tools at the same time. Every time I implement something, I ask:
 - Is this knowledge, capability, or timing?
@@ -69,9 +85,11 @@ Not by memorizing definitions. I’m learning by building vocabulary and playing
 The act of naming things correctly while using them is where understanding clicks.
 
 ## A final thought
-This space is moving fast, and the jargon will keep changing. That’s fine. The underlying ideas are surprisingly stable. If you can clearly separate:
+This space is moving fast, and the jargon will keep changing. That’s fine. New labels will keep appearing — MCP, skills, payment semantics, hooks, sub-agents, supervisor agents. The underlying axis really stays the same: knowledge, capability, and control.
+
+If you can clearly separate:
 - what an agent knows
 - what it can do
 - when it is allowed to act
 
-you’ll be able to adapt to whatever new labels show up next. Vocabulary plus practice beats theory every time.
+you’ll be able to adapt to whatever new labels show up next. When you train yourself to see through the names and focus on those axes, the vocabulary ceases to be noise. Vocabulary plus practice beats theory every time.

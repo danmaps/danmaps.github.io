@@ -141,7 +141,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>An agent can keep working without you typing the next sentence. That’s the defining feature. If it can’t do that, it’s not really an agent. It’s just a fancy prompt runner.</p>
 <h2>Tools are the hands</h2>
 <p>Agent tools are the things that actually do work. They are callable functions with clear inputs and predictable outputs. No UI assumptions. No hidden state. Buffer a layer. Select features. Export a map. Run a script.</p>
+<p>In modern agent systems there’s also a distinction between local tools and externally exposed tools. Standards like the Model Context Protocol (MCP) let you expose tools over a structured boundary with clear schemas and predictable inputs and outputs. MCP isn’t magic. It’s just a well-defined way for agents to call functions safely and discover what’s available without embedding everything in the prompt. This helps readers bridge from “tools exist” to “here’s how tools are actually surfaced in real systems.”</p>
 <p>If an autonomous system did not exist, tools would still need to exist. That’s how you know they’re fundamental.</p>
+<p>Tools do the work. Skills tell the agent how to use those tools well. A skill is a reusable capability definition, not just a single API call, and it may bundle multiple tools plus procedural instructions that help an agent decide when and how to apply them. This aligns with broader usage where skills are treated as composable capability bundles rather than synonyms for tools.</p>
 <h2>Skills are behavior, not capability</h2>
 <p>This one gets overloaded fast. An agent skill is not a tool. It’s a bundle of behavior. Tone. Judgment style. Risk tolerance. Preferred depth. A QA skill behaves differently than a cartography skill, even if both have access to the same tools.</p>
 <p>Think roles, not features.</p>
@@ -151,6 +153,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h2>Hooks are how agents notice the world</h2>
 <p>Hooks answer the when question. When a layer is added. When a tool fails. When new data appears. On a schedule.</p>
 <p>Hooks are what turn agents from chat participants into coworkers.</p>
+<h2>MCP and predictable external interactions</h2>
+<p>In real deployments, agents don’t just have internal helpers. They interact with external systems too — databases, internal APIs, GIS servers, cloud services, and more. MCP standardizes how an agent calls these external capabilities, what inputs it expects, and what outputs it gets back.</p>
+<p>This separation matters because it keeps:<br />
+- execution semantics deterministic<br />
+- large schemas out of token context<br />
+- authorization and credentials controlled outside the model</p>
+<p>Define and separate that from skill logic and agent reasoning.</p>
 <h2>The hierarchy matters more than the terms</h2>
 <p>The most important concept I’ve internalized is not another noun. It’s hierarchy.</p>
 <p>Some instructions must never be overridden. Some rules exist to slow things down when risk appears. Some preferences shape behavior. Some requests are just requests.</p>
@@ -160,6 +169,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - Skill level<br />
 - Task or command level</p>
 <p>Higher levels constrain lower ones. Never the other way around. This is how you stop autonomy from becoming chaos.</p>
+<p>There can also be access semantics layered into tools. For example, some tools or endpoints return a payment required response (HTTP 402 or x402) to indicate that the action isn’t free or allowed by default. Agents need a clear way to interpret that, decide whether to proceed, and retry with authorization or an approved budget. That belongs at the layer that constrains tool use, not at the behavioral skill layer.</p>
 <h2>How I’m actually learning this</h2>
 <p>Not by memorizing definitions. I’m learning by building vocabulary and playing with the tools at the same time. Every time I implement something, I ask:<br />
 - Is this knowledge, capability, or timing?<br />
@@ -167,11 +177,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - Would this still exist if no human were watching?</p>
 <p>The act of naming things correctly while using them is where understanding clicks.</p>
 <h2>A final thought</h2>
-<p>This space is moving fast, and the jargon will keep changing. That’s fine. The underlying ideas are surprisingly stable. If you can clearly separate:<br />
+<p>This space is moving fast, and the jargon will keep changing. That’s fine. New labels will keep appearing — MCP, skills, payment semantics, hooks, sub-agents, supervisor agents. The underlying axis really stays the same: knowledge, capability, and control.</p>
+<p>If you can clearly separate:<br />
 - what an agent knows<br />
 - what it can do<br />
 - when it is allowed to act</p>
-<p>you’ll be able to adapt to whatever new labels show up next. Vocabulary plus practice beats theory every time.</p>
+<p>you’ll be able to adapt to whatever new labels show up next. When you train yourself to see through the names and focus on those axes, the vocabulary ceases to be noise. Vocabulary plus practice beats theory every time.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
