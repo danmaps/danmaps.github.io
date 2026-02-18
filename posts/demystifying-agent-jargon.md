@@ -7,7 +7,7 @@ tags:
   - Workflow
 ---
 
-<img src="/static/images/demystifying-agent-jargon-header.jpeg" alt="Demystifying agent jargon" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+<img src="/static/images/demystifying-agent-jargon-header.jpeg?v=2" alt="Demystifying agent jargon" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 Lately I’ve felt myself getting a little lost in new AI jargon. Agents. Agent-first. Tools. Skills. Commands. Hooks. System prompts. Protect layers. None of these ideas are bad. Most of them are useful. But the vocabulary explosion is real, and it’s easy to feel like you’re behind if you can’t instantly map the words to something concrete. This post is my attempt to slow things down and rebuild a clean mental model. These concepts are completely LLM- and platform-agnostic. Not for research papers or hype decks. For real work.
 
