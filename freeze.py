@@ -78,6 +78,23 @@ def tag():
             yield {"tag_slug_value": s}
 
 
+def _ensure_nojekyll():
+    """GitHub Pages uses Jekyll by default, which ignores directories starting with underscores.
+
+    This site depends on serving paths under /docs, so we force a .nojekyll file
+    to exist after freezing (the freeze step may wipe the destination).
+    """
+    dest = app.config.get("FREEZER_DESTINATION") or "docs"
+    try:
+        os.makedirs(dest, exist_ok=True)
+        with open(os.path.join(dest, ".nojekyll"), "w", encoding="utf-8") as f:
+            f.write("")
+    except OSError:
+        # Non-fatal; freezing succeeded but Pages might behave oddly.
+        pass
+
+
 if __name__ == "__main__":
     freezer.freeze()
+    _ensure_nojekyll()
 
