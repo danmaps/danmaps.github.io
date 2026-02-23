@@ -187,11 +187,20 @@ pre code {
     font-size: 0.8em;
     margin-left: 5px;
     display: inline-block;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a.post-tag {
+    text-decoration: none;
+}
+
+a.post-tag:hover {
+    text-decoration: none;
 }
 
 .post-tag:hover {
     background-color: #666;
+    color: #fff;
 }
 
 .post-card-link {
