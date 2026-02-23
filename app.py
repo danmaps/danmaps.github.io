@@ -2,6 +2,8 @@ from flask import Flask, render_template, abort, send_from_directory
 import markdown
 from pygments.formatters import HtmlFormatter
 import os
+import re
+import unicodedata
 from markdown.extensions import Extension
 from markdown.extensions import tables
 from markdown.extensions import sane_lists
@@ -53,6 +55,93 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 POSTS_DIR = os.path.join(BASE_DIR, 'posts')
 BETA_BUILD_DIR = os.path.join(BASE_DIR, 'build', 'beta')
 
+UNPUBLISHED_TAGS = {"Stub", "Draft", "Unlisted"}
+
+
+def _normalize_tags(raw_tags) -> list[str]:
+    # Make tags proper case, if the tag is not already all caps
+    tags = [tag.title() if isinstance(tag, str) and not tag.isupper() else tag for tag in (raw_tags or [])]
+
+    # a few canonical replacements
+    tags = [t.replace("Arcgis Pro", "ArcGIS Pro") if isinstance(t, str) else t for t in tags]
+    tags = [t.replace("Ai", "AI") if isinstance(t, str) else t for t in tags]
+    tags = [t.replace("Gis", "GIS") if isinstance(t, str) else t for t in tags]
+
+    # filter empties + coerce to strings
+    return [str(t).strip() for t in tags if str(t).strip()]
+
+
+def tag_slug(tag: str) -> str:
+    """Convert a display tag into a stable URL slug."""
+    if not tag:
+        return ""
+
+    # normalize unicode
+    value = unicodedata.normalize("NFKD", str(tag))
+    value = value.encode("ascii", "ignore").decode("ascii")
+
+    value = value.lower().strip()
+    value = value.replace("&", "and")
+    value = re.sub(r"[^a-z0-9\s-]", "", value)
+    value = re.sub(r"[\s_-]+", "-", value)
+    value = re.sub(r"^-+|-+$", "", value)
+    return value
+
+
+def _parse_post_file(filename: str) -> dict | None:
+    """Parse a markdown post and return metadata for lists (not full HTML)."""
+    if not filename.endswith('.md'):
+        return None
+
+    with open(os.path.join(POSTS_DIR, filename), 'r', encoding='utf-8', errors='ignore') as file:
+        content = file.read()
+
+    metadata = {}
+    body = content
+
+    # Try to parse YAML front matter
+    try:
+        if content.startswith('---'):
+            _, front_matter, body = content.split('---\n', 2)
+            metadata = yaml.safe_load(front_matter) or {}
+    except (ValueError, IndexError, yaml.YAMLError):
+        metadata = {}
+
+    title = metadata.get('title', filename[:-3])
+    date_str = metadata.get('date')
+
+    if isinstance(date_str, str):
+        date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+    elif isinstance(date_str, datetime):
+        date_obj = date_str
+    elif isinstance(date_str, date):
+        date_obj = datetime.combine(date_str, datetime.min.time())
+    else:
+        file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, filename))
+        date_obj = datetime.fromtimestamp(file_creation_time)
+
+    tags = _normalize_tags(metadata.get('tags', []))
+    tag_objs = [{"name": t, "slug": tag_slug(t)} for t in tags if t not in UNPUBLISHED_TAGS]
+
+    return {
+        'name': filename[:-3],
+        'title': title,
+        'date': date_obj,
+        'tags': tags,
+        'tag_objs': tag_objs,
+    }
+
+
+def _list_posts() -> list[dict]:
+    posts = []
+    for f in os.listdir(POSTS_DIR):
+        parsed = _parse_post_file(f)
+        if parsed:
+            posts.append(parsed)
+
+    posts.sort(key=lambda x: x['date'], reverse=True)
+    return posts
+
 
 def _resolve_beta_resource(resource: str) -> str | None:
     """Return the relative path to a beta asset if it exists."""
@@ -77,65 +166,8 @@ def _resolve_beta_resource(resource: str) -> str | None:
 
 @app.route('/')
 def index():
-    posts = []
-    for f in os.listdir(POSTS_DIR):
-        # print file name for debugging
-        print(f)
-        if f.endswith('.md'):
-            with open(os.path.join(POSTS_DIR, f), 'r', encoding='utf-8', errors='ignore') as file:
-                content = file.read()
-                metadata = {}
-                body = content
-                
-                # Try to parse YAML front matter
-                try:
-                    if content.startswith('---'):
-                        _, front_matter, body = content.split('---\n', 2)
-                        metadata = yaml.safe_load(front_matter)
-                except (ValueError, IndexError, yaml.YAMLError):
-                    pass
-
-                # Extract or default title and date
-                title = metadata.get('title', f[:-3])
-                date_str = metadata.get('date')
-                
-                if isinstance(date_str, str):
-                    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-                elif isinstance(date_str, datetime):
-                    date_obj = date_str
-                elif isinstance(date_str, date):
-                    # Convert date to datetime for consistency
-                    date_obj = datetime.combine(date_str, datetime.min.time())
-                else:
-                    # Fallback to the file's creation date
-                    file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f))
-                    date_obj = datetime.fromtimestamp(file_creation_time)
-
-                               
-                # Make tags proper case, if the tag is not already all caps
-                tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
-                # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
-                if "Arcgis Pro" in tags:
-                    tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
-                if "Ai" in tags:
-                    tags = [tag.replace("Ai", "AI") for tag in tags]
-                if "Gis" in tags:
-                    tags = [tag.replace("Gis", "GIS") for tag in tags]
-
-
-                posts.append({
-                    'name': f[:-3],  # Remove the .md extension
-                    'title': title,
-                    'date': date_obj,
-                    'tags': tags,
-                })
-
-    # Sort posts by date in descending order (newest first)
-    posts.sort(key=lambda x: x['date'], reverse=True)
-    # sort posts randomly
-    # posts.sort(key=lambda x: random.random())
-
-    return render_template('index.html', posts=posts)
+    posts = _list_posts()
+    return render_template('index.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
 
 
 @app.route('/beta', defaults={'resource': ''}, strict_slashes=False)
@@ -163,14 +195,10 @@ def post(post_name):
 
         # Extract title, tags, and date from metadata
         title = metadata.get('title', post_name)
-        tags = metadata.get('tags', [])
         date_str = metadata.get('date')
 
-        # Make tags proper case, if the tag is not already all caps
-        tags = [tag.title() if not tag.isupper() else tag for tag in metadata.get('tags', [])]
-        # if the tag is "Arcgis Pro", replace it with "ArcGIS Pro"
-        if "Arcgis Pro" in tags:
-            tags = [tag.replace("Arcgis Pro", "ArcGIS Pro") for tag in tags]
+        tags = _normalize_tags(metadata.get('tags', []))
+        tag_objs = [{"name": t, "slug": tag_slug(t)} for t in tags if t not in UNPUBLISHED_TAGS]
 
         # Handle date conversion if needed
         if isinstance(date_str, str):
@@ -209,11 +237,47 @@ def post(post_name):
         pygments_css = formatter.get_style_defs()
 
         # Render the template with all necessary data
-        return render_template('post.html', content=html_content, title=title, pygments_css=pygments_css, tags=tags, date=date_obj)
+        return render_template(
+            'post.html',
+            content=html_content,
+            title=title,
+            pygments_css=pygments_css,
+            tags=tags,
+            tag_objs=tag_objs,
+            date=date_obj,
+        )
         
     
     except FileNotFoundError:
         abort(404)
+
+
+@app.route('/tag/<tag_slug_value>.html')
+def tag(tag_slug_value: str):
+    posts = _list_posts()
+
+    # Find canonical display tag for this slug
+    canonical = None
+    for p in posts:
+        for t in p.get('tags', []):
+            if tag_slug(t) == tag_slug_value:
+                canonical = t
+                break
+        if canonical:
+            break
+
+    if not canonical:
+        abort(404)
+
+    # Filter posts by tag + hide unpublished
+    filtered = []
+    for p in posts:
+        if any(t == canonical for t in p.get('tags', [])):
+            if any(t in UNPUBLISHED_TAGS for t in p.get('tags', [])):
+                continue
+            filtered.append(p)
+
+    return render_template('tag.html', tag_name=canonical, posts=filtered, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
 
 
 if __name__ == '__main__':
