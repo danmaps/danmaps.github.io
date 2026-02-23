@@ -16,8 +16,8 @@ Keeping it lightweight means I can swap laptops, edit in any text editor, and st
 
 I keep WIP posts in the repo but hide them from the homepage.
 
-- Add `stub` or `draft` to the YAML front matter `tags:` list.
-- The homepage template filters out posts tagged **Stub** or **Draft**.
+- Add `stub`, `draft`, or `unlisted` to the YAML front matter `tags:` list.
+- The homepage template filters out posts tagged **Stub**, **Draft**, or **Unlisted**.
 - The post still renders if you know the URL (`/post/<filename>.html`), so it is effectively unlisted.
 
 ## Publishing
