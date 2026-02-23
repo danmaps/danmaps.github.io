@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>How the Blog Is Built</title>
+    <title>Thinking like a programmer</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -124,34 +124,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">How the Blog Is Built</h1>
+        <h1 class="text-light">Thinking like a programmer</h1>
         <!-- Post content -->
-        <p>I wanted a space where I could draft ideas fast and publish them without negotiating with a heavyweight CMS or JavaScript framework. The solution is this tiny Flask app: it reads Markdown files from <code>posts/</code>, extracts front-matter metadata with YAML, and renders everything with Jinja templates.</p>
-<p>There’s no database, no admin console, and no notion of components that need compiling. Writing is nothing more than dropping a <code>.md</code> file into the repository. The Python code walks the directory, sorts the posts by date, and injects each file into a simple layout. The retro styling and new animated background come from hand-written CSS and a WebGL snippet that only runs on the homepage.</p>
-<p>Keeping it lightweight means I can swap laptops, edit in any text editor, and still publish by pushing Markdown. I get syntax-highlighted code blocks through Markdown extensions, Prism for inline snippets, and zero build step beyond <code>flask run</code>. This workflow keeps the focus on the words, not on wrestling with a “real” block framework just to ship a post.</p>
-<h2>Drafts and unlisted posts</h2>
-<p>I keep WIP posts in the repo but hide them from the homepage.</p>
-<ul>
-<li>Add <code>stub</code> or <code>draft</code> to the YAML front matter <code>tags:</code> list.</li>
-<li>The homepage template filters out posts tagged <strong>Stub</strong> or <strong>Draft</strong>.</li>
-<li>The post still renders if you know the URL (<code>/post/&lt;filename&gt;.html</code>), so it is effectively unlisted.</li>
-</ul>
-<h2>Publishing</h2>
-<p>When I’m ready to publish:</p>
-<ol>
-<li>Remove <code>stub</code> / <code>draft</code> from the tags</li>
-<li>Run the freeze step to generate the static site into <code>docs/</code>:<br />
-<code>bash
-   python freeze.py</code></li>
-<li>Commit and push</li>
-</ol>
+        <p>I teach python.</p>
+<p>There's a lot of gate-keeping in technical fields like software development. Often, people talk themselves out of learning new technical skills because they feel like it is somehow beyond them. They worry they lack a fundamental aptitude. This has always been wrong, but it has never been more wrong than now, in the age of AI assisted learning.</p>
+<p>ChatGPT seems to know a lot about programming and especially python. This is no surprise. Python is the most popular programming language across many domains. Its rich ecosystem of libraries and frameworks makes it an excellent choice for many different use cases. LLMs are trained on aggregated internet data, so it makes sense that python questions and answers are a particularly well covered area of knowledge.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
             
-                <span class="post-tag">Meta</span> 
+                <span class="post-tag">Programming</span> 
             
-                <span class="post-tag">Workflow</span>
+                <span class="post-tag">Python</span> 
+            
+                <span class="post-tag">Education</span> 
+            
+                <span class="post-tag">Stub</span>
             
         </p>
         

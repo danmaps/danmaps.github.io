@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>How the Blog Is Built</title>
+    <title>Solving the right problems</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -124,34 +124,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">How the Blog Is Built</h1>
+        <h1 class="text-light">Solving the right problems</h1>
         <!-- Post content -->
-        <p>I wanted a space where I could draft ideas fast and publish them without negotiating with a heavyweight CMS or JavaScript framework. The solution is this tiny Flask app: it reads Markdown files from <code>posts/</code>, extracts front-matter metadata with YAML, and renders everything with Jinja templates.</p>
-<p>There’s no database, no admin console, and no notion of components that need compiling. Writing is nothing more than dropping a <code>.md</code> file into the repository. The Python code walks the directory, sorts the posts by date, and injects each file into a simple layout. The retro styling and new animated background come from hand-written CSS and a WebGL snippet that only runs on the homepage.</p>
-<p>Keeping it lightweight means I can swap laptops, edit in any text editor, and still publish by pushing Markdown. I get syntax-highlighted code blocks through Markdown extensions, Prism for inline snippets, and zero build step beyond <code>flask run</code>. This workflow keeps the focus on the words, not on wrestling with a “real” block framework just to ship a post.</p>
-<h2>Drafts and unlisted posts</h2>
-<p>I keep WIP posts in the repo but hide them from the homepage.</p>
-<ul>
-<li>Add <code>stub</code> or <code>draft</code> to the YAML front matter <code>tags:</code> list.</li>
-<li>The homepage template filters out posts tagged <strong>Stub</strong> or <strong>Draft</strong>.</li>
-<li>The post still renders if you know the URL (<code>/post/&lt;filename&gt;.html</code>), so it is effectively unlisted.</li>
-</ul>
-<h2>Publishing</h2>
-<p>When I’m ready to publish:</p>
-<ol>
-<li>Remove <code>stub</code> / <code>draft</code> from the tags</li>
-<li>Run the freeze step to generate the static site into <code>docs/</code>:<br />
-<code>bash
-   python freeze.py</code></li>
-<li>Commit and push</li>
-</ol>
+        <h3>The burden of actually caring</h3>
+<p>As I work on my personal projects, I often find myself stuck on the identifying problems to solve. I might have an idea of something that annoys me a try to launch an effort toward fixing it. "Rage programming". But I keep questioning the value of working on it.</p>
+<p>The frequency of these ideas is high. I leave a lot of projects unfinished. Even, the ones I come back to repeatedly could be a waste of time and effort. I enjoy learning and experimenting, but I'm struggling to see the value of "puttering" like this in the long term.</p>
+<p>Maybe this is what I want from a job. I want to be able to solve problems that are important to me, but also (crucially) to others too. At work I'll sink hours into automating a task for someone else. I'm trying to save them time. I barely understand their problems, but I dive in with enthusiasm and get a true feeling of satisfaction from successfully automating something they don't like to do.</p>
+<p>I see professional work as a filter for my effort. It focuses the laser. I spend a bunch of time getting paid to do something, so I care a lot whether I generally enjoy it or not, but getting in community with a team where I feel valued for my contribution is <strong>so much</strong> better than puttering on some half-baked experiment that I'm not sure will ever be useful, even to me.</p>
+<p>I learn either way, but at work, prioritizing <strong>real</strong> utility comes with the territory.</p>
+<h3>The grass is always greener.</h3>
+<p>Sometimes I fantisize about a different job where I spend more (or all) of my time coding. Currently I'm spending most of my time (about 75%) communicating, writing, performing analysis, and making maps. </p>
+<p>This might shift my work life balance too much. </p>
+<h3>Leveraging AI to bring personal projects to completion</h3>
+<p>I'm going to create a structured process to solve this problem and relieve this frustration. See "Purpose-Driven Process"</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
             
-                <span class="post-tag">Meta</span> 
+                <span class="post-tag">Stub</span> 
             
-                <span class="post-tag">Workflow</span>
+                <span class="post-tag">Work</span> 
+            
+                <span class="post-tag">Personal</span> 
+            
+                <span class="post-tag">Motivation</span>
             
         </p>
         

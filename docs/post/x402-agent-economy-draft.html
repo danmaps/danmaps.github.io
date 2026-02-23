@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>How the Blog Is Built</title>
+    <title>x402, the agent economy, and resilience in a post-labor world (draft)</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -124,34 +124,141 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">How the Blog Is Built</h1>
+        <h1 class="text-light">x402, the agent economy, and resilience in a post-labor world (draft)</h1>
         <!-- Post content -->
-        <p>I wanted a space where I could draft ideas fast and publish them without negotiating with a heavyweight CMS or JavaScript framework. The solution is this tiny Flask app: it reads Markdown files from <code>posts/</code>, extracts front-matter metadata with YAML, and renders everything with Jinja templates.</p>
-<p>There’s no database, no admin console, and no notion of components that need compiling. Writing is nothing more than dropping a <code>.md</code> file into the repository. The Python code walks the directory, sorts the posts by date, and injects each file into a simple layout. The retro styling and new animated background come from hand-written CSS and a WebGL snippet that only runs on the homepage.</p>
-<p>Keeping it lightweight means I can swap laptops, edit in any text editor, and still publish by pushing Markdown. I get syntax-highlighted code blocks through Markdown extensions, Prism for inline snippets, and zero build step beyond <code>flask run</code>. This workflow keeps the focus on the words, not on wrestling with a “real” block framework just to ship a post.</p>
-<h2>Drafts and unlisted posts</h2>
-<p>I keep WIP posts in the repo but hide them from the homepage.</p>
+        <p>I think we are stumbling into a weird new market structure.</p>
+<p>Not “robots take all jobs overnight” (that is still mostly sci-fi), but a slower and stranger transition where:</p>
 <ul>
-<li>Add <code>stub</code> or <code>draft</code> to the YAML front matter <code>tags:</code> list.</li>
-<li>The homepage template filters out posts tagged <strong>Stub</strong> or <strong>Draft</strong>.</li>
-<li>The post still renders if you know the URL (<code>/post/&lt;filename&gt;.html</code>), so it is effectively unlisted.</li>
+<li>you can buy <em>micro-units of work</em> from software agents</li>
+<li>agents can pay other agents and services (and keep receipts)</li>
+<li>the price of “doing a small thing” collapses</li>
+<li>the value of “knowing what to do next” goes up</li>
 </ul>
-<h2>Publishing</h2>
-<p>When I’m ready to publish:</p>
+<p>This post is a draft. I’m writing it to clarify what I believe, not to declare some grand theory.</p>
+<h2>The headline idea</h2>
+<p>The emerging agent economy is basically this:</p>
+<ul>
+<li><strong>work becomes an API call</strong></li>
+<li><strong>payment becomes a protocol</strong></li>
+<li><strong>coordination becomes the product</strong></li>
+</ul>
+<p>x402 is interesting because it treats payment as part of the HTTP conversation. Not “go subscribe to this SaaS”, but “here is a request, here is what it costs, here is the proof you paid, here is the result”. That unlocks a bunch of tiny transactions that would be annoying or impossible with human billing.</p>
+<p>If that holds, we get an ecosystem where agents can:</p>
+<ul>
+<li>discover services</li>
+<li>pay per request</li>
+<li>chain services together</li>
+<li>keep working without needing a human to re-enter a credit card every 4 minutes</li>
+</ul>
+<h2>Post-labor economics: the part people get wrong</h2>
+<p>When people say “post-labor”, they often mean “nobody works”. That is not how it feels on the ground.</p>
+<p>What actually happens first is:</p>
+<ul>
+<li>routine labor becomes cheap</li>
+<li><em>judgment</em> becomes scarce</li>
+<li>trust and taste become differentiators</li>
+</ul>
+<p>Even with very strong AI, the world is still full of constraints:</p>
+<ul>
+<li>messy data</li>
+<li>vague goals</li>
+<li>conflicting incentives</li>
+<li>real-world consequences</li>
+<li>partial observability</li>
+</ul>
+<p>So the scarce resource becomes <strong>good decisions under uncertainty</strong>.</p>
+<h2>The resilience angle: diversify, but do it by being useful</h2>
+<p>If AGI is coming (or even just “AI that is good enough and cheap enough”), then resilience looks less like hoarding tools and more like building a portfolio of <em>ways to be valuable</em>.</p>
+<p>Not “side hustles” in the cringe sense. More like:</p>
+<ul>
+<li>multiple small income streams</li>
+<li>each tied to a real, concrete outcome for somebody</li>
+<li>each flexible enough to survive tech churn</li>
+</ul>
+<p>The strongest version of this is: <strong>sell leverage, not hours</strong>.</p>
+<h3>What “real value” looks like in the agent economy</h3>
+<p>Some examples that feel durable:</p>
+<ul>
+<li>turning messy internal workflows into a simple checklist + tool</li>
+<li>packaging institutional knowledge into repeatable artifacts</li>
+<li>building boring automation that never breaks</li>
+<li>doing the last 20% of integration work (where most of the pain lives)</li>
+</ul>
+<p>Agents can do big chunks of the mechanical work, but you still need someone to:</p>
+<ul>
+<li>define the win condition</li>
+<li>constrain the blast radius</li>
+<li>verify outputs</li>
+<li>decide what to ship</li>
+</ul>
+<h2>“Use as many skills as possible” without becoming a generalist blob</h2>
+<p>There’s a trap here.</p>
+<p>If you try to be good at everything, you become memorable at nothing.</p>
+<p>The better play is:</p>
 <ol>
-<li>Remove <code>stub</code> / <code>draft</code> from the tags</li>
-<li>Run the freeze step to generate the static site into <code>docs/</code>:<br />
-<code>bash
-   python freeze.py</code></li>
-<li>Commit and push</li>
+<li>pick a domain where you actually understand the stakes</li>
+<li>use AI/agents to expand your <em>throughput</em></li>
+<li>keep the core loop human: judgment, trust, responsibility</li>
 </ol>
+<p>A practical way to think about “skills” is a stack:</p>
+<ul>
+<li><strong>Domain skill</strong>: the thing you know that is hard to fake (GIS, operations, music tooling, whatever)</li>
+<li><strong>Production skill</strong>: shipping, testing, docs, packaging, release discipline</li>
+<li><strong>Distribution skill</strong>: writing, teaching, community, showing your work</li>
+<li><strong>Coordination skill</strong>: making small projects converge into finished products</li>
+</ul>
+<p>Agents can amplify production. They can help with distribution. They are mediocre at coordination unless you give them tight constraints.</p>
+<h2>A concrete mental model: the work graph</h2>
+<p>In a traditional job, tasks are a queue.</p>
+<p>In an agent economy, tasks are a graph:</p>
+<ul>
+<li>you decompose a problem into nodes</li>
+<li>you farm nodes out to tools, services, and agents</li>
+<li>you pay per node</li>
+<li>you validate edges (does this output actually fit the next step?)</li>
+</ul>
+<p>x402 makes the “pay per node” part smooth.</p>
+<p>The human value is not the typing. It’s the graph design.</p>
+<h2>What I’m doing about it (imperfectly)</h2>
+<p>My current resilience plan is boring:</p>
+<ul>
+<li>keep building small tools that remove real friction</li>
+<li>write docs so future-me is not cursed</li>
+<li>ship more often, with smaller diffs</li>
+<li>keep the income mix diverse</li>
+</ul>
+<p>The main bet is that <strong>flexibility is a skill</strong>.</p>
+<p>Flexibility means:</p>
+<ul>
+<li>you can learn a new toolchain fast</li>
+<li>you can move across domains without losing your standards</li>
+<li>you can communicate clearly with humans and with machines</li>
+</ul>
+<p>That last part is the sneaky one. In the future, you will spend more time <em>specifying</em> work than <em>doing</em> work.</p>
+<h2>Open questions</h2>
+<p>Things I don’t fully know yet:</p>
+<ul>
+<li>what pricing looks like when agents negotiate directly</li>
+<li>whether “verification” becomes a first-class market (pay for tests, proofs, audits)</li>
+<li>whether we get a few dominant agent brokers or a long tail of tiny specialists</li>
+</ul>
+<p>But the direction feels clear: more work will be bought like compute.</p>
+<p>And if that is true, the path to resilience is to be the person who can reliably turn compute into outcomes.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
             
-                <span class="post-tag">Meta</span> 
+                <span class="post-tag">Draft</span> 
             
-                <span class="post-tag">Workflow</span>
+                <span class="post-tag">AI</span> 
+            
+                <span class="post-tag">Agents</span> 
+            
+                <span class="post-tag">Economics</span> 
+            
+                <span class="post-tag">X402</span> 
+            
+                <span class="post-tag">Resilience</span>
             
         </p>
         
