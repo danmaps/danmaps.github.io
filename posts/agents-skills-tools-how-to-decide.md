@@ -1,5 +1,5 @@
 ---
-title: Agent vs Skill vs Deterministic Tool: a practical decision guide
+title: "Agent vs Skill vs Deterministic Tool: a practical decision guide"
 date: 2026-02-23
 tags:
   - AI
