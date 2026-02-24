@@ -5,6 +5,7 @@ tags:
   - AI
   - Agents
   - Workflow
+  - Draft
 ---
 
 Most automation choices fail for a boring reason: you picked the wrong shape.
