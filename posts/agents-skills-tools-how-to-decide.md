@@ -8,6 +8,8 @@ tags:
   - Draft
 ---
 
+![Agent vs Skill vs Deterministic Tool decision diagram](/static/images/agent-skill-tool-decision-diagram.png)
+
 Most automation choices fail for a boring reason: you picked the wrong shape.
 
 You can ship the same outcome three ways:
