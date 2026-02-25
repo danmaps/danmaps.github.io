@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Drafts
+{% endblock %}
+
+{% block content %}
+<div class="container bg-dark">
+  <div class="card bg-dark border mb-4">
+    <div class="card-body retro-text text-light">
+      <h1 class="text-light">Drafts + Unlisted</h1>
+      <p class="text-muted" style="margin-bottom:0;">
+        This page lists posts tagged <b>Draft</b>, <b>Unlisted</b>, or <b>Stub</b>.
+        It is not linked from the homepage.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="post-list bg-dark">
+  {% for post in posts %}
+    {% if 'Stub' in post.tags or 'Draft' in post.tags or 'Unlisted' in post.tags %}
+    <div class="container bg-dark">
+      <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
+        <div class="post-card card bg-dark">
+          <div class="card-body retro-text flicker bg-dark border">
+            <div class="post-header text-light">
+              <h2 class="post-title text-light">{{ post.title }}</h2>
+              <div class="post-meta bg-dark">
+                <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
+                <div class="post-tags bg-dark">
+                  {% for t in post.tags %}
+                    <span class="post-tag" style="opacity:0.8;">{{ t }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

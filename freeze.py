@@ -23,6 +23,15 @@ def post():
 
 
 @freezer.register_generator
+def drafts():
+    """Freeze the /drafts page.
+
+    Note: this page lists unpublished posts and is intentionally not linked from the homepage.
+    """
+    yield {}
+
+
+@freezer.register_generator
 def tag():
     """Freeze all tag pages."""
     slugs = {}

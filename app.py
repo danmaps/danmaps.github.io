@@ -170,6 +170,17 @@ def index():
     return render_template('index.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
 
 
+@app.route('/drafts')
+def drafts():
+    """List unpublished posts (Draft/Unlisted/Stub).
+
+    Warning: this makes unpublished posts discoverable if you publish the frozen site.
+    If you want truly private drafts, keep them out of the repo or serve behind auth.
+    """
+    posts = _list_posts()
+    return render_template('drafts.html', posts=posts)
+
+
 @app.route('/beta', defaults={'resource': ''}, strict_slashes=False)
 @app.route('/beta/<path:resource>')
 def beta_static(resource: str):
