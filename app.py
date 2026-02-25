@@ -139,7 +139,8 @@ def _list_posts() -> list[dict]:
         if parsed:
             posts.append(parsed)
 
-    posts.sort(key=lambda x: x['date'], reverse=True)
+    # Stable ordering across OS/filesystems: break date ties by filename.
+    posts.sort(key=lambda x: (x['date'], x['name']), reverse=True)
     return posts
 
 
