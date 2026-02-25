@@ -127,8 +127,107 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <h1 class="text-light">Thinking like a programmer</h1>
         <!-- Post content -->
         <p>I teach python.</p>
-<p>There's a lot of gate-keeping in technical fields like software development. Often, people talk themselves out of learning new technical skills because they feel like it is somehow beyond them. They worry they lack a fundamental aptitude. This has always been wrong, but it has never been more wrong than now, in the age of AI assisted learning.</p>
-<p>ChatGPT seems to know a lot about programming and especially python. This is no surprise. Python is the most popular programming language across many domains. Its rich ecosystem of libraries and frameworks makes it an excellent choice for many different use cases. LLMs are trained on aggregated internet data, so it makes sense that python questions and answers are a particularly well covered area of knowledge.</p>
+<p>There’s a lot of gatekeeping in technical fields like software development. People talk themselves out of learning because they assume there’s some secret aptitude test they didn’t get the memo for. They tell themselves they lack the “brain for it.”</p>
+<p>This has always been wrong, but it has never been more wrong than now.</p>
+<p>In 2024, the biggest barrier to learning programming isn’t intelligence. It’s the feedback loop.</p>
+<h2>Part I: Thinking like a programmer is shrinking the loop</h2>
+<p>When someone says “think like a programmer,” it can sound mystical. Like there’s a special mindset you’re supposed to download.</p>
+<p>In practice it’s simpler and more human:</p>
+<p><strong>Programming is making a guess, testing it, observing what happened, and updating your guess.</strong></p>
+<p>That’s it.</p>
+<p>Beginners don’t struggle because they can’t understand variables. They struggle because their loop is slow and punishing.</p>
+<ul>
+<li>They write code.</li>
+<li>It fails.</li>
+<li>The error message feels like an insult written in a foreign language.</li>
+<li>They don’t know what to try next.</li>
+<li>They either quit or they flail.</li>
+</ul>
+<p>Thinking like a programmer means you learn to protect the loop.</p>
+<h3>1) Change one thing at a time</h3>
+<p>If you make three changes and it starts working, you didn’t learn anything. You got lucky.</p>
+<p>Small moves make cause and effect visible.</p>
+<h3>2) Predict what you expect before you run it</h3>
+<p>This sounds goofy, but it’s the habit that creates a mental model.</p>
+<p>Say it out loud:<br />
+- “This should print 10.”<br />
+- “This function should return a list of strings.”</p>
+<p>Then run it and compare.</p>
+<p>When your expectation is wrong, that’s the lesson.</p>
+<h3>3) Make the invisible visible</h3>
+<p>Most bugs are just hidden state.</p>
+<p>Print things. Log things. Inspect small slices of data.</p>
+<p>When you’re stuck, you don’t need more cleverness. You need more information.</p>
+<h3>4) Reduce the problem until it fits in your head</h3>
+<p>If your script is 400 lines and it’s failing, cut it down.</p>
+<p>Make a tiny version that reproduces the bug.</p>
+<p>The best debugging tool is embarrassment. Make the bug small enough that it feels a little stupid.</p>
+<h3>5) Treat errors as clues, not verdicts</h3>
+<p>A traceback is not a condemnation. It’s a breadcrumb trail.</p>
+<p>Most of the time it’s telling you one of three things:<br />
+- you used the wrong type<br />
+- you used the wrong shape (list vs dict, row vs table)<br />
+- you’re calling something earlier than you think</p>
+<p>If you keep this framing, you stop taking errors personally. You start interrogating them.</p>
+<h2>Part II: Using ChatGPT as a coach (not a code vending machine)</h2>
+<p>ChatGPT knows a lot about programming and especially python. This isn’t magic. Python is popular, documented, and discussed everywhere, so LLMs tend to be unusually good at it.</p>
+<p>That means you can get unstuck fast.</p>
+<p>But there’s a fork in the road.</p>
+<p>A lot of people meet ChatGPT as a <strong>magic code dispenser</strong>. They paste a problem in, get code out, paste it back, and call it done.</p>
+<p>That works… until it doesn’t.</p>
+<p>The real leverage is using it as a tutor while you ship real work.</p>
+<h3>Choose your mode on purpose: Ship mode vs Learn mode</h3>
+<p>Before you ask, decide what you want:</p>
+<ul>
+<li><strong>Ship mode:</strong> “Give me the fastest working solution. Minimal explanation.”</li>
+<li><strong>Learn mode:</strong> “Coach me. Ask questions. Explain the reasoning. Make me do a piece of it.”</li>
+</ul>
+<p>If you always choose ship mode, you’ll get work done until you hit a weird edge case. Then you’re stuck again.</p>
+<p>If you mix in learn mode, the skill compounds. You start needing help less often.</p>
+<p>A tiny habit that pays off: after you fix something, spend two minutes asking:<br />
+- “What was the root cause?”<br />
+- “How would I recognize this earlier next time?”<br />
+- “What’s the smallest test that would have caught it?”</p>
+<h3>The AI tutor rules I give students</h3>
+<h4>1) Paste the exact error and the smallest reproduction</h4>
+<p>Don’t summarize. Copy the traceback.</p>
+<p>Even better: cut your code down until it’s the smallest thing that still breaks.</p>
+<h4>2) Ask for an explanation first, not a patch</h4>
+<p>Try this:</p>
+<ul>
+<li>“Explain this traceback like I’m new, then tell me the 3 most likely causes.”</li>
+</ul>
+<p>You want the mental model, not just the bandaid.</p>
+<h4>3) Ask for two solutions: quick fix and robust fix</h4>
+<ul>
+<li>“Give me a quick fix to unblock me.”</li>
+<li>“Now give me the robust version I won’t regret later.”</li>
+</ul>
+<p>This teaches you tradeoffs: correctness vs convenience, readability vs cleverness.</p>
+<h4>4) Ask it to verify, not just propose</h4>
+<ul>
+<li>“How do I confirm this is actually fixed?”</li>
+<li>“What should I print or assert?”</li>
+</ul>
+<p>Most people skip this. It’s where bugs become reliable knowledge.</p>
+<h4>5) Make it wait for you</h4>
+<p>If your goal is learning, don’t let it do everything.</p>
+<ul>
+<li>“Give me a hint, not the answer. Wait for my attempt, then critique it.”</li>
+</ul>
+<p>This one move turns a code generator into a coach.</p>
+<h3>My favorite prompts (copy/paste)</h3>
+<ul>
+<li>“I want to learn. Don’t write the full code yet. Ask me 5 clarifying questions and then propose a plan.”</li>
+<li>“I’m in ship mode. Provide the smallest patch that fixes this, and a one sentence why.”</li>
+<li>“Explain what changed and why that change fixes it.”</li>
+<li>“Give me a minimal repro of this bug.”</li>
+<li>“Give me 3 test cases I should run right now.”</li>
+</ul>
+<h2>Closing</h2>
+<p>Programming isn’t a talent. It’s a loop.</p>
+<p>If you make the loop fast, kind, and repeatable, you will learn.</p>
+<p>AI doesn’t replace the craft. It makes the craft easier to practice every day, while you’re playing, while you’re building, and while you’re getting real work done.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
@@ -137,7 +236,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
                 <a class="post-tag tag-link" href="/tag/python.html">Python</a> 
             
-                <a class="post-tag tag-link" href="/tag/education.html">Education</a>
+                <a class="post-tag tag-link" href="/tag/education.html">Education</a> 
+            
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a>
             
         </p>
         
