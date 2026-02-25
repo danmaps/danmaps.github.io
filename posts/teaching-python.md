@@ -1,5 +1,5 @@
 ---
-date: 2024-09-11
+date: 2026-02-24
 tags:
   - Programming
   - Python
@@ -15,7 +15,7 @@ There’s a lot of gatekeeping in technical fields like software development. Pe
 
 This has always been wrong, but it has never been more wrong than now.
 
-In 2024, the biggest barrier to learning programming isn’t intelligence. It’s the feedback loop.
+In 2026, the biggest barrier to learning programming isn’t intelligence. It’s the feedback loop.
 
 ## Part I: Thinking like a programmer is shrinking the loop
 
