@@ -1,0 +1,15 @@
+# Keep line endings consistent across Windows dev + Linux CI.
+# The freeze guardrail regenerates HTML on Ubuntu; without this, CRLF/LF diffs cause failures.
+
+* text=auto
+
+# Source posts
+posts/*.md text eol=lf
+
+# Templates + code
+templates/*.html text eol=lf
+*.py text eol=lf
+.github/workflows/*.yml text eol=lf
+
+# Frozen output served by Pages
+docs/**/*.html text eol=lf
