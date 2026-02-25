@@ -171,6 +171,13 @@ def index():
 
 
 @app.route('/drafts')
+def drafts_redirect():
+    """Back-compat redirect to the canonical drafts URL."""
+    from flask import redirect
+    return redirect('/drafts.html', code=302)
+
+
+@app.route('/drafts.html')
 def drafts():
     """List unpublished posts (Draft/Unlisted/Stub).
 

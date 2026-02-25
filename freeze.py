@@ -24,7 +24,7 @@ def post():
 
 @freezer.register_generator
 def drafts():
-    """Freeze the /drafts page.
+    """Freeze the /drafts.html page.
 
     Note: this page lists unpublished posts and is intentionally not linked from the homepage.
     """
@@ -92,12 +92,20 @@ def _ensure_nojekyll():
 
     This site depends on serving paths under /docs, so we force a .nojekyll file
     to exist after freezing (the freeze step may wipe the destination).
+
+    Also cleans up legacy freeze artifacts that can cause guardrail failures.
     """
     dest = app.config.get("FREEZER_DESTINATION") or "docs"
     try:
         os.makedirs(dest, exist_ok=True)
         with open(os.path.join(dest, ".nojekyll"), "w", encoding="utf-8") as f:
             f.write("")
+
+        # Legacy artifact: older /drafts route froze to docs/drafts (no extension).
+        # We now serve drafts at /drafts.html. Remove the old file if it exists.
+        legacy = os.path.join(dest, "drafts")
+        if os.path.isfile(legacy):
+            os.remove(legacy)
     except OSError:
         # Non-fatal; freezing succeeded but Pages might behave oddly.
         pass
