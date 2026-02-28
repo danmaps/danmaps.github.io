@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>A practical GIS skill pattern for on-prem Mistral (and other local LLMs)</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
+        
+        <h1 class="text-light">A practical GIS skill pattern for on-prem Mistral (and other local LLMs)</h1>
+        <!-- Post content -->
+        <p>I’ve been poking at an on-prem LLM (Mistral-class) at work and wanted a pattern that stays practical.</p>
+<p>Not "agents that do everything".</p>
+<p>More like: small, reliable <strong>GIS skills</strong> that take a narrow input, pull the right context from internal docs, and return an artifact you can actually run or review.</p>
+<p>This post is a structured draft of the pattern I want to explore.</p>
+<h2>The "GIS skill" pattern</h2>
+<p>Think of each skill as a small product with four parts:</p>
+<p>1) <strong>Intent + inputs</strong><br />
+2) <strong>Context pipeline (grounding)</strong><br />
+3) <strong>Reasoning scaffold (structured output)</strong><br />
+4) <strong>Guardrails + verification</strong></p>
+<p>If you get those right, even a modest on-prem model becomes useful.</p>
+<h3>1) Intent + inputs</h3>
+<p>Start with a lightweight router that maps a user request to a skill.</p>
+<p>This can be a tiny classifier, a ruleset, or the same LLM running in a constrained prompt.</p>
+<p>Example intents for GIS:</p>
+<ul>
+<li>Explain or troubleshoot: "Why did my buffer tool fail?"</li>
+<li>Generate code: "Write arcpy to select poles within 100 ft of overhead lines"</li>
+<li>Plan an analysis: "How would you assess wildfire risk exposure for service drops?"</li>
+<li>Data QA: "This spreadsheet has duplicates and missing IDs, what should I do?"</li>
+<li>Translate business request → GIS steps: "We need targeted undergrounding candidates"</li>
+</ul>
+<p>Inputs can be:</p>
+<ul>
+<li>User text</li>
+<li>Project context JSON (layer names, paths, spatial reference, selected layer, etc.)</li>
+<li>Optional snippets of schema, field lists, sample rows</li>
+<li>Optional error text and stack traces</li>
+</ul>
+<p>My bias: <strong>make project context a contract</strong>.</p>
+<p>If the skill depends on layer names, geometry types, fields, SR, and units, pass those in explicitly. Don’t make the model guess.</p>
+<h3>2) Context pipeline (grounding)</h3>
+<p>Before the model answers, give it the right context.</p>
+<p>Usually that’s a simple retrieval step that pulls relevant snippets and includes them in the prompt.</p>
+<p>Sources worth retrieving from in a GIS org:</p>
+<ul>
+<li>Internal GIS standards (naming, projections, publishing rules)</li>
+<li>Known-good code snippets (your "recipes")</li>
+<li>Runbooks (common ArcGIS Pro, Portal, service issues)</li>
+<li>Data dictionaries and authoritative dataset descriptions</li>
+<li>Safety/compliance rules (what not to do, what to redact)</li>
+</ul>
+<p>This is where on-prem shines.</p>
+<p>You can retrieve from internal docs without sending anything outside.</p>
+<h3>3) Reasoning scaffold (structured output)</h3>
+<p>Instead of free-form chat, force a predictable structure.</p>
+<p>For GIS skills, I like outputs that look like this:</p>
+<ul>
+<li>Assumptions (short)</li>
+<li>Plan (3 to 7 steps)</li>
+<li>Actionable output (code, parameters, or a checklist)</li>
+<li>Validation (how to test it)</li>
+<li>Failure modes (what could break)</li>
+</ul>
+<p>A key nuance:</p>
+<p>You can keep deeper chain-of-thought private while still requiring a clean artifact. The artifact is what matters.</p>
+<h3>4) Guardrails + verification</h3>
+<p>This is what makes it enterprise-usable.</p>
+<p>Even without fancy infra, you can add guardrails that keep the output honest.</p>
+<p>Guardrails that work well:</p>
+<ul>
+<li>Allowlist actions: the skill can only do specific safe things (generate code, propose GP steps, suggest queries)</li>
+<li>Redaction rules: automatically remove customer PII from prompts and logs</li>
+<li>Citation requirement: when the model states a policy or standard, it must cite a retrieved snippet</li>
+<li>Static checks on code: lint basic arcpy patterns, ban destructive operations unless explicitly allowed</li>
+<li>Confidence gating: if context is missing, the skill asks for a field list or sample rows instead of hallucinating</li>
+</ul>
+<p>GIS-specific guardrails that matter a lot:</p>
+<ul>
+<li>Spatial reference and units checks (the most common geospatial reasoning failure)</li>
+<li>Field existence checks</li>
+<li>Geometry type assumptions made explicit</li>
+</ul>
+<h2>The “stoplight” I would add (small, huge trust win)</h2>
+<p>Every skill output should start with a simple readiness signal:</p>
+<ul>
+<li><strong>Green</strong>: ready to run</li>
+<li><strong>Yellow</strong>: answer 1 to 3 questions first</li>
+<li><strong>Red</strong>: cannot proceed, missing key context</li>
+</ul>
+<p>This is a cheap way to keep users from treating the model like an oracle.</p>
+<h2>Example skill: ArcPy Assistant (code generation you can trust)</h2>
+<p>User request:</p>
+<p>"Select service points within 200 ft of overhead primary, then export to a new feature class."</p>
+<p>Skill flow:</p>
+<p>1) Extract entities<br />
+- Target layer: service points<br />
+- Reference layer: overhead primary<br />
+- Distance: 200 ft<br />
+- Output: new feature class</p>
+<p>2) Retrieve<br />
+- Projection guidance<br />
+- Known-good recipe for SelectLayerByLocation + CopyFeatures</p>
+<p>3) Generate output<br />
+- arcpy script that includes:<br />
+  - environment workspace<br />
+  - projection and unit warning<br />
+  - selection count print<br />
+  - safe output naming</p>
+<p>4) Verification<br />
+- run on a small AOI first<br />
+- confirm units: feet vs meters<br />
+- confirm layer is a feature layer</p>
+<h2>Example skill: Spreadsheet Triage (don’t hallucinate provenance)</h2>
+<p>User request:</p>
+<p>"This spreadsheet has duplicates, missing feeder IDs, and unknown provenance. What should I do?"</p>
+<p>Skill output:</p>
+<ul>
+<li>Triage plan</li>
+<li>profile uniqueness keys</li>
+<li>identify duplicate patterns</li>
+<li>infer likely source system from field patterns (clearly labeled as inference)</li>
+<li>
+<p>propose a canonical ID strategy</p>
+</li>
+<li>
+<p>Generates</p>
+</li>
+<li>pandas script to audit duplicates and missingness</li>
+<li>a data contract checklist for the stakeholder</li>
+</ul>
+<p>Guardrails:</p>
+<ul>
+<li>never invent authoritative sources</li>
+<li>mark every inference as inference</li>
+<li>require SME confirmation before anything gets published</li>
+</ul>
+<h2>Example skill: Analysis Planner (reasoning-heavy, no execution)</h2>
+<p>User request:</p>
+<p>"How do we rank undergrounding candidates by wildfire risk and customer impact?"</p>
+<p>Skill produces:</p>
+<ul>
+<li>scoring framework with weights clearly labeled as a starting point</li>
+<li>required datasets list (authoritative only)</li>
+<li>steps to normalize, join, buffer, aggregate, validate</li>
+<li>pitfalls: MAUP, temporal mismatch, spatial resolution mismatch</li>
+<li>suggested MVP workflow</li>
+</ul>
+<p>This is where a local model can absolutely hang, as long as you scaffold it.</p>
+<h2>What I would build first (high leverage, low risk)</h2>
+<p>If I were prototyping this in a real GIS org, I’d start with:</p>
+<p>1) <strong>Troubleshooter skill</strong><br />
+- Reads ArcGIS errors<br />
+- Suggests fixes<br />
+- Cites internal runbooks</p>
+<p>2) <strong>ArcPy recipe skill</strong><br />
+- Generates code<br />
+- Must include unit and projection checks<br />
+- Must include validation steps</p>
+<p>3) <strong>Data QA skill</strong><br />
+- Spreadsheet profiling<br />
+- Hard guardrail against inventing provenance</p>
+<p>But if I want to prove value quickly, I would start with just one: <strong>Troubleshooter</strong>.</p>
+<h2>What I still need to answer</h2>
+<p>Before this becomes real, the environment matters:</p>
+<ul>
+<li>What exact on-prem model and runtime is available?</li>
+<li>Where will internal snippets live for retrieval (file share, wiki export, git)?</li>
+<li>What counts as authoritative standards in this org?</li>
+</ul>
+<p>If those are fuzzy, the model will be fuzzy too.</p>
+<hr />
+<p>If you’re exploring something similar, I’d love to compare notes: what’s your first skill, and what guardrail saved you from your first embarrassing demo?</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
+            
+                <a class="post-tag tag-link" href="/tag/llm.html">LLM</a> 
+            
+                <a class="post-tag tag-link" href="/tag/on-prem.html">On-Prem</a> 
+            
+                <a class="post-tag tag-link" href="/tag/rag.html">RAG</a> 
+            
+                <a class="post-tag tag-link" href="/tag/arcgis.html">Arcgis</a>
+            
+        </p>
+        
+    </article>
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    
+</body>
+</html>
