@@ -7,7 +7,7 @@ title: About me
 
 ## Hi, I'm Danny.
 
-![Danny McVey](/beta/static/images/danny.jpg)
+![Danny McVey](/static/images/danny.jpg)
 
 With over a decade of experience under my belt, I've honed my skills as a GIS Technical Specialist, focusing on the design, implementation, and administration of large-scale GIS solutions. My roots run deep in geospatial analysis, data management, and workflow automation. I excel at harnessing the power of ArcGIS, crafting Python scripts, and merging GIS capabilities with other enterprise systems to make data more accessible and operations more streamlined.
 
