@@ -104,6 +104,18 @@ If the system must act, give it a small set of safe, named actions. Think of the
 
 Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you can’t diff it, you can’t trust it.
 
+A concrete non-programmer-friendly example is Excel.
+
+- Value-layer approach (high variance): ask an AI to generate 500 rows of computed values and paste them into a spreadsheet.
+  - You may save time up front.
+  - But now you have to do hallucination checks on each row, because you don’t have a reliable way to validate what it did.
+
+- Trust-layer approach (bounded variance upstream): ask the AI to generate a testable formula and explain it.
+  - You validate the logic once.
+  - Then Excel deterministically applies that formula across 500 rows.
+
+In practice, this saves time because you move the non-deterministic work upstream into a small, reviewable artifact (the formula), and you keep the bulk output deterministic.
+
 ### Bounded autonomy
 
 Make it clear what the system can do without confirmation. Everything else requires a human go signal. You do not have to eliminate autonomy. You have to bound it.

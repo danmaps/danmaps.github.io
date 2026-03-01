@@ -194,6 +194,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>If the system must act, give it a small set of safe, named actions. Think of them as APIs: deploy, open PR, run tests, generate report. Each action should be predictable and ideally reversible.</p>
 <h3>Artifact-first output</h3>
 <p>Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you can’t diff it, you can’t trust it.</p>
+<p>A concrete non-programmer-friendly example is Excel.</p>
+<ul>
+<li>Value-layer approach (high variance): ask an AI to generate 500 rows of computed values and paste them into a spreadsheet.</li>
+<li>You may save time up front.</li>
+<li>
+<p>But now you have to do hallucination checks on each row, because you don’t have a reliable way to validate what it did.</p>
+</li>
+<li>
+<p>Trust-layer approach (bounded variance upstream): ask the AI to generate a testable formula and explain it.</p>
+</li>
+<li>You validate the logic once.</li>
+<li>Then Excel deterministically applies that formula across 500 rows.</li>
+</ul>
+<p>In practice, this saves time because you move the non-deterministic work upstream into a small, reviewable artifact (the formula), and you keep the bulk output deterministic.</p>
 <h3>Bounded autonomy</h3>
 <p>Make it clear what the system can do without confirmation. Everything else requires a human go signal. You do not have to eliminate autonomy. You have to bound it.</p>
 <h3>Rollback as a first-class feature</h3>
