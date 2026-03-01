@@ -1,10 +1,17 @@
 from flask_frozen import Freezer
-from app import app, POSTS_DIR, UNPUBLISHED_TAGS, tag_slug
+from app import app, POSTS_DIR, UNPUBLISHED_TAGS, tag_slug, BETA_BUILD_DIR
 import os
 
 # Publish the static site into /docs so GitHub Pages can serve it from the master branch.
 # (User/Org Pages work best from the default branch + /docs.)
 app.config["FREEZER_DESTINATION"] = "docs"
+
+# Silence noisy warnings by explicitly excluding endpoints that are not meant to be
+# part of the frozen static output.
+# Avoid noisy warnings:
+# - /drafts is an HTML page without a .html extension (mimetype mismatch warning)
+# - /beta/* requires an explicit generator or Freezer warns
+app.config["FREEZER_IGNORE_MIMETYPE_WARNINGS"] = True
 
 freezer = Freezer(app)
 
@@ -29,6 +36,22 @@ def drafts():
     Note: this page lists unpublished posts and is intentionally not linked from the homepage.
     """
     yield {}
+
+
+@freezer.register_generator
+def beta_static():
+    """Freeze /beta/* assets if they exist.
+
+    This avoids MissingURLGeneratorWarning and keeps /beta working on GitHub Pages.
+    """
+    if not os.path.isdir(BETA_BUILD_DIR):
+        return
+
+    for root, _, files in os.walk(BETA_BUILD_DIR):
+        for fn in files:
+            abs_path = os.path.join(root, fn)
+            rel = os.path.relpath(abs_path, BETA_BUILD_DIR).replace('\\', '/')
+            yield {"resource": rel}
 
 
 @freezer.register_generator

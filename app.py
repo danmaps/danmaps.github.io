@@ -50,6 +50,14 @@ class CodeHiliteWithLanguagePreprocessor(Preprocessor):
 
 app = Flask(__name__)
 
+# flask-frozen will try to freeze every route it discovers. Some routes exist only
+# for runtime convenience or back-compat and should not be emitted as static files.
+# Keeping these out of the freeze avoids noisy warnings during builds.
+app.config['FREEZER_IGNORE_ENDPOINTS'] = [
+    'drafts_redirect',  # /drafts -> /drafts.html redirect
+    'beta_static',      # /beta/* dev/beta assets (not part of the main frozen site)
+]
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Path to your markdown files
 POSTS_DIR = os.path.join(BASE_DIR, 'posts')
