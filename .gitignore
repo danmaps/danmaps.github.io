@@ -6,3 +6,6 @@ node_modules
 **/.astro
 astro/node_modules
 astro/.astro
+
+# Local Linux venv
+.venv-linux/
