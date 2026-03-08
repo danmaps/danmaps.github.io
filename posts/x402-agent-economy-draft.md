@@ -23,20 +23,20 @@ This post is a draft. I’m writing it to clarify what I believe, not to declare
 
 ## The headline idea
 
-The emerging agent economy is basically this:
+Here’s the core:
 
 - **work becomes an API call**
 - **payment becomes a protocol**
 - **coordination becomes the product**
 
-x402 is interesting because it treats payment as part of the HTTP conversation. Not “go subscribe to this SaaS”, but “here is a request, here is what it costs, here is the proof you paid, here is the result”. That unlocks a bunch of tiny transactions that would be annoying or impossible with human billing.
+x402 matters because it makes payment part of the HTTP conversation. Not “go subscribe to this SaaS,” but “here is a request, here is what it costs, here is the proof you paid, here is the result.” That unlocks tiny transactions that would be annoying or impossible with human billing.
 
 If that holds, we get an ecosystem where agents can:
 
 - discover services
 - pay per request
 - chain services together
-- keep working without needing a human to re-enter a credit card every 4 minutes
+- keep working without a human re-entering a credit card every 4 minutes
 
 ## Post-labor economics: the part people get wrong
 
