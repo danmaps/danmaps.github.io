@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Trust layers and value layers in agentic engineering</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
+        
+        <h1 class="text-light">Trust layers and value layers in agentic engineering</h1>
+        <!-- Post content -->
+        <p>Agentic engineering is still new enough that we keep reaching for old words. Automation. AI. Workflows. None of them quite fit. What we are building now is software that acts with a degree of initiative and variability. The output is not always identical, even when the intent is.</p>
+<p>That variability is the point and also the problem.</p>
+<p>If you want agentic systems to ship and stay shipped, you need a mental model that separates what must be predictable from what is allowed to be creative. The simplest model I have found is this:</p>
+<p><strong>Trust layers are deterministic. Value layers are probabilistic.</strong></p>
+<p>This is not a philosophical distinction. It is an engineering contract.</p>
+<h2>The trust layer</h2>
+<p>The trust layer is the part of an agentic system that should behave like good infrastructure. It should be dull, legible, and mostly the same every time. When it changes, it should change intentionally.</p>
+<p>Trust is earned through repeatability.</p>
+<p>Examples of what belongs in the trust layer:</p>
+<ul>
+<li>When the system runs and why it runs</li>
+<li>What inputs it consumes and how those inputs are validated</li>
+<li>What actions it is allowed to take, and what actions it must never take</li>
+<li>Where it writes output, how it names artifacts, and how it avoids clobbering data</li>
+<li>How it reports status and errors</li>
+<li>How it can be stopped, audited, and rolled back</li>
+</ul>
+<p>Notice what is missing from that list: intelligence.</p>
+<p>The trust layer does not need to be smart. It needs to be correct and inspectable. It is the scaffolding that lets you delegate work without wondering what the system might do to you at 2am.</p>
+<p>In practice, this layer looks like:</p>
+<ul>
+<li>narrow permissions</li>
+<li>fixed directories and file contracts</li>
+<li>explicit schedules</li>
+<li>reproducible builds and deployments</li>
+<li>idempotent scripts</li>
+<li>clear logging</li>
+<li>human-in-the-loop gates for anything expensive, destructive, or public</li>
+</ul>
+<p>If you’ve ever run production systems, this will feel familiar. We are just reasserting a truth that agentic tooling sometimes tries to hand-wave away: you cannot outsource reliability to a model.</p>
+<h2>The value layer</h2>
+<p>The value layer is where the agent earns its keep. This is the part that benefits from non-determinism, because the point is not to repeat the same thing. The point is to explore, synthesize, and adapt.</p>
+<p>Examples of value-layer work:</p>
+<ul>
+<li>generating drafts</li>
+<li>summarizing messy context</li>
+<li>proposing options</li>
+<li>writing code</li>
+<li>refactoring</li>
+<li>analyzing logs and suggesting likely root causes</li>
+<li>turning vague intent into concrete artifacts</li>
+</ul>
+<p>This layer is probabilistic by nature. Even with the same prompt, you can get different answers. That can be scary if you expect infrastructure behavior. But it is extremely powerful if you treat it like creative labor with constraints.</p>
+<p>Variance is not a bug in the value layer. It is the search mechanism.</p>
+<h2>The failure mode: letting value eat trust</h2>
+<p>A lot of AI agent demos collapse because they let the value layer creep into trust territory.</p>
+<p>The system starts out by drafting a response. Then it starts making decisions about permissions, environments, deployment, account access, or long-lived state. The agent becomes the operator.</p>
+<p>That is the moment you stop engineering and start gambling.</p>
+<p>When you let probabilistic behavior touch privileged actions directly, you will eventually get:</p>
+<ul>
+<li>unexpected side effects</li>
+<li>unclear root causes</li>
+<li>irreproducible incidents</li>
+<li>"it worked yesterday" whiplash</li>
+<li>creeping permission creep to make the failures stop</li>
+<li>slow erosion of your willingness to delegate anything meaningful</li>
+</ul>
+<p>The antidote is to keep the trust layer boring and the value layer fenced.</p>
+<h2>The interface between layers: contracts, not vibes</h2>
+<p>The most important part of this model is the seam between the two layers. The seam is where you specify contracts that do not depend on the model being in a good mood.</p>
+<p>A few patterns that work well:</p>
+<h3>Deterministic triggers</h3>
+<p>Decide what causes the system to run. Keep it explicit. Scheduled reminders, webhook events, manual commands. Not "the agent felt like it".</p>
+<h3>Narrowly scoped actuators</h3>
+<p>If the system must act, give it a small set of safe, named actions. Think of them as APIs: deploy, open PR, run tests, generate report. Each action should be predictable and ideally reversible.</p>
+<h3>Artifact-first output</h3>
+<p>Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you can’t diff it, you can’t trust it.</p>
+<p>A concrete non-programmer-friendly example is Excel.</p>
+<ul>
+<li>Value-layer approach (high variance): ask an AI to generate 500 rows of computed values and paste them into a spreadsheet.</li>
+<li>You may save time up front.</li>
+<li>
+<p>But now you have to do hallucination checks on each row, because you don’t have a reliable way to validate what it did.</p>
+</li>
+<li>
+<p>Trust-layer approach (bounded variance upstream): ask the AI to generate a testable formula and explain it.</p>
+</li>
+<li>You validate the logic once.</li>
+<li>Then Excel deterministically applies that formula across 500 rows.</li>
+</ul>
+<p>In practice, this saves time because you move the non-deterministic work upstream into a small, reviewable artifact (the formula), and you keep the bulk output deterministic.</p>
+<h3>Bounded autonomy</h3>
+<p>Make it clear what the system can do without confirmation. Everything else requires a human go signal. You do not have to eliminate autonomy. You have to bound it.</p>
+<h3>Rollback as a first-class feature</h3>
+<p>When something goes wrong, the fastest route back to calm is a known rollback story. Agentic systems need this more than traditional software because the failure surface is wider.</p>
+<h2>Why this model matters</h2>
+<p>Agentic engineering is not about making the agent smarter. It is about making the overall system more dependable while still capturing the upside of a generative component.</p>
+<p>The trust layer is what makes delegation possible.</p>
+<p>The value layer is what makes delegation worth it.</p>
+<p>When you get the split right, a few things happen:</p>
+<ul>
+<li>You stop fearing the agent, because it cannot reach the blast radius</li>
+<li>You stop over-constraining the agent, because failure is containable</li>
+<li>You get better at operationalizing creativity: drafts, options, prototypes, refactors</li>
+<li>You build systems that scale beyond your attention</li>
+</ul>
+<p>This is the core discipline. Not prompts. Not vibes. Not agent frameworks.</p>
+<p>Build a deterministic spine, then let the probabilistic muscles do the work.</p>
+<p>That is how you get both trust and value without fooling yourself about which is which.</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/agentic-engineering.html">Agentic Engineering</a> 
+            
+                <a class="post-tag tag-link" href="/tag/agents.html">Agents</a> 
+            
+                <a class="post-tag tag-link" href="/tag/reliability.html">Reliability</a> 
+            
+                <a class="post-tag tag-link" href="/tag/ops.html">Ops</a>
+            
+        </p>
+        
+    </article>
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    
+</body>
+</html>

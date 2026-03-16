@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>x402, the agent economy, and resilience in a post-labor world (draft)</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
+        
+        <h1 class="text-light">x402, the agent economy, and resilience in a post-labor world (draft)</h1>
+        <!-- Post content -->
+        <p>I think we are stumbling into a weird new market structure.</p>
+<p>Not “robots take all jobs overnight” (that is still mostly sci-fi), but a slower and stranger transition where:</p>
+<ul>
+<li>you can buy <em>micro-units of work</em> from software agents</li>
+<li>agents can pay other agents and services (and keep receipts)</li>
+<li>the price of “doing a small thing” collapses</li>
+<li>the value of “knowing what to do next” goes up</li>
+</ul>
+<p>This post is a draft. I’m writing it to clarify what I believe, not to declare some grand theory.</p>
+<h2>The headline idea</h2>
+<p>Here’s the core:</p>
+<ul>
+<li><strong>work becomes an API call</strong></li>
+<li><strong>payment becomes a protocol</strong></li>
+<li><strong>coordination becomes the product</strong></li>
+</ul>
+<p>x402 matters because it makes payment part of the HTTP conversation. Not “go subscribe to this SaaS,” but “here is a request, here is what it costs, here is the proof you paid, here is the result.” That unlocks tiny transactions that would be annoying or impossible with human billing.</p>
+<p>If that holds, we get an ecosystem where agents can:</p>
+<ul>
+<li>discover services</li>
+<li>pay per request</li>
+<li>chain services together</li>
+<li>keep working without a human re-entering a credit card every 4 minutes</li>
+</ul>
+<h2>Post-labor economics: the part people get wrong</h2>
+<p>When people say “post-labor”, they often mean “nobody works”. That is not how it feels on the ground.</p>
+<p>What actually happens first is:</p>
+<ul>
+<li>routine labor becomes cheap</li>
+<li><em>judgment</em> becomes scarce</li>
+<li>trust and taste become differentiators</li>
+</ul>
+<p>Even with very strong AI, the world is still full of constraints:</p>
+<ul>
+<li>messy data</li>
+<li>vague goals</li>
+<li>conflicting incentives</li>
+<li>real-world consequences</li>
+<li>partial observability</li>
+</ul>
+<p>So the scarce resource becomes <strong>good decisions under uncertainty</strong>.</p>
+<h2>The resilience angle: diversify, but do it by being useful</h2>
+<p>If AGI is coming (or even just “AI that is good enough and cheap enough”), then resilience looks less like hoarding tools and more like building a portfolio of <em>ways to be valuable</em>.</p>
+<p>Not “side hustles” in the cringe sense. More like:</p>
+<ul>
+<li>multiple small income streams</li>
+<li>each tied to a real, concrete outcome for somebody</li>
+<li>each flexible enough to survive tech churn</li>
+</ul>
+<p>The strongest version of this is: <strong>sell leverage, not hours</strong>.</p>
+<h3>What “real value” looks like in the agent economy</h3>
+<p>Some examples that feel durable:</p>
+<ul>
+<li>turning messy internal workflows into a simple checklist + tool</li>
+<li>packaging institutional knowledge into repeatable artifacts</li>
+<li>building boring automation that never breaks</li>
+<li>doing the last 20% of integration work (where most of the pain lives)</li>
+</ul>
+<p>Agents can do big chunks of the mechanical work, but you still need someone to:</p>
+<ul>
+<li>define the win condition</li>
+<li>constrain the blast radius</li>
+<li>verify outputs</li>
+<li>decide what to ship</li>
+</ul>
+<h2>“Use as many skills as possible” without becoming a generalist blob</h2>
+<p>There’s a trap here.</p>
+<p>If you try to be good at everything, you become memorable at nothing.</p>
+<p>The better play is:</p>
+<ol>
+<li>pick a domain where you actually understand the stakes</li>
+<li>use AI/agents to expand your <em>throughput</em></li>
+<li>keep the core loop human: judgment, trust, responsibility</li>
+</ol>
+<p>A practical way to think about “skills” is a stack:</p>
+<ul>
+<li><strong>Domain skill</strong>: the thing you know that is hard to fake (GIS, operations, music tooling, whatever)</li>
+<li><strong>Production skill</strong>: shipping, testing, docs, packaging, release discipline</li>
+<li><strong>Distribution skill</strong>: writing, teaching, community, showing your work</li>
+<li><strong>Coordination skill</strong>: making small projects converge into finished products</li>
+</ul>
+<p>Agents can amplify production. They can help with distribution. They are mediocre at coordination unless you give them tight constraints.</p>
+<h2>A concrete mental model: the work graph</h2>
+<p>In a traditional job, tasks are a queue.</p>
+<p>In an agent economy, tasks are a graph:</p>
+<ul>
+<li>you decompose a problem into nodes</li>
+<li>you farm nodes out to tools, services, and agents</li>
+<li>you pay per node</li>
+<li>you validate edges (does this output actually fit the next step?)</li>
+</ul>
+<p>x402 makes the “pay per node” part smooth.</p>
+<p>The human value is not the typing. It’s the graph design.</p>
+<h2>What I’m doing about it (imperfectly)</h2>
+<p>My current resilience plan is boring:</p>
+<ul>
+<li>keep building small tools that remove real friction</li>
+<li>write docs so future-me is not cursed</li>
+<li>ship more often, with smaller diffs</li>
+<li>keep the income mix diverse</li>
+</ul>
+<p>The main bet is that <strong>flexibility is a skill</strong>.</p>
+<p>Flexibility means:</p>
+<ul>
+<li>you can learn a new toolchain fast</li>
+<li>you can move across domains without losing your standards</li>
+<li>you can communicate clearly with humans and with machines</li>
+</ul>
+<p>That last part is the sneaky one. In the future, you will spend more time <em>specifying</em> work than <em>doing</em> work.</p>
+<h2>Open questions</h2>
+<p>Things I don’t fully know yet:</p>
+<ul>
+<li>what pricing looks like when agents negotiate directly</li>
+<li>whether “verification” becomes a first-class market (pay for tests, proofs, audits)</li>
+<li>whether we get a few dominant agent brokers or a long tail of tiny specialists</li>
+</ul>
+<p>But the direction feels clear: more work will be bought like compute.</p>
+<p>And if that is true, the path to resilience is to be the person who can reliably turn compute into outcomes.</p>
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
+            
+                <a class="post-tag tag-link" href="/tag/agents.html">Agents</a> 
+            
+                <a class="post-tag tag-link" href="/tag/economics.html">Economics</a> 
+            
+                <a class="post-tag tag-link" href="/tag/x402.html">X402</a> 
+            
+                <a class="post-tag tag-link" href="/tag/resilience.html">Resilience</a>
+            
+        </p>
+        
+    </article>
+</div>
+
+<script src="/static/copy-code.js"></script>
+
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    
+</body>
+</html>
