@@ -42,6 +42,9 @@ Draft posts must include at least one of these tags:
 - `Stub`
 - `Unlisted`
 
+Default rule: keep new posts off the homepage first by using one of those tags.
+Push the draft to the repo before publishing unless Danny says otherwise.
+
 The site hides these from the homepage, but they may still exist in the generated site if someone knows the URL.
 
 ## Publishing workflow

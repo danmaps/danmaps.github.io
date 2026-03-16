@@ -23,6 +23,7 @@ Rendering/build system:
 
 2. **Prefer drafting over shipping.**
    - New posts should default to `Draft` in front matter unless the user clearly asks to publish.
+   - Default behavior is to push drafts to `master` with homepage-hiding tags intact unless Danny says otherwise.
 
 3. **Do not invent experiences or outcomes.**
    - Posts should be grounded in real work, real experiments, real code, real notes, or real opinions.
@@ -102,3 +103,4 @@ High-fit topics include:
 - corporate assistant tone
 - bloated introductions
 - publishing without review
+w
