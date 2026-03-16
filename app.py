@@ -152,27 +152,6 @@ def _list_posts() -> list[dict]:
     return posts
 
 
-def _resolve_beta_resource(resource: str) -> str | None:
-    """Return the relative path to a beta asset if it exists."""
-    if not os.path.isdir(BETA_BUILD_DIR):
-        return None
-
-    cleaned = (resource or '').strip()
-    cleaned = cleaned.lstrip('/\\')
-    cleaned = cleaned.rstrip('/\\')
-    if not cleaned:
-        cleaned = 'index.html'
-
-    candidate = os.path.join(BETA_BUILD_DIR, cleaned)
-    if os.path.isdir(candidate):
-        cleaned = os.path.join(cleaned, 'index.html')
-        candidate = os.path.join(BETA_BUILD_DIR, cleaned)
-
-    if os.path.isfile(candidate):
-        return cleaned.replace('\\', '/')
-
-    return None
-
 @app.route('/')
 def index():
     posts = _list_posts()
@@ -195,15 +174,6 @@ def drafts():
     """
     posts = _list_posts()
     return render_template('drafts.html', posts=posts)
-
-
-@app.route('/beta', defaults={'resource': ''}, strict_slashes=False)
-@app.route('/beta/<path:resource>')
-def beta_static(resource: str):
-    resolved = _resolve_beta_resource(resource)
-    if not resolved:
-        abort(404)
-    return send_from_directory(BETA_BUILD_DIR, resolved)
 
 
 @app.route('/post/<post_name>.html')

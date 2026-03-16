@@ -3,9 +3,7 @@ github-io-venv/*
 __pycache__/
 *.pyc
 node_modules
-**/.astro
-astro/node_modules
-astro/.astro
 
 # Local Linux venv
 .venv-linux/
+.secfix-venv/

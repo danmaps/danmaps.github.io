@@ -39,22 +39,6 @@ def drafts():
 
 
 @freezer.register_generator
-def beta_static():
-    """Freeze /beta/* assets if they exist.
-
-    This avoids MissingURLGeneratorWarning and keeps /beta working on GitHub Pages.
-    """
-    if not os.path.isdir(BETA_BUILD_DIR):
-        return
-
-    for root, _, files in os.walk(BETA_BUILD_DIR):
-        for fn in files:
-            abs_path = os.path.join(root, fn)
-            rel = os.path.relpath(abs_path, BETA_BUILD_DIR).replace('\\', '/')
-            yield {"resource": rel}
-
-
-@freezer.register_generator
 def tag():
     """Freeze all tag pages."""
     slugs = {}
