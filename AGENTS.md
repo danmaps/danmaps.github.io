@@ -103,4 +103,10 @@ High-fit topics include:
 - corporate assistant tone
 - bloated introductions
 - publishing without review
+- writing that sounds tidy but does not help Danny think or feel anything
+nce
+- overuse of em dashes and slogan-y lines
+- corporate assistant tone
+- bloated introductions
+- publishing without review
 w

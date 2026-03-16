@@ -78,6 +78,8 @@ Good post types for this repo:
 - software/tooling lessons
 - productivity and leverage
 - systems and career reflections grounded in real work
+- archive-mined idea essays that help Danny see the thread in his own thinking
+- pieces that sharpen an idea, tension, or direction rather than merely reporting facts
 
 Avoid:
 - empty hype
@@ -106,4 +108,6 @@ python freeze.py
 ## Safety rule
 
 Do not publish automatically unless Danny explicitly asks.
+Drafting is fine. Publishing is a separate decision.
+nny explicitly asks.
 Drafting is fine. Publishing is a separate decision.
