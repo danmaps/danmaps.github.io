@@ -63,12 +63,16 @@ The site hides these from the homepage, but they may still exist in the generate
 ### Prepare to publish
 1. Remove `Draft` / `Stub` / `Unlisted` tags
 2. Verify title, date, and tags
-3. Build the static site:
+3. Freeze and stage generated output:
    ```bash
-   python freeze.py
+   ./scripts/freeze_and_stage.sh
    ```
-4. Review changes in `docs/`
+4. Review staged changes in `posts/` and `docs/`
 5. Commit and push
+
+Why this matters:
+- `freeze.py` can create new generated files under `docs/`, especially `docs/tag/*.html`
+- using the helper avoids missing new tag pages when a new tag appears
 
 ## Style guidance
 

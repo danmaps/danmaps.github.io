@@ -79,10 +79,14 @@ Only when explicitly asked:
 1. Remove `Draft` / `Stub` / `Unlisted` tags
 2. Run:
    ```bash
-   python freeze.py
+   ./scripts/freeze_and_stage.sh
    ```
-3. Review resulting changes in `docs/`
+3. Review resulting staged changes in `posts/` and `docs/`
 4. Commit and push if requested
+
+Important:
+- Do not hand-maintain a `git add` list for generated files.
+- New tags can create new `docs/tag/*.html` pages, and those must be committed too.
 
 ## Good topics
 
