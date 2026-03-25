@@ -85,6 +85,7 @@ Only when explicitly asked:
 4. Commit and push if requested
 
 Important:
+- Do not tell humans or agents to run `python freeze.py` directly as the publish step.
 - Do not hand-maintain a `git add` list for generated files.
 - New tags can create new `docs/tag/*.html` pages, and those must be committed too.
 

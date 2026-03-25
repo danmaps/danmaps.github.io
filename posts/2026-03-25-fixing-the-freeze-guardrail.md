@@ -74,9 +74,11 @@ I added a small repo-local helper:
 ./scripts/freeze_and_stage.sh
 ```
 
+That is now the human-facing publish step.
+
 It does three things:
 
-1. runs `freeze.py`
+1. runs the freeze build
 2. ensures `docs/.nojekyll`
 3. stages `posts/` and `docs/` together
 

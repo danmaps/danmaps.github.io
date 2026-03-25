@@ -27,6 +27,6 @@ When I’m ready to publish:
 1. Remove `stub` / `draft` from the tags
 2. Run the freeze step to generate the static site into `docs/`:
    ```bash
-   python freeze.py
+   ./scripts/freeze_and_stage.sh
    ```
 3. Commit and push

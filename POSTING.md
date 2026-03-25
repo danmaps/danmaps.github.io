@@ -104,10 +104,13 @@ Run the dev server:
 python app.py
 ```
 
-Freeze the static site:
+Freeze and stage the static site for review/commit:
 ```bash
-python freeze.py
+./scripts/freeze_and_stage.sh
 ```
+
+Advanced note:
+- `freeze.py` is still the underlying build step, but humans should use the helper so new generated files under `docs/` are staged automatically.
 
 ## Safety rule
 
