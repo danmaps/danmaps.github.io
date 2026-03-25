@@ -134,8 +134,47 @@ The names are no longer floating abstractions. They are attached to a repo with:
 - local model checks
 - on-disk mission state
 - clearer separation between definitions and execution
+- a local UI for inspecting missions, prompts, outputs, and reports
+- stronger validation around the artifacts a run is supposed to produce
 
 Still early. Still incomplete. But at least now the words are attached to something.
+
+## The part that got more real after the first slice
+
+The first honest vertical slice was not the end of the useful work. It was the moment when the next layer of problems became visible.
+
+Once Symphony could accept missions and persist runs, the obvious question was: **how do you tell whether the system actually did useful work?**
+
+That pushed the project toward a more concrete standard.
+
+A mission should not just emit a plausible blob of text and call it success. It should leave behind artifacts you can inspect.
+
+If a mission says it created a brief, I want a real `brief.md`.
+If it says it created a plan, I want a real `plan.md`.
+If it claims to have built a tiny app, I want concrete files like `README.md`, `index.html`, and `app.js`.
+
+That shift sounds small, but it changes the whole feel of the system.
+
+It means:
+
+- validation can target real files instead of vibes
+- repair passes can focus on what is missing
+- the UI can show evidence instead of just status labels
+- debugging gets less mystical
+
+That is the direction I trust.
+
+## Inspectability is the real product feature
+
+I keep coming back to the same idea: orchestration is only interesting if the work stays inspectable.
+
+The market is already full of systems that sound intelligent in a demo and become opaque the second something goes wrong. I do not want Symphony to optimize for that feeling.
+
+I want it to optimize for a different question:
+
+**If a run fails, can I tell what happened without reading source code for an hour?**
+
+That is why the local UI mattered more than I expected. Once mission details, validation state, prompts, artifacts, and reports are easy to browse, the project stops feeling like architecture theater and starts feeling like something you can actually operate.
 
 ## What is next
 
@@ -144,8 +183,8 @@ The roadmap is still pretty simple:
 - worker dispatch
 - actual step execution
 - run / replay flows
-- better validation
-- reporting
+- better validation and repair loops
+- reporting that makes results legible without overexplaining them
 
 In other words: the part where Symphony actually starts doing work instead of just describing how work should be done.
 

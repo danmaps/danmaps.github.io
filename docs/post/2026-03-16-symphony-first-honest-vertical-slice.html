@@ -216,16 +216,41 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>local model checks</li>
 <li>on-disk mission state</li>
 <li>clearer separation between definitions and execution</li>
+<li>a local UI for inspecting missions, prompts, outputs, and reports</li>
+<li>stronger validation around the artifacts a run is supposed to produce</li>
 </ul>
 <p>Still early. Still incomplete. But at least now the words are attached to something.</p>
+<h2>The part that got more real after the first slice</h2>
+<p>The first honest vertical slice was not the end of the useful work. It was the moment when the next layer of problems became visible.</p>
+<p>Once Symphony could accept missions and persist runs, the obvious question was: <strong>how do you tell whether the system actually did useful work?</strong></p>
+<p>That pushed the project toward a more concrete standard.</p>
+<p>A mission should not just emit a plausible blob of text and call it success. It should leave behind artifacts you can inspect.</p>
+<p>If a mission says it created a brief, I want a real <code>brief.md</code>.<br />
+If it says it created a plan, I want a real <code>plan.md</code>.<br />
+If it claims to have built a tiny app, I want concrete files like <code>README.md</code>, <code>index.html</code>, and <code>app.js</code>.</p>
+<p>That shift sounds small, but it changes the whole feel of the system.</p>
+<p>It means:</p>
+<ul>
+<li>validation can target real files instead of vibes</li>
+<li>repair passes can focus on what is missing</li>
+<li>the UI can show evidence instead of just status labels</li>
+<li>debugging gets less mystical</li>
+</ul>
+<p>That is the direction I trust.</p>
+<h2>Inspectability is the real product feature</h2>
+<p>I keep coming back to the same idea: orchestration is only interesting if the work stays inspectable.</p>
+<p>The market is already full of systems that sound intelligent in a demo and become opaque the second something goes wrong. I do not want Symphony to optimize for that feeling.</p>
+<p>I want it to optimize for a different question:</p>
+<p><strong>If a run fails, can I tell what happened without reading source code for an hour?</strong></p>
+<p>That is why the local UI mattered more than I expected. Once mission details, validation state, prompts, artifacts, and reports are easy to browse, the project stops feeling like architecture theater and starts feeling like something you can actually operate.</p>
 <h2>What is next</h2>
 <p>The roadmap is still pretty simple:</p>
 <ul>
 <li>worker dispatch</li>
 <li>actual step execution</li>
 <li>run / replay flows</li>
-<li>better validation</li>
-<li>reporting</li>
+<li>better validation and repair loops</li>
+<li>reporting that makes results legible without overexplaining them</li>
 </ul>
 <p>In other words: the part where Symphony actually starts doing work instead of just describing how work should be done.</p>
 <p>That is fine. The point of this pass was not to pretend the orchestration layer is mature. The point was to get to a first honest vertical slice.</p>
