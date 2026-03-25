@@ -14,6 +14,7 @@ I have spent a lot of recent time making systems more real.
 
 Not “AI is the future” real.
 Not demo-thread real.
+Not the kind of real where a project earns a lot of fancy nouns before it earns a customer.
 
 Real in the quieter sense:
 
@@ -32,6 +33,8 @@ Once the system starts feeling real, the next question is no longer “can I bui
 It becomes: **can this connect to a real customer and produce real paid work?**
 
 That is a different kind of challenge.
+
+And honestly, it is the one that matters now.
 
 ## System validation is not customer validation
 
@@ -73,7 +76,7 @@ That is much less grand than “AI-powered orchestration platform.”
 
 It is also much easier to buy.
 
-This is one of those annoying product truths that keeps showing up: the smarter the underlying system gets, the simpler the surface offer often needs to become.
+This is one of those annoying product truths that keeps showing up: the smarter the underlying system gets, the dumber-simple the surface offer often needs to become.
 
 ## The first customer is probably not buying the grand vision
 
@@ -99,6 +102,9 @@ Something like:
 - here is the simple tool that made the problem easier to see and act on
 
 That is a much more believable path to a first paid engagement.
+
+It is also more honest.
+A lot of early product positioning goes sideways because people try to sell the machine before they can clearly describe the pain it removes.
 
 ## “AI” is rarely the wedge
 
