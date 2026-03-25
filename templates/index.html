@@ -16,26 +16,26 @@ Danny McVey
   {% for post in posts %}
   {% if 'Stub' not in post.tags and 'Draft' not in post.tags and 'Unlisted' not in post.tags %}
   <div class="container bg-dark">
-    <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
       <div class="post-card card bg-dark">
-        <div class="card-body retro-text flicker bg-dark border">
-          <div class="post-header text-light">
-            <h2 class="post-title text-light">{{ post.title }}</h2>
-            <div class="post-meta bg-dark">
-              <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
-              {% if post.tag_objs %}
-              <div class="post-tags bg-dark">
-                {% for tag in post.tag_objs %}
-                <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
-                {% endfor %}
+        <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
+          <div class="card-body retro-text flicker bg-dark border">
+            <div class="post-header text-light">
+              <h2 class="post-title text-light">{{ post.title }}</h2>
+              <div class="post-meta bg-dark">
+                <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
               </div>
-              {% endif %}
             </div>
           </div>
+        </a>
+        {% if post.tag_objs %}
+        <div class="post-tags bg-dark px-3 pb-3">
+          {% for tag in post.tag_objs %}
+          <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
   </div>
-  </a>
   {% endif %}
   {% endfor %}
 </div>
