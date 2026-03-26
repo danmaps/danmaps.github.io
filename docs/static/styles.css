@@ -126,34 +126,67 @@ pre code {
 
 /* Post List and Cards */
 .post-list {
-    margin: 20px 0;
+    margin: 28px 0;
     display: grid;
-    gap: 18px;
+    gap: 26px;
 }
 
 .home-post-card {
-    border: 1px solid rgba(120, 140, 160, 0.35) !important;
-    border-radius: 14px;
+    position: relative;
+    border: 1px solid rgba(120, 140, 160, 0.48) !important;
+    border-radius: 16px;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(12, 16, 24, 0.96), rgba(0, 0, 0, 0.98)) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    background: linear-gradient(180deg, rgba(14, 18, 27, 0.98), rgba(4, 6, 11, 1)) !important;
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.home-post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(86, 156, 214, 0), rgba(86, 156, 214, 0.65), rgba(86, 156, 214, 0));
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.home-post-card:nth-child(even) {
+    background: linear-gradient(180deg, rgba(17, 22, 31, 0.98), rgba(7, 9, 15, 1)) !important;
+    border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+.home-post-card:nth-child(even)::before {
+    background: linear-gradient(90deg, rgba(148, 163, 184, 0), rgba(148, 163, 184, 0.55), rgba(148, 163, 184, 0));
 }
 
 .home-post-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(86, 156, 214, 0.65) !important;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 22px rgba(86, 156, 214, 0.12);
+    transform: translateY(-3px);
+    border-color: rgba(86, 156, 214, 0.72) !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 24px rgba(86, 156, 214, 0.14);
 }
 
 .home-post-main {
     display: block;
+    position: relative;
+}
+
+.home-post-main::after {
+    content: '';
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 0;
+    height: 1px;
+    background: rgba(148, 163, 184, 0.16);
 }
 
 .home-post-body {
     display: block;
     width: 100%;
-    padding: 1.15rem 1.25rem 0.85rem 1.25rem;
+    padding: 1.2rem 1.25rem 0.95rem 1.25rem;
     background: transparent;
 }
 
@@ -187,8 +220,8 @@ pre code {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 0 1.25rem 1.1rem 1.25rem;
+    gap: 14px;
+    padding: 0.9rem 1.25rem 1.15rem 1.25rem;
 }
 
 .post-date {
@@ -211,15 +244,19 @@ pre code {
 }
 
 .post-tag {
-    background: rgba(22, 27, 34, 0.95);
-    border: 1px solid rgba(86, 156, 214, 0.22);
-    color: #cbd5e1;
+    background: rgba(26, 31, 39, 0.96);
+    border: 1px solid rgba(86, 156, 214, 0.26);
+    color: #d6dee8;
     padding: 4px 10px;
     border-radius: 999px;
     font-size: 0.76rem;
     margin-left: 0;
     display: inline-block;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-post-card:nth-child(even) .post-tag {
+    border-color: rgba(148, 163, 184, 0.24);
 }
 
 a.post-tag {
@@ -235,6 +272,11 @@ a.post-tag:hover {
     border-color: rgba(86, 156, 214, 0.55);
     color: #ffffff;
     transform: translateY(-1px);
+}
+
+.home-post-card:nth-child(even) .post-tag:hover {
+    background-color: rgba(148, 163, 184, 0.12);
+    border-color: rgba(148, 163, 184, 0.5);
 }
 
 .post-card-link {
@@ -256,8 +298,18 @@ a.post-tag:hover {
 }
 
 @media (max-width: 768px) {
+    .post-list {
+        gap: 18px;
+    }
+
+    .home-post-main::after {
+        left: 1rem;
+        right: 1rem;
+    }
+
     .home-post-footer {
         align-items: flex-start;
+        padding: 0.8rem 1rem 1rem 1rem;
     }
 
     .home-post-tags {
