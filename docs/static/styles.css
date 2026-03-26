@@ -164,8 +164,8 @@ pre code {
 
 .home-post-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(86, 156, 214, 0.72) !important;
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 24px rgba(86, 156, 214, 0.14);
+    border-color: rgba(148, 163, 184, 0.72) !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), 0 0 24px rgba(148, 163, 184, 0.12);
 }
 
 .home-post-main {
@@ -245,7 +245,7 @@ pre code {
 
 .post-tag {
     background: rgba(20, 24, 31, 0.98);
-    border: 1px solid rgba(86, 156, 214, 0.35);
+    border: 1px solid rgba(148, 163, 184, 0.34);
     color: #d6dee8;
     padding: 4px 9px;
     border-radius: 3px;
@@ -259,10 +259,6 @@ pre code {
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.home-post-card:nth-child(even) .post-tag {
-    border-color: rgba(148, 163, 184, 0.3);
-}
-
 a.post-tag {
     text-decoration: none;
 }
@@ -272,16 +268,10 @@ a.post-tag:hover {
 }
 
 .post-tag:hover {
-    background-color: rgba(86, 156, 214, 0.16);
-    border-color: rgba(86, 156, 214, 0.65);
-    color: #ffffff;
-    transform: translateY(-1px);
-    box-shadow: 0 0 10px rgba(86, 156, 214, 0.12);
-}
-
-.home-post-card:nth-child(even) .post-tag:hover {
     background-color: rgba(148, 163, 184, 0.14);
     border-color: rgba(148, 163, 184, 0.58);
+    color: #ffffff;
+    transform: translateY(-1px);
     box-shadow: 0 0 10px rgba(148, 163, 184, 0.1);
 }
 
