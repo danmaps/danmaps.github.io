@@ -1,5 +1,5 @@
 ---
-title: "Avoiding the Dead Workplace: Keeping Humans Alive in an AI-Heavy Workflow"
+title: "Avoiding the Dead Workplace: Keeping Human Ownership Alive in an AI-Heavy Workflow"
 date: 2026-04-14
 tags:
   - Draft
