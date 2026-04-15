@@ -10,7 +10,7 @@ tags:
   - governance
 ---
 
-![Define Success Before the System Does](/static/images/define-success-route-hero.jpg)
+<img src="/static/images/define-success-route-hero.jpg" alt="Define Success Before the System Does" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 We often talk about evals as if they are just measurement tools.
 
