@@ -2,7 +2,6 @@
 title: "Define Success Before the System Does"
 date: 2026-04-15
 tags:
-  - Draft
   - AI
   - evaluation
   - systems
