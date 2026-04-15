@@ -10,6 +10,8 @@ tags:
   - workplace
 ---
 
+<img src="/static/images/dead-workplace-hero.jpg" alt="Dead workplace office scene" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 Lately I’ve been thinking about a workplace version of the “dead internet theory.”
 
 The original idea is that large parts of the internet are now bots talking to bots, generating content for other bots, until the human signal gets drowned out. No conspiracy required — just incentives, scale, and automation doing what they’re good at.
