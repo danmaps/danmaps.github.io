@@ -10,7 +10,8 @@ tags:
   - workplace
 ---
 
-<img src="/static/images/dead-workplace-hero.jpg" alt="Dead workplace office scene" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+<img src="/static/images/dead-workplace-hero.jpg" alt="Dead workplace office scene" style="width:100%; display:block; margin: 12px 0 6px 0; border-radius: 12px;" />
+<p style="margin: 0 0 18px 0; color: #bbbbbb; font-size: 0.95rem; font-style: italic;">“Oops, you’ve been optimized out of the org.”</p>
 
 Lately I’ve been thinking about a workplace version of the “dead internet theory.”
 
