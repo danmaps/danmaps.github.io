@@ -39,6 +39,6 @@ A few recurring themes on this site:
 
 Outside of work, I’m usually thinking about side projects, maps, homelab stuff, writing, or trying to keep some momentum on exercise and life admin.
 
-I also spend a lot of time chasing interesting tool ideas — especially the kind that start small, solve one real problem, and then hint at something bigger.
+I’m also a dad to two little boys, which means a lot of life is happening in the middle of all the projects and ideas.
 
 If you want to connect, you can find me on [LinkedIn](https://www.linkedin.com/in/dannymcvey/).
