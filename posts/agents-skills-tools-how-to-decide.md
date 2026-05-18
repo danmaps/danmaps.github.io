@@ -10,6 +10,13 @@ tags:
 
 Most automation choices fail for a boring reason: you picked the wrong shape.
 
+<img src="/static/images/agents-skills-tools-decision-guide-hero.png" alt="Illustration of three workflow shapes representing agents, skills, and deterministic tools" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
+A lot of current AI tooling pressure nudges people toward agents first. That is usually backwards. In practice, many tasks that get framed as "agentic" are really one of two things:
+
+- a known workflow with some branching
+- a deterministic transformation wrapped in too much theater
+
 You can ship the same outcome three ways:
 
 1. **An agent** (autonomous-ish, multi-step, context-heavy)
@@ -236,5 +243,9 @@ Default to:
 1) agent for exploration
 2) skill for repeatable human-in-the-loop workflows
 3) deterministic tool for production, CI, and anything with consequences
+
+Or more bluntly:
+
+> workflows first, agents second, deterministic tools for anything that has to keep working.
 
 If you do it in the opposite direction, you’ll waste time and build brittle junk.
