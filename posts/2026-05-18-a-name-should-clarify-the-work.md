@@ -19,6 +19,8 @@ That might sound like branding theater, but I do not think it is.
 
 Names are not just decoration. They are compression. A good one helps you explain what kind of problems you solve before you say anything else. A bad one creates cleanup work.
 
+<img src="/static/images/a-name-should-clarify-the-work-hero.png" alt="Illustration representing naming, operational clarity, and practical systems work" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 ## The real question was not "is this catchy?"
 
 The question was simpler:
