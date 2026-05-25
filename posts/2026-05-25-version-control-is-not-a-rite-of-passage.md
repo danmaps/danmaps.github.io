@@ -1,8 +1,7 @@
 ---
-title: Version Control Is Not a Rite of Passage
+title: Version Control Should Reduce Risk, Not Signal Status
 date: 2026-05-25
 tags:
-  - Draft
   - GitHub
   - automation
   - work
