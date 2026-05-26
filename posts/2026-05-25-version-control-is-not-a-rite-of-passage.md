@@ -1,5 +1,5 @@
 ---
-title: Version Control Should Reduce Risk, Not Signal Status
+title: Version Control Reduces Risk
 date: 2026-05-25
 tags:
   - GitHub
