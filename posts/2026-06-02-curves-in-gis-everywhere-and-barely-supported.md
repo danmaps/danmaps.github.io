@@ -1,5 +1,5 @@
 ---
-title: Curves in GIS: Everywhere and Barely Supported
+title: "Curves in GIS: Everywhere and Barely Supported"
 date: 2026-06-02
 tags:
   - Draft
