@@ -81,7 +81,7 @@ With **Symphony**, I keep being pulled away from vague orchestration grandeur an
 
 With **Spatial Workbench**, I keep getting the same signal from the product itself. It becomes more interesting the more it acts like a bounded spatial runtime with a visible sandbox on top, not a bloated pseudo-platform. That is useful for humans. It may be even more useful for agents.
 
-With **maps.dannymcvey.com** and **apps.dannymcvey.com**, the direction that feels most alive is not "make another content site" or "make another chat wrapper." It is to create better intake surfaces, better transformation layers, and better output packages for narrow spatial work.
+With some of the spatial and app surfaces I have been sketching, the direction that feels most alive is not "make another content site" or "make another chat wrapper." It is to create better intake surfaces, better transformation layers, and better output packages for narrow spatial work.
 
 That all felt somewhat contrarian a few months ago. Now it feels early.
 
