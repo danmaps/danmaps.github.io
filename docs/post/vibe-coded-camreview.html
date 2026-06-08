@@ -13,65 +13,43 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #75715e } /* Comment */
-.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .o { color: #ff4689 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #75715e } /* Comment.Hashbang */
-.codehilite .cm { color: #75715e } /* Comment.Multiline */
-.codehilite .cp { color: #75715e } /* Comment.Preproc */
-.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
-.codehilite .c1 { color: #75715e } /* Comment.Single */
-.codehilite .cs { color: #75715e } /* Comment.Special */
-.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -90,9 +68,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -119,18 +97,63 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Vibe coding CamReview: a trail cam app I actually use</h1>
-        <!-- Post content -->
-        <p>I built a small app called <strong>CamReview</strong> to review trail camera photos and videos.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Vibe coding CamReview: a trail cam app I actually use</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-01-30">January 30, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>I built a small app called <strong>CamReview</strong> to review trail camera photos and videos.</p>
 <p>Not “fast” in the benchmark sense. Fast in the only way I care about: I can sit down with my phone, thumb through a couple hundred captures, keep the good ones, trash the junk, and move on with my life.</p>
 <p>And yes, I vibe coded a lot of it.</p>
 <p>This post is what it felt like when the target wasn’t a demo or a portfolio piece, but a tool I use on my own files.</p>
-<h2>Trail cam review is a slog (and the tools don’t help)</h2>
+<h2 id="trail-cam-review-is-a-slog-and-the-tools-dont-help">Trail cam review is a slog (and the tools don’t help)</h2>
 <p>Trail cameras produce a specific kind of annoyance:</p>
 <ul>
 <li>a ton of near-duplicates</li>
@@ -145,7 +168,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Too risky:</strong> deletes that feel permanent (or at least scary)</li>
 </ul>
 <p>I wanted something simpler.</p>
-<h2>My constraints (the whole point)</h2>
+<h2 id="my-constraints-the-whole-point">My constraints (the whole point)</h2>
 <p>CamReview v0 has a few non‑negotiables, and the constraints basically <em>are</em> the product:</p>
 <ul>
 <li><strong>Local-only.</strong> No cloud. No accounts. No Docker.</li>
@@ -163,7 +186,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>no cloud sync</li>
 </ul>
 <p>If a feature didn’t help the core loop, it didn’t make the cut.</p>
-<h2>The shape of the app (boring on purpose)</h2>
+<h2 id="the-shape-of-the-app-boring-on-purpose">The shape of the app (boring on purpose)</h2>
 <p>CamReview is intentionally boring:</p>
 <ul>
 <li><strong>Node + Express</strong> backend</li>
@@ -173,7 +196,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>You point it at a <code>mediaRoot</code> folder, start the server, and open it on your phone over LAN (or Tailscale).</p>
 <p>That’s it.</p>
-<h2>Mobile vs desktop: same data, different vibe</h2>
+<h2 id="mobile-vs-desktop-same-data-different-vibe">Mobile vs desktop: same data, different vibe</h2>
 <p>I didn’t want “a mobile version” and “a desktop version.” I wanted <em>one</em> app with one set of state.</p>
 <p>So the split is simple:</p>
 <ul>
@@ -181,7 +204,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Mobile</strong> is streamlined: big buttons + swipes, minimal chrome.</li>
 </ul>
 <p>Both share the same queue, metadata, and safe-delete behavior.</p>
-<h2>The part I’m proud of: safe deletes + trust</h2>
+<h2 id="the-part-im-proud-of-safe-deletes-trust">The part I’m proud of: safe deletes + trust</h2>
 <p>The most important thing in a personal media tool isn’t the UI.</p>
 <p>It’s trust.</p>
 <p>Delete in CamReview doesn’t delete. It moves files immediately into a dated folder under <code>mediaRoot</code>:</p>
@@ -192,7 +215,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>Once you trust the tool not to hurt you, you start moving faster.</p>
 <p>That’s the whole game.</p>
-<h2>Video on phones is weird (so I made a fallback)</h2>
+<h2 id="video-on-phones-is-weird-so-i-made-a-fallback">Video on phones is weird (so I made a fallback)</h2>
 <p>A big surprise was how finicky video playback can be on mobile browsers.</p>
 <p>So CamReview has a pragmatic fallback:</p>
 <ul>
@@ -201,7 +224,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>For quick previews, it can generate low‑FPS preview frames.</li>
 </ul>
 <p>It may look choppier, but it stays reliable.</p>
-<h2>Optional AI: helpful, never required</h2>
+<h2 id="optional-ai-helpful-never-required">Optional AI: helpful, never required</h2>
 <p>CamReview has optional AI features (desktop-only) via OpenRouter:</p>
 <ul>
 <li>batch “critter detection” (move no‑animal photos to Trash)</li>
@@ -209,7 +232,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>But the key word is <strong>optional</strong>.</p>
 <p>If AI is down, expensive, or annoying, the app still does the thing.</p>
-<h2>What vibe coding felt like</h2>
+<h2 id="what-vibe-coding-felt-like">What vibe coding felt like</h2>
 <p>Vibe coding shines when:</p>
 <ul>
 <li>the problem is small enough to keep in your head</li>
@@ -226,7 +249,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Does this reduce cognitive load?</li>
 </ul>
 <p>If not, it’s bike shedding.</p>
-<h2>What’s next</h2>
+<h2 id="whats-next">What’s next</h2>
 <p>The next version is going to split into two pages:</p>
 <ul>
 <li><strong>Browse</strong>: a GitHub-style capture heatmap + a fast way to jump around</li>
@@ -235,27 +258,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>If I can make “find the interesting day” as frictionless as “keep/delete,” the whole thing levels up.</p>
 <hr />
 <p>If you want to check out the code, it’s on GitHub: https://github.com/danmaps/camreview</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/side-projects.html">Side-Projects</a> 
-            
-                <a class="post-tag tag-link" href="/tag/productivity.html">Productivity</a> 
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/javascript.html">Javascript</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/side-projects.html">Side-Projects</a>
+    
+    <a class="post-tag" href="/tag/productivity.html">Productivity</a>
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/javascript.html">Javascript</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

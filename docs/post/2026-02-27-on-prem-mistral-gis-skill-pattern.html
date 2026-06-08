@@ -13,65 +13,43 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #75715e } /* Comment */
-.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .o { color: #ff4689 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #75715e } /* Comment.Hashbang */
-.codehilite .cm { color: #75715e } /* Comment.Multiline */
-.codehilite .cp { color: #75715e } /* Comment.Preproc */
-.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
-.codehilite .c1 { color: #75715e } /* Comment.Single */
-.codehilite .cs { color: #75715e } /* Comment.Special */
-.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -90,9 +68,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -119,25 +97,70 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">A practical GIS skill pattern for on-prem Mistral (and other local LLMs)</h1>
-        <!-- Post content -->
-        <p>I’ve been poking at an on-prem LLM (Mistral-class) at work and wanted a pattern that stays practical.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>A practical GIS skill pattern for on-prem Mistral (and other local LLMs)</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-02-27">February 27, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">5 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>I’ve been poking at an on-prem LLM (Mistral-class) at work and wanted a pattern that stays practical.</p>
 <p>Not "agents that do everything".</p>
 <p>More like: small, reliable <strong>GIS skills</strong> that take a narrow input, pull the right context from internal docs, and return an artifact you can actually run or review.</p>
 <p>This post is a structured draft of the pattern I want to explore.</p>
-<h2>The "GIS skill" pattern</h2>
+<h2 id="the-gis-skill-pattern">The "GIS skill" pattern</h2>
 <p>Think of each skill as a small product with four parts:</p>
 <p>1) <strong>Intent + inputs</strong><br />
 2) <strong>Context pipeline (grounding)</strong><br />
 3) <strong>Reasoning scaffold (structured output)</strong><br />
 4) <strong>Guardrails + verification</strong></p>
 <p>If you get those right, even a modest on-prem model becomes useful.</p>
-<h3>1) Intent + inputs</h3>
+<h3 id="1-intent-inputs">1) Intent + inputs</h3>
 <p>Start with a lightweight router that maps a user request to a skill.</p>
 <p>This can be a tiny classifier, a ruleset, or the same LLM running in a constrained prompt.</p>
 <p>Example intents for GIS:</p>
@@ -157,7 +180,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>My bias: <strong>make project context a contract</strong>.</p>
 <p>If the skill depends on layer names, geometry types, fields, SR, and units, pass those in explicitly. Don’t make the model guess.</p>
-<h3>2) Context pipeline (grounding)</h3>
+<h3 id="2-context-pipeline-grounding">2) Context pipeline (grounding)</h3>
 <p>Before the model answers, give it the right context.</p>
 <p>Usually that’s a simple retrieval step that pulls relevant snippets and includes them in the prompt.</p>
 <p>Sources worth retrieving from in a GIS org:</p>
@@ -170,7 +193,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>This is where on-prem shines.</p>
 <p>You can retrieve from internal docs without sending anything outside.</p>
-<h3>3) Reasoning scaffold (structured output)</h3>
+<h3 id="3-reasoning-scaffold-structured-output">3) Reasoning scaffold (structured output)</h3>
 <p>Instead of free-form chat, force a predictable structure.</p>
 <p>For GIS skills, I like outputs that look like this:</p>
 <ul>
@@ -182,7 +205,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>A key nuance:</p>
 <p>You can keep deeper chain-of-thought private while still requiring a clean artifact. The artifact is what matters.</p>
-<h3>4) Guardrails + verification</h3>
+<h3 id="4-guardrails-verification">4) Guardrails + verification</h3>
 <p>This is what makes it enterprise-usable.</p>
 <p>Even without fancy infra, you can add guardrails that keep the output honest.</p>
 <p>Guardrails that work well:</p>
@@ -199,7 +222,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Field existence checks</li>
 <li>Geometry type assumptions made explicit</li>
 </ul>
-<h2>The “stoplight” I would add (small, huge trust win)</h2>
+<h2 id="the-stoplight-i-would-add-small-huge-trust-win">The “stoplight” I would add (small, huge trust win)</h2>
 <p>Every skill output should start with a simple readiness signal:</p>
 <ul>
 <li><strong>Green</strong>: ready to run</li>
@@ -207,7 +230,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Red</strong>: cannot proceed, missing key context</li>
 </ul>
 <p>This is a cheap way to keep users from treating the model like an oracle.</p>
-<h2>Example skill: ArcPy Assistant (code generation you can trust)</h2>
+<h2 id="example-skill-arcpy-assistant-code-generation-you-can-trust">Example skill: ArcPy Assistant (code generation you can trust)</h2>
 <p>User request:</p>
 <p>"Select service points within 200 ft of overhead primary, then export to a new feature class."</p>
 <p>Skill flow:</p>
@@ -229,7 +252,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - run on a small AOI first<br />
 - confirm units: feet vs meters<br />
 - confirm layer is a feature layer</p>
-<h2>Example skill: Spreadsheet Triage (don’t hallucinate provenance)</h2>
+<h2 id="example-skill-spreadsheet-triage-dont-hallucinate-provenance">Example skill: Spreadsheet Triage (don’t hallucinate provenance)</h2>
 <p>User request:</p>
 <p>"This spreadsheet has duplicates, missing feeder IDs, and unknown provenance. What should I do?"</p>
 <p>Skill output:</p>
@@ -253,7 +276,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>mark every inference as inference</li>
 <li>require SME confirmation before anything gets published</li>
 </ul>
-<h2>Example skill: Analysis Planner (reasoning-heavy, no execution)</h2>
+<h2 id="example-skill-analysis-planner-reasoning-heavy-no-execution">Example skill: Analysis Planner (reasoning-heavy, no execution)</h2>
 <p>User request:</p>
 <p>"How do we rank undergrounding candidates by wildfire risk and customer impact?"</p>
 <p>Skill produces:</p>
@@ -265,7 +288,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>suggested MVP workflow</li>
 </ul>
 <p>This is where a local model can absolutely hang, as long as you scaffold it.</p>
-<h2>What I would build first (high leverage, low risk)</h2>
+<h2 id="what-i-would-build-first-high-leverage-low-risk">What I would build first (high leverage, low risk)</h2>
 <p>If I were prototyping this in a real GIS org, I’d start with:</p>
 <p>1) <strong>Troubleshooter skill</strong><br />
 - Reads ArcGIS errors<br />
@@ -279,7 +302,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - Spreadsheet profiling<br />
 - Hard guardrail against inventing provenance</p>
 <p>But if I want to prove value quickly, I would start with just one: <strong>Troubleshooter</strong>.</p>
-<h2>What I still need to answer</h2>
+<h2 id="what-i-still-need-to-answer">What I still need to answer</h2>
 <p>Before this becomes real, the environment matters:</p>
 <ul>
 <li>What exact on-prem model and runtime is available?</li>
@@ -289,27 +312,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>If those are fuzzy, the model will be fuzzy too.</p>
 <hr />
 <p>If you’re exploring something similar, I’d love to compare notes: what’s your first skill, and what guardrail saved you from your first embarrassing demo?</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/llm.html">LLM</a> 
-            
-                <a class="post-tag tag-link" href="/tag/on-prem.html">On-Prem</a> 
-            
-                <a class="post-tag tag-link" href="/tag/rag.html">RAG</a> 
-            
-                <a class="post-tag tag-link" href="/tag/arcgis.html">Arcgis</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/llm.html">LLM</a>
+    
+    <a class="post-tag" href="/tag/on-prem.html">On-Prem</a>
+    
+    <a class="post-tag" href="/tag/rag.html">RAG</a>
+    
+    <a class="post-tag" href="/tag/arcgis.html">Arcgis</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
