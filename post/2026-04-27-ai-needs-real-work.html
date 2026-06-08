@@ -13,8 +13,31 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link rel="stylesheet" href="/static/post-reading.css">
-<style>pre { line-height: 125%; }
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -96,59 +119,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
-
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
         
-<!-- Scroll progress indicator -->
-<div class="scroll-progress"></div>
-
-<!-- Post header -->
-<header class="post-hero">
-    <h1>AI Needs Real Work</h1>
-    <div class="post-meta-bar">
-        
-        <time datetime="2026-04-27">April 27, 2026</time>
-        
-        
-        <span class="separator">·</span>
-        <span class="reading-time">3 min read</span>
-        
-    </div>
-</header>
-
-<!-- Table of contents (auto-populated by JS) -->
-<nav class="post-toc">
-    <details>
-        <summary>Contents</summary>
-        <ol id="post-toc-list"></ol>
-    </details>
-</nav>
-
-<!-- Article body -->
-<article class="post-reading">
-    <p>Lately I have been trying to apply a stricter test to AI.</p>
+        <h1 class="text-light">AI Needs Real Work</h1>
+        <!-- Post content -->
+        <p>Lately I have been trying to apply a stricter test to AI.</p>
 <p>Not whether it is impressive.<br />
 Not whether it can generate a lot.<br />
 Not whether it makes me feel productive.</p>
@@ -157,7 +135,7 @@ Not whether it makes me feel productive.</p>
 <p>That sounds obvious, but I think it matters because the current AI discourse still has a weird tendency to reward spectacle over usefulness.</p>
 <p>I do not need more spectacle.<br />
 I need less friction.</p>
-<h2 id="the-test-i-keep-coming-back-to">The test I keep coming back to</h2>
+<h2>The test I keep coming back to</h2>
 <p>Over the last week, a few threads kept converging for me.</p>
 <p>One was personal and practical: trying to get clearer about what value I am actually getting from AI tools.<br />
 Another was product-oriented: tightening how I think about positioning and usefulness for geospatial tools instead of drifting into broad, fuzzy ambition.<br />
@@ -167,7 +145,7 @@ A third was more general: noticing that AI is most valuable when it helps collap
 <p>AI is useful when it helps turn vague thinking into clear next steps, artifacts, and decisions.</p>
 </blockquote>
 <p>If it does not do that, then a lot of what it produces is just activity with better branding.</p>
-<h2 id="where-it-has-been-genuinely-useful">Where it has been genuinely useful</h2>
+<h2>Where it has been genuinely useful</h2>
 <p>The strongest uses are not the flashy ones.</p>
 <p>They are things like:</p>
 <ul>
@@ -180,7 +158,7 @@ A third was more general: noticing that AI is most valuable when it helps collap
 <p>That last part matters.<br />
 A draft is valuable if it moves the work forward, even if the draft is not the final answer.</p>
 <p>I think that is the right frame for a lot of AI usage right now. Not replacement. Not magic. Not autonomous genius. Just a cheap, flexible planning-and-execution layer that helps convert mental clutter into something inspectable.</p>
-<h2 id="what-i-am-less-interested-in">What I am less interested in</h2>
+<h2>What I am less interested in</h2>
 <p>I am increasingly suspicious of AI workflows that generate a lot without making judgment any clearer.</p>
 <p>A giant pile of code is not necessarily progress.<br />
 A polished block of prose is not necessarily insight.<br />
@@ -192,7 +170,7 @@ I want systems where the result can be examined, challenged, edited, and turned 
 It applies to product thinking.<br />
 It applies to geospatial work.<br />
 And it definitely applies to software.</p>
-<h2 id="the-standard-i-want-to-keep">The standard I want to keep</h2>
+<h2>The standard I want to keep</h2>
 <p>My current test is boring on purpose.</p>
 <p>At the end of the month, I should be able to point to something and say:</p>
 <ul>
@@ -209,25 +187,25 @@ Whether it is useful enough to justify the space it takes up in my tools, attent
 <p>Right now, I think the best case for it is not future hype.<br />
 It is present-tense utility.</p>
 <p>That is a much better standard.</p>
-</article>
-
-<!-- Tags -->
-
-<footer class="post-tags-footer">
-    
-    <a class="post-tag" href="/tag/ai.html">AI</a>
-    
-    <a class="post-tag" href="/tag/planning.html">Planning</a>
-    
-    <a class="post-tag" href="/tag/productivity.html">Productivity</a>
-    
-    <a class="post-tag" href="/tag/systems.html">Systems</a>
-    
-</footer>
-
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
+            
+                <a class="post-tag tag-link" href="/tag/planning.html">Planning</a> 
+            
+                <a class="post-tag tag-link" href="/tag/productivity.html">Productivity</a> 
+            
+                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a>
+            
+        </p>
+        
+    </article>
+</div>
 
 <script src="/static/copy-code.js"></script>
-<script src="/static/post-reading.js"></script>
+
 
     </main>
 

@@ -13,8 +13,31 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link rel="stylesheet" href="/static/post-reading.css">
-<style>pre { line-height: 125%; }
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -96,66 +119,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
-
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
         
-<!-- Scroll progress indicator -->
-<div class="scroll-progress"></div>
-
-<!-- Post header -->
-<header class="post-hero">
-    <h1>Empowering Geospatial Workflows with Generative AI</h1>
-    <div class="post-meta-bar">
-        
-        <time datetime="2024-09-05">September 5, 2024</time>
-        
-        
-        <span class="separator">·</span>
-        <span class="reading-time">4 min read</span>
-        
-    </div>
-</header>
-
-<!-- Table of contents (auto-populated by JS) -->
-<nav class="post-toc">
-    <details>
-        <summary>Contents</summary>
-        <ol id="post-toc-list"></ol>
-    </details>
-</nav>
-
-<!-- Article body -->
-<article class="post-reading">
-    <p>This is a short blog post based on an hour long presentation/workshop I hosted recently.</p>
+        <h1 class="text-light">Empowering Geospatial Workflows with Generative AI</h1>
+        <!-- Post content -->
+        <p>This is a short blog post based on an hour long presentation/workshop I hosted recently.</p>
 <p>Generative AI is transforming industries, and GIS professionals are uniquely positioned to leverage this technology to enhance workflows, increase productivity, and open up new possibilities in spatial analysis. In this blog post, we'll explore the role of generative AI in the GIS field, share best practices for effective prompting, and showcase some practical applications relevant to geospatial professionals.</p>
 <hr />
-<h3 id="introduction-to-generative-ai-for-gis">Introduction to Generative AI for GIS</h3>
+<h3>Introduction to Generative AI for GIS</h3>
 <p>Generative AI can be thought of as a highly creative assistant that can write, create images, code, and even assist in analysis. Unlike traditional AI systems that simply follow pre-programmed instructions, generative AI tools can learn from large datasets, adapt, and generate new outputs based on patterns it has identified. Examples include tools like GPT-4 for language tasks and DALL-E for image generation.</p>
 <p>For GIS professionals, the power of generative AI lies in its ability to help with writing, automating repetitive tasks, and optimizing workflows. Whether it's drafting reports, coding in Python, or analyzing spatial data, AI can assist in all these areas.</p>
 <hr />
-<h3 id="the-importance-of-effective-prompting">The Importance of Effective Prompting</h3>
+<h3>The Importance of Effective Prompting</h3>
 <p>To get the most out of generative AI, understanding how to structure your prompts is key. Here are some best practices:</p>
 <ul>
 <li>
@@ -173,7 +151,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>Prompting AI is different from performing a Google search. Google is about finding information, while AI helps generate content or solve problems through interaction.</p>
 <hr />
-<h3 id="generative-ai-tools-for-gis-professionals">Generative AI Tools for GIS Professionals</h3>
+<h3>Generative AI Tools for GIS Professionals</h3>
 <p>There are several AI tools that can be integrated into GIS workflows. Here are some that are making an impact:</p>
 <ul>
 <li>
@@ -187,19 +165,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </li>
 </ul>
 <hr />
-<h3 id="practical-applications-of-generative-ai-in-gis">Practical Applications of Generative AI in GIS</h3>
+<h3>Practical Applications of Generative AI in GIS</h3>
 <p>Generative AI has practical applications that can streamline many of the tasks GIS professionals deal with daily. Here are a few examples:</p>
-<h4 id="1-writing-drafting-reports">1. <strong>Writing: Drafting Reports</strong></h4>
+<h4>1. <strong>Writing: Drafting Reports</strong></h4>
 <p>Prompt: <em>Help me draft a summary of my GIS analysis findings on parcel proximity to schools.</em><br />
 The AI can generate a well-structured report, saving hours of manual writing.</p>
-<h4 id="2-excel-automation-data-splitting">2. <strong>Excel Automation: Data Splitting</strong></h4>
+<h4>2. <strong>Excel Automation: Data Splitting</strong></h4>
 <p>Prompt: <em>I have a field in my Excel spreadsheet containing coordinates in the format ‘-117.69408694 32.77575342’. How can I split these into separate latitude and longitude columns?</em><br />
 AI can either provide a formula or even split the data for you, depending on the tool you use.</p>
-<h4 id="3-gis-workflow-optimization-proximity-analysis">3. <strong>GIS Workflow Optimization: Proximity Analysis</strong></h4>
+<h4>3. <strong>GIS Workflow Optimization: Proximity Analysis</strong></h4>
 <p>Prompt: <em>I have an ArcGIS Pro project containing data layers for parcels, roads, and grocery stores. Describe how I can analyze which parcels are within 500 feet of a grocery store and fall inside certain residential zoning codes.</em><br />
 The AI can guide you step-by-step, improving the efficiency of your analysis.</p>
 <hr />
-<h3 id="key-takeaways-for-gis-professionals">Key Takeaways for GIS Professionals</h3>
+<h3>Key Takeaways for GIS Professionals</h3>
 <ol>
 <li>
 <p><strong>Iterative Mindset</strong>: When working with AI, think of it as an ongoing conversation. Prompting requires context and refinement over time, not a one-shot approach like traditional searches.</p>
@@ -212,32 +190,32 @@ The AI can guide you step-by-step, improving the efficiency of your analysis.</p
 </li>
 </ol>
 <hr />
-<h3 id="conclusion">Conclusion</h3>
+<h3>Conclusion</h3>
 <p>Generative AI offers incredible potential for GIS professionals to streamline workflows, enhance productivity, and automate routine tasks. By mastering the art of prompting and experimenting with the right tools, GIS professionals can unlock new efficiencies and innovations in spatial analysis. Stay curious, continue learning, and embrace the possibilities AI brings to the world of geomatics!</p>
 <hr />
-<h3 id="resources-for-getting-started">Resources for Getting Started</h3>
+<h3>Resources for Getting Started</h3>
 <ul>
 <li><a href="https://www.microsoft.com/copilot">Microsoft Copilot</a></li>
 <li><a href="https://chat.openai.com">ChatGPT</a></li>
 <li><a href="https://copilot.github.com">GitHub Copilot</a></li>
 </ul>
-</article>
-
-<!-- Tags -->
-
-<footer class="post-tags-footer">
-    
-    <a class="post-tag" href="/tag/ai.html">AI</a>
-    
-    <a class="post-tag" href="/tag/gis.html">GIS</a>
-    
-    <a class="post-tag" href="/tag/automation.html">Automation</a>
-    
-</footer>
-
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
+            
+                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
+            
+                <a class="post-tag tag-link" href="/tag/automation.html">Automation</a>
+            
+        </p>
+        
+    </article>
+</div>
 
 <script src="/static/copy-code.js"></script>
-<script src="/static/post-reading.js"></script>
+
 
     </main>
 

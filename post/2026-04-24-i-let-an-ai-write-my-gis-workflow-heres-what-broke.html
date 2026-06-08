@@ -13,8 +13,31 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link rel="stylesheet" href="/static/post-reading.css">
-<style>pre { line-height: 125%; }
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<style>
+    pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -96,59 +119,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
-
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+</style>
+<div class="container bg-dark text-light">
+    <article>
         
-<!-- Scroll progress indicator -->
-<div class="scroll-progress"></div>
-
-<!-- Post header -->
-<header class="post-hero">
-    <h1>I Let an AI Write My GIS Workflow. Here&#39;s What Broke.</h1>
-    <div class="post-meta-bar">
-        
-        <time datetime="2026-04-24">April 24, 2026</time>
-        
-        
-        <span class="separator">·</span>
-        <span class="reading-time">2 min read</span>
-        
-    </div>
-</header>
-
-<!-- Table of contents (auto-populated by JS) -->
-<nav class="post-toc">
-    <details>
-        <summary>Contents</summary>
-        <ol id="post-toc-list"></ol>
-    </details>
-</nav>
-
-<!-- Article body -->
-<article class="post-reading">
-    <p>There’s a growing narrative that AI can write code for you.</p>
+        <h1 class="text-light">I Let an AI Write My GIS Workflow. Here&#39;s What Broke.</h1>
+        <!-- Post content -->
+        <p>There’s a growing narrative that AI can write code for you.</p>
 <p>That’s true.</p>
 <p>What’s more interesting is what happens after the code is written.</p>
 <p>I’ve been experimenting with integrating AI directly into ArcGIS Pro workflows. The idea is simple:</p>
@@ -161,8 +139,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>And sometimes… it works perfectly.</p>
 <p>Other times, it breaks in ways that are surprisingly consistent.</p>
-<h2 id="where-things-actually-break">Where things actually break</h2>
-<h3 id="1-the-almost-right-problem">1. The “almost right” problem</h3>
+<h2>Where things actually break</h2>
+<h3>1. The “almost right” problem</h3>
 <p>AI is very good at generating code that looks correct.</p>
 <p>It’s much worse at generating code that:</p>
 <ul>
@@ -177,7 +155,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>This is dangerous because:</p>
 <p>The output looks valid, but the result is wrong.</p>
-<h3 id="2-context-is-everything-and-ai-doesnt-have-enough-of-it">2. Context is everything (and AI doesn’t have enough of it)</h3>
+<h3>2. Context is everything (and AI doesn’t have enough of it)</h3>
 <p>In a real GIS project:</p>
 <ul>
 <li>layers have naming conventions</li>
@@ -187,7 +165,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Without that context, AI guesses.</p>
 <p>Sometimes correctly. Often not.</p>
 <p>This is where most “AI coding demos” fall apart. They work in isolation, not inside messy systems.</p>
-<h3 id="3-execution-is-the-real-problem">3. Execution is the real problem</h3>
+<h3>3. Execution is the real problem</h3>
 <p>Generating code is easy.</p>
 <p>Running it safely is not.</p>
 <p>In a production environment, you need:</p>
@@ -198,7 +176,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>rollback strategies</li>
 </ul>
 <p>Without that, you’re basically letting an AI modify your data blindly.</p>
-<h2 id="what-actually-works">What actually works</h2>
+<h2>What actually works</h2>
 <p>After a lot of trial and error, I’ve landed on a pattern:</p>
 <p>AI should:</p>
 <ul>
@@ -211,7 +189,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>review execution</li>
 <li>own the result</li>
 </ul>
-<h2 id="the-key-shift">The key shift</h2>
+<h2>The key shift</h2>
 <p>The real value of AI isn’t:</p>
 <p>“write code for me”</p>
 <p>It’s:</p>
@@ -222,7 +200,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>trustworthy systems</li>
 </ul>
 <p>Most of my work lately has been about closing that gap.</p>
-<h2 id="what-im-exploring-next">What I’m exploring next</h2>
+<h2>What I’m exploring next</h2>
 <ul>
 <li>scoring AI-generated code quality</li>
 <li>comparing outputs against known-good datasets</li>
@@ -237,29 +215,29 @@ But “can we trust what it produces?”</p>
 <li>what guardrails you’ve built</li>
 </ul>
 <p>Because that’s where the interesting work is happening.</p>
-</article>
-
-<!-- Tags -->
-
-<footer class="post-tags-footer">
-    
-    <a class="post-tag" href="/tag/ai.html">AI</a>
-    
-    <a class="post-tag" href="/tag/gis.html">GIS</a>
-    
-    <a class="post-tag" href="/tag/arcgis.html">Arcgis</a>
-    
-    <a class="post-tag" href="/tag/automation.html">Automation</a>
-    
-    <a class="post-tag" href="/tag/guardrails.html">Guardrails</a>
-    
-    <a class="post-tag" href="/tag/geoprocessing.html">Geoprocessing</a>
-    
-</footer>
-
+        <!-- Display the tags at the bottom -->
+        
+        <p class="post-tags text-light">
+            
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
+            
+                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
+            
+                <a class="post-tag tag-link" href="/tag/arcgis.html">Arcgis</a> 
+            
+                <a class="post-tag tag-link" href="/tag/automation.html">Automation</a> 
+            
+                <a class="post-tag tag-link" href="/tag/guardrails.html">Guardrails</a> 
+            
+                <a class="post-tag tag-link" href="/tag/geoprocessing.html">Geoprocessing</a>
+            
+        </p>
+        
+    </article>
+</div>
 
 <script src="/static/copy-code.js"></script>
-<script src="/static/post-reading.js"></script>
+
 
     </main>
 
