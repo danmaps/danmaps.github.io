@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,14 +96,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">About me</h1>
-        <!-- Post content -->
-        <h2>Hi, I'm Danny.</h2>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>About me</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2024-08-02">August 2, 2024</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">1 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <h2 id="hi-im-danny">Hi, I'm Danny.</h2>
 <p><img alt="Danny McVey" src="/static/images/danny.jpg" /></p>
 <p>I work in GIS, software, and whatever sits in the overlap between maps, data, and useful tools.</p>
 <p>A lot of what I like building lives in that middle space between heavy enterprise systems and quick little experiments: workflow tools, geospatial utilities, prototypes, dashboards, and systems that make messy things a little more understandable.</p>
@@ -137,10 +159,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>AI systems that are actually practical</li>
 <li>personal tools, infrastructure, and experiments</li>
 </ul>
-<h3>Work</h3>
+<h3 id="work">Work</h3>
 <p>By day I work on GIS systems and data operations at Southern California Edison. That has meant a lot of time spent around ArcGIS, automation, data management, and the weird realities of getting spatial systems to work in real organizations.</p>
 <p>I’m especially interested in the part where geospatial work stops being abstract and becomes operational: the scripts, tools, guardrails, and interfaces that make data usable.</p>
-<h3>What I’m into</h3>
+<h3 id="what-im-into">What I’m into</h3>
 <p>A few recurring themes on this site:</p>
 <ul>
 <li>making spatial logic more visible and inspectable</li>
@@ -148,23 +170,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>figuring out how AI can be useful without becoming magic theater</li>
 <li>turning vague ideas into something concrete enough to test</li>
 </ul>
-<h3>Outside of work</h3>
+<h3 id="outside-of-work">Outside of work</h3>
 <p>Outside of work, I’m usually thinking about side projects, maps, homelab stuff, writing, or trying to keep some momentum on exercise and life admin.</p>
 <p>I’m also a dad to two little boys, which means a lot of life is happening in the middle of all the projects and ideas.</p>
 <p>If you want to connect, you can find me on <a href="https://www.linkedin.com/in/dannymcvey/">LinkedIn</a>.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/personal.html">Personal</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/personal.html">Personal</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

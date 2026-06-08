@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,14 +96,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Too Easy to Start - AI Tools Shifted My Bottleneck from Building to Shipping</h1>
-        <!-- Post content -->
-        <p>Getting started used to be the hardest part.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Too Easy to Start - AI Tools Shifted My Bottleneck from Building to Shipping</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2025-04-23">April 23, 2025</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">2 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Getting started used to be the hardest part.</p>
 <p>Like with running... sometimes the biggest hurdle is just putting your shoes on. Once you're out the door, momentum kicks in. That’s how building software used to feel: bootstrapping an idea took effort, so only the ideas worth chasing made it off the ground.</p>
 <p>Then came AI tools like ChatGPT, Copilot, and others. They made starting projects frictionless. I could describe an idea and get a working prototype in minutes. It was exhilarating.</p>
 <p>But now I’m drowning in half-finished projects. I’ve got 50 things in various states of completion, and I can’t seem to finish any of them. The problem isn’t starting anymore; it’s finishing.</p>
@@ -135,7 +157,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>But now I’ve got 50 half-finished projects instead of 5 and 45 ideas.</p>
 <p>The problem isn’t starting anymore. It’s finishing.</p>
 <hr />
-<h3>The Bottleneck Has Moved</h3>
+<h3 id="the-bottleneck-has-moved">The Bottleneck Has Moved</h3>
 <p>Before AI coding tools, every new project required a real investment:</p>
 <ul>
 <li>Setting up boilerplate</li>
@@ -145,12 +167,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>The friction was real. And it was good—it filtered out weak ideas and forced clarity.</p>
 <p>Now the bottleneck has shifted. The technical hurdle is gone. The new hurdle is <em>discipline</em>. Choosing which projects to finish. Saying no to the others.</p>
 <hr />
-<h3>Productivity Theater, AI Edition</h3>
+<h3 id="productivity-theater-ai-edition">Productivity Theater, AI Edition</h3>
 <p>It’s easy to confuse activity with progress.</p>
 <p>With these tools, I’m productive every day. I generate code, spin up ideas, explore new approaches. But most of it goes nowhere. It runs—but it doesn’t <em>ship</em>. There’s no documentation, no feedback loop, no users.</p>
 <p>It’s productivity theater. All build, no release.</p>
 <hr />
-<h3>Code ≠ Product</h3>
+<h3 id="code-product">Code ≠ Product</h3>
 <p>Here’s what most of my AI-assisted projects lack:</p>
 <ul>
 <li>A clear user story</li>
@@ -159,7 +181,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>I’ve gotten good at building, but building isn’t the same as delivering. AI makes it <em>feel</em> like you're almost done, but most of the work is still ahead—product design, feedback, iteration, support.</p>
 <hr />
-<h3>From Infinite Starts to Focused Finishes</h3>
+<h3 id="from-infinite-starts-to-focused-finishes">From Infinite Starts to Focused Finishes</h3>
 <p>The shift I’m working on now is this:</p>
 <blockquote>
 <p>Use AI to accelerate the middle, but slow down the start—and finish what I begin.</p>
@@ -172,29 +194,29 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>And I treat AI like a junior teammate: helpful for execution, but not in charge of strategy.</p>
 <hr />
-<h3>Less Building, More Finishing</h3>
+<h3 id="less-building-more-finishing">Less Building, More Finishing</h3>
 <p>The power of these tools is real. They give us superhuman velocity. But that velocity needs direction.</p>
 <p>The goal isn’t to generate more code. It’s to deliver more value.</p>
 <p>Less building. More finishing.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/career.html">Career</a> 
-            
-                <a class="post-tag tag-link" href="/tag/productivity.html">Productivity</a> 
-            
-                <a class="post-tag tag-link" href="/tag/technology.html">Technology</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/career.html">Career</a>
+    
+    <a class="post-tag" href="/tag/productivity.html">Productivity</a>
+    
+    <a class="post-tag" href="/tag/technology.html">Technology</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

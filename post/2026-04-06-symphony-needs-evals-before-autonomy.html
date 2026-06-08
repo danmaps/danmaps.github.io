@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,21 +96,66 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Symphony needs evals before autonomy</h1>
-        <!-- Post content -->
-        <p>This week on Symphony was less about shipping a flashy new feature and more about getting honest about what the next layer of work actually is.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Symphony needs evals before autonomy</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-04-06">April 6, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>This week on Symphony was less about shipping a flashy new feature and more about getting honest about what the next layer of work actually is.</p>
 <p>Not more orchestration vocabulary.<br />
 Not more agent ambition.<br />
 Not some premature self-improving loop.</p>
 <p>The next useful step is evaluation.</p>
 <p>More specifically: a trustworthy, local, artifact-based eval setup that can tell me whether a Symphony agent or harness is actually getting better.</p>
 <p>That may sound less exciting than adding another capability. I think it is more important.</p>
-<h2>The temptation is obvious</h2>
+<h2 id="the-temptation-is-obvious">The temptation is obvious</h2>
 <p>Once you have a local orchestration system taking shape, the mind jumps ahead fast.</p>
 <p>You start thinking about things like:</p>
 <ul>
@@ -146,7 +168,7 @@ Not some premature self-improving loop.</p>
 <p>All of that is interesting.<br />
 All of that is also a great way to optimize nonsense if the scoring layer is weak.</p>
 <p>That is the part I have been trying to pin down more carefully.</p>
-<h2>The real lesson: do not optimize what you cannot verify</h2>
+<h2 id="the-real-lesson-do-not-optimize-what-you-cannot-verify">The real lesson: do not optimize what you cannot verify</h2>
 <p>I spent part of this week sketching what an evaluation layer for Symphony should actually look like.</p>
 <p>The shape that feels right is pretty grounded:</p>
 <ul>
@@ -177,7 +199,7 @@ I need outputs like:</p>
 <li>the agent should have abstained here</li>
 </ul>
 <p>Without that, "improvement" is mostly theater.</p>
-<h2>This is where a lot of AI work goes sideways</h2>
+<h2 id="this-is-where-a-lot-of-ai-work-goes-sideways">This is where a lot of AI work goes sideways</h2>
 <p>I think a lot of agent work gets weird because people jump from:</p>
 <ul>
 <li>I can make the model do something interesting</li>
@@ -197,7 +219,7 @@ I need outputs like:</p>
 <li>systems that look smarter on paper and less trustworthy in practice</li>
 </ul>
 <p>That is not an abstract concern. It is the default failure mode.</p>
-<h2>For Symphony, local and inspectable still feels right</h2>
+<h2 id="for-symphony-local-and-inspectable-still-feels-right">For Symphony, local and inspectable still feels right</h2>
 <p>What I like about the current direction is that it stays consistent with the rest of the project.</p>
 <p>Symphony has been getting more useful as it gets more inspectable.<br />
 Not more magical.</p>
@@ -213,7 +235,7 @@ Not more magical.</p>
 </ul>
 <p>I do not want evaluation that depends on a heroic interpretation of a chatbot transcript.<br />
 I want evaluation that leaves receipts.</p>
-<h2>The first tasks should be embarrassingly small</h2>
+<h2 id="the-first-tasks-should-be-embarrassingly-small">The first tasks should be embarrassingly small</h2>
 <p>Another thing that became clearer this week: the first eval tasks should be almost boring.</p>
 <p>Not full end-to-end multi-agent behavior.<br />
 Not desktop GIS automation.<br />
@@ -229,7 +251,7 @@ Not some giant benchmark suite with ten layers of abstraction.</p>
 <p>That sounds modest because it is modest.</p>
 <p>Good.</p>
 <p>If the small tasks are not trustworthy, the big ones will be fake confidence with better branding.</p>
-<h2>The deeper point</h2>
+<h2 id="the-deeper-point">The deeper point</h2>
 <p>I keep coming back to the same idea across these projects:</p>
 <p>The value is not in sounding autonomous.<br />
 The value is in building systems where useful work can be inspected, compared, and trusted.</p>
@@ -245,7 +267,7 @@ It is something more boring and more real:</p>
 </ul>
 <p>Once that exists, then it becomes reasonable to explore smarter mutation loops or benchmark-driven tuning.</p>
 <p>Before that, it is mostly cosplay.</p>
-<h2>What I think this week was really about</h2>
+<h2 id="what-i-think-this-week-was-really-about">What I think this week was really about</h2>
 <p>This was not a huge shipping week.<br />
 It was a boundary-setting week.</p>
 <p>Those matter.</p>
@@ -253,27 +275,27 @@ It was a boundary-setting week.</p>
 <p><strong>Symphony should earn the right to optimize itself by first proving it can evaluate itself honestly.</strong></p>
 <p>That feels like the next real piece of work.<br />
 Not the loudest one. The real one.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
-            
-                <a class="post-tag tag-link" href="/tag/orchestration.html">Orchestration</a> 
-            
-                <a class="post-tag tag-link" href="/tag/symphony.html">Symphony</a> 
-            
-                <a class="post-tag tag-link" href="/tag/evaluation.html">Evaluation</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/orchestration.html">Orchestration</a>
+    
+    <a class="post-tag" href="/tag/symphony.html">Symphony</a>
+    
+    <a class="post-tag" href="/tag/evaluation.html">Evaluation</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

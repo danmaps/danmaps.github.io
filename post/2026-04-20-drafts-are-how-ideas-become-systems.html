@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,14 +96,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Drafts Are How Ideas Become Systems</h1>
-        <!-- Post content -->
-        <p>This week did not produce some giant cinematic breakthrough.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Drafts Are How Ideas Become Systems</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-04-20">April 20, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>This week did not produce some giant cinematic breakthrough.</p>
 <p>It produced something better: a few concrete pieces of thinking that actually made it into the repo.</p>
 <p>That matters because I have a long history of being more than capable of generating ideas without forcing them to take a durable shape. The raw material is rarely the problem. The problem is getting from:</p>
 <ul>
@@ -136,7 +158,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>to something I can either publish, improve, or discard honestly</li>
 </ul>
 <p>Lately I have been noticing that the draft is doing more of that work than I used to give it credit for.</p>
-<h2>The useful unit is not the idea</h2>
+<h2 id="the-useful-unit-is-not-the-idea">The useful unit is not the idea</h2>
 <p>An idea is cheap.</p>
 <p>A draft is different.</p>
 <p>A draft has edges. It has a title, a frame, a claim, and enough structure that I can tell whether the thought actually survives contact with language.</p>
@@ -151,7 +173,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>it can participate in a system instead of living as a loose intention</li>
 </ul>
 <p>I think that last point matters most.</p>
-<h2>Systems need intermediate artifacts</h2>
+<h2 id="systems-need-intermediate-artifacts">Systems need intermediate artifacts</h2>
 <p>This is true in software, and it is also true in writing.</p>
 <p>A lot of bad process comes from skipping the intermediate artifact.</p>
 <p>People want the final app without the spec.<br />
@@ -175,7 +197,7 @@ They want the published post without the draft.</p>
 <li>publishing</li>
 </ul>
 <p>And that distinction turns out to be incredibly valuable.</p>
-<h2>Drafts reduce self-deception</h2>
+<h2 id="drafts-reduce-self-deception">Drafts reduce self-deception</h2>
 <p>One reason I like simple systems is that they make it harder to lie to myself.</p>
 <p>It is easy to say I am "working on an idea."<br />
 It is harder to say that when no file exists.</p>
@@ -197,7 +219,7 @@ Progress was:</p>
 <blockquote>
 <p>if there is no artifact, there is usually no real handoff, no real review surface, and no honest way to know what stage the work is actually in.</p>
 </blockquote>
-<h2>AI makes the draft even more important</h2>
+<h2 id="ai-makes-the-draft-even-more-important">AI makes the draft even more important</h2>
 <p>AI tools make it easier to produce text, code, summaries, options, and scaffolding.</p>
 <p>That is useful.<br />
 It also creates a new failure mode: an abundance of plausible material that has not been meaningfully selected, shaped, or owned.</p>
@@ -214,7 +236,7 @@ Just enough judgment to answer questions like:</p>
 <p>That is good pressure.</p>
 <p>The point is not to make publishing hard.<br />
 The point is to keep the system honest.</p>
-<h2>The lesson I want to keep</h2>
+<h2 id="the-lesson-i-want-to-keep">The lesson I want to keep</h2>
 <p>I do not think the right response to idea abundance is "be more inspired."</p>
 <p>I think the right response is to make drafting embarrassingly easy and publishing slightly harder.</p>
 <p>That gives ideas a place to become real without demanding that every piece of work immediately become public, final, or fully coherent.</p>
@@ -227,25 +249,25 @@ The point is to keep the system honest.</p>
 <p>That is not a glamorous system.</p>
 <p>It is just a practical one.</p>
 <p>And lately I am trusting practical systems more than dramatic ones.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/workflow.html">Workflow</a> 
-            
-                <a class="post-tag tag-link" href="/tag/writing.html">Writing</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/workflow.html">Workflow</a>
+    
+    <a class="post-tag" href="/tag/writing.html">Writing</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

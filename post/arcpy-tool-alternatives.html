@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,18 +96,63 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Open source alternatives to ArcPy</h1>
-        <!-- Post content -->
-        <p><strong>"The best camera is the one you have with you."</strong></p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Open source alternatives to ArcPy</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2024-08-13">August 13, 2024</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">5 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p><strong>"The best camera is the one you have with you."</strong></p>
 <p>You'd be surprised — if you're like me — at the ease and availability of alternatives to ArcPy. Just like the camera analogy above, the best geoprocessing tools are the ones you have with you. In my line of work, that's usually ArcPy. We've all got ArcGIS Pro installed locally, so we can do whatever we want.</p>
 <p>But what if we want to get something done elsewhere? Like using Streamlit for web apps or running scripts on a server where ArcGIS Pro isn't installed? It turns out there are numerous capable alternatives to ArcPy, especially when you consider that the majority of our geoprocessing operations fall into the "bread and butter" category. I’m talking about tasks like tabular joins, spatial joins, buffering, and other routine operations. You can get relatively simple tasks like this done using open-source Python libraries like GeoPandas, Shapely, and Fiona. These tools are all free to use, easy to install, and very intuitive. They even work with projected coordinate systems, so you can trust the accuracy of your results.</p>
 <p>In this post, we'll discuss how to run these tools, how they compare to ArcPy, and how you can assess the accuracy of the results to ensure you're getting what you expect.</p>
-<h2>Running Geoprocessing Tools in ArcGIS Pro</h2>
+<h2 id="running-geoprocessing-tools-in-arcgis-pro">Running Geoprocessing Tools in ArcGIS Pro</h2>
 <p>ArcGIS Pro, with its ArcPy library, is a powerful tool for geospatial analysis. ArcPy comes bundled with a wide range of geoprocessing functions that make spatial data manipulation easy. For example, if you need to perform a spatial join, buffer some points, or clip a dataset, ArcPy provides straightforward functions to do this:</p>
 <pre><code class="language-python">
 import arcpy
@@ -145,9 +167,9 @@ arcpy.Buffer_analysis(input_points, output_buffer, buffer_distance)
 
 <p>This kind of operation is standard in GIS workflows and can be executed efficiently within ArcGIS Pro. The tools are designed to work with a wide range of spatial data formats, projections, and coordinate systems, which adds to their robustness.</p>
 <p>However, ArcGIS Pro is a heavyweight application, and ArcPy scripts are typically tied to an ArcGIS Pro installation. This means you need access to a licensed copy of ArcGIS Pro to use ArcPy, which might not be feasible in all scenarios—especially if you're working in a more lightweight or cloud-based environment.</p>
-<h2>Using Open Source Python Libraries Outside of ArcGIS Pro</h2>
+<h2 id="using-open-source-python-libraries-outside-of-arcgis-pro">Using Open Source Python Libraries Outside of ArcGIS Pro</h2>
 <p>If you find yourself in a situation where ArcGIS Pro isn’t available, or you simply want to explore more lightweight, open-source options, Python's geospatial libraries have you covered.</p>
-<h3>GeoPandas</h3>
+<h3 id="geopandas">GeoPandas</h3>
 <p>GeoPandas is a popular open-source library that extends Pandas to allow spatial operations on geometric types. It simplifies the process of reading, writing, and manipulating spatial data in Python. Here's an example of performing a buffer operation using GeoPandas:</p>
 <pre><code class="language-python">
 import geopandas as gpd
@@ -163,7 +185,7 @@ buffered_points.to_file("buffered_points.shp")
 </code></pre>
 
 <p>GeoPandas supports a wide range of spatial operations, including joins, dissolves, and overlays, making it a viable alternative for many standard geoprocessing tasks.</p>
-<h3>Shapely and Fiona</h3>
+<h3 id="shapely-and-fiona">Shapely and Fiona</h3>
 <p>For more granular control, you can combine Shapely and Fiona. Shapely handles geometric operations, while Fiona reads and writes vector data. This approach gives you a more modular and flexible setup, though it requires a bit more coding:</p>
 <pre><code class="language-python">
 from shapely.geometry import Point
@@ -180,7 +202,7 @@ with collection("buffered_point.shp", "w", "ESRI Shapefile", schema) as output:
 </code></pre>
 
 <p>These tools allow for more customizable workflows and can be integrated into a variety of applications, including web apps, server-side processing, and batch jobs on remote servers.</p>
-<h2>Comparing Results</h2>
+<h2 id="comparing-results">Comparing Results</h2>
 <p>When using different tools for the same tasks, it's crucial to ensure that the results are consistent and accurate. A common approach is to perform the same operation in both ArcPy and an open-source library, then compare the outputs.</p>
 <p>For example, after buffering points in both ArcPy and GeoPandas, you can compare the results by checking the area of the resulting polygons or by overlaying the outputs in a GIS application and visually inspecting them.</p>
 <pre><code class="language-python">
@@ -192,26 +214,26 @@ print(f"ArcPy area: {arcpy_area}, GeoPandas area: {gpd_area}")
 </code></pre>
 
 <p>You can also use specific metrics like intersection over union (IoU) for spatial comparisons, or you can check the attribute tables to ensure the same features were retained or joined correctly. This helps ensure that the results are consistent and accurate. Over time, your confidence in the results will increase, but it's still important to use common sense to evaluate the quality of outputs.</p>
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>ArcPy is a powerful tool, and for many GIS professionals, it’s the default option for spatial analysis. However, as we've seen, there are robust open-source alternatives that can handle many of the same tasks, often with fewer dependencies and more flexibility in terms of deployment.</p>
 <p>Whether you're looking to build lightweight web apps, run scripts on a server, or just explore what’s possible outside of ArcGIS Pro, tools like GeoPandas, Shapely, and Fiona offer powerful geospatial capabilities that are worth considering. The best tool is the one you have with you, and with these open-source libraries, you can have a pretty powerful toolbox wherever you go.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/python.html">Python</a> 
-            
-                <a class="post-tag tag-link" href="/tag/open-source.html">Open-Source</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/python.html">Python</a>
+    
+    <a class="post-tag" href="/tag/open-source.html">Open-Source</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

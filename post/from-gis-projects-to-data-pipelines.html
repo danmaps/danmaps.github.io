@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,14 +96,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">From GIS Projects to Data Pipelines</h1>
-        <!-- Post content -->
-        <h2>The loop that used to define GIS work</h2>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>From GIS Projects to Data Pipelines</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2025-12-29">December 29, 2025</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <h2 id="the-loop-that-used-to-define-gis-work">The loop that used to define GIS work</h2>
 <p>When I started in GIS, everything fit in a tight loop:</p>
 <ol>
 <li>Open a project</li>
@@ -136,7 +158,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ol>
 <p>Sometimes that output was a map. Sometimes a table. Sometimes a shapefile handed to someone with quick instructions about what it meant and how carefully they should treat it. The loop was clean, self-contained, and rewarded skill: the better you were at GIS, the faster and more accurate you moved through it. For the world GIS was born into, that model was exactly right.</p>
 <p>But the world shifted underneath it.</p>
-<h2>The project mindset</h2>
+<h2 id="the-project-mindset">The project mindset</h2>
 <p>Traditional GIS is organized around projects.</p>
 <ul>
 <li>A project starts and ends.</li>
@@ -152,7 +174,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Finished deliverables</li>
 </ul>
 <p>Even when we automated, we mostly automated projects: Python scripts that replayed a workflow faster, ModelBuilder chains that removed clicks, scheduled jobs that ran a familiar sequence overnight. The structure stayed the same. Only the speed improved.</p>
-<h2>What breaks at scale</h2>
+<h2 id="what-breaks-at-scale">What breaks at scale</h2>
 <p>Scale cracks the project model—not because projects are bad, but because they assume conditions that no longer hold. Data is no longer static. Inputs are no longer complete. Outputs are no longer final.</p>
 <p>Organizations stop asking “what is the result?” and start asking:</p>
 <ul>
@@ -162,7 +184,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Can this run without a person watching it?</li>
 </ul>
 <p>At that point, the work stops being about running an analysis and starts being about maintaining a system. That is where data pipelines enter.</p>
-<h2>What a pipeline actually is</h2>
+<h2 id="what-a-pipeline-actually-is">What a pipeline actually is</h2>
 <p>A data pipeline is not just a fancier script. It is a commitment that data will:</p>
 <ul>
 <li>Arrive repeatedly</li>
@@ -180,7 +202,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Serve</li>
 </ol>
 <p>GIS training rarely covers this because desktop workflows assume success. Pipelines assume partial failure and are designed around it.</p>
-<h2>The hardest mental shift</h2>
+<h2 id="the-hardest-mental-shift">The hardest mental shift</h2>
 <p>The hardest change for GIS professionals is emotional, not technical.</p>
 <ul>
 <li>In a project workflow, you own the result.</li>
@@ -193,35 +215,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Can I rerun this without breaking downstream users?</li>
 </ul>
 <p>It feels like losing control. In reality, you gain leverage.</p>
-<h2>Scripts versus systems</h2>
+<h2 id="scripts-versus-systems">Scripts versus systems</h2>
 <p>Most GIS pros who “move into data engineering” start by writing better scripts. That helps, but scripts are fragile if they assume a single run, clean inputs, manual intervention, or a human downstream.</p>
 <p>Systems make fewer assumptions. They expect repetition, messy reality, partial automation, and unknown consumers. That is why an elegant GIS script often fails the moment it goes operational—not because it is wrong, but because it was never designed to live.</p>
-<h2>Time becomes first class</h2>
+<h2 id="time-becomes-first-class">Time becomes first class</h2>
 <p>Projects treat time implicitly: snapshots, date fields, a “current” dataset. Pipelines treat time explicitly: versioned data, slowly changing records, late-arriving updates, and backfills. You stop thinking in terms of the dataset and start thinking in terms of history. That shift alone explains why many GIS solutions struggle in production.</p>
-<h2>Why this matters for your career</h2>
+<h2 id="why-this-matters-for-your-career">Why this matters for your career</h2>
 <p>If you were trained in GIS and feel like the industry moved on without telling you, this is likely the gap: not skill, not relevance—just a mismatch in mental models. The industry now values people who can design repeatable systems, reason about data flow, anticipate failure, and connect spatial logic to business decisions.</p>
 <p>GIS gives you a strong foundation. The layer above it has to be learned intentionally. That is where I am putting my effort—not abandoning GIS or chasing tools, but learning how spatial work lives inside modern data systems.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/data-engineering.html">Data Engineering</a> 
-            
-                <a class="post-tag tag-link" href="/tag/pipelines.html">Pipelines</a> 
-            
-                <a class="post-tag tag-link" href="/tag/careers.html">Careers</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems-thinking.html">Systems Thinking</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/data-engineering.html">Data Engineering</a>
+    
+    <a class="post-tag" href="/tag/pipelines.html">Pipelines</a>
+    
+    <a class="post-tag" href="/tag/careers.html">Careers</a>
+    
+    <a class="post-tag" href="/tag/systems-thinking.html">Systems Thinking</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

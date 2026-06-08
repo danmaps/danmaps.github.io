@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,21 +96,66 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">From Prompt to Production: Making AI-Generated Code Actually Usable</h1>
-        <!-- Post content -->
-        <p>There’s a big gap between:</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>From Prompt to Production: Making AI-Generated Code Actually Usable</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-04-24">April 24, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">2 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>There’s a big gap between:</p>
 <p>“AI can generate code”</p>
 <p>and</p>
 <p>“AI can help you ship something real”</p>
 <p>I’ve been working on tools that bring AI directly into production workflows, specifically inside ArcGIS Pro.</p>
 <p>The goal isn’t novelty.</p>
 <p>It’s usability.</p>
-<h2>The dream</h2>
+<h2 id="the-dream">The dream</h2>
 <p>You type:</p>
 <p>“Find all parcels within 500 feet of a fault line and summarize by county”</p>
 <p>And you get:</p>
@@ -142,7 +164,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>correct output</li>
 <li>something you can trust</li>
 </ul>
-<h2>The reality</h2>
+<h2 id="the-reality">The reality</h2>
 <p>What you actually get is:</p>
 <ul>
 <li>mostly correct code</li>
@@ -155,10 +177,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>it might ignore null values</li>
 <li>it might silently fail</li>
 </ul>
-<h2>So how do you make it usable?</h2>
+<h2 id="so-how-do-you-make-it-usable">So how do you make it usable?</h2>
 <p>You don’t just generate code.</p>
 <p>You build a system around it.</p>
-<h2>Pattern 1: Constrained generation</h2>
+<h2 id="pattern-1-constrained-generation">Pattern 1: Constrained generation</h2>
 <p>Don’t let AI generate anything.</p>
 <p>Give it structure:</p>
 <ul>
@@ -167,7 +189,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>known operations</li>
 </ul>
 <p>This reduces hallucination dramatically.</p>
-<h2>Pattern 2: Execution guardrails</h2>
+<h2 id="pattern-2-execution-guardrails">Pattern 2: Execution guardrails</h2>
 <p>Before running anything:</p>
 <ul>
 <li>validate inputs</li>
@@ -181,7 +203,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>explicit validation steps</li>
 </ul>
 <p>This turns “risky automation” into something usable.</p>
-<h2>Pattern 3: Human-in-the-loop</h2>
+<h2 id="pattern-3-human-in-the-loop">Pattern 3: Human-in-the-loop</h2>
 <p>The best workflows aren’t:</p>
 <ul>
 <li>fully manual</li>
@@ -200,7 +222,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>judgment</li>
 <li>edge cases</li>
 </ul>
-<h2>The mental model shift</h2>
+<h2 id="the-mental-model-shift">The mental model shift</h2>
 <p>Stop thinking of AI as:</p>
 <p>“a coder”</p>
 <p>Think of it as:</p>
@@ -211,7 +233,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>skip review</li>
 </ul>
 <p>Same rules apply.</p>
-<h2>Where this gets interesting</h2>
+<h2 id="where-this-gets-interesting">Where this gets interesting</h2>
 <p>Once you have guardrails, you can start doing more:</p>
 <ul>
 <li>chaining multi-step workflows</li>
@@ -219,42 +241,42 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>iterating on results</li>
 </ul>
 <p>This is where “agentic workflows” actually start to mean something.</p>
-<h2>What I’m working on now</h2>
+<h2 id="what-im-working-on-now">What I’m working on now</h2>
 <ul>
 <li>CLI tools that make workflows reproducible</li>
 <li>evaluation systems for AI-generated outputs</li>
 <li>better ways to inject context into prompts</li>
 </ul>
-<h2>Final thought</h2>
+<h2 id="final-thought">Final thought</h2>
 <p>The question isn’t:</p>
 <p>“Can AI write code?”</p>
 <p>It can.</p>
 <p>The real question is:</p>
 <p>“Can we build systems where that code is safe, correct, and useful?”</p>
 <p>That’s the problem worth solving.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/automation.html">Automation</a> 
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
-            
-                <a class="post-tag tag-link" href="/tag/guardrails.html">Guardrails</a> 
-            
-                <a class="post-tag tag-link" href="/tag/software.html">Software</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/automation.html">Automation</a>
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/guardrails.html">Guardrails</a>
+    
+    <a class="post-tag" href="/tag/software.html">Software</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,21 +96,66 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">A GIS Analyst From the Future</h1>
-        <!-- Post content -->
-        <p>Imagine opening a GIS project you have never seen before.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>A GIS Analyst From the Future</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2025-12-16">December 16, 2025</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Imagine opening a GIS project you have never seen before.</p>
 <p>Not a demo. A real one. Messy. Half-documented. Layers named by someone who left three years ago. Fields that almost make sense.</p>
 <p>Today, the first thing you do is triage. You click around. You scan attribute tables. You try to reconstruct intent from leftovers.</p>
 <p>In the future, you ask the map to explain itself.</p>
 <p>This post is about what that future looks like, and how we get there without replacing analysts, breaking workflows, or pretending AI is magic.</p>
 <p>Along the way, you will see interactive maps and tables. They are not screenshots. They are live examples of the same ideas, running in the browser, driven by the same system prompts I use in ArcGIS Pro.</p>
 <hr />
-<h2>Step 1: Let the map speak first</h2>
+<h2 id="step-1-let-the-map-speak-first">Step 1: Let the map speak first</h2>
 <p>Before doing analysis, a good analyst builds context.</p>
 <p>What layers are here?<br />
 What coordinate system are we in?<br />
@@ -151,7 +173,7 @@ Which fields look authoritative and which look improvised?</p>
 <p>Nothing intelligent has happened yet. This is just compression. But compression matters.</p>
 <p>Once context is explicit, everything downstream improves.</p>
 <hr />
-<h2>Step 2: Attributes that explain themselves</h2>
+<h2 id="step-2-attributes-that-explain-themselves">Step 2: Attributes that explain themselves</h2>
 <p>Most GIS attributes answer the wrong question.</p>
 <p>They tell you <em>what</em> something is coded as, not <em>why it matters</em>.</p>
 <p>Look at this table.</p>
@@ -163,7 +185,7 @@ Which fields look authoritative and which look improvised?</p>
 The explanation lives with the feature it describes.</p>
 <p>You do not have to leave the map to understand the data.</p>
 <hr />
-<h2>Step 3: Cleaning data without leaving the thought</h2>
+<h2 id="step-3-cleaning-data-without-leaving-the-thought">Step 3: Cleaning data without leaving the thought</h2>
 <p>Every analyst recognizes this moment.</p>
 <p>You notice a field that is almost numeric:</p>
 <ul>
@@ -183,7 +205,7 @@ Hope you did not miss one.</p>
 <p>The important thing is not that AI cleaned the data.<br />
 It is that the analyst never left the problem they were thinking about.</p>
 <hr />
-<h2>Step 4: Asking for what is missing</h2>
+<h2 id="step-4-asking-for-what-is-missing">Step 4: Asking for what is missing</h2>
 <p>Now we do something different.</p>
 <p>Instead of analyzing what exists, we ask what <em>should</em> exist.</p>
 <p><strong>Interactive example:</strong><br />
@@ -197,7 +219,7 @@ It behaves like any other layer, but it does not pretend to be truth.</p>
 <p>This is one of the most important shifts.</p>
 <p>AI in GIS should propose, not assert.</p>
 <hr />
-<h2>Step 5: Code as a translation layer, not a test</h2>
+<h2 id="step-5-code-as-a-translation-layer-not-a-test">Step 5: Code as a translation layer, not a test</h2>
 <p>Eventually, you need code.</p>
 <p>Select features within a buffer.<br />
 Join attributes.<br />
@@ -212,7 +234,7 @@ The code is readable.</p>
 <p>The analyst still owns it.<br />
 But they are no longer fighting syntax to express a spatial idea.</p>
 <hr />
-<h2>Step 6: The map documents itself</h2>
+<h2 id="step-6-the-map-documents-itself">Step 6: The map documents itself</h2>
 <p>At the end of the session, something subtle happens.</p>
 <p>The map now contains:</p>
 <ul>
@@ -226,7 +248,7 @@ But they are no longer fighting syntax to express a spatial idea.</p>
 <p>This is not for management.<br />
 It is for the next analyst. Or future you.</p>
 <hr />
-<h2>What this is really about</h2>
+<h2 id="what-this-is-really-about">What this is really about</h2>
 <p>This is not about replacing GIS analysts.</p>
 <p>It is about removing the tax of translation:</p>
 <ul>
@@ -237,7 +259,7 @@ It is for the next analyst. Or future you.</p>
 <p>The analyst from the future still thinks spatially.<br />
 They just spend less time fighting software.</p>
 <hr />
-<h2>Try it yourself</h2>
+<h2 id="try-it-yourself">Try it yourself</h2>
 <p>The browser examples in this post are powered by the same system prompts I use inside ArcGIS Pro.</p>
 <p>If you want this workflow in your own projects:</p>
 <ul>
@@ -251,25 +273,25 @@ About geospatial AI adoption, change management, and how we evolve workflows wit
 <p>The future of GIS is not flashy.<br />
 It is calmer, clearer, and easier to think in.</p>
 <p>And it is already here.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/workflows.html">Workflows</a> 
-            
-                <a class="post-tag tag-link" href="/tag/automation.html">Automation</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/workflows.html">Workflows</a>
+    
+    <a class="post-tag" href="/tag/automation.html">Automation</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

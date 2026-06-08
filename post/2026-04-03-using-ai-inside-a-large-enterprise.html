@@ -13,31 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -119,14 +96,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
 .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">Trying to use AI inside a large enterprise without going numb</h1>
-        <!-- Post content -->
-        <p>Using AI inside a large enterprise is a strange exercise in contradiction.</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Trying to use AI inside a large enterprise without going numb</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-04-03">April 3, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">6 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Using AI inside a large enterprise is a strange exercise in contradiction.</p>
 <p>On paper, it should be one of the places where it matters most.<br />
 Large organizations have:</p>
 <ul>
@@ -138,7 +160,7 @@ Large organizations have:</p>
 </ul>
 <p>In theory, that is exactly where AI should help.</p>
 <p>In practice, trying to use it inside a big organization can feel like trying to build a bicycle while wrapped in bubble wrap.</p>
-<h2>The obvious problems are not the only problems</h2>
+<h2 id="the-obvious-problems-are-not-the-only-problems">The obvious problems are not the only problems</h2>
 <p>People usually talk about the obvious barriers first:</p>
 <ul>
 <li>security reviews</li>
@@ -160,7 +182,7 @@ Large organizations have:</p>
 </ul>
 <p>So the friction is not just “AI is restricted.”<br />
 It is also that experimentation itself has to fight for oxygen.</p>
-<h2>The enterprise version of AI is often weirdly underpowered</h2>
+<h2 id="the-enterprise-version-of-ai-is-often-weirdly-underpowered">The enterprise version of AI is often weirdly underpowered</h2>
 <p>Another challenge is that enterprise AI frequently arrives in a very diluted form.</p>
 <p>By the time the tooling is approved, integrated, filtered, and packaged for internal use, what you get can feel like a very polite shadow of what is possible outside the building.</p>
 <p>It often looks like this:</p>
@@ -176,7 +198,7 @@ It is also that experimentation itself has to fight for oxygen.</p>
 <li>what you know is possible</li>
 <li>and what the enterprise environment currently allows</li>
 </ul>
-<h2>The real struggle is workflow access</h2>
+<h2 id="the-real-struggle-is-workflow-access">The real struggle is workflow access</h2>
 <p>The most useful AI work is rarely about chatting in the abstract.<br />
 It is about being close enough to the workflow to matter.</p>
 <p>That means being able to:</p>
@@ -191,7 +213,7 @@ It is about being close enough to the workflow to matter.</p>
 <p>Not always because someone said no.<br />
 Sometimes just because the systems, permissions, ownership boundaries, and change-management expectations make every useful step heavier than it should be.</p>
 <p>That is especially true in places where GIS, operations, planning, and enterprise systems all intersect. The information may exist. But that does not mean it is easy to work with.</p>
-<h2>The workaround is not rebellion. It is parallel learning.</h2>
+<h2 id="the-workaround-is-not-rebellion-it-is-parallel-learning">The workaround is not rebellion. It is parallel learning.</h2>
 <p>I do not think the answer is “ignore policy and do cowboy AI inside the company.”<br />
 That is a good way to lose trust fast.</p>
 <p>The more realistic approach is to build a parallel track of learning outside of work.</p>
@@ -208,9 +230,9 @@ That is a good way to lose trust fast.</p>
 </ul>
 <p>That matters.</p>
 <p>Because if you only learn AI through approved enterprise surfaces, your sense of what is possible gets distorted.</p>
-<h2>Why experimenting outside work matters</h2>
+<h2 id="why-experimenting-outside-work-matters">Why experimenting outside work matters</h2>
 <p>A homelab or personal tooling setup does a few important things.</p>
-<h3>1. It keeps your instincts calibrated</h3>
+<h3 id="1-it-keeps-your-instincts-calibrated">1. It keeps your instincts calibrated</h3>
 <p>You get to see the real frontier, not just the enterprise-safe version of it.</p>
 <p>That helps you separate:</p>
 <ul>
@@ -218,7 +240,7 @@ That is a good way to lose trust fast.</p>
 <li>from marketing</li>
 <li>and also from enterprise theater</li>
 </ul>
-<h3>2. It helps you recognize useful patterns sooner</h3>
+<h3 id="2-it-helps-you-recognize-useful-patterns-sooner">2. It helps you recognize useful patterns sooner</h3>
 <p>Once you have built even a small number of practical workflows on your own, you start seeing the same patterns everywhere:</p>
 <ul>
 <li>repetitive classification tasks</li>
@@ -228,10 +250,10 @@ That is a good way to lose trust fast.</p>
 <li>reporting tasks that are mostly structured synthesis</li>
 </ul>
 <p>That recognition is valuable even if you cannot immediately deploy the exact same tooling at work.</p>
-<h3>3. It gives you a safer sandbox for failure</h3>
+<h3 id="3-it-gives-you-a-safer-sandbox-for-failure">3. It gives you a safer sandbox for failure</h3>
 <p>You can break things, rebuild them, compare models, test interfaces, and learn by doing without turning every experiment into a governance event.</p>
 <p>That speed is a serious advantage.</p>
-<h3>4. It helps you bring back better judgment</h3>
+<h3 id="4-it-helps-you-bring-back-better-judgment">4. It helps you bring back better judgment</h3>
 <p>The point is not to smuggle your home setup into the enterprise.<br />
 The point is to develop judgment.</p>
 <p>Then, when opportunities do appear at work, you are not starting from zero. You already know:</p>
@@ -241,7 +263,7 @@ The point is to develop judgment.</p>
 <li>what evidence helps build trust</li>
 <li>what is noise dressed up as innovation</li>
 </ul>
-<h2>Staying innovative inside a rigid environment</h2>
+<h2 id="staying-innovative-inside-a-rigid-environment">Staying innovative inside a rigid environment</h2>
 <p>If you want to stay innovative inside a large organization, I think the job is less about constant disruption and more about maintaining a live connection to experimentation.</p>
 <p>That can look like:</p>
 <ul>
@@ -261,7 +283,7 @@ They need someone who can say something more grounded:</p>
 <li>this is the minimum useful implementation</li>
 </ul>
 <p>That is a much more credible posture.</p>
-<h2>The ambition has to survive the environment</h2>
+<h2 id="the-ambition-has-to-survive-the-environment">The ambition has to survive the environment</h2>
 <p>One of the quiet risks of enterprise work is that your ambition can get flattened by the pace of the environment.</p>
 <p>Not because you stop caring. More because it becomes easy to normalize the idea that serious experimentation always has to wait for a better quarter, a better budget, a better policy, or a better sponsor.</p>
 <p>That is why side experimentation matters so much.</p>
@@ -270,7 +292,7 @@ They need someone who can say something more grounded:</p>
 <p>And sometimes the most useful thing you can do inside a large enterprise is not to force a premature AI rollout.<br />
 It is to quietly become the person who has already done the reps.</p>
 <p>When the window opens, that preparation matters.</p>
-<h2>The real trick</h2>
+<h2 id="the-real-trick">The real trick</h2>
 <p>The real trick is learning how to live in both worlds at once.</p>
 <p>Inside the enterprise:<br />
 - be careful<br />
@@ -285,27 +307,27 @@ It is to quietly become the person who has already done the reps.</p>
 - keep your sense of possibility intact</p>
 <p>That balance is not glamorous.<br />
 But it may be the most practical way to stay innovative without becoming either reckless or numb.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/enterprise.html">Enterprise</a> 
-            
-                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
-            
-                <a class="post-tag tag-link" href="/tag/homelab.html">Homelab</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/enterprise.html">Enterprise</a>
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/homelab.html">Homelab</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
