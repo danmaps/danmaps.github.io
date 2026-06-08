@@ -1,6 +1,7 @@
 ---
 title: Interview Prep Deserves a Better Interface
 date: 2026-05-17
+layout: rich
 tags:
   - Draft
   - AI

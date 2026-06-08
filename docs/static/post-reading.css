@@ -1,0 +1,464 @@
+/* ============================================================
+   Post Reading Experience
+   Inspired by: anthropic.com/institute longform layout
+   - Narrow reading column for prose
+   - Serif body text
+   - Generous spacing
+   - Rich content blocks (callouts, figures, pull quotes)
+   - Scroll progress bar
+   - Table of contents
+   ============================================================ */
+
+/* --- Reading column --- */
+.post-reading {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    line-height: 1.8;
+    font-size: 1.125rem;
+    color: #e8e6e3;
+}
+
+/* --- Typography --- */
+.post-reading h1,
+.post-reading h2,
+.post-reading h3,
+.post-reading h4 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-top: 2.5em;
+    margin-bottom: 0.6em;
+    line-height: 1.25;
+}
+
+.post-reading h1 {
+    font-size: 2.25rem;
+    margin-top: 0;
+    letter-spacing: -0.03em;
+}
+
+.post-reading h2 {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.post-reading h3 {
+    font-size: 1.2rem;
+}
+
+.post-reading p,
+.post-reading li {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #d4d0cb;
+}
+
+.post-reading p {
+    margin-bottom: 1.5em;
+}
+
+.post-reading a {
+    color: #6cb4ee;
+    text-decoration: underline;
+    text-decoration-color: rgba(108, 180, 238, 0.3);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+}
+
+.post-reading a:hover {
+    text-decoration-color: rgba(108, 180, 238, 0.8);
+}
+
+.post-reading strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.post-reading em {
+    font-style: italic;
+    color: #c8c4bf;
+}
+
+/* --- Lists --- */
+.post-reading ul,
+.post-reading ol {
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.post-reading li {
+    margin-bottom: 0.5em;
+}
+
+.post-reading li::marker {
+    color: #6cb4ee;
+}
+
+/* --- Blockquotes / Pull quotes --- */
+.post-reading blockquote {
+    border-left: 3px solid #6cb4ee;
+    background: rgba(108, 180, 238, 0.05);
+    padding: 1.25em 1.5em;
+    margin: 2em 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #b8b4af;
+}
+
+.post-reading blockquote p {
+    margin-bottom: 0.5em;
+}
+
+.post-reading blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Pull quote: use > **text** in markdown for emphasis */
+.post-reading blockquote strong {
+    font-style: normal;
+    font-size: 1.15em;
+    color: #e8e6e3;
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4;
+}
+
+/* --- Callout blocks --- */
+/* Use in markdown: <div class="callout"> ... </div> */
+.post-reading .callout {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5em 1.75em;
+    margin: 2em 0;
+}
+
+.post-reading .callout-info {
+    border-left: 4px solid #6cb4ee;
+    background: rgba(108, 180, 238, 0.04);
+}
+
+.post-reading .callout-warning {
+    border-left: 4px solid #f0a030;
+    background: rgba(240, 160, 48, 0.04);
+}
+
+.post-reading .callout-success {
+    border-left: 4px solid #4caf7d;
+    background: rgba(76, 175, 125, 0.04);
+}
+
+/* --- Figures & images --- */
+.post-reading img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2em 0;
+    display: block;
+}
+
+.post-reading figure {
+    margin: 2.5em -2rem;
+    padding: 0;
+}
+
+.post-reading figure img {
+    width: calc(100% + 4rem);
+    max-width: calc(100% + 4rem);
+    margin: 0;
+    border-radius: 8px;
+}
+
+.post-reading figcaption {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.75em;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+/* --- Code --- */
+.post-reading code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #e0ddd8;
+}
+
+.post-reading pre {
+    margin: 2em -1rem;
+    padding: 1.25em 1.5em;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    background: #111 !important;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.post-reading pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+}
+
+/* --- Tables --- */
+.post-reading table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: 0.95rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.post-reading th,
+.post-reading td {
+    padding: 0.75em 1em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+}
+
+.post-reading th {
+    font-weight: 600;
+    color: #fff;
+    background: rgba(255,255,255,0.04);
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-reading tr:hover td {
+    background: rgba(255,255,255,0.02);
+}
+
+/* --- Horizontal rules as section breaks --- */
+.post-reading hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+    margin: 3em 0;
+}
+
+/* --- Footnotes --- */
+.post-reading .footnote {
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 3em;
+    padding-top: 1.5em;
+}
+
+.post-reading .footnote ol {
+    padding-left: 1.5em;
+}
+
+.post-reading .footnote li {
+    margin-bottom: 0.75em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.post-reading sup a {
+    color: #6cb4ee;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Post header --- */
+.post-hero {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 0;
+}
+
+.post-hero h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0 0 0.75rem;
+}
+
+.post-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.post-meta-bar time {
+    color: #999;
+}
+
+.post-meta-bar .reading-time {
+    color: #666;
+}
+
+.post-meta-bar .separator {
+    color: #444;
+}
+
+/* --- Scroll progress bar --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #6cb4ee, #a78bfa);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
+
+/* --- Table of contents --- */
+.post-toc {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.post-toc details {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1em 1.25em;
+    margin-bottom: 2em;
+}
+
+.post-toc summary {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #999;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.post-toc summary::-webkit-details-marker {
+    display: none;
+}
+
+.post-toc summary::before {
+    content: '▸';
+    transition: transform 0.2s;
+}
+
+.post-toc details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.post-toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0;
+}
+
+.post-toc li {
+    margin-bottom: 0.5em;
+}
+
+.post-toc a {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.post-toc a:hover {
+    color: #6cb4ee;
+}
+
+.post-toc .toc-h3 {
+    padding-left: 1.25em;
+}
+
+/* --- Tags at bottom --- */
+.post-tags-footer {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.post-tags-footer .post-tag {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #aaa;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.post-tags-footer .post-tag:hover {
+    background: rgba(108, 180, 238, 0.1);
+    border-color: rgba(108, 180, 238, 0.3);
+    color: #6cb4ee;
+}
+
+/* --- Responsive --- */
+@media (max-width: 720px) {
+    .post-hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .post-reading {
+        font-size: 1.05rem;
+        padding: 1.5rem 1rem 3rem;
+    }
+    
+    .post-reading figure {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    
+    .post-reading figure img {
+        width: calc(100% + 2rem);
+        max-width: calc(100% + 2rem);
+        border-radius: 0;
+    }
+    
+    .post-reading pre {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
+    }
+    
+    .post-hero,
+    .post-toc,
+    .post-tags-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* --- Smooth anchor scrolling --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Transition for interactive elements --- */
+.post-reading h2,
+.post-reading h3 {
+    scroll-margin-top: 2rem;
+}
