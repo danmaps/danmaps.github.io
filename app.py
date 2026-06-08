@@ -217,6 +217,9 @@ def post(post_name):
             'tables',
             'nl2br',
             'sane_lists',
+            'footnotes',
+            'attr_list',
+            'toc',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
         ])
@@ -228,6 +231,10 @@ def post(post_name):
         html_content = html_content.replace('---', '—')
         html_content = html_content.replace('â€”', '—')
         html_content = html_content.replace('â€˜', '\'')
+
+        # Calculate reading time (~200 words per minute)
+        word_count = len(body.split())
+        reading_time = max(1, round(word_count / 200))
 
         # Include the CSS for Pygments
         formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
@@ -242,6 +249,7 @@ def post(post_name):
             tags=tags,
             tag_objs=tag_objs,
             date=date_obj,
+            reading_time=reading_time,
         )
         
     

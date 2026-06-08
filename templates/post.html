@@ -2,27 +2,51 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='post-reading.css') }}">
+<style>{{ pygments_css | safe }}</style>
+{% endblock %}
+
 {% block content %}
-<style>
-    {{ pygments_css | safe }}
-</style>
-<div class="container bg-dark text-light">
-    <article>
-        
-        <h1 class="text-light">{{ title }}</h1>
-        <!-- Post content -->
-        {{ content | safe }}
-        <!-- Display the tags at the bottom -->
-        {% if tag_objs %}
-        <p class="post-tags text-light">
-            {% for tag in tag_objs %}
-                <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %} {% endif %}
-            {% endfor %}
-        </p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>{{ title }}</h1>
+    <div class="post-meta-bar">
+        {% if date %}
+        <time datetime="{{ date.strftime('%Y-%m-%d') }}">{{ date.strftime('%B %d, %Y').replace(' 0', ' ') }}</time>
         {% endif %}
-    </article>
-</div>
+        {% if reading_time %}
+        <span class="separator">·</span>
+        <span class="reading-time">{{ reading_time }} min read</span>
+        {% endif %}
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    {{ content | safe }}
+</article>
+
+<!-- Tags -->
+{% if tag_objs %}
+<footer class="post-tags-footer">
+    {% for tag in tag_objs %}
+    <a class="post-tag" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+    {% endfor %}
+</footer>
+{% endif %}
 
 <script src="{{ url_for('static', filename='copy-code.js') }}"></script>
-
+<script src="{{ url_for('static', filename='post-reading.js') }}"></script>
 {% endblock %}
