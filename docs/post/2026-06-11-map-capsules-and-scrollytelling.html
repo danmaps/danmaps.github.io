@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>Spatial Workbench Needed a Layer UX Pass Before Anything Smarter</title>
+    <title>Map capsules and scrollytelling for GIS workflow writeups</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -132,83 +132,127 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">Spatial Workbench Needed a Layer UX Pass Before Anything Smarter</h1>
+        <h1 class="text-light">Map capsules and scrollytelling for GIS workflow writeups</h1>
         <!-- Post content -->
-        <p>This past week I did a concentrated UX pass on Spatial Workbench.</p>
-<p>Not the flashy kind. Not "we added agent magic" or "AI now does everything." The opposite, really.</p>
-<p>I spent the week making layers behave more like real objects in the system and less like temporary side effects of tools.</p>
-<p>That meant a few concrete things:</p>
+        <p>I keep coming back to the same problem when writing technical GIS posts:</p>
 <ul>
-<li>defining a canonical layer model</li>
-<li>documenting the table-of-contents action model</li>
-<li>normalizing multi-feature imports into single layers</li>
-<li>improving layer naming, badges, removal, and summaries</li>
-<li>separating mobile tools and data views</li>
-<li>adding a responsive attribute inspector</li>
-<li>fixing mobile top bar overlap</li>
-<li>fixing a desktop attribute drawer layout regression</li>
+<li>static screenshots are fast to publish</li>
+<li>but they hide the spatial decision points</li>
+<li>and readers miss the <em>why</em> behind each map state</li>
 </ul>
-<p>On paper, that sounds like a grab bag of UI chores. In practice, it felt like foundational product work.</p>
-<h2>The temptation is always to skip this part</h2>
-<p>Spatial Workbench is interesting because it sits in a useful middle zone:</p>
+<p>So this post is a first pass at a reusable structure:</p>
+<ol>
+<li>a compact map capsule embed</li>
+<li>a scrollytelling sequence that updates map state as you read</li>
+</ol>
+<h2>Reusable map capsule</h2>
+<p>This map is rendered with a generic <code>map-embed</code> container and data attributes for center, zoom, marker, and route.</p>
+<p><div
+  class="map-embed"
+  data-center="28.5383,-81.3792"
+  data-zoom="11"
+  data-marker="28.5383,-81.3792"
+  data-popup="Example focus area"
+  data-route="28.527,-81.39;28.533,-81.372;28.545,-81.361;28.553,-81.374"
+></div>
+</p>
+<p class="map-note">Capsule maps work well for one idea: a route, boundary, or focal point.</p>
+
+<h2>Scrollytelling walkthrough: field edit QA</h2>
+<p>A common workflow: inspect suspect edits, check nearby context, then lock in the final corrected location.</p>
+<div class="map-story" id="field-edit-story">
+  <div
+    class="map-embed"
+    id="field-edit-map"
+    data-center="28.5383,-81.3792"
+    data-zoom="11"
+  ></div>
+
+  <div class="map-steps" id="field-edit-steps">
+    <section class="map-step is-active" data-center="28.545,-81.39" data-zoom="12" tabindex="0">
+      <h4>1) Review the incoming points</h4>
+      <p>Start broad and inspect the newest field updates in context.</p>
+    </section>
+
+    <section class="map-step" data-center="28.533,-81.372" data-zoom="14" tabindex="0">
+      <h4>2) Zoom to dense edits</h4>
+      <p>Focus on clusters where a minor offset can impact routing quality.</p>
+    </section>
+
+    <section class="map-step" data-center="28.553,-81.374" data-zoom="15" tabindex="0">
+      <h4>3) Confirm final corrected location</h4>
+      <p>Move to the accepted location and verify alignment with nearby streets.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  function toLatLng(value, fallback) {
+    if (!window.DanMapEmbed) return fallback;
+    return window.DanMapEmbed.parseLatLng(value, fallback);
+  }
+
+  function setActive(steps, activeStep) {
+    steps.forEach(function (step) {
+      step.classList.toggle('is-active', step === activeStep);
+    });
+  }
+
+  function initStory() {
+    var mapEl = document.getElementById('field-edit-map');
+    if (!mapEl || !window.DanMapEmbed) return;
+
+    var embed = window.DanMapEmbed.create(mapEl, { routeColor: '#34d399' });
+    if (!embed) return;
+
+    var referenceRoute = L.polyline([
+      [28.545, -81.39],
+      [28.54, -81.381],
+      [28.533, -81.372],
+      [28.542, -81.365],
+      [28.553, -81.374]
+    ], { color: '#f59e0b', weight: 4, opacity: 0.85 }).addTo(embed.map);
+
+    var steps = Array.from(document.querySelectorAll('#field-edit-steps .map-step'));
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var step = entry.target;
+        var center = toLatLng(step.dataset.center, [28.5383, -81.3792]);
+        var zoom = Number(step.dataset.zoom || 12);
+        setActive(steps, step);
+        embed.setView(center, zoom);
+      });
+    }, { threshold: 0.65 });
+
+    steps.forEach(function (step) {
+      observer.observe(step);
+      step.addEventListener('focus', function () {
+        var center = toLatLng(step.dataset.center, [28.5383, -81.3792]);
+        var zoom = Number(step.dataset.zoom || 12);
+        setActive(steps, step);
+        embed.setView(center, zoom);
+      });
+    });
+
+    if (referenceRoute.getBounds().isValid()) {
+      embed.map.fitBounds(referenceRoute.getBounds(), { padding: [18, 18] });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initStory);
+})();
+</script>
+
+<h2>Why this format is useful</h2>
 <ul>
-<li>lighter than a full desktop GIS</li>
-<li>more inspectable than most map demos</li>
-<li>more spatially concrete than generic AI playgrounds</li>
+<li>It keeps the post readable without sending readers to a separate app.</li>
+<li>It makes map state transitions explicit.</li>
+<li>It gives me a reusable pattern for future route, parcel, and QA writeups.</li>
 </ul>
-<p>That makes it very easy to start dreaming about the "smart" parts.</p>
-<p>More tools. More automation. Better AI feature generation. Agent-driven workflows. Provenance. Replay. Scoring. Guidance.</p>
-<p>All of that is still interesting.</p>
-<p>But if the layer model is fuzzy, the contents pane is awkward, mobile navigation is clumsy, and results from tools don’t land in a predictable structure, then every higher-level feature is built on mush.</p>
-<p>I’ve been noticing this pattern a lot lately: the real bottleneck often isn’t missing intelligence. It’s missing shape.</p>
-<h2>Layers had to become first-class</h2>
-<p>A lot of GIS software treats layers as obvious because decades of convention already did the hard work. You inherit a whole mental model for free.</p>
-<p>When you build a small spatial tool from scratch, you do not get that for free.</p>
-<p>You have to decide things like:</p>
-<ul>
-<li>what exactly counts as a layer</li>
-<li>when a tool result becomes a new layer versus updating an existing one</li>
-<li>how imported data should group</li>
-<li>what metadata belongs to the layer</li>
-<li>what actions should be available from the layer row</li>
-<li>how much detail the UI should expose by default</li>
-</ul>
-<p>That is not glamorous work, but it determines whether the app feels coherent.</p>
-<p>One concrete improvement this week was normalizing multi-feature results into single layers. That sounds tiny, but it matters. If one import or tool execution explodes into a messy pile of pseudo-layers, the app stops feeling inspectable and starts feeling accidental.</p>
-<p>The same goes for naming, badges, summaries, zoom actions, and properties. Those details are not decoration. They are how the system explains itself.</p>
-<h2>Inspectability is the product</h2>
-<p>I keep coming back to this idea.</p>
-<p>For a project like Spatial Workbench, the product is not just "map stuff on a screen." It is the ability to see what happened and why.</p>
-<p>That is why I care about things like:</p>
-<ul>
-<li>clear layer identity</li>
-<li>visible geometry state</li>
-<li>readable metadata</li>
-<li>understandable tool outputs</li>
-<li>predictable UI behavior across desktop and mobile</li>
-</ul>
-<p>If AI is involved, this matters even more.</p>
-<p>I do not think the interesting future of spatial AI is a black box that emits impressive shapes. I think it is a system where generated geometry can be inspected, edited, traced, combined with other data, and treated like any other object in the workspace.</p>
-<p>That only works if the "boring" substrate is solid.</p>
-<h2>Mobile was a good reality check</h2>
-<p>Some of the work this week was specifically about mobile: splitting tools and data into separate views, measuring the mobile bar correctly, and fixing layout overlap.</p>
-<p>Mobile has a way of exposing whether your structure is real or just barely holding together on a large screen.</p>
-<p>If a UI only works when there is infinite horizontal space, then a lot of its clarity was fake.</p>
-<p>The responsive attribute inspector was part of the same lesson. I did not just need data to exist. I needed it to remain reachable and understandable when the screen got smaller and the layout got tighter.</p>
-<p>That kind of constraint is annoying in the moment, but useful. It forces decisions.</p>
-<h2>This is the kind of work AI does not save you from</h2>
-<p>AI can absolutely help generate code for this sort of pass. It can suggest layouts, tests, event handlers, and refactors.</p>
-<p>But it does not remove the need to decide what the app should actually be.</p>
-<p>This week felt like a good example of where product thinking still earns its keep.</p>
-<p>The hard part was not writing a resize listener or a drawer component. The hard part was deciding that Spatial Workbench needed a layer UX pass more than it needed another clever feature.</p>
-<p>That is the judgment call.</p>
-<p>And honestly, I think it was the right one.</p>
-<p>Because now the project feels a little less like a pile of promising spatial tools and a little more like a coherent environment.</p>
-<p>That is usually the real prerequisite for smarter things later.</p>
-<h2>Draft takeaway</h2>
-<p>I am trying to get better at respecting this phase of a project.</p>
-<p>Not every useful week produces a headline feature. Sometimes the meaningful progress is that the system got more legible, more predictable, and more honest about its own structure.</p>
-<p>For a tool meant to support spatial thinking, that seems like real progress.</p>
+<p>Next step is extending the same component for side-by-side compare maps and small decision matrix callouts.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
@@ -217,9 +261,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
                 <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
             
-                <a class="post-tag tag-link" href="/tag/product.html">Product</a> 
+                <a class="post-tag tag-link" href="/tag/mapping.html">Mapping</a> 
             
-                <a class="post-tag tag-link" href="/tag/work.html">Work</a>
+                <a class="post-tag tag-link" href="/tag/workflow.html">Workflow</a>
             
         </p>
         
