@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>Fixing the freeze guardrail by admitting generated files are part of the product</title>
+    <title>Map capsules and scrollytelling for GIS workflow writeups</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -129,99 +129,138 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">Fixing the freeze guardrail by admitting generated files are part of the product</h1>
+        <h1 class="text-light">Map capsules and scrollytelling for GIS workflow writeups</h1>
         <!-- Post content -->
-        <p>A small but useful failure mode showed up in my blog workflow this week.</p>
-<p>The repo has a guardrail in CI that runs <code>freeze.py</code> and fails if the generated site output under <code>docs/</code> is not committed.</p>
-<p>That is a good rule.</p>
-<p>The annoying part was that I had a publish flow that was still too manual.</p>
-<p>So the setup looked like this:</p>
+        <p>I keep coming back to the same problem when writing technical GIS posts:</p>
 <ul>
-<li>CI correctly checked whether generated output was up to date</li>
-<li>local publishing still relied on a hand-maintained <code>git add</code> list</li>
-<li>new generated files could appear without getting staged</li>
-<li>CI would catch the mismatch and fail</li>
+<li>static screenshots are fast to publish</li>
+<li>but they hide the spatial decision points</li>
+<li>and readers miss the <em>why</em> behind each map state</li>
 </ul>
-<p>Which is exactly what happened.</p>
-<h2>The bug was not the guardrail</h2>
-<p>The first instinct with this kind of thing is to blame the failing job.</p>
-<p>But the guardrail was doing its job.</p>
-<p>The actual problem was that the local publish process still assumed I knew exactly which generated files would change.</p>
-<p>That assumption stops working the second the build becomes even slightly dynamic.</p>
-<p>In this case, the culprit was tag pages.</p>
-<p>A new tag appeared in a draft post.<br />
-<code>freeze.py</code> correctly generated new files like:</p>
-<ul>
-<li><code>docs/tag/orchestration.html</code></li>
-<li><code>docs/tag/symphony.html</code></li>
-</ul>
-<p>But the publish step did not automatically stage them, because it was built around an explicit list of expected files.</p>
-<p>That is fragile in a really boring way.</p>
-<h2>The lesson: generated output is not “extra”</h2>
-<p>The real fix was not “remember to add those two files.”</p>
-<p>The real fix was to admit something more basic:</p>
-<p><strong>if the frozen site in <code>docs/</code> is what gets deployed, then generated files are not incidental clutter — they are part of the product.</strong></p>
-<p>Once that is true, the publish step should treat them that way.</p>
-<p>Not as an afterthought.<br />
-Not as a special case.<br />
-Not as a list to keep updating by hand.</p>
-<p>Just: freeze the site, then stage the generated output.</p>
-<p>All of it.</p>
-<h2>What I changed</h2>
-<p>I added a small repo-local helper:</p>
-<pre><code class="language-bash">
-./scripts/freeze_and_stage.sh
-</code></pre>
-
-<p>That is now the human-facing publish step.</p>
-<p>It does three things:</p>
+<p>So this post is a first pass at a reusable structure:</p>
 <ol>
-<li>runs the freeze build</li>
-<li>ensures <code>docs/.nojekyll</code></li>
-<li>stages <code>posts/</code> and <code>docs/</code> together</li>
+<li>a compact map capsule embed</li>
+<li>a scrollytelling sequence that updates map state as you read</li>
 </ol>
-<p>That means new tag pages get picked up automatically.<br />
-It also means the local publish process now matches what the guardrail expects.</p>
-<p>That is the important part.</p>
-<p>A good guardrail should not just catch mistakes. It should push the workflow toward the shape where the mistake becomes less likely.</p>
-<h2>The meta point</h2>
-<p>This is obviously a tiny blog-specific example, but I think the pattern is general.</p>
-<p>A lot of workflow pain comes from pretending generated artifacts are somehow less real than source files.</p>
-<p>But if those artifacts are what users actually get — deployed docs, compiled assets, reports, app bundles, generated plans, exported files — then they need to be handled as first-class outputs.</p>
-<p>Otherwise you get a weird split-brain system where:</p>
+<h2>Reusable map capsule</h2>
+<p>This map is rendered with a generic <code>map-embed</code> container and data attributes for center, zoom, marker, and route.</p>
+<p><div
+  class="map-embed"
+  data-center="28.5383,-81.3792"
+  data-zoom="11"
+  data-marker="28.5383,-81.3792"
+  data-popup="Example focus area"
+  data-route="28.527,-81.39;28.533,-81.372;28.545,-81.361;28.553,-81.374"
+></div>
+</p>
+<p class="map-note">Capsule maps work well for one idea: a route, boundary, or focal point.</p>
+
+<h2>Scrollytelling walkthrough: field edit QA</h2>
+<p>A common workflow: inspect suspect edits, check nearby context, then lock in the final corrected location.</p>
+<div class="map-story" id="field-edit-story">
+  <div
+    class="map-embed"
+    id="field-edit-map"
+    data-center="28.5383,-81.3792"
+    data-zoom="11"
+  ></div>
+
+  <div class="map-steps" id="field-edit-steps">
+    <section class="map-step is-active" data-center="28.545,-81.39" data-zoom="12" tabindex="0">
+      <h4>1) Review the incoming points</h4>
+      <p>Start broad and inspect the newest field updates in context.</p>
+    </section>
+
+    <section class="map-step" data-center="28.533,-81.372" data-zoom="14" tabindex="0">
+      <h4>2) Zoom to dense edits</h4>
+      <p>Focus on clusters where a minor offset can impact routing quality.</p>
+    </section>
+
+    <section class="map-step" data-center="28.553,-81.374" data-zoom="15" tabindex="0">
+      <h4>3) Confirm final corrected location</h4>
+      <p>Move to the accepted location and verify alignment with nearby streets.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  function toLatLng(value, fallback) {
+    if (!window.DanMapEmbed) return fallback;
+    return window.DanMapEmbed.parseLatLng(value, fallback);
+  }
+
+  function setActive(steps, activeStep) {
+    steps.forEach(function (step) {
+      step.classList.toggle('is-active', step === activeStep);
+    });
+  }
+
+  function initStory() {
+    var mapEl = document.getElementById('field-edit-map');
+    if (!mapEl || !window.DanMapEmbed) return;
+
+    var embed = window.DanMapEmbed.create(mapEl, { routeColor: '#34d399' });
+    if (!embed) return;
+
+    var referenceRoute = L.polyline([
+      [28.545, -81.39],
+      [28.54, -81.381],
+      [28.533, -81.372],
+      [28.542, -81.365],
+      [28.553, -81.374]
+    ], { color: '#f59e0b', weight: 4, opacity: 0.85 }).addTo(embed.map);
+
+    var steps = Array.from(document.querySelectorAll('#field-edit-steps .map-step'));
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var step = entry.target;
+        var center = toLatLng(step.dataset.center, [28.5383, -81.3792]);
+        var zoom = Number(step.dataset.zoom || 12);
+        setActive(steps, step);
+        embed.setView(center, zoom);
+      });
+    }, { threshold: 0.65 });
+
+    steps.forEach(function (step) {
+      observer.observe(step);
+      step.addEventListener('focus', function () {
+        var center = toLatLng(step.dataset.center, [28.5383, -81.3792]);
+        var zoom = Number(step.dataset.zoom || 12);
+        setActive(steps, step);
+        embed.setView(center, zoom);
+      });
+    });
+
+    if (referenceRoute.getBounds().isValid()) {
+      embed.map.fitBounds(referenceRoute.getBounds(), { padding: [18, 18] });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initStory);
+})();
+</script>
+
+<h2>Why this format is useful</h2>
 <ul>
-<li>the build knows what is real</li>
-<li>CI knows what is real</li>
-<li>but the human workflow still treats those outputs as optional debris</li>
+<li>It keeps the post readable without sending readers to a separate app.</li>
+<li>It makes map state transitions explicit.</li>
+<li>It gives me a reusable pattern for future route, parcel, and QA writeups.</li>
 </ul>
-<p>That is how boring process bugs keep happening.</p>
-<h2>The better standard</h2>
-<p>The better rule is simple:</p>
-<p><strong>if a file is generated as part of the canonical build, the workflow should make it hard to forget.</strong></p>
-<p>That does not always mean committing build output. In many repos it should not.</p>
-<p>But in a repo like this one, where <code>docs/</code> is the published GitHub Pages artifact, it absolutely does.</p>
-<p>So the fix was not glamorous.</p>
-<p>It was just making the workflow tell the truth:</p>
-<ul>
-<li>freeze</li>
-<li>stage the generated site</li>
-<li>review it</li>
-<li>commit it</li>
-</ul>
-<p>Sometimes that is all a good systems improvement is.</p>
-<p>Not a new capability.<br />
-Just one less place for reality and the process to drift apart.</p>
+<p>Next step is extending the same component for side-by-side compare maps and small decision matrix callouts.</p>
         <!-- Display the tags at the bottom -->
         
         <p class="post-tags text-light">
             
-                <a class="post-tag tag-link" href="/tag/blogging.html">Blogging</a> 
+                <a class="post-tag tag-link" href="/tag/gis.html">GIS</a> 
             
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
+                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
             
-                <a class="post-tag tag-link" href="/tag/tooling.html">Tooling</a> 
+                <a class="post-tag tag-link" href="/tag/mapping.html">Mapping</a> 
             
-                <a class="post-tag tag-link" href="/tag/github.html">Github</a>
+                <a class="post-tag tag-link" href="/tag/workflow.html">Workflow</a>
             
         </p>
         

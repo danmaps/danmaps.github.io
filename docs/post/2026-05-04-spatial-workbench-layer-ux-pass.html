@@ -13,13 +13,18 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+>
+<link rel="stylesheet" href="/static/map-embed.css">
+
 
     <!-- Prism CSS (for code highlighting) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
-    <!-- Prism JS (for code highlighting) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
 </head>
 <body class="bg-dark ">
     
@@ -229,10 +234,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         </div>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
       (function(){
         var el = document.getElementById('copyright-year');
@@ -240,5 +241,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       })();
     </script>
     
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+></script>
+<script src="/static/map-embed.js"></script>
+
 </body>
 </html>
