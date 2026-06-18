@@ -1,27 +1,21 @@
 ---
 title: GitHub Copilot Teaches Git by Guiding Decisions
 date: 2026-06-17
+layout: rich
 tags:
-  - Draft
   - AI
   - Git
-  - developer-tools
+  - Developer-Tools
   - UX
-summary: "The most useful thing GitHub Copilot may be doing for newer developers is not explaining Git syntax. It is quietly coaching judgment at the exact moment commit, push, and repository decisions need to be made."
 ---
 
 Version control experts often underestimate how confusing Git is for beginners.
 
-The commands are not the hard part for very long.
-The mental model is.
+The commands are not the hard part for very long. The mental model is.
 
-Most new developers can memorize `git add`, `git commit`, and `git push` quickly enough. What they usually do not get from that is judgment.
+Most new developers can memorize `git add`, `git commit`, and `git push` quickly enough. What they usually do not get from that is **judgment**.
 
-What belongs in a commit?
-How big should a commit be?
-What makes a commit message useful?
-When should you push?
-What should you do if you are not confident about the state of the repo?
+What belongs in a commit? How big should a commit be? What makes a commit message useful? When should you push? What should you do if you are not confident about the state of the repo?
 
 Those are the questions that actually slow people down.
 
@@ -77,6 +71,56 @@ It is shaping behavior at the moment a decision is being made.
 That matters because most people do not open documentation right when they are uncertain. They hesitate, guess, or cargo-cult what they half remember.
 
 An assistant that intervenes at the point of hesitation can do something documentation usually cannot.
+
+## The workflow is where the teaching happens
+
+Consider the Copilot merge skill. It does not just run `git merge`. It bakes a decision-making process into the workflow:
+
+**Step 1: Check for uncommitted changes**
+
+```bash
+git status --porcelain
+```
+
+This forces the decision upfront: Is the workspace clean? Should you commit first? It prevents the panic of merging an uncertain state.
+
+**Step 2: Perform the merge**
+
+```bash
+git -C <main-worktree-path> merge <topic-branch>
+```
+
+Clean, explicit. No flags, no force-pushing. Just a deliberate merge that respects the history.
+
+**Step 3: Handle conflicts with intent**
+
+If conflicts arise, the skill does not skip them or auto-resolve them. It:
+
+```bash
+# List conflicted files
+git diff --name-only --diff-filter=U
+
+# Read each file
+# Resolve by preserving intent of both sides
+git add <resolved-file>
+
+# Commit the merge
+git commit --no-edit
+```
+
+This is teaching through structure. Every step reinforces a habit: clean state, explicit action, intentional resolution, validated result.
+
+**Step 4: Validate the merge**
+
+```bash
+# Confirm the working tree is clean
+git status --porcelain
+
+# Confirm the topic branch is now an ancestor
+git merge-base --is-ancestor <topic-branch> HEAD
+```
+
+This validates that the merge actually worked. It prevents the "did it work?" doubt that makes beginners nervous.
 
 ## The quiet UX win is timing
 

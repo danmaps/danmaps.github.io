@@ -13,36 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
->
-<link rel="stylesheet" href="/static/map-embed.css">
-
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-</head>
-<body class="bg-dark ">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark", id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
-                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 ">
-        
-<style>
-    pre { line-height: 125%; }
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -125,26 +97,63 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
 .codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
-.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
         
-        <h1 class="text-light">GitHub Copilot Teaches Git by Guiding Decisions</h1>
-        <!-- Post content -->
-        <p>Version control experts often underestimate how confusing Git is for beginners.</p>
-<p>The commands are not the hard part for very long.<br />
-The mental model is.</p>
-<p>Most new developers can memorize <code>git add</code>, <code>git commit</code>, and <code>git push</code> quickly enough. What they usually do not get from that is judgment.</p>
-<p>What belongs in a commit?<br />
-How big should a commit be?<br />
-What makes a commit message useful?<br />
-When should you push?<br />
-What should you do if you are not confident about the state of the repo?</p>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>GitHub Copilot Teaches Git by Guiding Decisions</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-06-17">June 17, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">6 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Version control experts often underestimate how confusing Git is for beginners.</p>
+<p>The commands are not the hard part for very long. The mental model is.</p>
+<p>Most new developers can memorize <code>git add</code>, <code>git commit</code>, and <code>git push</code> quickly enough. What they usually do not get from that is <strong>judgment</strong>.</p>
+<p>What belongs in a commit? How big should a commit be? What makes a commit message useful? When should you push? What should you do if you are not confident about the state of the repo?</p>
 <p>Those are the questions that actually slow people down.</p>
 <p>Lately, one of the more interesting things I have noticed in GitHub Copilot is that it seems to understand this distinction. It does not only act like a command explainer. In a lot of cases, it behaves more like a quiet workflow coach.</p>
 <p>That is a bigger product idea than it sounds like.</p>
-<h2>Git beginners do not mainly need syntax</h2>
+<h2 id="git-beginners-do-not-mainly-need-syntax">Git beginners do not mainly need syntax</h2>
 <p>Traditional Git education tends to focus on commands.</p>
 <p>You learn the sequence.<br />
 You memorize the flags.<br />
@@ -162,7 +171,7 @@ You practice a couple of happy paths.</p>
 They need software development judgment.</p>
 <p>That is why so many Git tutorials feel oddly incomplete.<br />
 They teach the mechanism and skip the decisions.</p>
-<h2>Copilot seems to be teaching habits, not just commands</h2>
+<h2 id="copilot-seems-to-be-teaching-habits-not-just-commands">Copilot seems to be teaching habits, not just commands</h2>
 <p>What makes Copilot interesting here is not that it can explain what <code>git commit</code> does.<br />
 Plenty of tools can do that.</p>
 <p>What is more valuable is the way it appears to nudge users toward better habits in the middle of actual work.</p>
@@ -180,7 +189,46 @@ That is apprenticeship.</p>
 It is shaping behavior at the moment a decision is being made.</p>
 <p>That matters because most people do not open documentation right when they are uncertain. They hesitate, guess, or cargo-cult what they half remember.</p>
 <p>An assistant that intervenes at the point of hesitation can do something documentation usually cannot.</p>
-<h2>The quiet UX win is timing</h2>
+<h2 id="the-workflow-is-where-the-teaching-happens">The workflow is where the teaching happens</h2>
+<p>Consider the Copilot merge skill. It does not just run <code>git merge</code>. It bakes a decision-making process into the workflow:</p>
+<p><strong>Step 1: Check for uncommitted changes</strong></p>
+<pre><code class="language-bash">
+git status --porcelain
+</code></pre>
+
+<p>This forces the decision upfront: Is the workspace clean? Should you commit first? It prevents the panic of merging an uncertain state.</p>
+<p><strong>Step 2: Perform the merge</strong></p>
+<pre><code class="language-bash">
+git -C <main-worktree-path> merge <topic-branch>
+</code></pre>
+
+<p>Clean, explicit. No flags, no force-pushing. Just a deliberate merge that respects the history.</p>
+<p><strong>Step 3: Handle conflicts with intent</strong></p>
+<p>If conflicts arise, the skill does not skip them or auto-resolve them. It:</p>
+<pre><code class="language-bash">
+# List conflicted files
+git diff --name-only --diff-filter=U
+
+# Read each file
+# Resolve by preserving intent of both sides
+git add <resolved-file>
+
+# Commit the merge
+git commit --no-edit
+</code></pre>
+
+<p>This is teaching through structure. Every step reinforces a habit: clean state, explicit action, intentional resolution, validated result.</p>
+<p><strong>Step 4: Validate the merge</strong></p>
+<pre><code class="language-bash">
+# Confirm the working tree is clean
+git status --porcelain
+
+# Confirm the topic branch is now an ancestor
+git merge-base --is-ancestor <topic-branch> HEAD
+</code></pre>
+
+<p>This validates that the merge actually worked. It prevents the "did it work?" doubt that makes beginners nervous.</p>
+<h2 id="the-quiet-ux-win-is-timing">The quiet UX win is timing</h2>
 <p>I think the most interesting part of this is not the wording of any individual prompt.<br />
 It is the timing.</p>
 <p>Git documentation lives off to the side.<br />
@@ -196,7 +244,7 @@ Copilot lives inside the workflow.</p>
 <p>That is a very different kind of teaching.</p>
 <p>It is closer to having a senior developer nearby who does not give a lecture, but does quietly steer you away from sloppy habits before they harden.</p>
 <p>The UX win is that the advice arrives exactly when the user needs it.</p>
-<h2>Prompt engineering becomes embedded mentorship</h2>
+<h2 id="prompt-engineering-becomes-embedded-mentorship">Prompt engineering becomes embedded mentorship</h2>
 <p>This is the part I keep coming back to.</p>
 <p>What GitHub appears to have done is encode years of engineering best practices directly into assistant behavior.</p>
 <p>Not into a blog post.<br />
@@ -216,7 +264,7 @@ It is carrying institutional knowledge.</p>
 </ul>
 <p>The clever move is not simply documenting those ideas.<br />
 The clever move is making them show up right when a user is about to make a choice.</p>
-<h2>This pattern matters far beyond Git</h2>
+<h2 id="this-pattern-matters-far-beyond-git">This pattern matters far beyond Git</h2>
 <p>The Git example is useful because it is familiar, but I think the bigger lesson applies almost everywhere.</p>
 <p>Good AI products do not just answer questions.<br />
 They guide decisions.</p>
@@ -235,7 +283,7 @@ They guide decisions.</p>
 <p>That is much more interesting than an assistant that merely explains what a buffer tool does.</p>
 <p>The real leverage is not in answering the obvious question.<br />
 It is in helping people make better operational decisions while the work is still in motion.</p>
-<h2>The best tutorial may not look like a tutorial</h2>
+<h2 id="the-best-tutorial-may-not-look-like-a-tutorial">The best tutorial may not look like a tutorial</h2>
 <p>This is why I think one of the best Git tutorials may not look like a tutorial at all.</p>
 <p>It may look like a tool that quietly reinforces good habits over and over:</p>
 <ul>
@@ -249,30 +297,30 @@ It is in helping people make better operational decisions while the work is stil
 <p>And honestly, that is often how people learn best.</p>
 <p>Not through a single deep lecture.<br />
 Through dozens of well-timed nudges that slowly build instinct.</p>
-<h2>The takeaway</h2>
+<h2 id="the-takeaway">The takeaway</h2>
 <p>The most interesting part of GitHub Copilot's Git guidance is not the specific phrasing.<br />
 It is the realization that prompt engineering can encode best practices directly into a workflow.</p>
 <p>The result feels less like help documentation and more like having a senior engineer quietly looking over your shoulder.</p>
 <p>If more AI products worked that way, they would be a lot more useful.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/git.html">Git</a> 
-            
-                <a class="post-tag tag-link" href="/tag/developer-tools.html">Developer-Tools</a> 
-            
-                <a class="post-tag tag-link" href="/tag/ux.html">UX</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/git.html">Git</a>
+    
+    <a class="post-tag" href="/tag/developer-tools.html">Developer-Tools</a>
+    
+    <a class="post-tag" href="/tag/ux.html">UX</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
@@ -289,12 +337,5 @@ It is the realization that prompt engineering can encode best practices directly
       })();
     </script>
     
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
-<script src="/static/map-embed.js"></script>
-
 </body>
 </html>
