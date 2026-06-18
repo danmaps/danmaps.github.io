@@ -20,36 +20,35 @@ span.linenos { color: inherit; background-color: transparent; padding-left: 5px;
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .o { color: #f92672 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -68,9 +67,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -150,11 +149,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Databases are systems that store, manage, and organize data. They are the backbone of most modern applications, ranging from websites to mobile apps, and are crucial for handling large amounts of information in an efficient and structured way. Traditional databases store data in tables made up of rows and columns, much like a spreadsheet, allowing for easy retrieval and manipulation of the stored information.</p>
 <p>There are various types of databases designed to meet different needs. For example, relational databases like MySQL or PostgreSQL are well-suited for applications that require structured data and complex queries, while NoSQL databases like MongoDB are ideal for handling unstructured or semi-structured data at scale.</p>
 <h4 id="why-do-we-need-different-types-of-databases">Why Do We Need Different Types of Databases?</h4>
-<p>As technology evolves, the nature of the data we need to store and query has become more complex. Traditional databases are excellent at handling structured dataâ€”think of names, addresses, and numbersâ€”but they struggle with new types of data generated by modern applications, such as text, images, and user behavior patterns. This is where specialized databases come in.</p>
+<p>As technology evolves, the nature of the data we need to store and query has become more complex. Traditional databases are excellent at handling structured data—think of names, addresses, and numbers—but they struggle with new types of data generated by modern applications, such as text, images, and user behavior patterns. This is where specialized databases come in.</p>
 <p>Different types of databases are designed to handle specific kinds of data more efficiently. For instance, time-series databases are optimized for recording events over time, graph databases excel at managing relationships between entities, and vector databases, the focus of this blog, are designed to handle high-dimensional data represented as vectors. By choosing the right type of database, developers can ensure that their applications run smoothly and can scale effectively as they grow.</p>
 <h4 id="what-is-a-vector">What is a Vector?</h4>
 <p>At its most basic, a vector is an ordered list of numbers. You can think of it as a set of coordinates that define a point in space. For example, in two-dimensional space, a vector could represent a point with an x and y coordinate, like (3, 4). In three-dimensional space, a vector would have three components, such as (3, 4, 5). The concept of vectors is fundamental in mathematics and physics, where they are used to represent quantities that have both magnitude and direction, like velocity or force.</p>
-<p>But vectors are not limited to physical space. In the world of computing, vectors can represent more abstract concepts. For example, a vector can be used to capture the meaning of a word in a text, an image in a photo, or even a user's preferences in a recommendation system. In these cases, the vector's components are numerical values that capture various aspects or features of the item it represents.</p>
+<p>But vectors are not limited to physical space. In the world of computing, vectors can represent more abstract concepts. For example, a vector can be used to capture the meaning of a word in a text, an image in a photo, or even a user’s preferences in a recommendation system. In these cases, the vector’s components are numerical values that capture various aspects or features of the item it represents.</p>
 <h3 id="understanding-scalars-vs-vectors">Understanding Scalars vs. Vectors</h3>
 <p>Before diving deeper into vector databases, it's crucial to understand the difference between scalars and vectors, as this distinction lies at the heart of why vector databases exist.</p>
 <h4 id="scalars">Scalars</h4>
@@ -179,9 +178,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>User preferences</strong>: Summarizing a user's behavior in a multi-dimensional profile.</li>
 </ul>
 <h4 id="why-this-distinction-matters">Why This Distinction Matters</h4>
-<p>The distinction between scalars and vectors is crucial when choosing the right database for your needs. Traditional databases are optimized for handling scalar valuesâ€”simple, individual data points that can be easily stored, queried, and manipulated. However, as we move into more complex data-driven applications, such as those involving AI and machine learning, we often need to work with vectors, which represent data in multiple dimensions simultaneously.</p>
+<p>The distinction between scalars and vectors is crucial when choosing the right database for your needs. Traditional databases are optimized for handling scalar values—simple, individual data points that can be easily stored, queried, and manipulated. However, as we move into more complex data-driven applications, such as those involving AI and machine learning, we often need to work with vectors, which represent data in multiple dimensions simultaneously.</p>
 <p>For example, consider a recommendation system that needs to compare user profiles with thousands of products. Each profile and product might be represented as a vector with hundreds of dimensions, capturing various features like preferences, behavior, and ratings. Comparing these vectors to find the most similar items is a task that traditional databases are not designed to handle efficiently.</p>
-<p>This is where <strong>vector databases</strong> come inâ€”they are specifically designed to store, index, and query high-dimensional vector data, enabling operations like similarity search, nearest neighbor search, and more, all of which are fundamental in modern AI applications.</p>
+<p>This is where <strong>vector databases</strong> come in—they are specifically designed to store, index, and query high-dimensional vector data, enabling operations like similarity search, nearest neighbor search, and more, all of which are fundamental in modern AI applications.</p>
 <p><strong>Vector databases</strong> are specialized databases designed to store, index, and query high-dimensional data, typically in the form of vectors. These vectors are often the result of embedding techniques used in machine learning and natural language processing (NLP) to represent data such as text, images, or other types of unstructured data in a numerical format that captures semantic relationships.</p>
 <ul>
 <li>

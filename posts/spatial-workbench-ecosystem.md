@@ -10,7 +10,7 @@ layout: rich
 
 <img src="/static/images/spatial-workbench-ecosystem.jpg" alt="Spatial Workbench ecosystem" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
-This project family covers the full range of GIS + AI interaction, from human-in-the-loop to fully agent-driven systems. Iâ€™ve been busy lately thanks to OpenClaw-related productivity gains, so this is an update on the shape of my personal projects and how Iâ€™m thinking about them. Same domain, different assumptions about who is doing the thinking.
+This project family covers the full range of GIS + AI interaction, from human-in-the-loop to fully agent-driven systems. I’ve been busy lately thanks to OpenClaw-related productivity gains, so this is an update on the shape of my personal projects and how I’m thinking about them. Same domain, different assumptions about who is doing the thinking.
 
 <img src="/static/images/spatial-spectrum.jpg" alt="Human-in-the-loop to agent-first spectrum" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 10px;" />
 
@@ -77,7 +77,7 @@ Use this when scale, access, and automation matter more than vendor boundaries.
 ---
 
 ## The unifying idea
-This isnâ€™t four products. Itâ€™s one philosophy applied at different points on the human to agent spectrum.
+This isn’t four products. It’s one philosophy applied at different points on the human to agent spectrum.
 
 - Human insight first
 - Developer leverage second

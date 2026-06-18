@@ -20,36 +20,35 @@ span.linenos { color: inherit; background-color: transparent; padding-left: 5px;
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .o { color: #f92672 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -68,9 +67,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -146,23 +145,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <!-- Article body -->
 <article class="post-reading">
-    <p>There's a growing narrative that AI can write code for you.</p>
-<p>That's true.</p>
-<p>What's more interesting is what happens after the code is written.</p>
-<p>I've been experimenting with integrating AI directly into ArcGIS Pro workflows. The idea is simple:</p>
+    <p>There’s a growing narrative that AI can write code for you.</p>
+<p>That’s true.</p>
+<p>What’s more interesting is what happens after the code is written.</p>
+<p>I’ve been experimenting with integrating AI directly into ArcGIS Pro workflows. The idea is simple:</p>
 <p>Describe what you want â†’ get working geoprocessing code.</p>
 <p>In practice, it looks like this:</p>
 <ul>
-<li>I type: â€œSelect all points within 1 mile of schools and summarize by districtâ€</li>
+<li>I type: “Select all points within 1 mile of schools and summarize by district”</li>
 <li>The system generates Python (ArcPy)</li>
 <li>The code runs inside a real project</li>
 </ul>
-<p>And sometimesâ€¦ it works perfectly.</p>
+<p>And sometimes… it works perfectly.</p>
 <p>Other times, it breaks in ways that are surprisingly consistent.</p>
 <h2 id="where-things-actually-break">Where things actually break</h2>
-<h3 id="1-the-aalmost-righta-problem">1. The â€œalmost rightâ€ problem</h3>
+<h3 id="1-the-almost-right-problem">1. The “almost right” problem</h3>
 <p>AI is very good at generating code that looks correct.</p>
-<p>It's much worse at generating code that:</p>
+<p>It’s much worse at generating code that:</p>
 <ul>
 <li>uses the correct coordinate system</li>
 <li>handles edge cases in real datasets</li>
@@ -171,11 +170,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Example:</p>
 <ul>
 <li>It buffers in degrees instead of meters</li>
-<li>Or assumes a field exists that doesn't</li>
+<li>Or assumes a field exists that doesn’t</li>
 </ul>
 <p>This is dangerous because:</p>
 <p>The output looks valid, but the result is wrong.</p>
-<h3 id="2-context-is-everything-and-ai-doesnatmt-have-enough-of-it">2. Context is everything (and AI doesn't have enough of it)</h3>
+<h3 id="2-context-is-everything-and-ai-doesnt-have-enough-of-it">2. Context is everything (and AI doesn’t have enough of it)</h3>
 <p>In a real GIS project:</p>
 <ul>
 <li>layers have naming conventions</li>
@@ -184,7 +183,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>Without that context, AI guesses.</p>
 <p>Sometimes correctly. Often not.</p>
-<p>This is where most â€œAI coding demosâ€ fall apart. They work in isolation, not inside messy systems.</p>
+<p>This is where most “AI coding demos” fall apart. They work in isolation, not inside messy systems.</p>
 <h3 id="3-execution-is-the-real-problem">3. Execution is the real problem</h3>
 <p>Generating code is easy.</p>
 <p>Running it safely is not.</p>
@@ -195,9 +194,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>validation checks</li>
 <li>rollback strategies</li>
 </ul>
-<p>Without that, you're basically letting an AI modify your data blindly.</p>
+<p>Without that, you’re basically letting an AI modify your data blindly.</p>
 <h2 id="what-actually-works">What actually works</h2>
-<p>After a lot of trial and error, I've landed on a pattern:</p>
+<p>After a lot of trial and error, I’ve landed on a pattern:</p>
 <p>AI should:</p>
 <ul>
 <li>generate code</li>
@@ -210,31 +209,31 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>own the result</li>
 </ul>
 <h2 id="the-key-shift">The key shift</h2>
-<p>The real value of AI isn't:</p>
-<p>â€œwrite code for meâ€</p>
-<p>It's:</p>
-<p>â€œreduce the distance between intent and executionâ€</p>
-<p>But there's a gap between:</p>
+<p>The real value of AI isn’t:</p>
+<p>“write code for me”</p>
+<p>It’s:</p>
+<p>“reduce the distance between intent and execution”</p>
+<p>But there’s a gap between:</p>
 <ul>
 <li>generated code</li>
 <li>trustworthy systems</li>
 </ul>
 <p>Most of my work lately has been about closing that gap.</p>
-<h2 id="what-iatmm-exploring-next">What I'm exploring next</h2>
+<h2 id="what-im-exploring-next">What I’m exploring next</h2>
 <ul>
 <li>scoring AI-generated code quality</li>
 <li>comparing outputs against known-good datasets</li>
 <li>building guardrails into execution environments</li>
 </ul>
 <p>Basically:</p>
-<p>Not â€œcan AI write code?â€<br />
-But â€œcan we trust what it produces?â€</p>
-<p>If you're using AI in real workflows, I'd love to hear:</p>
+<p>Not “can AI write code?”<br />
+But “can we trust what it produces?”</p>
+<p>If you’re using AI in real workflows, I’d love to hear:</p>
 <ul>
 <li>where it breaks for you</li>
-<li>what guardrails you've built</li>
+<li>what guardrails you’ve built</li>
 </ul>
-<p>Because that's where the interesting work is happening.</p>
+<p>Because that’s where the interesting work is happening.</p>
 </article>
 
 <!-- Tags -->

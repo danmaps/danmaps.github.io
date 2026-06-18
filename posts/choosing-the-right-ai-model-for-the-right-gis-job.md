@@ -14,12 +14,12 @@ layout: rich
 
 This is a working series about model selection for GIS automation.
 
-Not in the abstract â€œwhich model is #1 on a benchmark this week?â€ sense.
+Not in the abstract “which model is #1 on a benchmark this week?” sense.
 
 In the practical sense:
 
 - Can it produce a correct, runnable workflow?
-- Does it notice when itâ€™s guessing?
+- Does it notice when it’s guessing?
 - Will it stop when the task is high-risk?
 - Can a GIS analyst trust the explanation?
 
@@ -28,14 +28,14 @@ The theme is simple: **model choice is governance**.
 ## What this series is (and is not)
 
 - This is **case-study driven**.
-- It is written from a â€œship it in a real GIS environmentâ€ perspective.
+- It is written from a “ship it in a real GIS environment” perspective.
 - It assumes ArcGIS Pro workflows, messy data, real constraints.
 
 It is not a leaderboard race, and it is not an attempt to declare a universal best model.
 
 ## Posts
 
-1) **When â€œGood Enoughâ€ Fails**
+1) **When “Good Enough” Fails**
    Natural language â†’ ArcGIS Pro workflows.
 
 2) **GIS Is a Domain, Not Just Python**
@@ -55,5 +55,5 @@ It is not a leaderboard race, and it is not an attempt to declare a universal be
 
 ## Draft status
 
-These are currently unlisted drafts. Iâ€™m publishing them when the case studies are real enough to be worth your time.
+These are currently unlisted drafts. I’m publishing them when the case studies are real enough to be worth your time.
 

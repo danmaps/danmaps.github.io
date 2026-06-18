@@ -32,7 +32,7 @@ To get the most out of generative AI, understanding how to structure your prompt
   
 - **Step-by-Step Thinking**: For complex tasks, break them down. Rather than asking one large question, ask in steps, such as "First, how do I buffer points in ArcGIS Pro? Then, how do I select the parcels within 500 feet of a point?"
   
-- **Iterative Refinement**: After receiving an initial response from the AI, you can fine-tune the output by refining your prompt. Itâ€™s an ongoing dialogue.
+- **Iterative Refinement**: After receiving an initial response from the AI, you can fine-tune the output by refining your prompt. It’s an ongoing dialogue.
 
 Prompting AI is different from performing a Google search. Google is about finding information, while AI helps generate content or solve problems through interaction.
 
@@ -59,7 +59,7 @@ Prompt: *Help me draft a summary of my GIS analysis findings on parcel proximity
 The AI can generate a well-structured report, saving hours of manual writing.
 
 #### 2. **Excel Automation: Data Splitting**
-Prompt: *I have a field in my Excel spreadsheet containing coordinates in the format â€˜-117.69408694 32.77575342â€™. How can I split these into separate latitude and longitude columns?*
+Prompt: *I have a field in my Excel spreadsheet containing coordinates in the format ‘-117.69408694 32.77575342’. How can I split these into separate latitude and longitude columns?*
 AI can either provide a formula or even split the data for you, depending on the tool you use.
 
 #### 3. **GIS Workflow Optimization: Proximity Analysis**
@@ -72,7 +72,7 @@ The AI can guide you step-by-step, improving the efficiency of your analysis.
 
 1. **Iterative Mindset**: When working with AI, think of it as an ongoing conversation. Prompting requires context and refinement over time, not a one-shot approach like traditional searches.
 
-2. **Stay Curious**: Generative AI is evolving rapidly. Stay up-to-date with new tools and techniques to ensure youâ€™re leveraging the latest capabilities to enhance your geospatial work.
+2. **Stay Curious**: Generative AI is evolving rapidly. Stay up-to-date with new tools and techniques to ensure you’re leveraging the latest capabilities to enhance your geospatial work.
 
 3. **Experiment and Share**: GIS professionals should experiment with AI tools and share their findings with colleagues. This culture of experimentation and knowledge-sharing helps improve AI adoption and innovation in the industry.
 

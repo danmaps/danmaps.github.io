@@ -16,7 +16,7 @@ I have been circling a bigger idea with a lot of my projects lately: if geometry
 
 But visible systems can still be awkward.
 
-This weekâ€™s work was less about adding flashy capability and more about reducing ambiguity in the product.
+This week’s work was less about adding flashy capability and more about reducing ambiguity in the product.
 
 ## The product got clearer in three ways
 

@@ -28,7 +28,7 @@ But the world shifted underneath it.
 Traditional GIS is organized around projects.
 
 - A project starts and ends.
-- It has inputs you trustâ€”or at least understand.
+- It has inputs you trust—or at least understand.
 - It produces outputs you can inspect before sharing.
 
 If something goes wrong, you rerun it. If data changes, you clone the project or start fresh. That mindset shaped everything we used:
@@ -43,9 +43,9 @@ Even when we automated, we mostly automated projects: Python scripts that replay
 
 ## What breaks at scale
 
-Scale cracks the project modelâ€”not because projects are bad, but because they assume conditions that no longer hold. Data is no longer static. Inputs are no longer complete. Outputs are no longer final.
+Scale cracks the project model—not because projects are bad, but because they assume conditions that no longer hold. Data is no longer static. Inputs are no longer complete. Outputs are no longer final.
 
-Organizations stop asking â€œwhat is the result?â€ and start asking:
+Organizations stop asking “what is the result?” and start asking:
 
 - What is the current state?
 - What changed since yesterday?
@@ -81,7 +81,7 @@ The hardest change for GIS professionals is emotional, not technical.
 - In a project workflow, you own the result.
 - In a pipeline, you own the behavior over time.
 
-You stop asking, â€œDid this analysis run correctly?â€ and start asking:
+You stop asking, “Did this analysis run correctly?” and start asking:
 
 - Will this still work next month?
 - What happens when a field is missing?
@@ -91,17 +91,17 @@ It feels like losing control. In reality, you gain leverage.
 
 ## Scripts versus systems
 
-Most GIS pros who â€œmove into data engineeringâ€ start by writing better scripts. That helps, but scripts are fragile if they assume a single run, clean inputs, manual intervention, or a human downstream.
+Most GIS pros who “move into data engineering” start by writing better scripts. That helps, but scripts are fragile if they assume a single run, clean inputs, manual intervention, or a human downstream.
 
-Systems make fewer assumptions. They expect repetition, messy reality, partial automation, and unknown consumers. That is why an elegant GIS script often fails the moment it goes operationalâ€”not because it is wrong, but because it was never designed to live.
+Systems make fewer assumptions. They expect repetition, messy reality, partial automation, and unknown consumers. That is why an elegant GIS script often fails the moment it goes operational—not because it is wrong, but because it was never designed to live.
 
 ## Time becomes first class
 
-Projects treat time implicitly: snapshots, date fields, a â€œcurrentâ€ dataset. Pipelines treat time explicitly: versioned data, slowly changing records, late-arriving updates, and backfills. You stop thinking in terms of the dataset and start thinking in terms of history. That shift alone explains why many GIS solutions struggle in production.
+Projects treat time implicitly: snapshots, date fields, a “current” dataset. Pipelines treat time explicitly: versioned data, slowly changing records, late-arriving updates, and backfills. You stop thinking in terms of the dataset and start thinking in terms of history. That shift alone explains why many GIS solutions struggle in production.
 
 ## Why this matters for your career
 
-If you were trained in GIS and feel like the industry moved on without telling you, this is likely the gap: not skill, not relevanceâ€”just a mismatch in mental models. The industry now values people who can design repeatable systems, reason about data flow, anticipate failure, and connect spatial logic to business decisions.
+If you were trained in GIS and feel like the industry moved on without telling you, this is likely the gap: not skill, not relevance—just a mismatch in mental models. The industry now values people who can design repeatable systems, reason about data flow, anticipate failure, and connect spatial logic to business decisions.
 
-GIS gives you a strong foundation. The layer above it has to be learned intentionally. That is where I am putting my effortâ€”not abandoning GIS or chasing tools, but learning how spatial work lives inside modern data systems.
+GIS gives you a strong foundation. The layer above it has to be learned intentionally. That is where I am putting my effort—not abandoning GIS or chasing tools, but learning how spatial work lives inside modern data systems.
 

@@ -1,5 +1,5 @@
 ---
-title: "Prompt injection isnâ€™t what you think"
+title: "Prompt injection isn’t what you think"
 date: 2026-04-03
 tags:
   - Draft
@@ -22,7 +22,7 @@ So I tried this:
 
 The bot did the right thing:
 
-> Iâ€™m focused on helping with GIS automation scripts.
+> I’m focused on helping with GIS automation scripts.
 
 Cool.
 
@@ -32,7 +32,7 @@ Then I tried the classic:
 
 Still good:
 
-> Nice try, letâ€™s stay focused on spatial analysis.
+> Nice try, let’s stay focused on spatial analysis.
 
 Nice.
 
@@ -42,9 +42,9 @@ Then I tried this:
 
 And the bot goes:
 
-> Hereâ€™s a recipeâ€¦
+> Here’s a recipe…
 
-## Thatâ€™s the real problem
+## That’s the real problem
 
 Most people think prompt injection looks like this:
 
@@ -57,7 +57,7 @@ That is not the interesting case.
 The interesting case is when the model decides it is still being helpful.
 
 No rules were broken.
-No instructions were â€œignored.â€
+No instructions were “ignored.”
 
 The model just reinterpreted the task.
 
@@ -93,7 +93,7 @@ That is a much slipperier problem.
 
 ## The mistake: vague boundaries
 
-â€œHelp with GISâ€ is not a real constraint.
+“Help with GIS” is not a real constraint.
 
 It is a vibe.
 
@@ -134,7 +134,7 @@ If false, stop.
 
 That one change does a lot of work.
 
-### 3. Treat â€œsetup stepsâ€ as suspicious
+### 3. Treat “setup steps” as suspicious
 
 This is the trick that broke my system:
 
@@ -200,7 +200,7 @@ That is how you harden the system over time.
 
 The real realization for me is this:
 
-I am not building a â€œhelpful assistant.â€
+I am not building a “helpful assistant.”
 
 I am building a constrained system with a domain contract.
 
@@ -212,7 +212,7 @@ Your job is to redefine helpfulness as:
 
 Outside that boundary should not feel like:
 
-> sorry, I canâ€™t do that
+> sorry, I can’t do that
 
 It should feel more like:
 
@@ -236,7 +236,7 @@ If your agent can be nudged off track with something as simple as coffee cake, i
 
 That is the dangerous part.
 
-## Where Iâ€™m going with this
+## Where I’m going with this
 
 The direction that feels right is:
 

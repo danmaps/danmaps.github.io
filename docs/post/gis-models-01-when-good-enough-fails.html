@@ -20,36 +20,35 @@ span.linenos { color: inherit; background-color: transparent; padding-left: 5px;
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .o { color: #f92672 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -68,9 +67,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -147,7 +146,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <!-- Article body -->
 <article class="post-reading">
     <p>A lot of people treat LLMs like fancy autocomplete.</p>
-<p>That mindset worksâ€¦ right up until you ask the model to produce a runnable GIS workflow from vague human intent.</p>
+<p>That mindset works… right up until you ask the model to produce a runnable GIS workflow from vague human intent.</p>
 <p>This post is about that moment.</p>
 <h2 id="core-question">Core question</h2>
 <p>Can a model reliably turn vague human intent into a correct, runnable GIS workflow?</p>
@@ -159,18 +158,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>This is a realistic request.</p>
 <p>It is also a perfect trap because it contains four failure points:</p>
-<p>1) what â€œwithin 500 ftâ€ means (units, projection, geodesic vs planar)<br />
-2) what â€œtransmission linesâ€ are (feature layer? multiple circuits? multipart?)<br />
-3) what â€œdissolve by circuitâ€ implies (which field is â€œcircuitâ€ and is it clean?)<br />
+<p>1) what “within 500 ft” means (units, projection, geodesic vs planar)<br />
+2) what “transmission lines” are (feature layer? multiple circuits? multipart?)<br />
+3) what “dissolve by circuit” implies (which field is “circuit” and is it clean?)<br />
 4) exporting GeoJSON (ArcGIS Pro vs ArcPy vs GDAL, and field name constraints)</p>
 <h2 id="models-tested">Models tested</h2>
-<p>I'm intentionally not making this a brand fight. Think in classes:</p>
+<p>I’m intentionally not making this a brand fight. Think in classes:</p>
 <ul>
 <li><strong>Small fast model</strong>: cheap, quick, good at plausible text</li>
 <li><strong>Mid-tier reasoning model</strong>: can keep more state, notices contradictions</li>
 <li><strong>High-end reasoning model</strong>: tends to ask clarifying questions and avoid unsafe assumptions</li>
 </ul>
-<h2 id="what-iatmll-show">What I'll show</h2>
+<h2 id="what-ill-show">What I’ll show</h2>
 <h3 id="1-generated-steps-side-by-side">1) Generated steps (side-by-side)</h3>
 <p>For each model:</p>
 <ul>
@@ -187,7 +186,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Export reality</strong>: GeoJSON export path in ArcGIS Pro, field/schema gotchas</li>
 </ul>
 <h3 id="3-actual-runtime-results-in-arcgis-pro">3) Actual runtime results in ArcGIS Pro</h3>
-<p>Not â€œit sounds rightâ€.</p>
+<p>Not “it sounds right”.</p>
 <ul>
 <li>did it run?</li>
 <li>did it produce the right parcels?</li>
@@ -197,21 +196,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h2 id="early-pattern-draft-observation">Early pattern (draft observation)</h2>
 <p>Cheap models are fine for brainstorming.</p>
 <p>But in production GIS automation, the cost of a quiet mistake is usually higher than the cost of a better model.</p>
-<p>The difference is not prose quality. It's whether the model:</p>
+<p>The difference is not prose quality. It’s whether the model:</p>
 <ul>
 <li>notices missing inputs</li>
 <li>refuses to guess on high-impact choices</li>
 <li>checks units and projections</li>
-<li>verifies the meaning of â€œcircuitâ€ instead of inventing it</li>
+<li>verifies the meaning of “circuit” instead of inventing it</li>
 </ul>
 <h2 id="key-takeaway">Key takeaway</h2>
 <p><strong>Cheap models are fine for suggestions. Production GIS automation needs reasoning, not autocomplete.</strong></p>
 <h2 id="next-steps">Next steps</h2>
-<p>I'm going to fill this in with:</p>
+<p>I’m going to fill this in with:</p>
 <ul>
 <li>the exact side-by-side outputs</li>
 <li>screenshots / logs from ArcGIS Pro</li>
-<li>a â€œminimum safe checklistâ€ you can use regardless of model choice</li>
+<li>a “minimum safe checklist” you can use regardless of model choice</li>
 </ul>
 </article>
 

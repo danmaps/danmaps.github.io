@@ -16,7 +16,7 @@ A well-designed workspace can prevent the aches and pains that often accompany d
 
 **Standing Desks and Movement**
 
-Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, itâ€™s important to move regularly---take a quick stretch, walk around, or simply shift your weight.
+Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, it’s important to move regularly---take a quick stretch, walk around, or simply shift your weight.
 
 #### Incorporating Physical Activity
 

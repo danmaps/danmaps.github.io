@@ -49,7 +49,7 @@ That means even when people are curious, the system tends to reward:
 - not becoming the person who broke something
 - not moving faster than the policy can explain
 
-So the friction is not just â€œAI is restricted.â€
+So the friction is not just “AI is restricted.”
 It is also that experimentation itself has to fight for oxygen.
 
 ## The enterprise version of AI is often weirdly underpowered
@@ -65,7 +65,7 @@ It often looks like this:
 - tools without the permissions or context needed to be genuinely useful
 - generic assistants that cannot touch the real workflow bottleneck
 
-So the company can say it is â€œusing AI,â€ while individual workers still end up doing most of the hard translation by hand.
+So the company can say it is “using AI,” while individual workers still end up doing most of the hard translation by hand.
 
 That creates a frustrating gap between:
 
@@ -94,7 +94,7 @@ That is especially true in places where GIS, operations, planning, and enterpris
 
 ## The workaround is not rebellion. It is parallel learning.
 
-I do not think the answer is â€œignore policy and do cowboy AI inside the company.â€
+I do not think the answer is “ignore policy and do cowboy AI inside the company.”
 That is a good way to lose trust fast.
 
 The more realistic approach is to build a parallel track of learning outside of work.
@@ -110,7 +110,7 @@ At home, you can learn things the enterprise environment is too slow to teach yo
 - how orchestration breaks in real life
 - where the UI friction is
 - which tasks are genuinely compressible
-- what â€œAI with receiptsâ€ should look like
+- what “AI with receipts” should look like
 
 That matters.
 
@@ -174,7 +174,7 @@ That can look like:
 
 That last part matters.
 
-No one inside a large enterprise needs another person saying â€œAI is the future.â€
+No one inside a large enterprise needs another person saying “AI is the future.”
 They need someone who can say something more grounded:
 
 - this specific workflow is compressible
