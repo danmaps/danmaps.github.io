@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>AI Needs Real Work</title>
+    <title>Everything Is Software</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -13,18 +13,13 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
->
-<link rel="stylesheet" href="/static/map-embed.css">
-
 
     <!-- Prism CSS (for code highlighting) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
+    <!-- Prism JS (for code highlighting) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script> <!-- Add more languages as needed -->
 </head>
 <body class="bg-dark ">
     
@@ -130,82 +125,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="container bg-dark text-light">
     <article>
         
-        <h1 class="text-light">AI Needs Real Work</h1>
+        <h1 class="text-light">Everything Is Software</h1>
         <!-- Post content -->
-        <p>Lately I have been trying to apply a stricter test to AI.</p>
-<p>Not whether it is impressive.<br />
-Not whether it can generate a lot.<br />
-Not whether it makes me feel productive.</p>
-<p>The real question is simpler: does it help me do real work?</p>
-<p>By real work, I mean things like clarifying a decision, turning a vague idea into a plan, creating a usable artifact, reducing mental overhead, or helping move a project from scattered thoughts into an actual system.</p>
-<p>That sounds obvious, but I think it matters because the current AI discourse still has a weird tendency to reward spectacle over usefulness.</p>
-<p>I do not need more spectacle.<br />
-I need less friction.</p>
-<h2>The test I keep coming back to</h2>
-<p>Over the last week, a few threads kept converging for me.</p>
-<p>One was personal and practical: trying to get clearer about what value I am actually getting from AI tools.<br />
-Another was product-oriented: tightening how I think about positioning and usefulness for geospatial tools instead of drifting into broad, fuzzy ambition.<br />
-A third was more general: noticing that AI is most valuable when it helps collapse ambiguity.</p>
-<p>That has become my working standard:</p>
-<blockquote>
-<p>AI is useful when it helps turn vague thinking into clear next steps, artifacts, and decisions.</p>
-</blockquote>
-<p>If it does not do that, then a lot of what it produces is just activity with better branding.</p>
-<h2>Where it has been genuinely useful</h2>
-<p>The strongest uses are not the flashy ones.</p>
-<p>They are things like:</p>
+        <p>Everything can be represented as software. That's not just an abstract CS principle—it's becoming the lived reality for anyone who works with information, and it's reshaping who gets to build things.</p>
+<h2>The idea</h2>
+<p>From a thermostat to a drainage model to a piece of music, anything that can be described with rules and data can be expressed as code. We've known this for decades, but what's changed is that <em>acting</em> on it no longer requires a computer science degree.</p>
+<p>The boundaries between domains keep blurring. A software engineer builds a VR simulation of a physical space. A biologist writes code to model protein interactions. I analyze spatial data and build maps. A musician produces a track in a DAW that's really just a specialized IDE. We're all writing software, whether we call it that or not.</p>
+<h2>Democratized creation</h2>
+<p>If anyone can create software, the bottleneck shifts from <em>building</em> to <em>imagining</em>. People from every discipline—healthcare, education, urban planning—can contribute solutions instead of waiting for a vendor to prioritize their niche.</p>
+<p>This is where bespoke micro-software gets interesting. Think:</p>
 <ul>
-<li>turning rough ideas into structured notes or briefs</li>
-<li>surfacing tradeoffs I had not made explicit yet</li>
-<li>helping me evaluate whether a project has a real wedge or just an interesting shape</li>
-<li>reducing the amount of context I have to keep in my head at once</li>
-<li>producing drafts that are good enough to react to, revise, or discard</li>
+<li>A clinic building a lightweight app to triage patient intake, instead of bending a massive EHR system to fit</li>
+<li>A teacher spinning up a personalized quiz platform for their classroom</li>
+<li>A GIS analyst creating a focused field-data collection tool instead of wrestling with a one-size-fits-all enterprise suite (sorry Esri!)</li>
 </ul>
-<p>That last part matters.<br />
-A draft is valuable if it moves the work forward, even if the draft is not the final answer.</p>
-<p>I think that is the right frame for a lot of AI usage right now. Not replacement. Not magic. Not autonomous genius. Just a cheap, flexible planning-and-execution layer that helps convert mental clutter into something inspectable.</p>
-<h2>What I am less interested in</h2>
-<p>I am increasingly suspicious of AI workflows that generate a lot without making judgment any clearer.</p>
-<p>A giant pile of code is not necessarily progress.<br />
-A polished block of prose is not necessarily insight.<br />
-A long answer is not necessarily decision support.</p>
-<p>If anything, the danger is that AI makes low-value output feel more substantial than it is.</p>
-<p>That is why I keep coming back to inspectability.<br />
-I want systems where the result can be examined, challenged, edited, and turned into the next concrete action.</p>
-<p>That applies to writing.<br />
-It applies to product thinking.<br />
-It applies to geospatial work.<br />
-And it definitely applies to software.</p>
-<h2>The standard I want to keep</h2>
-<p>My current test is boring on purpose.</p>
-<p>At the end of the month, I should be able to point to something and say:</p>
-<ul>
-<li>this decision became clearer</li>
-<li>this plan got structured</li>
-<li>this project moved forward</li>
-<li>this artifact exists now</li>
-<li>this thing no longer had to live entirely in my head</li>
-</ul>
-<p>If I cannot say that, then I was probably consuming AI rather than using it.</p>
-<p>That feels like the distinction that matters.</p>
-<p>Not whether AI is amazing.<br />
-Whether it is useful enough to justify the space it takes up in my tools, attention, and life.</p>
-<p>Right now, I think the best case for it is not future hype.<br />
-It is present-tense utility.</p>
-<p>That is a much better standard.</p>
+<p>These aren't side projects. They're purpose-built tools that solve real problems <em>because</em> the person closest to the problem is the one writing the code. No more waiting on a product roadmap that doesn't know your workflow exists.</p>
+<h2>The power shift</h2>
+<p>This flips the traditional dynamic. When only large companies and dedicated dev teams could ship software, they decided what problems were worth solving—and how. Now individuals and small teams can bypass those gatekeepers entirely.</p>
+<p>The result is a more diverse software ecosystem: more voices, more perspectives, more solutions shaped by the people who actually need them. That's not a utopian forecast—it's already happening, quietly, every time someone builds a script, a dashboard, or a small app that does exactly what they need and nothing more.</p>
+<p>My role is to help people see that potential and give them the tools to realize it. Because if everything is software, then everyone can be a builder. And that's a future worth working towards. </p>
         <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/planning.html">Planning</a> 
-            
-                <a class="post-tag tag-link" href="/tag/productivity.html">Productivity</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a>
-            
-        </p>
         
     </article>
 </div>
@@ -221,6 +160,10 @@ It is present-tense utility.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
       (function(){
         var el = document.getElementById('copyright-year');
@@ -228,12 +171,5 @@ It is present-tense utility.</p>
       })();
     </script>
     
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
-<script src="/static/map-embed.js"></script>
-
 </body>
 </html>

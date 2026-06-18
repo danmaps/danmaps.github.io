@@ -7,3 +7,5 @@ node_modules
 # Local Linux venv
 .venv-linux/
 .secfix-venv/
+
+.ipynb_checkpoints/

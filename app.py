@@ -210,8 +210,11 @@ def post(post_name):
             file_creation_time = os.path.getctime(os.path.join(POSTS_DIR, f'{post_name}.md'))
             date_obj = datetime.fromtimestamp(file_creation_time)
 
+        # Check if post opts into the rich reading layout
+        layout = metadata.get('layout', 'default')
+
         # Convert markdown to HTML with syntax highlighting
-        html_content = markdown.markdown(body, extensions=[
+        extensions = [
             'fenced_code',
             'codehilite',
             'tables',
@@ -219,29 +222,40 @@ def post(post_name):
             'sane_lists',
             CodeHiliteWithLanguageExtension(),
             CodeHiliteExtension(pygments_style='monokai', noclasses=True)
-        ])
+        ]
+        if layout == 'rich':
+            extensions.extend(['footnotes', 'attr_list', 'toc'])
+
+        html_content = markdown.markdown(body, extensions=extensions)
 
         # various replacements to clean up output from chatgpt
-        # replace â€™ with ' in html_content to fix issue where '’' shows up in html as 'â€™'
+        # replace â€™ with ' in html_content to fix issue where ''' shows up in html as 'â€™'
         html_content = html_content.replace('â€™', '\'')
         html_content = html_content.replace('\\n---\\n', '\\n<hr>')
         html_content = html_content.replace('---', '—')
-        html_content = html_content.replace('â€”', '—')
+        html_content = html_content.replace('â€"', '—')
         html_content = html_content.replace('â€˜', '\'')
 
         # Include the CSS for Pygments
         formatter = HtmlFormatter(style='monokai', full=True, cssclass='codehilite')
         pygments_css = formatter.get_style_defs()
 
+        # Calculate reading time for rich layout (~200 wpm)
+        reading_time = max(1, round(len(body.split()) / 200)) if layout == 'rich' else None
+
+        # Pick template based on layout
+        template_name = 'post_rich.html' if layout == 'rich' else 'post.html'
+
         # Render the template with all necessary data
         return render_template(
-            'post.html',
+            template_name,
             content=html_content,
             title=title,
             pygments_css=pygments_css,
             tags=tags,
             tag_objs=tag_objs,
             date=date_obj,
+            reading_time=reading_time,
         )
         
     
