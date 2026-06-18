@@ -8,9 +8,10 @@ tags:
   - orchestration
   - Symphony
   - evaluation
+layout: rich
 ---
 
-This week’s useful Symphony progress was not some new autonomous capability.
+This weekâ€™s useful Symphony progress was not some new autonomous capability.
 
 It was a clearer boundary.
 
@@ -148,3 +149,4 @@ That feels like real progress.
 
 Not because it is flashy.
 Because it is the kind of constraint that makes later work more believable.
+

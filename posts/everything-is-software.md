@@ -3,9 +3,10 @@ date: 2026-03-12
 tags:
 - draft
 title: Everything Is Software
+layout: rich
 ---
 
-Everything can be represented as software. That's not just an abstract CS principle—it's becoming the lived reality for anyone who works with information, and it's reshaping who gets to build things.
+Everything can be represented as software. That's not just an abstract CS principleâ€”it's becoming the lived reality for anyone who works with information, and it's reshaping who gets to build things.
 
 ## The idea
 
@@ -15,7 +16,7 @@ The boundaries between domains keep blurring. A software engineer builds a VR si
 
 ## Democratized creation
 
-If anyone can create software, the bottleneck shifts from *building* to *imagining*. People from every discipline—healthcare, education, urban planning—can contribute solutions instead of waiting for a vendor to prioritize their niche.
+If anyone can create software, the bottleneck shifts from *building* to *imagining*. People from every disciplineâ€”healthcare, education, urban planningâ€”can contribute solutions instead of waiting for a vendor to prioritize their niche.
 
 This is where bespoke micro-software gets interesting. Think:
 
@@ -27,8 +28,9 @@ These aren't side projects. They're purpose-built tools that solve real problems
 
 ## The power shift
 
-This flips the traditional dynamic. When only large companies and dedicated dev teams could ship software, they decided what problems were worth solving—and how. Now individuals and small teams can bypass those gatekeepers entirely.
+This flips the traditional dynamic. When only large companies and dedicated dev teams could ship software, they decided what problems were worth solvingâ€”and how. Now individuals and small teams can bypass those gatekeepers entirely.
 
-The result is a more diverse software ecosystem: more voices, more perspectives, more solutions shaped by the people who actually need them. That's not a utopian forecast—it's already happening, quietly, every time someone builds a script, a dashboard, or a small app that does exactly what they need and nothing more.
+The result is a more diverse software ecosystem: more voices, more perspectives, more solutions shaped by the people who actually need them. That's not a utopian forecastâ€”it's already happening, quietly, every time someone builds a script, a dashboard, or a small app that does exactly what they need and nothing more.
 
 My role is to help people see that potential and give them the tools to realize it. Because if everything is software, then everyone can be a builder. And that's a future worth working towards. 
+

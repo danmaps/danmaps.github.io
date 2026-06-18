@@ -5,11 +5,12 @@ tags:
 - strategy
 - work
 title: High-Leverage Focus - Maximizing Impact
+layout: rich
 ---
 
 ## **The Power of High-Leverage Activities**
 
-GIS and AI are evolving fast, and the best way to stay ahead is by focusing on high-leverage activities—those that deliver the biggest impact for the effort put in. Here’s how I’m making the most of my time and energy while avoiding unnecessary work.
+GIS and AI are evolving fast, and the best way to stay ahead is by focusing on high-leverage activitiesâ€”those that deliver the biggest impact for the effort put in. Hereâ€™s how Iâ€™m making the most of my time and energy while avoiding unnecessary work.
 
 ### **What Makes an Activity "High-Leverage"?**
 
@@ -75,14 +76,14 @@ I'm prioritizing skills that compound over time:
 
 Following the Pareto Principle, I'm focusing on the 20% of activities that drive 80% of results:
 
-✅ **High-Leverage:**
+âœ… **High-Leverage:**
 
 - Creating reusable automation tools.
 - Publishing technical insights.
 - Building strategic relationships.
 - Developing scalable solutions.
 
-❌ **Low-Leverage:**
+âŒ **Low-Leverage:**
 
 - Manual repetitive tasks.
 - Isolated problem-solving.
@@ -93,9 +94,10 @@ Following the Pareto Principle, I'm focusing on the 20% of activities that drive
 
 The key to maximizing impact is ruthless prioritization of high-leverage activities. By focusing on automation, knowledge sharing, and strategic skill development, I'm building a foundation for exponential growth in the GIS and AI space.
 
-The goal isn't to work more hours—it’s to make each hour count more through strategic focus and leverage.
+The goal isn't to work more hoursâ€”itâ€™s to make each hour count more through strategic focus and leverage.
 
 ---
 
 **Want to discuss high-leverage strategies in GIS and AI?** [Connect with me on LinkedIn](https://www.linkedin.com/in/dannymcvey/).
+
 

@@ -354,3 +354,188 @@ hr {
         opacity: 1;
     }
 }
+
+/* Homepage facelift inspired by the rich post reading look */
+body.home {
+    background-color: #07090d;
+}
+
+body.home #header-container,
+body.home #footer-container {
+    background: rgba(7, 10, 16, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+body.home .home-link,
+body.home .home-link:hover {
+    text-decoration: none;
+}
+
+body.home .home-link h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #f5f8ff;
+}
+
+body.home .about-link {
+    border-color: rgba(120, 190, 255, 0.55);
+    color: #d9edff;
+    background: rgba(108, 180, 238, 0.08);
+}
+
+body.home .about-link:hover {
+    background: rgba(108, 180, 238, 0.2);
+    border-color: rgba(160, 220, 255, 0.8);
+    color: #ffffff;
+}
+
+body.home main.home-main {
+    max-width: 880px;
+    margin: 1.25rem auto 2rem;
+    padding: 0 0.75rem;
+}
+
+.home-hero-shell {
+    margin: 0 auto 1.75rem;
+    padding: 2rem 1.5rem 1.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: rgba(11, 16, 27, 0.84);
+    box-shadow: none;
+}
+
+.home-kicker {
+    margin: 0 0 0.6rem;
+    color: #8bc8ff;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 650;
+}
+
+.home-headline {
+    margin: 0;
+    color: #f7fbff;
+    font-size: clamp(1.85rem, 5vw, 2.65rem);
+    line-height: 1.14;
+    letter-spacing: -0.018em;
+    font-weight: 800;
+}
+
+.home-subhead {
+    margin: 1rem 0 0;
+    max-width: 65ch;
+    color: rgba(226, 235, 248, 0.94);
+    font-size: 1.03rem;
+    line-height: 1.72;
+}
+
+.home-feed {
+    display: grid;
+    gap: 0.95rem;
+}
+
+.home-post-card {
+    position: relative;
+    padding: 1.1rem 1.15rem 1.2rem;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(8, 13, 22, 0.9);
+    box-shadow: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-post-card:hover {
+    transform: none;
+    border-color: rgba(130, 196, 255, 0.3);
+    box-shadow: none;
+}
+
+.home-post-topline {
+    margin: 0 0 0.35rem;
+}
+
+.home-post-date {
+    color: #89bde2;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+}
+
+.home-post-title {
+    margin: 0;
+    font-size: clamp(1.2rem, 2.35vw, 1.5rem);
+    line-height: 1.32;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.home-post-link {
+    color: #f2f7ff;
+    text-decoration: none;
+}
+
+.home-post-link:hover {
+    color: #9fd4ff;
+    text-decoration: none;
+}
+
+.home-post-tags {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+}
+
+.home-post-tag {
+    display: inline-block;
+    padding: 0.22rem 0.56rem;
+    border-radius: 2px;
+    border: 1px solid rgba(136, 191, 236, 0.28);
+    background: rgba(116, 184, 241, 0.1);
+    color: #bde4ff;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.015em;
+    text-decoration: none;
+}
+
+.home-post-tag:hover {
+    text-decoration: none;
+    color: #ebf7ff;
+    border-color: rgba(183, 227, 255, 0.62);
+    background: rgba(116, 184, 241, 0.2);
+}
+
+@media (max-width: 768px) {
+    body.home main.home-main {
+        padding: 0 0.5rem;
+    }
+
+    .home-hero-shell {
+        padding: 1.35rem 1rem 1.1rem;
+        border-radius: 3px;
+        margin-bottom: 1.1rem;
+    }
+
+    .home-subhead {
+        font-size: 0.96rem;
+        line-height: 1.6;
+    }
+
+    .home-post-card {
+        padding: 0.95rem 0.9rem 0.95rem;
+        border-radius: 2px;
+    }
+
+    .home-post-date {
+        font-size: 0.75rem;
+    }
+}

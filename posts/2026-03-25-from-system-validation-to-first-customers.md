@@ -8,11 +8,12 @@ tags:
   - GIS
   - product
   - consulting
+layout: rich
 ---
 
 I have spent a lot of recent time making systems more real.
 
-Not “AI is the future” real.
+Not â€œAI is the futureâ€ real.
 Not demo-thread real.
 Not the kind of real where a project earns a lot of fancy nouns before it earns a customer.
 
@@ -28,7 +29,7 @@ That work matters.
 
 But it also creates a new problem.
 
-Once the system starts feeling real, the next question is no longer “can I build this?”
+Once the system starts feeling real, the next question is no longer â€œcan I build this?â€
 
 It becomes: **can this connect to a real customer and produce real paid work?**
 
@@ -72,7 +73,7 @@ The more useful framing is something like:
 - give me your messy workflow and I will turn it into a small internal tool
 - show me the request intake pain and I will make it visible, trackable, and easier to act on
 
-That is much less grand than “AI-powered orchestration platform.”
+That is much less grand than â€œAI-powered orchestration platform.â€
 
 It is also much easier to buy.
 
@@ -80,7 +81,7 @@ This is one of those annoying product truths that keeps showing up: the smarter 
 
 ## The first customer is probably not buying the grand vision
 
-I do not think the first real customer is going to buy “the platform.”
+I do not think the first real customer is going to buy â€œthe platform.â€
 
 They are much more likely to buy one of these:
 
@@ -106,9 +107,9 @@ That is a much more believable path to a first paid engagement.
 It is also more honest.
 A lot of early product positioning goes sideways because people try to sell the machine before they can clearly describe the pain it removes.
 
-## “AI” is rarely the wedge
+## â€œAIâ€ is rarely the wedge
 
-Another thing I keep noticing: “AI” is not automatically the most useful front door.
+Another thing I keep noticing: â€œAIâ€ is not automatically the most useful front door.
 
 In some cases it helps.
 In many cases it just makes the offer feel vaguer.
@@ -155,7 +156,7 @@ It suggests that the next experiments should not be giant marketing exercises. T
 - one focused offer
 - one or two specific landing pages for real problems
 
-In other words: less “brand strategy,” more signal-seeking.
+In other words: less â€œbrand strategy,â€ more signal-seeking.
 
 ## The real product may be the bridge, not the engine
 
@@ -163,7 +164,7 @@ The deeper thing I am starting to believe is that the most valuable part of the 
 
 It may be the bridge.
 
-Not just “can an agent do work?”
+Not just â€œcan an agent do work?â€
 But:
 
 - can a request arrive cleanly?
@@ -200,3 +201,4 @@ And honestly, that is probably the right moment for a project like this.
 
 Once the system starts working, the real job is no longer building the machine.
 It is finding out whether the machine helps someone enough to matter.
+

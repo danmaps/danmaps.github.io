@@ -12,6 +12,7 @@ tags:
 - spatial-analysis
 thumbnail: static/images/thumbnails/proximity-analysis.png
 title: Automating Proximity Analysis in Streamlit with Open Source Python
+layout: rich
 ---
 
 I recently took on a work project that began with a simple goal: perform spatial proximity analysis for a user. Initially, this was a manual task using ArcGIS Pro, but I ended up turning it into a fully automated tool. Here's a detailed look at what I learned, how I refined user requirements, leveraged open-source tools, and ultimately turned this into a useful and flexible tool.
@@ -171,3 +172,4 @@ distance_threshold_meters = feet_to_meters(distance_threshold_feet)
 This project was a significant learning experience. By refining user requirements, exploring open-source alternatives, and thoughtfully choosing the right delivery model, I developed a robust and flexible tool for spatial proximity analysis. This automation not only saves time but also ensures consistency and reproducibility, making this kind of analysis trivial in the future.
 
 So, while the initial manual process was effective, the automated tool has proven to be a far more efficient and user-friendly solution. It's a perfect example of how engineering a solution thoughtfully can lead to a genuinely useful product.
+

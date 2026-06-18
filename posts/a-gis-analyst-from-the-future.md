@@ -6,7 +6,7 @@ tags:
 - workflows
 - automation
 title: A GIS Analyst From the Future
-
+layout: rich
 ---
 
 Imagine opening a GIS project you have never seen before.
@@ -201,4 +201,5 @@ The future of GIS is not flashy.
 It is calmer, clearer, and easier to think in.
 
 And it is already here.
+
 

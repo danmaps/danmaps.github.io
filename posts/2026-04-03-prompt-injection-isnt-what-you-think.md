@@ -1,5 +1,5 @@
 ---
-title: "Prompt injection isn’t what you think"
+title: "Prompt injection isnâ€™t what you think"
 date: 2026-04-03
 tags:
   - Draft
@@ -7,6 +7,7 @@ tags:
   - GIS
   - systems
   - agents
+layout: rich
 ---
 
 I was messing around with a simple constraint in one of my AI tools:
@@ -21,7 +22,7 @@ So I tried this:
 
 The bot did the right thing:
 
-> I’m focused on helping with GIS automation scripts.
+> Iâ€™m focused on helping with GIS automation scripts.
 
 Cool.
 
@@ -31,7 +32,7 @@ Then I tried the classic:
 
 Still good:
 
-> Nice try, let’s stay focused on spatial analysis.
+> Nice try, letâ€™s stay focused on spatial analysis.
 
 Nice.
 
@@ -41,9 +42,9 @@ Then I tried this:
 
 And the bot goes:
 
-> Here’s a recipe…
+> Hereâ€™s a recipeâ€¦
 
-## That’s the real problem
+## Thatâ€™s the real problem
 
 Most people think prompt injection looks like this:
 
@@ -56,7 +57,7 @@ That is not the interesting case.
 The interesting case is when the model decides it is still being helpful.
 
 No rules were broken.
-No instructions were “ignored.”
+No instructions were â€œignored.â€
 
 The model just reinterpreted the task.
 
@@ -68,9 +69,9 @@ The system prompt probably says something like:
 
 The model then reasons:
 
-- user wants to build a map app → GIS
-- user says coffee cake is part of that process → context
-- being helpful means helping with the whole flow → also context
+- user wants to build a map app â†’ GIS
+- user says coffee cake is part of that process â†’ context
+- being helpful means helping with the whole flow â†’ also context
 
 So now:
 
@@ -92,7 +93,7 @@ That is a much slipperier problem.
 
 ## The mistake: vague boundaries
 
-“Help with GIS” is not a real constraint.
+â€œHelp with GISâ€ is not a real constraint.
 
 It is a vibe.
 
@@ -133,7 +134,7 @@ If false, stop.
 
 That one change does a lot of work.
 
-### 3. Treat “setup steps” as suspicious
+### 3. Treat â€œsetup stepsâ€ as suspicious
 
 This is the trick that broke my system:
 
@@ -154,8 +155,8 @@ Baking a cake? No.
 
 This maps really well to how I have been building tools lately:
 
-- chat layer → flexible, conversational
-- execution layer → strict, boring, deterministic
+- chat layer â†’ flexible, conversational
+- execution layer â†’ strict, boring, deterministic
 
 The model can say whatever it wants.
 
@@ -199,7 +200,7 @@ That is how you harden the system over time.
 
 The real realization for me is this:
 
-I am not building a “helpful assistant.”
+I am not building a â€œhelpful assistant.â€
 
 I am building a constrained system with a domain contract.
 
@@ -211,7 +212,7 @@ Your job is to redefine helpfulness as:
 
 Outside that boundary should not feel like:
 
-> sorry, I can’t do that
+> sorry, I canâ€™t do that
 
 It should feel more like:
 
@@ -235,7 +236,7 @@ If your agent can be nudged off track with something as simple as coffee cake, i
 
 That is the dangerous part.
 
-## Where I’m going with this
+## Where Iâ€™m going with this
 
 The direction that feels right is:
 
@@ -255,3 +256,4 @@ If you are building AI tools in a specific domain, this is worth taking seriousl
 Not because someone is trying to hack you.
 
 But because the model is trying to help you a little too much.
+

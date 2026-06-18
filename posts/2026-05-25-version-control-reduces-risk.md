@@ -7,6 +7,7 @@ tags:
   - work
   - systems
 summary: "A good GitHub and version control workflow for analysts and operational teams should reduce risk, improve collaboration, and make automation more sustainable, not force everyone to cosplay as a software engineer."
+layout: rich
 ---
 
 I spent some time this week refining a **GitHub mentorship plan** for technical teams.
@@ -157,3 +158,4 @@ The goal is to produce workflows that are:
 - easier to maintain
 
 That is already enough to change how a team works.
+

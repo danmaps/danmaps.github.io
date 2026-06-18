@@ -8,6 +8,7 @@ tags:
   - orchestration
   - work
 summary: "Recent Symphony work reinforced a simple opinion I trust more every week: if an agent system cannot leave behind clear files, artifacts, and failure states, it is not doing operational work yet. It is just producing vibes with extra steps."
+layout: rich
 ---
 
 This week I spent some time tightening **Symphony**, and the most useful progress was not making it feel smarter.
@@ -157,3 +158,4 @@ I would rather build systems that are optimized to leave evidence.
 If an agent is going to help with real work, it should leave receipts.
 
 And if it cannot, I want the system to fail clearly enough that nobody mistakes narration for execution.
+

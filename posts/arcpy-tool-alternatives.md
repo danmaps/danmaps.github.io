@@ -6,13 +6,14 @@ tags:
 - open-source
 
 title: Open source alternatives to ArcPy
+layout: rich
 ---
 
 **"The best camera is the one you have with you."**
 
 You'd be surprised --- if you're like me --- at the ease and availability of alternatives to ArcPy. Just like the camera analogy above, the best geoprocessing tools are the ones you have with you. In my line of work, that's usually ArcPy. We've all got ArcGIS Pro installed locally, so we can do whatever we want.
 
-But what if we want to get something done elsewhere? Like using Streamlit for web apps or running scripts on a server where ArcGIS Pro isn't installed? It turns out there are numerous capable alternatives to ArcPy, especially when you consider that the majority of our geoprocessing operations fall into the "bread and butter" category. I’m talking about tasks like tabular joins, spatial joins, buffering, and other routine operations. You can get relatively simple tasks like this done using open-source Python libraries like GeoPandas, Shapely, and Fiona. These tools are all free to use, easy to install, and very intuitive. They even work with projected coordinate systems, so you can trust the accuracy of your results.
+But what if we want to get something done elsewhere? Like using Streamlit for web apps or running scripts on a server where ArcGIS Pro isn't installed? It turns out there are numerous capable alternatives to ArcPy, especially when you consider that the majority of our geoprocessing operations fall into the "bread and butter" category. Iâ€™m talking about tasks like tabular joins, spatial joins, buffering, and other routine operations. You can get relatively simple tasks like this done using open-source Python libraries like GeoPandas, Shapely, and Fiona. These tools are all free to use, easy to install, and very intuitive. They even work with projected coordinate systems, so you can trust the accuracy of your results.
 
 In this post, we'll discuss how to run these tools, how they compare to ArcPy, and how you can assess the accuracy of the results to ensure you're getting what you expect.
 
@@ -33,11 +34,11 @@ arcpy.Buffer_analysis(input_points, output_buffer, buffer_distance)
 
 This kind of operation is standard in GIS workflows and can be executed efficiently within ArcGIS Pro. The tools are designed to work with a wide range of spatial data formats, projections, and coordinate systems, which adds to their robustness.
 
-However, ArcGIS Pro is a heavyweight application, and ArcPy scripts are typically tied to an ArcGIS Pro installation. This means you need access to a licensed copy of ArcGIS Pro to use ArcPy, which might not be feasible in all scenarios—especially if you're working in a more lightweight or cloud-based environment.
+However, ArcGIS Pro is a heavyweight application, and ArcPy scripts are typically tied to an ArcGIS Pro installation. This means you need access to a licensed copy of ArcGIS Pro to use ArcPy, which might not be feasible in all scenariosâ€”especially if you're working in a more lightweight or cloud-based environment.
 
 ## Using Open Source Python Libraries Outside of ArcGIS Pro
 
-If you find yourself in a situation where ArcGIS Pro isn’t available, or you simply want to explore more lightweight, open-source options, Python's geospatial libraries have you covered.
+If you find yourself in a situation where ArcGIS Pro isnâ€™t available, or you simply want to explore more lightweight, open-source options, Python's geospatial libraries have you covered.
 
 ### GeoPandas
 
@@ -96,6 +97,6 @@ You can also use specific metrics like intersection over union (IoU) for spatial
 
 ## Conclusion
 
-ArcPy is a powerful tool, and for many GIS professionals, it’s the default option for spatial analysis. However, as we've seen, there are robust open-source alternatives that can handle many of the same tasks, often with fewer dependencies and more flexibility in terms of deployment.
+ArcPy is a powerful tool, and for many GIS professionals, itâ€™s the default option for spatial analysis. However, as we've seen, there are robust open-source alternatives that can handle many of the same tasks, often with fewer dependencies and more flexibility in terms of deployment.
 
-Whether you're looking to build lightweight web apps, run scripts on a server, or just explore what’s possible outside of ArcGIS Pro, tools like GeoPandas, Shapely, and Fiona offer powerful geospatial capabilities that are worth considering. The best tool is the one you have with you, and with these open-source libraries, you can have a pretty powerful toolbox wherever you go.
+Whether you're looking to build lightweight web apps, run scripts on a server, or just explore whatâ€™s possible outside of ArcGIS Pro, tools like GeoPandas, Shapely, and Fiona offer powerful geospatial capabilities that are worth considering. The best tool is the one you have with you, and with these open-source libraries, you can have a pretty powerful toolbox wherever you go.

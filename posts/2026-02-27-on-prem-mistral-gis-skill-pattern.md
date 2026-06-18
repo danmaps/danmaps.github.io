@@ -10,9 +10,10 @@ tags:
   - RAG
   - ArcGIS
   - Draft
+layout: rich
 ---
 
-I’ve been poking at an on-prem LLM (Mistral-class) at work and wanted a pattern that stays practical.
+Iâ€™ve been poking at an on-prem LLM (Mistral-class) at work and wanted a pattern that stays practical.
 
 Not "agents that do everything".
 
@@ -43,7 +44,7 @@ Example intents for GIS:
 - Generate code: "Write arcpy to select poles within 100 ft of overhead lines"
 - Plan an analysis: "How would you assess wildfire risk exposure for service drops?"
 - Data QA: "This spreadsheet has duplicates and missing IDs, what should I do?"
-- Translate business request → GIS steps: "We need targeted undergrounding candidates"
+- Translate business request â†’ GIS steps: "We need targeted undergrounding candidates"
 
 Inputs can be:
 
@@ -54,13 +55,13 @@ Inputs can be:
 
 My bias: **make project context a contract**.
 
-If the skill depends on layer names, geometry types, fields, SR, and units, pass those in explicitly. Don’t make the model guess.
+If the skill depends on layer names, geometry types, fields, SR, and units, pass those in explicitly. Donâ€™t make the model guess.
 
 ### 2) Context pipeline (grounding)
 
 Before the model answers, give it the right context.
 
-Usually that’s a simple retrieval step that pulls relevant snippets and includes them in the prompt.
+Usually thatâ€™s a simple retrieval step that pulls relevant snippets and includes them in the prompt.
 
 Sources worth retrieving from in a GIS org:
 
@@ -110,7 +111,7 @@ GIS-specific guardrails that matter a lot:
 - Field existence checks
 - Geometry type assumptions made explicit
 
-## The “stoplight” I would add (small, huge trust win)
+## The â€œstoplightâ€ I would add (small, huge trust win)
 
 Every skill output should start with a simple readiness signal:
 
@@ -150,7 +151,7 @@ Skill flow:
 - confirm units: feet vs meters
 - confirm layer is a feature layer
 
-## Example skill: Spreadsheet Triage (don’t hallucinate provenance)
+## Example skill: Spreadsheet Triage (donâ€™t hallucinate provenance)
 
 User request:
 
@@ -192,7 +193,7 @@ This is where a local model can absolutely hang, as long as you scaffold it.
 
 ## What I would build first (high leverage, low risk)
 
-If I were prototyping this in a real GIS org, I’d start with:
+If I were prototyping this in a real GIS org, Iâ€™d start with:
 
 1) **Troubleshooter skill**
 - Reads ArcGIS errors
@@ -222,4 +223,5 @@ If those are fuzzy, the model will be fuzzy too.
 
 ---
 
-If you’re exploring something similar, I’d love to compare notes: what’s your first skill, and what guardrail saved you from your first embarrassing demo?
+If youâ€™re exploring something similar, Iâ€™d love to compare notes: whatâ€™s your first skill, and what guardrail saved you from your first embarrassing demo?
+

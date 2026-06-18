@@ -4,6 +4,7 @@ date: 2024-08-01
 tags:
     - health
     - productivity
+layout: rich
 ---
 While knowledge work, particularly in fields like Data analysis or Software Engineering, is intellectually stimulating, it can take a toll on your physical health. The cognitive demands are high, but the physical demands---or rather, the lack thereof---pose their own challenges. Balancing mental and physical well-being is essential for long-term success and productivity.
 
@@ -15,7 +16,7 @@ A well-designed workspace can prevent the aches and pains that often accompany d
 
 **Standing Desks and Movement**
 
-Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, it’s important to move regularly---take a quick stretch, walk around, or simply shift your weight.
+Alternating between sitting and standing can help alleviate stiffness and keep your body engaged. A sit-stand desk offers the flexibility to stretch your legs and change your posture throughout the day. But even with a standing desk, itâ€™s important to move regularly---take a quick stretch, walk around, or simply shift your weight.
 
 #### Incorporating Physical Activity
 

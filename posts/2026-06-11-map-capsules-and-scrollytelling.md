@@ -7,6 +7,7 @@ tags:
   - AI
   - mapping
   - workflow
+layout: rich
 ---
 
 I keep coming back to the same problem when writing technical GIS posts:
@@ -132,3 +133,4 @@ A common workflow: inspect suspect edits, check nearby context, then lock in the
 - It gives me a reusable pattern for future route, parcel, and QA writeups.
 
 Next step is extending the same component for side-by-side compare maps and small decision matrix callouts.
+

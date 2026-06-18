@@ -8,6 +8,7 @@ tags:
   - systems
   - homelab
 title: "Symphony and the first honest vertical slice"
+layout: rich
 ---
 
 Over the last few days I finally got Symphony into a shape that feels real.
@@ -193,3 +194,4 @@ That is fine. The point of this pass was not to pretend the orchestration layer 
 I think it is there now.
 
 And honestly, that is the part of building I trust most: when a project stops sounding clever and starts becoming inspectable.
+

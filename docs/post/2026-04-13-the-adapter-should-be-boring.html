@@ -13,13 +13,91 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
->
-<link rel="stylesheet" href="/static/map-embed.css">
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
 
 
     <!-- Prism CSS (for code highlighting) -->
@@ -41,98 +119,34 @@
 
     <main class="container my-4 ">
         
-<style>
-    pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
-.codehilite .esc { color: #F8F8F2 } /* Escape */
-.codehilite .g { color: #F8F8F2 } /* Generic */
-.codehilite .k { color: #66D9EF } /* Keyword */
-.codehilite .l { color: #AE81FF } /* Literal */
-.codehilite .n { color: #F8F8F2 } /* Name */
-.codehilite .o { color: #FF4689 } /* Operator */
-.codehilite .x { color: #F8F8F2 } /* Other */
-.codehilite .p { color: #F8F8F2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
-.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
-.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
-.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
-.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
-.codehilite .go { color: #66D9EF } /* Generic.Output */
-.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
-.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
-.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
-.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
-.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
-.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
-.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
-.codehilite .kt { color: #66D9EF } /* Keyword.Type */
-.codehilite .ld { color: #E6DB74 } /* Literal.Date */
-.codehilite .m { color: #AE81FF } /* Literal.Number */
-.codehilite .s { color: #E6DB74 } /* Literal.String */
-.codehilite .na { color: #A6E22E } /* Name.Attribute */
-.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
-.codehilite .nc { color: #A6E22E } /* Name.Class */
-.codehilite .no { color: #66D9EF } /* Name.Constant */
-.codehilite .nd { color: #A6E22E } /* Name.Decorator */
-.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
-.codehilite .ne { color: #A6E22E } /* Name.Exception */
-.codehilite .nf { color: #A6E22E } /* Name.Function */
-.codehilite .nl { color: #F8F8F2 } /* Name.Label */
-.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
-.codehilite .nx { color: #A6E22E } /* Name.Other */
-.codehilite .py { color: #F8F8F2 } /* Name.Property */
-.codehilite .nt { color: #FF4689 } /* Name.Tag */
-.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
-.codehilite .ow { color: #FF4689 } /* Operator.Word */
-.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
-.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
-.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
-.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
-.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
-.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
-.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
-.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
-.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
-.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
-.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
-.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
-.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
-.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
-.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
-.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
-.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
-.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
-.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
-.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
-.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
-.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
-.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
-.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
-.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
-.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
-.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>The adapter should be boring</h1>
+    <div class="post-meta-bar">
         
-        <h1 class="text-light">The adapter should be boring</h1>
-        <!-- Post content -->
-        <p>This week’s useful Symphony progress was not some new autonomous capability.</p>
+        <time datetime="2026-04-13">April 13, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>This week's useful Symphony progress was not some new autonomous capability.</p>
 <p>It was a clearer boundary.</p>
 <p>I spent time tightening how I want the next layer of the project to work, especially around evaluation. The shape that keeps surviving contact with reality is pretty simple:</p>
 <ul>
@@ -145,7 +159,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>The more I think about it, the more I think the adapter in that stack should be aggressively boring.</p>
 <p>That is not an insult. It is a design goal.</p>
-<h2>Boring is a feature</h2>
+<h2 id="boring-is-a-feature">Boring is a feature</h2>
 <p>There is a temptation, once you start building agent systems, to make every layer "smart."</p>
 <p>You do not just want an orchestrator. You want a clever orchestrator.<br />
 You do not just want evaluation. You want adaptive evaluation.<br />
@@ -172,7 +186,7 @@ Then when a run improves, you do not know whether:</p>
 <li>the adapter quietly compensated for a weakness</li>
 </ul>
 <p>That is bad science and bad engineering.</p>
-<h2>I want the scoring layer to stay honest</h2>
+<h2 id="i-want-the-scoring-layer-to-stay-honest">I want the scoring layer to stay honest</h2>
 <p>This connects to the broader thing I have been circling with Symphony: I want improvement to mean something.</p>
 <p>That requires a narrow contract.</p>
 <p>A task should say what files exist, what output is required, what constraints apply, and what the verifier will check. Good first outputs are boring on purpose:</p>
@@ -189,7 +203,7 @@ The values are correct.<br />
 The required sections are present.<br />
 The agent refused when it should have refused.</p>
 <p>That is a much better foundation than staring at a transcript and deciding that the model felt pretty smart.</p>
-<h2>The more agentic the system sounds, the more important this gets</h2>
+<h2 id="the-more-agentic-the-system-sounds-the-more-important-this-gets">The more agentic the system sounds, the more important this gets</h2>
 <p>I think a lot of AI tooling goes sideways because the language gets ahead of the operating model.</p>
 <p>People talk about self-improving agents, multi-agent collaboration, autonomous research loops, and dynamic routing before they have built a way to tell whether the system is actually producing better work.</p>
 <p>So the project accumulates sophistication in all the least trustworthy places.</p>
@@ -203,7 +217,7 @@ The agent refused when it should have refused.</p>
 <p>I am trying pretty hard not to do that with Symphony.</p>
 <p>If the system gets more ambitious, I want it to also get more legible.<br />
 Not less.</p>
-<h2>This is the same lesson as artifact-first orchestration</h2>
+<h2 id="this-is-the-same-lesson-as-artifact-first-orchestration">This is the same lesson as artifact-first orchestration</h2>
 <p>Some of this clicked because of how Symphony already evolved earlier.</p>
 <p>The project got more real when outputs stopped being treated like undifferentiated text and started becoming first-class artifacts.</p>
 <p>A brief should become <code>brief.md</code>.<br />
@@ -214,7 +228,7 @@ A failed run should leave behind prompts, outputs, validation state, and evidenc
 <p>The adapter question is really the same question.</p>
 <p>Do I want a layer that performs intelligence, or a layer that preserves clarity?</p>
 <p>For this stage of Symphony, clarity wins.</p>
-<h2>What I think the real decision was this week</h2>
+<h2 id="what-i-think-the-real-decision-was-this-week">What I think the real decision was this week</h2>
 <p>I do not think this was a huge shipping week in the usual sense.</p>
 <p>It was more of an architectural honesty week.</p>
 <p>The useful decision was to keep the eval path narrow:</p>
@@ -233,27 +247,27 @@ Better comparisons mean I can eventually change the system with less self-decept
 <p>That feels like real progress.</p>
 <p>Not because it is flashy.<br />
 Because it is the kind of constraint that makes later work more believable.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
-            
-                <a class="post-tag tag-link" href="/tag/orchestration.html">Orchestration</a> 
-            
-                <a class="post-tag tag-link" href="/tag/symphony.html">Symphony</a> 
-            
-                <a class="post-tag tag-link" href="/tag/evaluation.html">Evaluation</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/orchestration.html">Orchestration</a>
+    
+    <a class="post-tag" href="/tag/symphony.html">Symphony</a>
+    
+    <a class="post-tag" href="/tag/evaluation.html">Evaluation</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
@@ -270,12 +284,5 @@ Because it is the kind of constraint that makes later work more believable.</p>
       })();
     </script>
     
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
-<script src="/static/map-embed.js"></script>
-
 </body>
 </html>

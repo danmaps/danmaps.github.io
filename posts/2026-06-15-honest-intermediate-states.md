@@ -8,6 +8,7 @@ tags:
   - workflow
   - writing
 summary: "A lot of the most useful work I did this week had the same shape: make the in-between state real. Drafts that can be shared without pretending they are finished, memory that can be revised instead of rediscovered, and mission systems that preserve intake and failure context instead of flattening everything into a fake success."
+layout: rich
 ---
 
 A lot of the useful work I did this week would look unimpressive in a launch thread.
@@ -193,3 +194,4 @@ Those states are not signs of weakness.
 They are signs that the system is telling the truth.
 
 And at this point, I think truthful state is more useful than impressive narration.
+

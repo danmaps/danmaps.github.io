@@ -7,6 +7,7 @@ tags:
   - product
   - work
 title: Spatial Workbench Needed a Layer UX Pass Before Anything Smarter
+layout: rich
 ---
 
 This past week I did a concentrated UX pass on Spatial Workbench.
@@ -42,9 +43,9 @@ More tools. More automation. Better AI feature generation. Agent-driven workflow
 
 All of that is still interesting.
 
-But if the layer model is fuzzy, the contents pane is awkward, mobile navigation is clumsy, and results from tools don’t land in a predictable structure, then every higher-level feature is built on mush.
+But if the layer model is fuzzy, the contents pane is awkward, mobile navigation is clumsy, and results from tools donâ€™t land in a predictable structure, then every higher-level feature is built on mush.
 
-I’ve been noticing this pattern a lot lately: the real bottleneck often isn’t missing intelligence. It’s missing shape.
+Iâ€™ve been noticing this pattern a lot lately: the real bottleneck often isnâ€™t missing intelligence. Itâ€™s missing shape.
 
 ## Layers had to become first-class
 
@@ -124,3 +125,4 @@ I am trying to get better at respecting this phase of a project.
 Not every useful week produces a headline feature. Sometimes the meaningful progress is that the system got more legible, more predictable, and more honest about its own structure.
 
 For a tool meant to support spatial thinking, that seems like real progress.
+

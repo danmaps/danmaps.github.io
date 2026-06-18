@@ -6,6 +6,7 @@ tags:
     - work
     - personal
     - motivation
+layout: rich
 ---
 
 ### The burden of actually caring
@@ -29,3 +30,4 @@ This might shift my work life balance too much.
 ### Leveraging AI to bring personal projects to completion
 
 I'm going to create a structured process to solve this problem and relieve this frustration. See "Purpose-Driven Process"
+

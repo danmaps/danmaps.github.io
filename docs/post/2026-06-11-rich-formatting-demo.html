@@ -13,13 +13,91 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
->
-<link rel="stylesheet" href="/static/map-embed.css">
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
 
 
     <!-- Prism CSS (for code highlighting) -->
@@ -41,110 +119,46 @@
 
     <main class="container my-4 ">
         
-<style>
-    pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
-.codehilite .esc { color: #F8F8F2 } /* Escape */
-.codehilite .g { color: #F8F8F2 } /* Generic */
-.codehilite .k { color: #66D9EF } /* Keyword */
-.codehilite .l { color: #AE81FF } /* Literal */
-.codehilite .n { color: #F8F8F2 } /* Name */
-.codehilite .o { color: #FF4689 } /* Operator */
-.codehilite .x { color: #F8F8F2 } /* Other */
-.codehilite .p { color: #F8F8F2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
-.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
-.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
-.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
-.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
-.codehilite .go { color: #66D9EF } /* Generic.Output */
-.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
-.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
-.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
-.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
-.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
-.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
-.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
-.codehilite .kt { color: #66D9EF } /* Keyword.Type */
-.codehilite .ld { color: #E6DB74 } /* Literal.Date */
-.codehilite .m { color: #AE81FF } /* Literal.Number */
-.codehilite .s { color: #E6DB74 } /* Literal.String */
-.codehilite .na { color: #A6E22E } /* Name.Attribute */
-.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
-.codehilite .nc { color: #A6E22E } /* Name.Class */
-.codehilite .no { color: #66D9EF } /* Name.Constant */
-.codehilite .nd { color: #A6E22E } /* Name.Decorator */
-.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
-.codehilite .ne { color: #A6E22E } /* Name.Exception */
-.codehilite .nf { color: #A6E22E } /* Name.Function */
-.codehilite .nl { color: #F8F8F2 } /* Name.Label */
-.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
-.codehilite .nx { color: #A6E22E } /* Name.Other */
-.codehilite .py { color: #F8F8F2 } /* Name.Property */
-.codehilite .nt { color: #FF4689 } /* Name.Tag */
-.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
-.codehilite .ow { color: #FF4689 } /* Operator.Word */
-.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
-.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
-.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
-.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
-.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
-.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
-.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
-.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
-.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
-.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
-.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
-.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
-.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
-.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
-.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
-.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
-.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
-.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
-.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
-.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
-.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
-.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
-.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
-.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
-.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
-.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
-.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Rich Formatting Demo</h1>
+    <div class="post-meta-bar">
         
-        <h1 class="text-light">Rich Formatting Demo</h1>
-        <!-- Post content -->
-        <p>This post is a kitchen-sink demo of every formatting element the blog renders. Use it to verify new styles, spot regressions, or just see what is available when writing a post.</p>
+        <time datetime="2026-06-11">June 11, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">3 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>This post is a kitchen-sink demo of every formatting element the blog renders. Use it to verify new styles, spot regressions, or just see what is available when writing a post.</p>
 <hr />
-<h2>Headings</h2>
-<h1>H1 — post title level (use sparingly inside body)</h1>
-<h2>H2 — main section</h2>
-<h3>H3 — subsection</h3>
-<h4>H4 — rarely needed</h4>
+<h2 id="headings">Headings</h2>
+<h1 id="h1-a-post-title-level-use-sparingly-inside-body">H1 â€” post title level (use sparingly inside body)</h1>
+<h2 id="h2-a-main-section">H2 â€” main section</h2>
+<h3 id="h3-a-subsection">H3 â€” subsection</h3>
+<h4 id="h4-a-rarely-needed">H4 â€” rarely needed</h4>
 <hr />
-<h2>Paragraphs and inline formatting</h2>
+<h2 id="paragraphs-and-inline-formatting">Paragraphs and inline formatting</h2>
 <p>Plain prose with <strong>bold</strong>, <em>italic</em>, <code>inline code</code>, and a <a href="/">link to the homepage</a>.</p>
 <p>You can also mix <strong>bold and <code>code</code></strong> in the same sentence without things falling apart.</p>
 <hr />
-<h2>Blockquotes</h2>
+<h2 id="blockquotes">Blockquotes</h2>
 <blockquote>
 <p>The real bottleneck often isn't missing intelligence. It's missing shape.</p>
 </blockquote>
@@ -155,7 +169,7 @@ and still publish by pushing Markdown.<br />
 The workflow keeps the focus on the words.</p>
 </blockquote>
 <hr />
-<h2>Lists</h2>
+<h2 id="lists">Lists</h2>
 <p>Unordered:</p>
 <ul>
 <li>define a canonical layer model</li>
@@ -188,8 +202,8 @@ The workflow keeps the focus on the words.</p>
 <li>High-end reasoning</li>
 </ul>
 <hr />
-<h2>Code blocks</h2>
-<p>Python — with syntax highlighting and the copy button:</p>
+<h2 id="code-blocks">Code blocks</h2>
+<p>Python â€” with syntax highlighting and the copy button:</p>
 <pre><code class="language-python">
 import geopandas as gpd
 
@@ -230,13 +244,13 @@ tags:
 
 <p>Plain text / no language:</p>
 <pre><code class="language-text">
-No language specified — falls back to plain pre/code block.
+No language specified â€” falls back to plain pre/code block.
 Line 2.
 Line 3.
 </code></pre>
 
 <hr />
-<h2>Tables</h2>
+<h2 id="tables">Tables</h2>
 <p>Simple comparison table:</p>
 <table>
 <thead>
@@ -307,16 +321,16 @@ Line 3.
 </tbody>
 </table>
 <hr />
-<h2>Horizontal rules</h2>
+<h2 id="horizontal-rules">Horizontal rules</h2>
 <p>Three hyphens produce a styled <code>&lt;hr&gt;</code>:</p>
 <hr />
 <hr />
-<h2>Retro text</h2>
+<h2 id="retro-text">Retro text</h2>
 <p>The <code>.retro-text</code> CSS class produces a CRT-style terminal look. Drop raw HTML into the post to use it:</p>
-<p class="retro-text">SYSTEM ONLINE — spatial data loaded</p>
+<p class="retro-text">SYSTEM ONLINE â€” spatial data loaded</p>
 
 <hr />
-<h2>Mixed content section</h2>
+<h2 id="mixed-content-section">Mixed content section</h2>
 <p>A realistic snippet with all elements together:</p>
 <p>The task was to buffer every parcel by 50 m and flag those that overlap a flood zone.</p>
 <pre><code class="language-python">
@@ -352,21 +366,21 @@ print(f"{len(at_risk)} parcels within 50 m of a flood zone")
 </table>
 <p>Takeaway: the join is fast but the CRS check is the real guard.</p>
 <hr />
-<h2>End</h2>
-<p>That covers everything the blog currently renders. If a new formatting feature is added — callouts, diagrams, math — add a section here.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/meta.html">Meta</a>
-            
-        </p>
-        
-    </article>
-</div>
+<h2 id="end">End</h2>
+<p>That covers everything the blog currently renders. If a new formatting feature is added â€” callouts, diagrams, math â€” add a section here.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/meta.html">Meta</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
@@ -383,12 +397,5 @@ print(f"{len(at_risk)} parcels within 50 m of a flood zone")
       })();
     </script>
     
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
-<script src="/static/map-embed.js"></script>
-
 </body>
 </html>

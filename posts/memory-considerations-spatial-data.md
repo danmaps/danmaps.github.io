@@ -4,6 +4,7 @@ date: 2024-09-27
 tags:
     - data
     - gis
+layout: rich
 ---
 
 
@@ -33,11 +34,11 @@ Here's how to do it:
 - **Spatial Filtering**: Only load features within a specific extent or bounding box. Use spatial queries to keep the rest of the world at bay.
 - **Simplify Geometry**: For vector data, use generalization tools to reduce complexity (fewer vertices, simpler shapes).
 
-Think of this as reducing noise: you focus on the signal—the part of the dataset that matters to your analysis.
+Think of this as reducing noise: you focus on the signalâ€”the part of the dataset that matters to your analysis.
 
 ### **Step 2: Break It Down, But Don't Break It Apart**
 
-Splitting your data into smaller chunks can seem like a no-brainer, but there's a catch—spatial features don't always cooperate with arbitrary boundaries. Imagine splitting a dataset of city blocks into a grid. Suddenly, you've got buildings or roads cut in half, and analysis like proximity calculations become inaccurate. Oops.
+Splitting your data into smaller chunks can seem like a no-brainer, but there's a catchâ€”spatial features don't always cooperate with arbitrary boundaries. Imagine splitting a dataset of city blocks into a grid. Suddenly, you've got buildings or roads cut in half, and analysis like proximity calculations become inaccurate. Oops.
 
 The key is to **split smart**:
 - **Spatial Grids with Buffers**: Divide your data into tiles, but add a buffer zone to each tile. This ensures features near the boundaries don't get cut off, maintaining spatial relationships.
@@ -78,6 +79,7 @@ Sometimes, it's tempting to keep every tiny detail of your dataset, but not all 
 
 ### Final Thoughts: It's Not About the Size of the Dataset...
 
-…it's about how you handle it. Sure, massive spatial datasets can feel like a beast, but with the right strategies, you can keep things manageable without sacrificing performance or accuracy. From filtering and splitting to letting databases do the heavy lifting, there's always a smarter way to handle big data.
+â€¦it's about how you handle it. Sure, massive spatial datasets can feel like a beast, but with the right strategies, you can keep things manageable without sacrificing performance or accuracy. From filtering and splitting to letting databases do the heavy lifting, there's always a smarter way to handle big data.
 
 So, the next time your data threatens to overwhelm your system, take a step back, breathe, and remember: buffers are your friend, databases are powerful, and spatial analysis is meant to be fun!
+

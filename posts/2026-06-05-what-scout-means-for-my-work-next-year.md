@@ -8,6 +8,7 @@ tags:
   - GIS
   - work
 summary: "After about six months of living with OpenClaw, systems like Microsoft Scout read to me less like distant demos and more like confirmation that recurring operational rituals are turning into software. The interesting work is not magic assistants. It is inspectable workflows, callable tools, and agent-friendly systems that can earn trust."
+layout: rich
 ---
 
 I have been running OpenClaw for about six months now.
@@ -206,3 +207,4 @@ That is a world I would like to build for.
 And the nice thing is, I do not feel like I am starting from zero.
 
 I feel like I have already been training my instincts inside it.
+

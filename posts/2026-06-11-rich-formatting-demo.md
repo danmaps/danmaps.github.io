@@ -4,6 +4,7 @@ date: 2026-06-11
 tags:
   - Draft
   - Meta
+layout: rich
 ---
 
 This post is a kitchen-sink demo of every formatting element the blog renders. Use it to verify new styles, spot regressions, or just see what is available when writing a post.
@@ -12,10 +13,10 @@ This post is a kitchen-sink demo of every formatting element the blog renders. U
 
 ## Headings
 
-# H1 — post title level (use sparingly inside body)
-## H2 — main section
-### H3 — subsection
-#### H4 — rarely needed
+# H1 â€” post title level (use sparingly inside body)
+## H2 â€” main section
+### H3 â€” subsection
+#### H4 â€” rarely needed
 
 ---
 
@@ -72,7 +73,7 @@ Nested:
 
 ## Code blocks
 
-Python — with syntax highlighting and the copy button:
+Python â€” with syntax highlighting and the copy button:
 
 ```python
 import geopandas as gpd
@@ -118,7 +119,7 @@ tags:
 Plain text / no language:
 
 ```
-No language specified — falls back to plain pre/code block.
+No language specified â€” falls back to plain pre/code block.
 Line 2.
 Line 3.
 ```
@@ -160,7 +161,7 @@ Three hyphens produce a styled `<hr>`:
 
 The `.retro-text` CSS class produces a CRT-style terminal look. Drop raw HTML into the post to use it:
 
-<p class="retro-text">SYSTEM ONLINE — spatial data loaded</p>
+<p class="retro-text">SYSTEM ONLINE â€” spatial data loaded</p>
 
 ---
 
@@ -195,4 +196,5 @@ Takeaway: the join is fast but the CRS check is the real guard.
 
 ## End
 
-That covers everything the blog currently renders. If a new formatting feature is added — callouts, diagrams, math — add a section here.
+That covers everything the blog currently renders. If a new formatting feature is added â€” callouts, diagrams, math â€” add a section here.
+

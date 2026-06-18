@@ -7,6 +7,7 @@ tags:
 - productivity
 - systems
 title: AI Needs Real Work
+layout: rich
 ---
 
 Lately I have been trying to apply a stricter test to AI.

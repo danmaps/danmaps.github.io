@@ -6,6 +6,7 @@ tags:
 - strategy
 - work
 title: Vibe Coding, Bike Shedding, and the Real Work
+layout: rich
 ---
 
 I recently got GitHub Enterprise access from someone I met at a vibe coding hackathon. Overnight my Copilot usage limit quadrupled, so between that and my own projects I have been vibe coding constantly: at work, after work, and while building Advent of Code visualizations at night.
@@ -62,3 +63,4 @@ It is not just how hard you work. Depending on the situation, aiming the laser m
 AI makes this unavoidable. When execution is cheap, judgment becomes everything: clarity about goals, willingness to ignore shiny distractions, and comfort with letting other people's good decisions stand in for your own.
 
 I have been circling this idea for a while. Lately it feels like it is coalescing across work, side projects, puzzles, and life. Maybe that is just how I see the world.
+

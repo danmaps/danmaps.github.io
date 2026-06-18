@@ -6,9 +6,10 @@ tags:
 - work
 - technology
 title: The Evolution of GIS Careers in the Age of Advanced AI
+layout: rich
 ---
 
-As someone who's spent over a decade as a GIS Technical Specialist, I've witnessed numerous technological shifts in our industry. But the rapid advancement of AI—particularly generative AI and automation tools—presents perhaps the most significant transformation yet for GIS professionals. Let's explore how these technologies are reshaping our field and what it means for those in traditional GIS roles.
+As someone who's spent over a decade as a GIS Technical Specialist, I've witnessed numerous technological shifts in our industry. But the rapid advancement of AIâ€”particularly generative AI and automation toolsâ€”presents perhaps the most significant transformation yet for GIS professionals. Let's explore how these technologies are reshaping our field and what it means for those in traditional GIS roles.
 
 ### The Current GIS Landscape
 
@@ -20,7 +21,7 @@ Traditional GIS roles like Analysts and Data Administrators have historically fo
 - Creating static maps and basic visualizations
 - Performing repetitive data updates and maintenance
 
-Many of these tasks require spatial thinking and domain expertise but also involve considerable repetitive work—precisely the kind of activities that AI excels at automating.
+Many of these tasks require spatial thinking and domain expertise but also involve considerable repetitive workâ€”precisely the kind of activities that AI excels at automating.
 
 ### Which GIS Tasks Are Most Vulnerable to Automation?
 
@@ -103,10 +104,11 @@ If you're currently in a GIS role or considering entering the field, here are st
 
 ### My Personal Perspective
 
-As someone passionate about both GIS and emerging technologies, I find this evolution exciting rather than threatening. Throughout my career, I've seen how each technological advancement—from desktop to server to cloud GIS—has ultimately expanded the field rather than contracting it.
+As someone passionate about both GIS and emerging technologies, I find this evolution exciting rather than threatening. Throughout my career, I've seen how each technological advancementâ€”from desktop to server to cloud GISâ€”has ultimately expanded the field rather than contracting it.
 
 AI doesn't signal the end of GIS careers, but rather a transformation. The GIS professionals who thrive will be those who position themselves at the intersection of spatial thinking and AI capabilities, leveraging these powerful tools to solve increasingly complex spatial challenges in ways that weren't previously possible.
 
 The future belongs to GIS professionals who view AI not as competition, but as a powerful partner in unlocking new dimensions of spatial problem-solving.
 
 What are your thoughts on how AI is changing GIS work? I'd love to [connect](https://www.linkedin.com/in/dannymcvey/) and hear your perspective on navigating this evolving landscape.
+

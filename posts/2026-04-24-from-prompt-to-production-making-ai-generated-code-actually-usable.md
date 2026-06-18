@@ -9,27 +9,28 @@ tags:
   - guardrails
   - software
 summary: "AI-generated code becomes genuinely useful only when it is wrapped in context, validation, guardrails, and human review."
+layout: rich
 ---
 
-There’s a big gap between:
+Thereâ€™s a big gap between:
 
-“AI can generate code”
+â€œAI can generate codeâ€
 
 and
 
-“AI can help you ship something real”
+â€œAI can help you ship something realâ€
 
-I’ve been working on tools that bring AI directly into production workflows, specifically inside ArcGIS Pro.
+Iâ€™ve been working on tools that bring AI directly into production workflows, specifically inside ArcGIS Pro.
 
-The goal isn’t novelty.
+The goal isnâ€™t novelty.
 
-It’s usability.
+Itâ€™s usability.
 
 ## The dream
 
 You type:
 
-“Find all parcels within 500 feet of a fault line and summarize by county”
+â€œFind all parcels within 500 feet of a fault line and summarize by countyâ€
 
 And you get:
 
@@ -53,13 +54,13 @@ The output might run, but:
 
 ## So how do you make it usable?
 
-You don’t just generate code.
+You donâ€™t just generate code.
 
 You build a system around it.
 
 ## Pattern 1: Constrained generation
 
-Don’t let AI generate anything.
+Donâ€™t let AI generate anything.
 
 Give it structure:
 
@@ -77,22 +78,22 @@ Before running anything:
 - check schema
 - simulate execution
 
-I’ve been using:
+Iâ€™ve been using:
 
 - dry-run modes
 - logging outputs
 - explicit validation steps
 
-This turns “risky automation” into something usable.
+This turns â€œrisky automationâ€ into something usable.
 
 ## Pattern 3: Human-in-the-loop
 
-The best workflows aren’t:
+The best workflows arenâ€™t:
 
 - fully manual
 - fully automated
 
-They’re hybrid.
+Theyâ€™re hybrid.
 
 AI accelerates:
 
@@ -110,13 +111,13 @@ Humans handle:
 
 Stop thinking of AI as:
 
-“a coder”
+â€œa coderâ€
 
 Think of it as:
 
-“a fast but unreliable junior developer”
+â€œa fast but unreliable junior developerâ€
 
-You wouldn’t:
+You wouldnâ€™t:
 
 - blindly run their code
 - skip review
@@ -131,9 +132,9 @@ Once you have guardrails, you can start doing more:
 - evaluating outputs automatically
 - iterating on results
 
-This is where “agentic workflows” actually start to mean something.
+This is where â€œagentic workflowsâ€ actually start to mean something.
 
-## What I’m working on now
+## What Iâ€™m working on now
 
 - CLI tools that make workflows reproducible
 - evaluation systems for AI-generated outputs
@@ -141,14 +142,15 @@ This is where “agentic workflows” actually start to mean something.
 
 ## Final thought
 
-The question isn’t:
+The question isnâ€™t:
 
-“Can AI write code?”
+â€œCan AI write code?â€
 
 It can.
 
 The real question is:
 
-“Can we build systems where that code is safe, correct, and useful?”
+â€œCan we build systems where that code is safe, correct, and useful?â€
 
-That’s the problem worth solving.
+Thatâ€™s the problem worth solving.
+

@@ -7,6 +7,7 @@ tags:
   - AI
   - product
   - work
+layout: rich
 ---
 
 I spent some time this week tightening up **Spatial Workbench**, and the work was a useful reminder that "inspectable" is not the same thing as "self-explanatory."
@@ -15,7 +16,7 @@ I have been circling a bigger idea with a lot of my projects lately: if geometry
 
 But visible systems can still be awkward.
 
-This week’s work was less about adding flashy capability and more about reducing ambiguity in the product.
+This weekâ€™s work was less about adding flashy capability and more about reducing ambiguity in the product.
 
 ## The product got clearer in three ways
 
@@ -71,3 +72,4 @@ That is a much healthier direction than pretending the model should just "do GIS
 For now, the practical takeaway is simple: making a tool inspectable is a good start, but it is not the finish line. If the interaction model is muddy or the docs drift from the source of truth, the system is still harder to trust than it should be.
 
 This week was a good reminder that clarity is a feature.
+

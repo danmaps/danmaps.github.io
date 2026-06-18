@@ -6,6 +6,7 @@ tags:
 - teamwork
 - notebooks
 title: Sharing Python Tools - Practical Solutions and Considerations
+layout: rich
 ---
 
 As a Python enthusiast, I've integrated automation into many of my daily GIS tasks over the past decade. However, I recognize that not everyone shares my passion for coding. At work, I'm always willing to answer questions and demonstrate programmatic solutions to everyday problems. But I also aim to avoid being preachy or condescending.
@@ -58,3 +59,4 @@ Each of these solutions has its own pros and cons, but I have found ways to use 
 - Encourage collaboration and knowledge sharing to build a supportive learning environment.
 
 By focusing on these areas, we can bridge the gap between technical and non-technical users, making Python-based automation more accessible and beneficial for everyone on the team.
+

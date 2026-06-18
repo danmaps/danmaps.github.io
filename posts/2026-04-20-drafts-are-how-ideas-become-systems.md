@@ -7,6 +7,7 @@ tags:
   - workflow
   - writing
   - systems
+layout: rich
 ---
 
 This week did not produce some giant cinematic breakthrough.
@@ -34,7 +35,7 @@ That has been showing up clearly in the blog workflow.
 
 The recent posts on things like the "dead workplace" failure mode and the importance of defining success before the system does did not become useful because they existed as vibes in my head. They became useful because they were turned into markdown files with front matter, tags, and enough written substance to review.
 
-That sounds trivial, but it isn’t.
+That sounds trivial, but it isnâ€™t.
 
 Once something becomes a draft, a few important things happen:
 
@@ -88,7 +89,7 @@ It is harder to say that when no file exists.
 It is easy to feel productive because a thought feels promising.
 It is harder to keep that illusion once the draft is in front of me and I can see whether it actually says anything.
 
-This week’s writing work reinforced that for me.
+This weekâ€™s writing work reinforced that for me.
 
 Progress was not just "I had some thoughts about AI and systems."
 Progress was:
@@ -150,3 +151,4 @@ That is not a glamorous system.
 It is just a practical one.
 
 And lately I am trusting practical systems more than dramatic ones.
+

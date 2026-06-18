@@ -7,7 +7,8 @@ tags:
   - geometry
   - data
   - spatial
-summary: "Curves in GIS feel exotic until you realize one of the most common operations in the field—buffering—creates them constantly, even as many common GIS formats barely support true curved geometry."
+summary: "Curves in GIS feel exotic until you realize one of the most common operations in the fieldâ€”bufferingâ€”creates them constantly, even as many common GIS formats barely support true curved geometry."
+layout: rich
 ---
 
 At first glance, curves in GIS seem exotic.
@@ -59,7 +60,7 @@ Instead of storing dozens of tiny vertices, the geometry stores information like
 
 The software reconstructs the curve mathematically when rendering or analyzing it.
 
-ArcGIS geodatabases support several true curve types, including circular arcs and Bézier curves. PostGIS also supports curved geometry types such as `CIRCULARSTRING` and `CURVEPOLYGON`.
+ArcGIS geodatabases support several true curve types, including circular arcs and BÃ©zier curves. PostGIS also supports curved geometry types such as `CIRCULARSTRING` and `CURVEPOLYGON`.
 
 <!-- INTERACTIVE SLOT: show true curve metadata or curved-geometry example -->
 
@@ -105,7 +106,7 @@ A densified curve may appear perfectly smooth at normal map scales.
 Visually, it feels accurate.
 But mathematically, it is still only an approximation.
 
-A “circle” made from 64 straight segments is not actually a true circle.
+A â€œcircleâ€ made from 64 straight segments is not actually a true circle.
 It is a 64-sided polygon pretending to be one.
 
 Most of the time, this distinction barely matters.
@@ -182,6 +183,7 @@ depending on the workflow and file format.
 
 Most users never notice because the approximation is sufficient for the task at hand.
 
-That phrase—**sufficient for the task at hand**—may be one of the defining philosophies of practical GIS.
+That phraseâ€”**sufficient for the task at hand**â€”may be one of the defining philosophies of practical GIS.
 
 <!-- OPTIONAL INTERACTIVE SLOT: demo true curve vs densified geometry at different zooms -->
+

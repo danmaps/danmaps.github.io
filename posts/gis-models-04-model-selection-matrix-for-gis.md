@@ -10,9 +10,10 @@ tags:
   - Automation
   - Models
   - Resilience
+layout: rich
 ---
 
-If you do GIS automation in the real world, you do not need a “best model”.
+If you do GIS automation in the real world, you do not need a â€œbest modelâ€.
 
 You need a *default choice* that is safe, and a *cheap choice* that is fast, and a *high-end choice* for when the cost of being wrong is high.
 
@@ -33,24 +34,25 @@ This is a draft of a practical selection matrix.
 
 When the task can silently produce *plausible wrong output*, treat it as high risk.
 
-That’s most GIS.
+Thatâ€™s most GIS.
 
 ## The resilience angle
 
 This is not just about picking a model.
 
-It’s about building an automation practice where:
+Itâ€™s about building an automation practice where:
 
 - you can ship value repeatedly
-- you don’t get wiped out by one quiet mistake
+- you donâ€™t get wiped out by one quiet mistake
 - you can adapt as models and tooling change
 
 The durable skill is: **turn compute into outcomes safely**.
 
 ## Next steps
 
-I’ll evolve this into:
+Iâ€™ll evolve this into:
 
 - a printable one-pager
-- a checklist for “when to upgrade the model class”
+- a checklist for â€œwhen to upgrade the model classâ€
 - real examples from the case study posts
+

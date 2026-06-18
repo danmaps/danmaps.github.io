@@ -7,6 +7,7 @@ tags:
   - Symphony
   - Draft
 title: AI Orchestration Gets Real When You Can Inspect the Work
+layout: rich
 ---
 
 I spent part of this week tightening Symphony, my local AI orchestration project.
@@ -128,3 +129,4 @@ The value is in making the work inspectable enough that autonomy is not scary.
 That is where my head is at right now.
 
 Less magic. More receipts.
+

@@ -6,6 +6,7 @@ tags:
   - Agents
   - Reliability
   - Ops
+layout: rich
 ---
 
 Agentic engineering is still new enough that we keep reaching for old words. Automation. AI. Workflows. None of them quite fit. What we are building now is software that acts with a degree of initiative and variability. The output is not always identical, even when the intent is.
@@ -47,7 +48,7 @@ In practice, this layer looks like:
 - clear logging
 - human-in-the-loop gates for anything expensive, destructive, or public
 
-If you’ve ever run production systems, this will feel familiar. We are just reasserting a truth that agentic tooling sometimes tries to hand-wave away: you cannot outsource reliability to a model.
+If youâ€™ve ever run production systems, this will feel familiar. We are just reasserting a truth that agentic tooling sometimes tries to hand-wave away: you cannot outsource reliability to a model.
 
 ## The value layer
 
@@ -102,13 +103,13 @@ If the system must act, give it a small set of safe, named actions. Think of the
 
 ### Artifact-first output
 
-Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you can’t diff it, you can’t trust it.
+Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you canâ€™t diff it, you canâ€™t trust it.
 
 A concrete non-programmer-friendly example is Excel.
 
 - Value-layer approach (high variance): ask an AI to generate 500 rows of computed values and paste them into a spreadsheet.
   - You may save time up front.
-  - But now you have to do hallucination checks on each row, because you don’t have a reliable way to validate what it did.
+  - But now you have to do hallucination checks on each row, because you donâ€™t have a reliable way to validate what it did.
 
 - Trust-layer approach (bounded variance upstream): ask the AI to generate a testable formula and explain it.
   - You validate the logic once.
@@ -144,3 +145,4 @@ This is the core discipline. Not prompts. Not vibes. Not agent frameworks.
 Build a deterministic spine, then let the probabilistic muscles do the work.
 
 That is how you get both trust and value without fooling yourself about which is which.
+

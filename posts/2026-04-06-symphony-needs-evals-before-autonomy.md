@@ -8,6 +8,7 @@ tags:
   - orchestration
   - Symphony
   - evaluation
+layout: rich
 ---
 
 This week on Symphony was less about shipping a flashy new feature and more about getting honest about what the next layer of work actually is.
@@ -176,3 +177,4 @@ The useful constraint I am taking forward is simple:
 
 That feels like the next real piece of work.
 Not the loudest one. The real one.
+

@@ -8,6 +8,7 @@ tags:
   - systems
   - work
 summary: "A recent round of planning clarified something useful for me: a spatial tool project does not need to become a full platform to be strategically valuable. Sometimes the right move is to make the execution boundary sharper instead of making the product broader."
+layout: rich
 ---
 
 This week did not produce a big shipping milestone.
@@ -124,3 +125,4 @@ And increasingly, I think good software strategy is often just that:
 
 not adding more ambition,
 but putting a better boundary around the right ambition.
+

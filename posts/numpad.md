@@ -5,6 +5,7 @@ tags:
 - productivity
 - work
 title: Creating a Virtual Numpad with AutoHotKey
+layout: rich
 ---
 
 
@@ -12,7 +13,7 @@ I recently built a virtual numpad using AutoHotKey to adapt to my new keyboard s
 
 ## Initial Challenges and Solution
 
-Initially, I explored remapping keys using my keyboard's configuration tools, but this approach proved to be cumbersome. Eventually, I found a simple yet effective solution with AutoHotKey. I configured it so that when I hold down the CapsLock key, the letter keys under 7, 8, and 9 remap to function as a full numpad. This allows me to comfortably touch-type numbers with my right hand while holding CapsLock with my left pinky. The script also ensures that CapsLock does not activate inadvertently—it remains off unless explicitly pressed.
+Initially, I explored remapping keys using my keyboard's configuration tools, but this approach proved to be cumbersome. Eventually, I found a simple yet effective solution with AutoHotKey. I configured it so that when I hold down the CapsLock key, the letter keys under 7, 8, and 9 remap to function as a full numpad. This allows me to comfortably touch-type numbers with my right hand while holding CapsLock with my left pinky. The script also ensures that CapsLock does not activate inadvertentlyâ€”it remains off unless explicitly pressed.
 
 Here's a simulation of the experience:
 
@@ -23,7 +24,7 @@ Here's a simulation of the experience:
 
 Another useful feature of this script is its ability to handle alt-codes. By holding down CapsLock along with the Alt key, I can type an alt-code, and when I release Alt, the corresponding symbol is sent. For example:
 
-♥ <- `Alt` + `9731`
+â™¥ <- `Alt` + `9731`
 
 This setup has significantly improved my workflow, allowing me to maintain a clean desk space while retaining the functionality I need for efficient input.
 

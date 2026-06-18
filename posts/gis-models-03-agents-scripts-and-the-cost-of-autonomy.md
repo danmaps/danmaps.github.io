@@ -11,21 +11,22 @@ tags:
   - Automation
   - Models
   - Reliability
+layout: rich
 ---
 
-Agents are the natural next step after “LLM writes a script”.
+Agents are the natural next step after â€œLLM writes a scriptâ€.
 
 Instead of generating code once, you let the model decide what to do next.
 
 That is powerful.
 
-It is also where model choice stops being “quality” and starts being **governance**.
+It is also where model choice stops being â€œqualityâ€ and starts being **governance**.
 
 ## Core question
 
 When does it make sense to let a model decide what to do next?
 
-And what does “the right model” look like when autonomy is on the table?
+And what does â€œthe right modelâ€ look like when autonomy is on the table?
 
 ## Case study
 
@@ -48,7 +49,7 @@ Same data, same environment.
 
 Different models powering the agent.
 
-## What I’ll compare
+## What Iâ€™ll compare
 
 ### Recovery from data changes
 
@@ -84,15 +85,15 @@ If the agent did something, can a human:
 
 ### Human intervention required
 
-The real measure isn’t “did it finish”.
+The real measure isnâ€™t â€œdid it finishâ€.
 
-It’s “how many times did a human have to rescue it” and “how bad would it have been if nobody noticed”.
+Itâ€™s â€œhow many times did a human have to rescue itâ€ and â€œhow bad would it have been if nobody noticedâ€.
 
-## What I’ll show
+## What Iâ€™ll show
 
 - One small model making confident bad decisions
 - One larger model stopping and asking
-- Why “asking” is often the correct behavior in GIS
+- Why â€œaskingâ€ is often the correct behavior in GIS
 
 ## Key takeaway
 
@@ -102,8 +103,9 @@ You are selecting not just capability, but behavior under uncertainty.
 
 ## Next steps
 
-I’ll fill this with:
+Iâ€™ll fill this with:
 
 - one concrete end-to-end workflow
 - the logs from an agent run
-- the guardrails that turned “agent” into “safe tool”
+- the guardrails that turned â€œagentâ€ into â€œsafe toolâ€
+

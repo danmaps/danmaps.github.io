@@ -13,13 +13,91 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
->
-<link rel="stylesheet" href="/static/map-embed.css">
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
 
 
     <!-- Prism CSS (for code highlighting) -->
@@ -41,103 +119,39 @@
 
     <main class="container my-4 ">
         
-<style>
-    pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
-.codehilite .esc { color: #F8F8F2 } /* Escape */
-.codehilite .g { color: #F8F8F2 } /* Generic */
-.codehilite .k { color: #66D9EF } /* Keyword */
-.codehilite .l { color: #AE81FF } /* Literal */
-.codehilite .n { color: #F8F8F2 } /* Name */
-.codehilite .o { color: #FF4689 } /* Operator */
-.codehilite .x { color: #F8F8F2 } /* Other */
-.codehilite .p { color: #F8F8F2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
-.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
-.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
-.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
-.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
-.codehilite .go { color: #66D9EF } /* Generic.Output */
-.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
-.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
-.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
-.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
-.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
-.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
-.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
-.codehilite .kt { color: #66D9EF } /* Keyword.Type */
-.codehilite .ld { color: #E6DB74 } /* Literal.Date */
-.codehilite .m { color: #AE81FF } /* Literal.Number */
-.codehilite .s { color: #E6DB74 } /* Literal.String */
-.codehilite .na { color: #A6E22E } /* Name.Attribute */
-.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
-.codehilite .nc { color: #A6E22E } /* Name.Class */
-.codehilite .no { color: #66D9EF } /* Name.Constant */
-.codehilite .nd { color: #A6E22E } /* Name.Decorator */
-.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
-.codehilite .ne { color: #A6E22E } /* Name.Exception */
-.codehilite .nf { color: #A6E22E } /* Name.Function */
-.codehilite .nl { color: #F8F8F2 } /* Name.Label */
-.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
-.codehilite .nx { color: #A6E22E } /* Name.Other */
-.codehilite .py { color: #F8F8F2 } /* Name.Property */
-.codehilite .nt { color: #FF4689 } /* Name.Tag */
-.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
-.codehilite .ow { color: #FF4689 } /* Operator.Word */
-.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
-.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
-.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
-.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
-.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
-.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
-.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
-.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
-.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
-.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
-.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
-.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
-.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
-.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
-.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
-.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
-.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
-.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
-.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
-.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
-.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
-.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
-.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
-.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
-.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
-.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
-.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
-</style>
-<div class="container bg-dark text-light">
-    <article>
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>Everything Is Software</h1>
+    <div class="post-meta-bar">
         
-        <h1 class="text-light">Everything Is Software</h1>
-        <!-- Post content -->
-        <p>Everything can be represented as software. That's not just an abstract CS principle—it's becoming the lived reality for anyone who works with information, and it's reshaping who gets to build things.</p>
-<h2>The idea</h2>
+        <time datetime="2026-03-12">March 12, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">2 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Everything can be represented as software. That's not just an abstract CS principleâ€”it's becoming the lived reality for anyone who works with information, and it's reshaping who gets to build things.</p>
+<h2 id="the-idea">The idea</h2>
 <p>From a thermostat to a drainage model to a piece of music, anything that can be described with rules and data can be expressed as code. We've known this for decades, but what's changed is that <em>acting</em> on it no longer requires a computer science degree.</p>
 <p>The boundaries between domains keep blurring. A software engineer builds a VR simulation of a physical space. A biologist writes code to model protein interactions. I analyze spatial data and build maps. A musician produces a track in a DAW that's really just a specialized IDE. We're all writing software, whether we call it that or not.</p>
-<h2>Democratized creation</h2>
-<p>If anyone can create software, the bottleneck shifts from <em>building</em> to <em>imagining</em>. People from every discipline—healthcare, education, urban planning—can contribute solutions instead of waiting for a vendor to prioritize their niche.</p>
+<h2 id="democratized-creation">Democratized creation</h2>
+<p>If anyone can create software, the bottleneck shifts from <em>building</em> to <em>imagining</em>. People from every disciplineâ€”healthcare, education, urban planningâ€”can contribute solutions instead of waiting for a vendor to prioritize their niche.</p>
 <p>This is where bespoke micro-software gets interesting. Think:</p>
 <ul>
 <li>A clinic building a lightweight app to triage patient intake, instead of bending a massive EHR system to fit</li>
@@ -145,17 +159,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>A GIS analyst creating a focused field-data collection tool instead of wrestling with a one-size-fits-all enterprise suite (sorry Esri!)</li>
 </ul>
 <p>These aren't side projects. They're purpose-built tools that solve real problems <em>because</em> the person closest to the problem is the one writing the code. No more waiting on a product roadmap that doesn't know your workflow exists.</p>
-<h2>The power shift</h2>
-<p>This flips the traditional dynamic. When only large companies and dedicated dev teams could ship software, they decided what problems were worth solving—and how. Now individuals and small teams can bypass those gatekeepers entirely.</p>
-<p>The result is a more diverse software ecosystem: more voices, more perspectives, more solutions shaped by the people who actually need them. That's not a utopian forecast—it's already happening, quietly, every time someone builds a script, a dashboard, or a small app that does exactly what they need and nothing more.</p>
+<h2 id="the-power-shift">The power shift</h2>
+<p>This flips the traditional dynamic. When only large companies and dedicated dev teams could ship software, they decided what problems were worth solvingâ€”and how. Now individuals and small teams can bypass those gatekeepers entirely.</p>
+<p>The result is a more diverse software ecosystem: more voices, more perspectives, more solutions shaped by the people who actually need them. That's not a utopian forecastâ€”it's already happening, quietly, every time someone builds a script, a dashboard, or a small app that does exactly what they need and nothing more.</p>
 <p>My role is to help people see that potential and give them the tools to realize it. Because if everything is software, then everyone can be a builder. And that's a future worth working towards. </p>
-        <!-- Display the tags at the bottom -->
-        
-    </article>
-</div>
+</article>
+
+<!-- Tags -->
+
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 
@@ -172,12 +186,5 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       })();
     </script>
     
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
-<script src="/static/map-embed.js"></script>
-
 </body>
 </html>
