@@ -19,7 +19,7 @@ What belongs in a commit? How big should a commit be? What makes a commit messag
 
 Those are the questions that actually slow people down.
 
-Lately, one of the more interesting things I have noticed in GitHub Copilot is that it seems to understand this distinction. It does not only act like a command explainer. In a lot of cases, it behaves more like a quiet workflow coach.
+Lately, one of the more interesting things I have noticed in [GitHub Copilot (the new app)](https://github.com/features/ai/github-app) is that it seems to understand this distinction. It does not only act like a command explainer. In a lot of cases, it behaves more like a quiet workflow coach.
 
 That is a bigger product idea than it sounds like.
 
@@ -47,9 +47,9 @@ They need software development judgment.
 That is why so many Git tutorials feel oddly incomplete.
 They teach the mechanism and skip the decisions.
 
-## Copilot seems to be teaching habits, not just commands
+## The GitHub Copilot app teaches habits, not just commands
 
-What makes Copilot interesting here is not that it can explain what `git commit` does.
+What makes the GitHub Copilot app interesting here is not that it can explain what `git commit` does.
 Plenty of tools can do that.
 
 What is more valuable is the way it appears to nudge users toward better habits in the middle of actual work.
@@ -221,7 +221,7 @@ Through dozens of well-timed nudges that slowly build instinct.
 
 ## The takeaway
 
-The most interesting part of GitHub Copilot's Git guidance is not the specific phrasing.
+The most interesting part of the GitHub Copilot app's Git guidance is not the specific phrasing.
 It is the realization that prompt engineering can encode best practices directly into a workflow.
 
 The result feels less like help documentation and more like having a senior engineer quietly looking over your shoulder.
