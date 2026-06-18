@@ -17,7 +17,7 @@ To help tackle this, I've been working on a set of "AI Assistant" geoprocessing 
 
 One interesting technical note is that I avoided using the OpenAI python package in favor of directly interfacing with the API using the `requests` library. This avoids dependency on the OpenAI package and makes it easier for anyone to use these tools without cloning the default python environment.
 
-The next step is to make this integration smarterâ€”having the AI inspect the environment before and after actions, evaluate outcomes, and then make recommendations based on those evaluations. By doing so, the tool becomes more than just a code generator; it becomes an intelligent partner in decision-making.
+The next step is to make this integration smarter—having the AI inspect the environment before and after actions, evaluate outcomes, and then make recommendations based on those evaluations. By doing so, the tool becomes more than just a code generator; it becomes an intelligent partner in decision-making.
 
 This approach removes barriers like poor UI and lack of context, helping to bridge the gap between AI's limitations and what's truly needed in GIS. My end goal is to create a seamless, intuitive AI-GIS integration that enhances both user experience and productivity.
 

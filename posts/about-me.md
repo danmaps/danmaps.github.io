@@ -25,9 +25,9 @@ Most of this site is me thinking in public about:
 
 By day I work on GIS systems and data operations at Southern California Edison. That has meant a lot of time spent around ArcGIS, automation, data management, and the weird realities of getting spatial systems to work in real organizations.
 
-Iâ€™m especially interested in the part where geospatial work stops being abstract and becomes operational: the scripts, tools, guardrails, and interfaces that make data usable.
+I’m especially interested in the part where geospatial work stops being abstract and becomes operational: the scripts, tools, guardrails, and interfaces that make data usable.
 
-### What Iâ€™m into
+### What I’m into
 
 A few recurring themes on this site:
 
@@ -38,9 +38,9 @@ A few recurring themes on this site:
 
 ### Outside of work
 
-Outside of work, Iâ€™m usually thinking about side projects, maps, homelab stuff, writing, or trying to keep some momentum on exercise and life admin.
+Outside of work, I’m usually thinking about side projects, maps, homelab stuff, writing, or trying to keep some momentum on exercise and life admin.
 
-Iâ€™m also a dad to two little boys, which means a lot of life is happening in the middle of all the projects and ideas.
+I’m also a dad to two little boys, which means a lot of life is happening in the middle of all the projects and ideas.
 
 If you want to connect, you can find me on [LinkedIn](https://www.linkedin.com/in/dannymcvey/).
 

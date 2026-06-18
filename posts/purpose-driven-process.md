@@ -31,7 +31,7 @@ The **Purpose-Driven Process** is a structured framework to transform raw ideas 
 ## 3. Planning Phase
 
 - **Set Objectives**: Define clear, achievable goals and milestones for the project. Break down the project into manageable tasks with specific deadlines.
-- **Allocate Resources**: Plan how you will allocate your resources (time, budget, tools). Ensure youâ€™re not over-committing yourself in any one area.
+- **Allocate Resources**: Plan how you will allocate your resources (time, budget, tools). Ensure you’re not over-committing yourself in any one area.
 - **Risk Management**: Identify the biggest risks to your project and create contingency plans to handle setbacks.
 
 ---
@@ -47,7 +47,7 @@ The **Purpose-Driven Process** is a structured framework to transform raw ideas 
 ## 5. Launch Phase
 
 - **Deploy the Project**: Release your project into the appropriate environment (e.g., a live website, a working tool, etc.).
-- **Monitor and Track**: Use key performance indicators (KPIs) or metrics to evaluate the projectâ€™s success. Ensure youâ€™re meeting the goals set in the planning phase.
+- **Monitor and Track**: Use key performance indicators (KPIs) or metrics to evaluate the project’s success. Ensure you’re meeting the goals set in the planning phase.
 - **Promote the Project**: If applicable, market the project to your target audience or share it with relevant communities to gather more feedback and recognition.
 
 ---
@@ -55,7 +55,7 @@ The **Purpose-Driven Process** is a structured framework to transform raw ideas 
 ## 6. Review Phase
 
 - **Post-Launch Analysis**: After the project has been deployed, assess its success. Compare results with the objectives you set in the planning phase.
-- **Document Lessons Learned**: Reflect on what worked well and what didnâ€™t. Capture insights for future projects.
+- **Document Lessons Learned**: Reflect on what worked well and what didn’t. Capture insights for future projects.
 - **Next Steps**: Decide whether to continue improving the project, scale it, pivot to a new direction, or sunset it. Evaluate how the project fits into your long-term goals.
 
 ---

@@ -7,7 +7,7 @@ tags:
   - geometry
   - data
   - spatial
-summary: "Curves in GIS feel exotic until you realize one of the most common operations in the fieldâ€”bufferingâ€”creates them constantly, even as many common GIS formats barely support true curved geometry."
+summary: "Curves in GIS feel exotic until you realize one of the most common operations in the field—buffering—creates them constantly, even as many common GIS formats barely support true curved geometry."
 layout: rich
 ---
 
@@ -106,7 +106,7 @@ A densified curve may appear perfectly smooth at normal map scales.
 Visually, it feels accurate.
 But mathematically, it is still only an approximation.
 
-A â€œcircleâ€ made from 64 straight segments is not actually a true circle.
+A “circle” made from 64 straight segments is not actually a true circle.
 It is a 64-sided polygon pretending to be one.
 
 Most of the time, this distinction barely matters.
@@ -183,7 +183,7 @@ depending on the workflow and file format.
 
 Most users never notice because the approximation is sufficient for the task at hand.
 
-That phraseâ€”**sufficient for the task at hand**â€”may be one of the defining philosophies of practical GIS.
+That phrase—**sufficient for the task at hand**—may be one of the defining philosophies of practical GIS.
 
 <!-- OPTIONAL INTERACTIVE SLOT: demo true curve vs densified geometry at different zooms -->
 

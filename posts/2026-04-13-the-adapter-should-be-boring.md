@@ -11,7 +11,7 @@ tags:
 layout: rich
 ---
 
-This weekâ€™s useful Symphony progress was not some new autonomous capability.
+This week’s useful Symphony progress was not some new autonomous capability.
 
 It was a clearer boundary.
 

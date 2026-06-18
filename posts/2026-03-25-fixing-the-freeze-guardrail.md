@@ -49,13 +49,13 @@ But the publish step did not automatically stage them, because it was built arou
 
 That is fragile in a really boring way.
 
-## The lesson: generated output is not â€œextraâ€
+## The lesson: generated output is not “extra”
 
-The real fix was not â€œremember to add those two files.â€
+The real fix was not “remember to add those two files.”
 
 The real fix was to admit something more basic:
 
-**if the frozen site in `docs/` is what gets deployed, then generated files are not incidental clutter â€” they are part of the product.**
+**if the frozen site in `docs/` is what gets deployed, then generated files are not incidental clutter — they are part of the product.**
 
 Once that is true, the publish step should treat them that way.
 
@@ -96,7 +96,7 @@ This is obviously a tiny blog-specific example, but I think the pattern is gener
 
 A lot of workflow pain comes from pretending generated artifacts are somehow less real than source files.
 
-But if those artifacts are what users actually get â€” deployed docs, compiled assets, reports, app bundles, generated plans, exported files â€” then they need to be handled as first-class outputs.
+But if those artifacts are what users actually get — deployed docs, compiled assets, reports, app bundles, generated plans, exported files — then they need to be handled as first-class outputs.
 
 Otherwise you get a weird split-brain system where:
 

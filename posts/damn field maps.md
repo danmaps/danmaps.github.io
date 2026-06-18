@@ -8,9 +8,9 @@ title: Field Mapping Frustrations in GIS - Automating Spatial Joins
 layout: rich
 ---
 
-Last week, I ran into an issue with a batch spatial join tool that ran smoothly on several feature classes, each with slightly different schemas. However, without any warning, the tool produced outputs with a bunch of null values. If youâ€™ve ever worked with field mapping in GIS, you might be familiar with this problem. I wanted to write about my experience and the solution I found, so I donâ€™t forget it in the future.
+Last week, I ran into an issue with a batch spatial join tool that ran smoothly on several feature classes, each with slightly different schemas. However, without any warning, the tool produced outputs with a bunch of null values. If you’ve ever worked with field mapping in GIS, you might be familiar with this problem. I wanted to write about my experience and the solution I found, so I don’t forget it in the future.
 
-Hereâ€™s an example of the tool setup:
+Here’s an example of the tool setup:
 
 ```python
 arcpy.ImportToolbox(r"C:\Temp\MyToolbox.atbx")
@@ -25,11 +25,11 @@ arcpy.MyToolbox.BatchSpatialJoin(
 )
 ```
 
-Notice that **field_mapping**â€”it looks complicated! The issue here is that the field mapping wonâ€™t work well when there are differences in field names or schemas between datasets. When running a tool manually, this mapping is handled during parameter validation. However, when automating via Python or ModelBuilder, it silently fails, resulting in null values.
+Notice that **field_mapping**—it looks complicated! The issue here is that the field mapping won’t work well when there are differences in field names or schemas between datasets. When running a tool manually, this mapping is handled during parameter validation. However, when automating via Python or ModelBuilder, it silently fails, resulting in null values.
 
 At first, I tried editing the field mapping string manually, but that process turned out to be error-prone and tedious. After some trial and error, I created a function to automate the process of generating field mappings in a more reliable way.
 
-Hereâ€™s the function that helped:
+Here’s the function that helped:
 
 ```python
 def create_field_mappings(target, join, join_field, output_field_name=None, merge_rule=None, delimiter=', ', output_field_length=255):
@@ -75,5 +75,5 @@ def create_field_mappings(target, join, join_field, output_field_name=None, merg
 
 This function effectively recreates the field mapping behavior you'd expect when running the tool manually, but with more control and automation. Using it saved me time and eliminated the frustration of manually editing long field mapping strings.
 
-The key takeaway: when working with batch processes or automated tools in GIS, donâ€™t rely on silent errors to reveal themselves laterâ€”create automated solutions for common pitfalls like field mappings. Itâ€™s worth the effort!
+The key takeaway: when working with batch processes or automated tools in GIS, don’t rely on silent errors to reveal themselves later—create automated solutions for common pitfalls like field mappings. It’s worth the effort!
 

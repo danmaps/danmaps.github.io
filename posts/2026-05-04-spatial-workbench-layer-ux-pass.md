@@ -43,9 +43,9 @@ More tools. More automation. Better AI feature generation. Agent-driven workflow
 
 All of that is still interesting.
 
-But if the layer model is fuzzy, the contents pane is awkward, mobile navigation is clumsy, and results from tools donâ€™t land in a predictable structure, then every higher-level feature is built on mush.
+But if the layer model is fuzzy, the contents pane is awkward, mobile navigation is clumsy, and results from tools don’t land in a predictable structure, then every higher-level feature is built on mush.
 
-Iâ€™ve been noticing this pattern a lot lately: the real bottleneck often isnâ€™t missing intelligence. Itâ€™s missing shape.
+I’ve been noticing this pattern a lot lately: the real bottleneck often isn’t missing intelligence. It’s missing shape.
 
 ## Layers had to become first-class
 

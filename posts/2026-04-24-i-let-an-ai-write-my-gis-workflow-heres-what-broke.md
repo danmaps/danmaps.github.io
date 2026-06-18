@@ -12,33 +12,33 @@ summary: "AI can generate GIS workflow code, but the real story starts when that
 layout: rich
 ---
 
-Thereâ€™s a growing narrative that AI can write code for you.
+There’s a growing narrative that AI can write code for you.
 
-Thatâ€™s true.
+That’s true.
 
-Whatâ€™s more interesting is what happens after the code is written.
+What’s more interesting is what happens after the code is written.
 
-Iâ€™ve been experimenting with integrating AI directly into ArcGIS Pro workflows. The idea is simple:
+I’ve been experimenting with integrating AI directly into ArcGIS Pro workflows. The idea is simple:
 
 Describe what you want â†’ get working geoprocessing code.
 
 In practice, it looks like this:
 
-- I type: â€œSelect all points within 1 mile of schools and summarize by districtâ€
+- I type: “Select all points within 1 mile of schools and summarize by district”
 - The system generates Python (ArcPy)
 - The code runs inside a real project
 
-And sometimesâ€¦ it works perfectly.
+And sometimes… it works perfectly.
 
 Other times, it breaks in ways that are surprisingly consistent.
 
 ## Where things actually break
 
-### 1. The â€œalmost rightâ€ problem
+### 1. The “almost right” problem
 
 AI is very good at generating code that looks correct.
 
-Itâ€™s much worse at generating code that:
+It’s much worse at generating code that:
 
 - uses the correct coordinate system
 - handles edge cases in real datasets
@@ -47,13 +47,13 @@ Itâ€™s much worse at generating code that:
 Example:
 
 - It buffers in degrees instead of meters
-- Or assumes a field exists that doesnâ€™t
+- Or assumes a field exists that doesn’t
 
 This is dangerous because:
 
 The output looks valid, but the result is wrong.
 
-### 2. Context is everything (and AI doesnâ€™t have enough of it)
+### 2. Context is everything (and AI doesn’t have enough of it)
 
 In a real GIS project:
 
@@ -65,7 +65,7 @@ Without that context, AI guesses.
 
 Sometimes correctly. Often not.
 
-This is where most â€œAI coding demosâ€ fall apart. They work in isolation, not inside messy systems.
+This is where most “AI coding demos” fall apart. They work in isolation, not inside messy systems.
 
 ### 3. Execution is the real problem
 
@@ -80,11 +80,11 @@ In a production environment, you need:
 - validation checks
 - rollback strategies
 
-Without that, youâ€™re basically letting an AI modify your data blindly.
+Without that, you’re basically letting an AI modify your data blindly.
 
 ## What actually works
 
-After a lot of trial and error, Iâ€™ve landed on a pattern:
+After a lot of trial and error, I’ve landed on a pattern:
 
 AI should:
 
@@ -99,22 +99,22 @@ Humans should:
 
 ## The key shift
 
-The real value of AI isnâ€™t:
+The real value of AI isn’t:
 
-â€œwrite code for meâ€
+“write code for me”
 
-Itâ€™s:
+It’s:
 
-â€œreduce the distance between intent and executionâ€
+“reduce the distance between intent and execution”
 
-But thereâ€™s a gap between:
+But there’s a gap between:
 
 - generated code
 - trustworthy systems
 
 Most of my work lately has been about closing that gap.
 
-## What Iâ€™m exploring next
+## What I’m exploring next
 
 - scoring AI-generated code quality
 - comparing outputs against known-good datasets
@@ -122,13 +122,13 @@ Most of my work lately has been about closing that gap.
 
 Basically:
 
-Not â€œcan AI write code?â€
-But â€œcan we trust what it produces?â€
+Not “can AI write code?”
+But “can we trust what it produces?”
 
-If youâ€™re using AI in real workflows, Iâ€™d love to hear:
+If you’re using AI in real workflows, I’d love to hear:
 
 - where it breaks for you
-- what guardrails youâ€™ve built
+- what guardrails you’ve built
 
-Because thatâ€™s where the interesting work is happening.
+Because that’s where the interesting work is happening.
 

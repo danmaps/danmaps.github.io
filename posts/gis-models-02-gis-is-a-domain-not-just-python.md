@@ -13,7 +13,7 @@ tags:
 layout: rich
 ---
 
-A lot of AI tooling assumes the world is â€œjust data framesâ€.
+A lot of AI tooling assumes the world is “just data frames”.
 
 GIS looks like data frames until you make a decision that depends on meaning.
 
@@ -25,7 +25,7 @@ Then you learn the difference between:
 
 ## Core question
 
-Which models actually understand what GIS data **means**, not just how itâ€™s shaped?
+Which models actually understand what GIS data **means**, not just how it’s shaped?
 
 ## Case study
 
@@ -51,7 +51,7 @@ It is not.
 
 Grouping by the wrong field gives you charts that look clean and are quietly wrong.
 
-## What Iâ€™ll compare
+## What I’ll compare
 
 ### Field selection logic
 
@@ -63,41 +63,41 @@ Does it:
 
 ### Awareness of utility domain concepts
 
-Even without being â€œutility-tunedâ€, a good model should recognize:
+Even without being “utility-tuned”, a good model should recognize:
 
 - feeder vs circuit vs device vs work order
-- the difference between â€œcauseâ€ and â€œstatusâ€
-- why you donâ€™t group by a field that is updated mid-incident
+- the difference between “cause” and “status”
+- why you don’t group by a field that is updated mid-incident
 
 ### Explanation quality
 
 Would a real analyst trust it?
 
-Not â€œdoes it sound smartâ€, but:
+Not “does it sound smart”, but:
 
 - does it explain tradeoffs
 - does it propose validation steps
 - does it call out uncertainty
 
-## What Iâ€™ll show
+## What I’ll show
 
 - Incorrect but plausible answers
 - Subtle mistakes that could cause real-world issues
 - The difference between:
-  - â€œconfident narrativeâ€
-  - â€œsafe recommendation with verification stepsâ€
+  - “confident narrative”
+  - “safe recommendation with verification steps”
 
 ## Key takeaway
 
 **GIS automation fails quietly when models lack domain intuition.**
 
-That is why GIS is not â€œjust Pythonâ€.
+That is why GIS is not “just Python”.
 
 It is judgment about data that represents the world.
 
 ## Next steps
 
-Iâ€™ll fill this with:
+I’ll fill this with:
 
 - a concrete schema example
 - model outputs annotated with failure modes

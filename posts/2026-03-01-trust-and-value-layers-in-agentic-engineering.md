@@ -48,7 +48,7 @@ In practice, this layer looks like:
 - clear logging
 - human-in-the-loop gates for anything expensive, destructive, or public
 
-If youâ€™ve ever run production systems, this will feel familiar. We are just reasserting a truth that agentic tooling sometimes tries to hand-wave away: you cannot outsource reliability to a model.
+If you’ve ever run production systems, this will feel familiar. We are just reasserting a truth that agentic tooling sometimes tries to hand-wave away: you cannot outsource reliability to a model.
 
 ## The value layer
 
@@ -103,13 +103,13 @@ If the system must act, give it a small set of safe, named actions. Think of the
 
 ### Artifact-first output
 
-Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you canâ€™t diff it, you canâ€™t trust it.
+Have the agent produce artifacts that are inspectable: a markdown file, a diff, a PR, a report with citations. If you can’t diff it, you can’t trust it.
 
 A concrete non-programmer-friendly example is Excel.
 
 - Value-layer approach (high variance): ask an AI to generate 500 rows of computed values and paste them into a spreadsheet.
   - You may save time up front.
-  - But now you have to do hallucination checks on each row, because you donâ€™t have a reliable way to validate what it did.
+  - But now you have to do hallucination checks on each row, because you don’t have a reliable way to validate what it did.
 
 - Trust-layer approach (bounded variance upstream): ask the AI to generate a testable formula and explain it.
   - You validate the logic once.

@@ -24,7 +24,7 @@ Evals do more than measure performance. They define what performance is. They tu
 
 That matters much more than people think.
 
-While humans are still in the loop, we still have a chance to define success carefully. Once that loop thins out, the system will keep pursuing whatever objective we gave it â€” whether or not it still serves us.
+While humans are still in the loop, we still have a chance to define success carefully. Once that loop thins out, the system will keep pursuing whatever objective we gave it — whether or not it still serves us.
 
 ## We already know this from traditional ML
 
@@ -101,11 +101,11 @@ That is a different level of risk.
 
 This is why I keep coming back to a simple idea:
 
-> **How we define evals doesnâ€™t just measure the system. It scopes the future the system will optimize for.**
+> **How we define evals doesn’t just measure the system. It scopes the future the system will optimize for.**
 
 That sounds dramatic, but I think it is just true.
 
-From relatively small traditional ML tools all the way up to systems like Karpathyâ€™s AutoResearch, the shape of the eval determines the shape of the project.
+From relatively small traditional ML tools all the way up to systems like Karpathy’s AutoResearch, the shape of the eval determines the shape of the project.
 
 If the eval rewards surface polish, the system will learn surface polish.
 If the eval rewards shallow confidence, the system will learn shallow confidence.
@@ -164,7 +164,7 @@ That is why the current moment matters.
 
 Right now, we still have a chance to decide what these systems should actually be optimizing for before more autonomy gets layered on top.
 
-## If we do this badly, the system inherits someone elseâ€™s values
+## If we do this badly, the system inherits someone else’s values
 
 If we do not define success carefully, someone else will define it for us.
 
@@ -194,7 +194,7 @@ That it becomes relentlessly effective at serving a shallow, partial, or misalig
 
 ## What better evals should include
 
-If we are serious about building systems that continue to serve us, evals need to measure more than â€œdid the task complete?â€
+If we are serious about building systems that continue to serve us, evals need to measure more than “did the task complete?”
 
 They need to capture things like:
 

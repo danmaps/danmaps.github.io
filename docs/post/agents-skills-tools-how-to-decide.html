@@ -20,36 +20,35 @@ span.linenos { color: inherit; background-color: transparent; padding-left: 5px;
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .codehilite .hll { background-color: #49483e }
-.codehilite .c { color: #959077 } /* Comment */
-.codehilite .err { color: #ed007e; background-color: #1e0010 } /* Error */
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
 .codehilite .esc { color: #f8f8f2 } /* Escape */
 .codehilite .g { color: #f8f8f2 } /* Generic */
 .codehilite .k { color: #66d9ef } /* Keyword */
 .codehilite .l { color: #ae81ff } /* Literal */
 .codehilite .n { color: #f8f8f2 } /* Name */
-.codehilite .o { color: #ff4689 } /* Operator */
+.codehilite .o { color: #f92672 } /* Operator */
 .codehilite .x { color: #f8f8f2 } /* Other */
 .codehilite .p { color: #f8f8f2 } /* Punctuation */
-.codehilite .ch { color: #959077 } /* Comment.Hashbang */
-.codehilite .cm { color: #959077 } /* Comment.Multiline */
-.codehilite .cp { color: #959077 } /* Comment.Preproc */
-.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
-.codehilite .c1 { color: #959077 } /* Comment.Single */
-.codehilite .cs { color: #959077 } /* Comment.Special */
-.codehilite .gd { color: #ff4689 } /* Generic.Deleted */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
 .codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
-.codehilite .ges { color: #f8f8f2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .codehilite .gr { color: #f8f8f2 } /* Generic.Error */
 .codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
 .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
 .codehilite .go { color: #66d9ef } /* Generic.Output */
-.codehilite .gp { color: #ff4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
 .codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
 .codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
 .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
 .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-.codehilite .kn { color: #ff4689 } /* Keyword.Namespace */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
 .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
 .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
 .codehilite .kt { color: #66d9ef } /* Keyword.Type */
@@ -68,9 +67,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
 .codehilite .nx { color: #a6e22e } /* Name.Other */
 .codehilite .py { color: #f8f8f2 } /* Name.Property */
-.codehilite .nt { color: #ff4689 } /* Name.Tag */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
 .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-.codehilite .ow { color: #ff4689 } /* Operator.Word */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
 .codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
 .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
 .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
@@ -160,9 +159,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>A deterministic tool</strong> (a CLI/script/service that does the same thing every time)</li>
 </ol>
 <p>They are not interchangeable. Pick the wrong one and you get either:<br />
-- a fragile â€œAI demoâ€ that needs babysitting, or<br />
+- a fragile “AI demo” that needs babysitting, or<br />
 - an overbuilt tool that should have been a one-page checklist.</p>
-<p>Here's how I decide.</p>
+<p>Here’s how I decide.</p>
 <h2 id="the-three-shapes">The three shapes</h2>
 <h3 id="1-deterministic-tool">1) Deterministic tool</h3>
 <p>A deterministic tool is a command, script, or API that turns input into output with minimal ambiguity.</p>
@@ -173,27 +172,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - anything you want in CI</p>
 <p><strong>Weak at:</strong><br />
 - unclear tasks<br />
-- â€œfigure out what the user meantâ€<br />
+- “figure out what the user meant”<br />
 - exploratory work</p>
 <p>Examples:<br />
 - <code>arcgispro status --json --strict</code><br />
-- â€œconvert these 200 shapefiles to GeoParquet with a known schemaâ€<br />
-- â€œpull PR metrics and write them to a CSVâ€</p>
+- “convert these 200 shapefiles to GeoParquet with a known schema”<br />
+- “pull PR metrics and write them to a CSV”</p>
 <h3 id="2-agent-skill">2) Agent skill</h3>
 <p>A skill is a <strong>recipe</strong>: structured instructions + prompts + checks that make an agent consistently useful in a domain.</p>
 <p>Think of it like a standard operating procedure for an AI.</p>
 <p><strong>Best at:</strong><br />
 - recurring workflows with variation<br />
 - decision trees and checklists<br />
-- teaching â€œhow we do this hereâ€<br />
+- teaching “how we do this here”<br />
 - bridging messy reality into tool calls</p>
 <p><strong>Weak at:</strong><br />
 - jobs that should be one command<br />
 - anything where you need hard guarantees</p>
 <p>Examples:<br />
-- â€œAudit an ArcGIS Pro project for common issuesâ€<br />
-- â€œSearch Living Atlas, vet candidates, pick 2 layers, record licenses and caveatsâ€<br />
-- â€œPreflight checklist before publishing to AGOLâ€</p>
+- “Audit an ArcGIS Pro project for common issues”<br />
+- “Search Living Atlas, vet candidates, pick 2 layers, record licenses and caveats”<br />
+- “Preflight checklist before publishing to AGOL”</p>
 <h3 id="3-agent">3) Agent</h3>
 <p>An agent is a problem-solver that can plan and execute multi-step work, ask clarifying questions, and adapt.</p>
 <p><strong>Best at:</strong><br />
@@ -206,9 +205,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - anything where the cost of being wrong is high<br />
 - unattended execution without guardrails</p>
 <p>Examples:<br />
-- â€œInvestigate why exports are failing on this machineâ€<br />
-- â€œTake a rough PRD and produce a coherent issue list + planâ€<br />
-- â€œTriage incidents across a homelab and propose the smallest fixâ€</p>
+- “Investigate why exports are failing on this machine”<br />
+- “Take a rough PRD and produce a coherent issue list + plan”<br />
+- “Triage incidents across a homelab and propose the smallest fix”</p>
 <h2 id="the-decision-framework-use-this-first">The decision framework (use this first)</h2>
 <p>When a new task shows up, ask:</p>
 <h3 id="1-how-repeatable-is-it">1) How repeatable is it?</h3>
@@ -226,7 +225,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3 id="3-is-the-input-well-structured">3) Is the input well-structured?</h3>
 <ul>
 <li><strong>Clear inputs/outputs</strong> â†’ tool</li>
-<li><strong>Semi-structured</strong> (documents, folders, â€œa projectâ€) â†’ skill</li>
+<li><strong>Semi-structured</strong> (documents, folders, “a project”) â†’ skill</li>
 <li><strong>Unstructured</strong> (goals, confusion, unknown unknowns) â†’ agent</li>
 </ul>
 <h3 id="4-does-it-need-institutional-knowledge">4) Does it need institutional knowledge?</h3>
@@ -236,28 +235,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <h3 id="5-do-you-want-it-in-ci">5) Do you want it in CI?</h3>
 <p>If yes, you almost always want a deterministic tool. Agents can assist development, but CI should not be vibes-based.</p>
-<h2 id="the-a90-of-the-timea-rule">The â€œ90% of the timeâ€ rule</h2>
+<h2 id="the-90-of-the-time-rule">The “90% of the time” rule</h2>
 <p>If you can describe the task as:</p>
 <blockquote>
-<p>â€œGiven X, do Y, produce Zâ€</p>
+<p>“Given X, do Y, produce Z”</p>
 </blockquote>
-<p>â€¦you probably want a deterministic tool.</p>
+<p>…you probably want a deterministic tool.</p>
 <p>If instead it sounds like:</p>
 <blockquote>
-<p>â€œFigure out what's wrong / pick the best option / apply judgmentâ€</p>
+<p>“Figure out what’s wrong / pick the best option / apply judgment”</p>
 </blockquote>
-<p>â€¦start with an agent, then extract a skill, then harden into a tool.</p>
+<p>…start with an agent, then extract a skill, then harden into a tool.</p>
 <p>That progression matters.</p>
 <h2 id="a-healthy-maturity-path">A healthy maturity path</h2>
 <h3 id="stage-1-agent-does-it-manually">Stage 1: Agent does it manually</h3>
-<p>You're exploring. Requirements are fuzzy. You don't even know what the inputs should be.</p>
+<p>You’re exploring. Requirements are fuzzy. You don’t even know what the inputs should be.</p>
 <p>Output: a working result and a trail of decisions.</p>
 <h3 id="stage-2-turn-the-repeatable-parts-into-a-skill">Stage 2: Turn the repeatable parts into a skill</h3>
 <p>Capture:<br />
 - steps that always happen<br />
 - the checklists you keep repeating<br />
-- the â€œgotchasâ€<br />
-- what â€œdoneâ€ means</p>
+- the “gotchas”<br />
+- what “done” means</p>
 <p>Output: a consistent playbook.</p>
 <h3 id="stage-3-build-a-deterministic-tool-for-the-boring-core">Stage 3: Build a deterministic tool for the boring core</h3>
 <p>Anything that:<br />
@@ -266,28 +265,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - needs to run unattended<br />
 - should be testable</p>
 <p>Output: a CLI/service with tests and predictable behavior.</p>
-<p>This is the â€œagent-to-tool refineryâ€. Agents are great at discovery. Tools are great at production.</p>
+<p>This is the “agent-to-tool refinery”. Agents are great at discovery. Tools are great at production.</p>
 <h2 id="concrete-examples">Concrete examples</h2>
-<h3 id="example-a-aexport-arcgis-pro-project-context-for-aia">Example A: â€œExport ArcGIS Pro project context for AIâ€</h3>
+<h3 id="example-a-export-arcgis-pro-project-context-for-ai">Example A: “Export ArcGIS Pro project context for AI”</h3>
 <p>The agent can explain and troubleshoot, but the core should be deterministic.</p>
 <p>Shape:<br />
 - <strong>Tool:</strong> <code>arcgispro_cli</code> exports + validates <code>.arcgispro/</code> snapshots (<code>status --strict --json</code>)<br />
-- <strong>Skill:</strong> â€œHow to use arcgispro_cli in a real workflowâ€ (install add-in, run snapshot, validate, paste context)<br />
-- <strong>Agent:</strong> helps when someone's environment is broken or they need help interpreting the context</p>
-<h3 id="example-b-afind-two-good-preschools-to-toura">Example B: â€œFind two good preschools to tourâ€</h3>
+- <strong>Skill:</strong> “How to use arcgispro_cli in a real workflow” (install add-in, run snapshot, validate, paste context)<br />
+- <strong>Agent:</strong> helps when someone’s environment is broken or they need help interpreting the context</p>
+<h3 id="example-b-find-two-good-preschools-to-tour">Example B: “Find two good preschools to tour”</h3>
 <p>Lots of judgment, constraints, tradeoffs.</p>
 <p>Shape:<br />
 - <strong>Agent:</strong> does the reasoning + asks clarifying questions<br />
-- <strong>Skill:</strong> eventually, a â€œschool searchâ€ skill could standardize the rubric<br />
-- <strong>Tool:</strong> not worth it unless you're doing this every week (please don't)</p>
-<h3 id="example-c-aweekly-repo-activity-reporta">Example C: â€œWeekly repo activity reportâ€</h3>
+- <strong>Skill:</strong> eventually, a “school search” skill could standardize the rubric<br />
+- <strong>Tool:</strong> not worth it unless you’re doing this every week (please don’t)</p>
+<h3 id="example-c-weekly-repo-activity-report">Example C: “Weekly repo activity report”</h3>
 <p>Same query pattern every time.</p>
 <p>Shape:<br />
 - <strong>Tool:</strong> script that queries GitHub and prints a report<br />
-- <strong>Agent:</strong> only for â€œwhy is the report wrong?â€ investigations<br />
+- <strong>Agent:</strong> only for “why is the report wrong?” investigations<br />
 - <strong>Skill:</strong> maybe, if multiple agents/users need to run it reliably with consistent interpretations</p>
 <h2 id="a-quick-rubric-you-can-paste-into-issues">A quick rubric you can paste into issues</h2>
-<p>Score each dimension 1â€“5:</p>
+<p>Score each dimension 1–5:</p>
 <ul>
 <li>Repeatability</li>
 <li>Risk of mistakes</li>
@@ -304,9 +303,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3 id="failure-building-an-agent-when-you-needed-a-tool">Failure: building an agent when you needed a tool</h3>
 <p>Symptoms:<br />
 - inconsistent output<br />
-- â€œit worked yesterdayâ€<br />
-- you can't test it<br />
-- you can't diff it</p>
+- “it worked yesterday”<br />
+- you can’t test it<br />
+- you can’t diff it</p>
 <p>Fix:<br />
 - isolate deterministic core<br />
 - add structured output (<code>--json</code>)<br />
@@ -314,23 +313,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 - write tests</p>
 <h3 id="failure-building-a-tool-when-you-needed-discovery">Failure: building a tool when you needed discovery</h3>
 <p>Symptoms:<br />
-- endless â€œrequirements gatheringâ€<br />
-- tool has 30 flags and still doesn't work<br />
-- you're encoding decisions you don't understand yet</p>
+- endless “requirements gathering”<br />
+- tool has 30 flags and still doesn’t work<br />
+- you’re encoding decisions you don’t understand yet</p>
 <p>Fix:<br />
 - do it with an agent for a week<br />
 - write down the decisions you keep making<br />
 - then build the tool once the shape is obvious</p>
 <h3 id="failure-skills-that-are-just-vibes">Failure: skills that are just vibes</h3>
 <p>Symptoms:<br />
-- â€œtry to do Xâ€ with no checks<br />
+- “try to do X” with no checks<br />
 - no acceptance criteria<br />
 - no prompts or examples<br />
 - no failure handling</p>
 <p>Fix:<br />
 - turn the skill into a checklist with a decision tree<br />
-- include expected outputs and â€œstop conditionsâ€<br />
-- include â€œif this fails, do thatâ€</p>
+- include expected outputs and “stop conditions”<br />
+- include “if this fails, do that”</p>
 <h2 id="practical-recommendation">Practical recommendation</h2>
 <p>Default to:<br />
 1) agent for exploration<br />
@@ -340,7 +339,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <blockquote>
 <p>workflows first, agents second, deterministic tools for anything that has to keep working.</p>
 </blockquote>
-<p>If you do it in the opposite direction, you'll waste time and build brittle junk.</p>
+<p>If you do it in the opposite direction, you’ll waste time and build brittle junk.</p>
 </article>
 
 <!-- Tags -->
