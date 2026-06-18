@@ -8,7 +8,7 @@ layout: rich
 
 ## Hi, I'm Danny.
 
-![Danny McVey](/static/images/danny.jpg)
+![Danny McVey](/static/images/family.jpg)
 
 I work in GIS, software, and whatever sits in the overlap between maps, data, and useful tools.
 

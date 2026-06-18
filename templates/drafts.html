@@ -3,43 +3,36 @@
 {% block title %}
 Drafts
 {% endblock %}
+{% block body_class %}tag-page{% endblock %}
+{% block main_class %}home-main{% endblock %}
 
 {% block content %}
-<div class="container bg-dark">
-  <div class="card bg-dark border mb-4">
-    <div class="card-body retro-text text-light">
-      <h1 class="text-light">Drafts + Unlisted</h1>
-      <p class="text-muted" style="margin-bottom:0;">
-        This page lists posts tagged <b>Draft</b>, <b>Unlisted</b>, or <b>Stub</b>.
-        It is not linked from the homepage.
-      </p>
-    </div>
-  </div>
-</div>
+<section class="tag-page-lead">
+  <p class="tag-page-kicker">Internal</p>
+  <h1 class="tag-page-title">Drafts + Unlisted</h1>
+  <p class="tag-page-backline">
+    This page lists posts tagged <b>Draft</b>, <b>Unlisted</b>, or <b>Stub</b>.
+    It is not linked from the homepage.
+  </p>
+</section>
 
-<div class="post-list bg-dark">
+<section class="home-feed" aria-label="Draft posts">
   {% for post in posts %}
     {% if 'Stub' in post.tags or 'Draft' in post.tags or 'Unlisted' in post.tags %}
-    <div class="container bg-dark">
-      <a href="{{ url_for('post', post_name=post['name']) }}" class="post-card-link">
-        <div class="post-card card bg-dark">
-          <div class="card-body retro-text flicker bg-dark border">
-            <div class="post-header text-light">
-              <h2 class="post-title text-light">{{ post.title }}</h2>
-              <div class="post-meta bg-dark">
-                <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
-                <div class="post-tags bg-dark">
-                  {% for t in post.tags %}
-                    <span class="post-tag" style="opacity:0.8;">{{ t }}</span>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
+    <article class="home-post-card">
+      <div class="home-post-topline">
+        <span class="home-post-date">{{ post.date.strftime('%B %d, %Y').replace(' 0', ' ') }}</span>
+      </div>
+      <h2 class="home-post-title">
+        <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-link">{{ post.title }}</a>
+      </h2>
+      <div class="home-post-tags">
+        {% for t in post.tags %}
+        <span class="home-post-tag" style="opacity:0.85;">{{ t }}</span>
+        {% endfor %}
+      </div>
+    </article>
     {% endif %}
   {% endfor %}
-</div>
+</section>
 {% endblock %}

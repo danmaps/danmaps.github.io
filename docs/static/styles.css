@@ -124,53 +124,6 @@ pre code {
     color: #ff0000;
 }
 
-/* Post List and Cards */
-.post-list {
-    margin: 20px 0;
-}
-
-.post-card {
-    box-shadow: 0 2px 4px rgba(127, 127, 127, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.post-title {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.post-title a,
-.post-title-link {
-    text-decoration: none;
-    color: #00aaff;
-}
-
-.post-title a:hover,
-.post-title-link:hover {
-    text-decoration: none;
-}
-
-.post-meta {
-    text-align: right;
-}
-
-.post-date {
-    font-size: 0.9em;
-    color: #bbb;
-    margin-bottom: 5px;
-}
-
-.post-tags {
-    margin-top: 5px;
-}
-
 .post-tag {
     background-color: #1c1c1c;
     color: #ddd;
@@ -193,45 +146,6 @@ a.post-tag:hover {
 .post-tag:hover {
     background-color: #666;
     color: #fff;
-}
-
-.post-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.post-card-link:hover {
-    text-decoration: none;
-}
-
-.post-card-link h2.post-title a {
-    text-decoration: none;
-}
-
-.post-card-link h2.post-title a:hover {
-    text-decoration: none; /* Ensure no underline on hover */
-}
-
-@media (max-width: 768px) {
-    .post-header {
-        display: block;
-    }
-
-    .post-meta {
-        text-align: left;
-        margin-top: 10px;
-    }
-
-    .post-title {
-        font-size: 1.15rem;
-    }
-
-    .post-tag {
-        margin-left: 0;
-        margin-right: 5px;
-        margin-top: 5px;
-    }
 }
 
 
@@ -279,89 +193,16 @@ hr {
     border-top: 1px solid #4b5563;
 }
 
-/* retro terminal effect on text */
-
-/* Apply general retro effect to text */
-.retro-text {
-    font-family: 'Courier New', Courier, monospace; /* Retro font */
-    /* font-size: 4rem; */
-    /* text-align: center; */
-    display: inline-block;
-    position: relative;
-    color: white;
-    background-color: black;
-    padding: 20px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 
-                 0 0 10px rgba(255, 255, 255, 0.5), 
-                 0 0 20px rgba(255, 255, 255, 0.2); /* Glow effect */
-    
-    /* Simulate pixelation */
-    transform: scale(1.02); /* Slight zoom for pixelated look */
-    filter: blur(0.4px); /* Apply slight blur */
-    image-rendering: pixelated; /* Pixel rendering for any background image */
-  }
-  
-  /* Scanline effect using background */
-  .retro-text::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      rgba(0, 0, 0, 0.15) 50%, 
-      transparent 50%
-    );
-    background-size: 100% 2px; /* Spacing between lines to simulate scanlines */
-    z-index: 1;
-    pointer-events: none; /* Don't block text interaction */
-  }
-  
-  /* Optional animation to simulate old CRT flicker */
-  .retro-text.flicker {
-    animation: flicker 0.1s infinite alternate;
-  }
-
-/* Retro cursor on hover */
-.post-card:hover .post-title::after {
-    content: '█'; /* Retro block cursor */
-    animation: blink 0.5s infinite steps(1, start); /* Sharp blink effect */
-  }
-  
-/* Keyframes for blinking without easing */
-@keyframes blink {
-    0% {
-        opacity: 1; /* Fully visible */
-    }
-    50% {
-        opacity: 0; /* Fully invisible */
-    }
-    100% {
-        opacity: 1; /* Fully visible */
-    }
-}
-
-@keyframes flicker {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.95;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 /* Homepage facelift inspired by the rich post reading look */
-body.home {
+body.home,
+body.tag-page {
     background-color: #07090d;
 }
 
 body.home #header-container,
-body.home #footer-container {
+body.home #footer-container,
+body.tag-page #header-container,
+body.tag-page #footer-container {
     background: rgba(7, 10, 16, 0.92) !important;
     border: 1px solid rgba(255, 255, 255, 0.09);
     box-shadow: none;
@@ -370,11 +211,14 @@ body.home #footer-container {
 }
 
 body.home .home-link,
-body.home .home-link:hover {
+body.home .home-link:hover,
+body.tag-page .home-link,
+body.tag-page .home-link:hover {
     text-decoration: none;
 }
 
-body.home .home-link h2 {
+body.home .home-link h2,
+body.tag-page .home-link h2 {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 700;
@@ -382,58 +226,69 @@ body.home .home-link h2 {
     color: #f5f8ff;
 }
 
-body.home .about-link {
+body.home .about-link,
+body.tag-page .about-link {
     border-color: rgba(120, 190, 255, 0.55);
     color: #d9edff;
     background: rgba(108, 180, 238, 0.08);
 }
 
-body.home .about-link:hover {
+body.home .about-link:hover,
+body.tag-page .about-link:hover {
     background: rgba(108, 180, 238, 0.2);
     border-color: rgba(160, 220, 255, 0.8);
     color: #ffffff;
 }
 
-body.home main.home-main {
+body.home main.home-main,
+body.tag-page main.home-main {
     max-width: 880px;
     margin: 1.25rem auto 2rem;
     padding: 0 0.75rem;
 }
 
-.home-hero-shell {
-    margin: 0 auto 1.75rem;
-    padding: 2rem 1.5rem 1.5rem;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.11);
-    background: rgba(11, 16, 27, 0.84);
-    box-shadow: none;
+.tag-page-lead {
+    margin: 0 auto 1rem;
+    padding: 1rem 0.1rem 0.35rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.home-kicker {
-    margin: 0 0 0.6rem;
+.tag-page-kicker {
+    margin: 0;
     color: #8bc8ff;
-    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-weight: 650;
 }
 
-.home-headline {
-    margin: 0;
+.tag-page-title {
+    margin: 0.25rem 0 0;
     color: #f7fbff;
-    font-size: clamp(1.85rem, 5vw, 2.65rem);
-    line-height: 1.14;
-    letter-spacing: -0.018em;
-    font-weight: 800;
+    font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+    line-height: 1.2;
+    font-weight: 760;
 }
 
-.home-subhead {
-    margin: 1rem 0 0;
-    max-width: 65ch;
-    color: rgba(226, 235, 248, 0.94);
-    font-size: 1.03rem;
-    line-height: 1.72;
+.tag-page-backline {
+    margin: 0.45rem 0 0;
+}
+
+.tag-back-link {
+    color: #b9daf5;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(185, 218, 245, 0.4);
+}
+
+.tag-back-link:hover {
+    color: #e3f1ff;
+    text-decoration: none;
+    border-bottom-color: rgba(227, 241, 255, 0.7);
+}
+
+.tag-empty-state {
+    color: #d8deeb;
+    margin-top: 1.2rem;
 }
 
 .home-feed {
@@ -515,19 +370,9 @@ body.home main.home-main {
 }
 
 @media (max-width: 768px) {
-    body.home main.home-main {
+    body.home main.home-main,
+    body.tag-page main.home-main {
         padding: 0 0.5rem;
-    }
-
-    .home-hero-shell {
-        padding: 1.35rem 1rem 1.1rem;
-        border-radius: 3px;
-        margin-bottom: 1.1rem;
-    }
-
-    .home-subhead {
-        font-size: 0.96rem;
-        line-height: 1.6;
     }
 
     .home-post-card {
@@ -537,5 +382,9 @@ body.home main.home-main {
 
     .home-post-date {
         font-size: 0.75rem;
+    }
+
+    .tag-page-lead {
+        margin-bottom: 0.85rem;
     }
 }

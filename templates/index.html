@@ -12,33 +12,27 @@ Danny McVey
 {% endblock %}
 
 {% block content %}
-<div class="post-list bg-dark">
+<section class="home-feed" aria-label="Published posts">
   {% for post in posts %}
   {% if 'Stub' not in post.tags and 'Draft' not in post.tags and 'Unlisted' not in post.tags %}
-  <div class="container bg-dark">
-    <div class="post-card card bg-dark">
-      <div class="card-body retro-text flicker bg-dark border">
-        <div class="post-header text-light">
-          <h2 class="post-title text-light">
-            <a href="{{ url_for('post', post_name=post['name']) }}" class="post-title-link">{{ post.title }}</a>
-          </h2>
-          <div class="post-meta bg-dark">
-            <span class="post-date">{{ post.date.strftime('%m/%d/%Y') }}</span>
-            {% if post.tag_objs %}
-            <div class="post-tags bg-dark">
-              {% for tag in post.tag_objs %}
-              <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+  <article class="home-post-card">
+    <div class="home-post-topline">
+      <span class="home-post-date">{{ post.date.strftime('%B %d, %Y').replace(' 0', ' ') }}</span>
     </div>
-  </div>
+    <h2 class="home-post-title">
+      <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-link">{{ post.title }}</a>
+    </h2>
+    {% if post.tag_objs %}
+    <div class="home-post-tags">
+      {% for tag in post.tag_objs %}
+      <a class="home-post-tag" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </article>
   {% endif %}
   {% endfor %}
-</div>
+</section>
 {% endblock %}
 
 {% block extra_scripts %}

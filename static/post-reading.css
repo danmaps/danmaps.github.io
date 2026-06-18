@@ -271,40 +271,46 @@
 /* --- Post header --- */
 .post-hero {
     max-width: 680px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 0;
+    margin: 0 auto 0.95rem;
+    padding: 1.1rem 1.15rem 1.2rem;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(8, 13, 22, 0.9);
 }
 
 .post-hero h1 {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-    color: #fff;
-    margin: 0 0 0.75rem;
+    font-size: clamp(1.45rem, 3.5vw, 2rem);
+    font-weight: 760;
+    letter-spacing: -0.015em;
+    line-height: 1.24;
+    color: #f2f7ff;
+    margin: 0;
 }
 
 .post-meta-bar {
     display: flex;
     align-items: center;
-    gap: 1.25em;
+    gap: 0.65em;
+    margin-top: 0.58rem;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #89bde2;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .post-meta-bar time {
-    color: #999;
+    color: #89bde2;
 }
 
 .post-meta-bar .reading-time {
-    color: #666;
+    color: #89bde2;
 }
 
 .post-meta-bar .separator {
-    color: #444;
+    color: rgba(137, 189, 226, 0.85);
 }
 
 /* --- Scroll progress bar --- */
@@ -331,7 +337,11 @@
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 8px;
     padding: 1em 1.25em;
-    margin-bottom: 2em;
+    margin-bottom: 0.75em;
+}
+
+.post-toc + .post-reading {
+    padding-top: 0.75rem;
 }
 
 .post-toc summary {
@@ -419,7 +429,7 @@
 /* --- Responsive --- */
 @media (max-width: 720px) {
     .post-hero h1 {
-        font-size: 1.75rem;
+        font-size: clamp(1.25rem, 7vw, 1.6rem);
     }
     
     .post-reading {
@@ -449,6 +459,12 @@
     .post-tags-footer {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .post-hero {
+        margin-bottom: 0.8rem;
+        padding-top: 0.95rem;
+        padding-bottom: 1rem;
     }
 }
 
