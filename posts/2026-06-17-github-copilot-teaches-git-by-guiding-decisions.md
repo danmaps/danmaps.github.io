@@ -9,6 +9,8 @@ tags:
   - UX
 ---
 
+<img src="/static/images/copilot-git-decisions-hero.png" alt="Editorial illustration of branching Git workflow paths laid out like a guided transit map with decision points" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 Version control experts often underestimate how confusing Git is for beginners.
 
 The commands are not the hard part for very long. The mental model is.

@@ -10,6 +10,8 @@ tags:
 summary: "The most useful technical lesson from this week was simple: a repo update, a successful build, and a restarted stack do not mean the running system actually changed. If the behavior matters, you need proof from the live runtime."
 ---
 
+<img src="/static/images/deployment-runtime-truth-hero.png" alt="Editorial illustration of a split operations room where successful build signals contrast with a live system still serving the old state" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 This week I spent some time getting `resume-tailor` into a more real state on my homelab.
 
 That included Docker deployment work, wiring the web app to the API cleanly, getting assisted tailoring working with a server-side model key, and restoring `.docx` and PDF export behavior after it broke.

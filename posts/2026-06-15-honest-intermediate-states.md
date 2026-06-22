@@ -11,6 +11,8 @@ summary: "A lot of the most useful work I did this week had the same shape: make
 layout: rich
 ---
 
+<img src="/static/images/honest-intermediate-states-hero.png" alt="Editorial illustration of layered artifacts moving from rough sketch to structured draft to frozen review to live published state" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 A lot of the useful work I did this week would look unimpressive in a launch thread.
 
 No giant feature reveal.
@@ -194,4 +196,3 @@ Those states are not signs of weakness.
 They are signs that the system is telling the truth.
 
 And at this point, I think truthful state is more useful than impressive narration.
-

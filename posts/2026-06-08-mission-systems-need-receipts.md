@@ -11,6 +11,8 @@ summary: "Recent Symphony work reinforced a simple opinion I trust more every we
 layout: rich
 ---
 
+<img src="/static/images/mission-systems-receipts-hero.png" alt="Editorial illustration of a mission dossier laid out as inspectable evidence with prompts, attachments, outputs, failed checks, and repair notes" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 This week I spent some time tightening **Symphony**, and the most useful progress was not making it feel smarter.
 
 It was making it harder for the system to bluff.
@@ -158,4 +160,3 @@ I would rather build systems that are optimized to leave evidence.
 If an agent is going to help with real work, it should leave receipts.
 
 And if it cannot, I want the system to fail clearly enough that nobody mistakes narration for execution.
-
