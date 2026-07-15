@@ -130,7 +130,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
         
         <span class="separator">·</span>
-        <span class="reading-time">3 min read</span>
+        <span class="reading-time">1 min read</span>
         
     </div>
 </header>
@@ -146,78 +146,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <!-- Article body -->
 <article class="post-reading">
     <p><img src="/static/images/version-control-is-a-safety-practice-hero.png" alt="Editorial illustration of messy shared-drive chaos transforming into an orderly commit history with a visible safety-net feel" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
-<p>When people hear "version control," they often picture software developers, terminal commands, and large engineering teams.</p>
-<p>I think that framing misses the real point.</p>
-<p>The core idea is much simpler:</p>
+<p>When people hear "version control," they often think of software developers, complicated commands, and large engineering teams.</p>
+<p>But the core idea is much simpler:</p>
 <p><strong>version control makes change safer.</strong></p>
-<p>That matters anywhere people maintain scripts, technical files, recurring reports, or automation that other people depend on.</p>
-<h2 id="the-shared-drive-version-of-safety-is-fragile">The shared-drive version of safety is fragile</h2>
-<p>A lot of teams still keep important technical work on shared drives.</p>
-<p>That can feel good enough for a while.<br />
-Until:</p>
-<ul>
-<li>someone overwrites a working file</li>
-<li>nobody can tell which script is current</li>
-<li>a useful change gets made without explanation</li>
-<li>a handoff depends on tribal knowledge</li>
-<li>the folder fills up with names like <code>final_v7_revised_REAL.py</code></li>
-</ul>
-<p>At that point the problem is not a lack of sophistication.<br />
-It is a lack of safety.</p>
-<p>The team has work that matters, but not a reliable record of how that work changes.</p>
-<h2 id="a-repository-is-a-change-log-you-can-trust">A repository is a change log you can trust</h2>
-<p>This is why I keep coming back to GitHub as a practical operational tool, not just a developer identity marker.</p>
-<p>A repository gives you a clearer answer to simple questions:</p>
-<ul>
-<li>what changed?</li>
-<li>who changed it?</li>
-<li>when did it change?</li>
-<li>why was the change made?</li>
-<li>what was the last known working version?</li>
-</ul>
-<p>That is a much better system than hoping everyone remembers or being afraid to touch the file that currently works.</p>
-<p>Each commit becomes a recoverable checkpoint.<br />
-If something breaks, the team can compare versions, trace the difference, and restore a known good state instead of guessing.</p>
-<h2 id="this-matters-even-for-one-person">This matters even for one person</h2>
-<p>Version control is not only about collaboration in the sense of multiple people editing at once.</p>
-<p>It also creates continuity.</p>
-<p>If one person owns a script today, that script still has a future:</p>
-<ul>
-<li>that person may go on leave</li>
-<li>they may change roles</li>
-<li>they may forget why a workaround exists</li>
-<li>someone else may inherit the workflow later</li>
-</ul>
-<p>Without version history, the work becomes harder to trust the moment the original context starts fading.</p>
-<p>With version history, the code carries more of its own memory.</p>
-<h2 id="ai-makes-disciplined-change-management-more-important">AI makes disciplined change management more important</h2>
-<p>This matters even more now that AI tools can generate and modify code quickly.</p>
-<p>Copilot and similar tools can absolutely make teams faster.<br />
-But speed does not reduce the need for review, traceability, and rollback.<br />
-It increases it.</p>
-<p>The faster changes are produced, the more important it becomes to manage those changes responsibly.</p>
-<p>AI can help create automation.<br />
-Version control helps make that automation maintainable.</p>
-<p>Those are not competing ideas.<br />
-They belong together.</p>
-<h2 id="version-control-is-not-a-developer-ritual">Version control is not a developer ritual</h2>
-<p>I do not think the most useful pitch for version control is "everyone should become a software engineer."</p>
-<p>For a lot of organizations, especially ones that depend on operational reliability, the better pitch is much less glamorous:</p>
-<p>version control is a safety practice for technical work.</p>
-<p>It reduces the risk of:</p>
-<ul>
-<li>accidental loss</li>
-<li>undocumented changes</li>
-<li>fragile handoffs</li>
-<li>mystery regressions</li>
-<li>untraceable decisions</li>
-</ul>
-<p>That is already enough to justify it.</p>
-<h2 id="the-takeaway">The takeaway</h2>
-<p>Version control is not only a developer tool.<br />
-It is a safety net for collaboration, continuity, and responsible change.</p>
-<p>If safety is one of the core values in an organization, then version control should not be treated like optional engineering culture.</p>
-<p>It should be treated like part of how the work stays trustworthy.</p>
+<p>Many teams still store scripts and technical files on shared drives. That works until someone overwrites a working version, changes something without documenting it, or creates another file named <code>final_v7_revised_REAL.py</code>.</p>
+<p>A GitHub repository provides a clear record of what changed, who changed it, and why. Every commit becomes a recoverable checkpoint. If a change causes a problem, the team can compare versions, understand what happened, and restore a known working state.</p>
+<p>This matters even when only one person works on the code. It creates continuity when that person is unavailable, changes roles, or hands the project to someone else.</p>
+<p>GitHub also makes AI-assisted work safer. Copilot can generate and modify code quickly, but speed increases the importance of review, traceability, and rollback. The more rapidly we produce changes, the more important it becomes to manage those changes responsibly.</p>
+<p>Version control is not only a developer tool. It is a safety net for collaboration.</p>
+<p>It reduces the risk of accidental loss, undocumented changes, fragile handoffs, and untraceable decisions. In an organization where safety is the number one value, that makes version control worth caring about.</p>
 </article>
 
 <!-- Tags -->
