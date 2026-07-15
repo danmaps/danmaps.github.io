@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>A Writing Workflow Is Not Real Until It Leaves a Draft</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark ">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 ">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <h1>A Writing Workflow Is Not Real Until It Leaves a Draft</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-06-29">June 29, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">5 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p><img src="/static/images/weekly-writing-workflow-real-draft-hero.png" alt="Editorial illustration of notes becoming a structured draft, then a frozen unlisted post artifact" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
+<p>This week I spent some time tightening a small automation that drafts a weekly blog post for me.</p>
+<p>That sentence sounds more impressive than the work actually was.</p>
+<p>The useful part was not "AI writes a post every Monday."<br />
+The useful part was making the workflow leave behind something real.</p>
+<p>I keep noticing the same pattern across projects:</p>
+<p><strong>a workflow is not real when it only produces narration about progress.</strong></p>
+<p>It becomes real when it leaves an artifact you can inspect, revise, freeze, and publish on purpose.</p>
+<h2 id="a-weekly-post-is-easy-to-fake">A weekly post is easy to fake</h2>
+<p>There are a lot of ways to make an automated writing system look more capable than it is.</p>
+<p>It can:</p>
+<ul>
+<li>summarize the week in a confident tone</li>
+<li>produce a plausible essay shape</li>
+<li>invent momentum where there was only scattered work</li>
+<li>blur the difference between a rough draft and something ready to ship</li>
+</ul>
+<p>That is not hard.<br />
+Modern models are pretty good at sounding like something happened.</p>
+<p>What is harder, and much more useful, is building the workflow so it has to be honest.</p>
+<p>For me, that meant the weekly run needed to do a few concrete things:</p>
+<ul>
+<li>look at actual recent work instead of generic themes</li>
+<li>create a real Markdown file in the blog repo</li>
+<li>keep the <code>Draft</code> tag so it stays off the homepage</li>
+<li>generate or attempt a relevant hero image without breaking the whole run</li>
+<li>freeze the site output so the draft has a real URL</li>
+<li>commit and push the result so the artifact exists outside the current chat</li>
+</ul>
+<p>That is a much better standard than "it wrote some words."</p>
+<h2 id="the-draft-state-is-the-whole-point">The draft state is the whole point</h2>
+<p>One of the things I like most about the current blog setup is that <code>Draft</code> is a real operational state, not just a private feeling.</p>
+<p>A post can be:</p>
+<ul>
+<li>drafted</li>
+<li>frozen</li>
+<li>pushed live by direct URL</li>
+<li>still intentionally hidden from the homepage</li>
+</ul>
+<p>That is a great middle ground.</p>
+<p>It means the automation does not have to pretend every Monday's output deserves public promotion.<br />
+It just has to produce something strong enough to review.</p>
+<p>That sounds like a small distinction, but I think it is the difference between a content gimmick and a workable writing system.</p>
+<p>If the job is "help me think in public without lying about certainty," then draft state matters a lot.</p>
+<h2 id="the-image-step-taught-the-same-lesson">The image step taught the same lesson</h2>
+<p>Another small but clarifying improvement this week was the hero image step.</p>
+<p>The old weak version of that step was easy to imagine:</p>
+<ul>
+<li>try to generate an image</li>
+<li>fail quietly</li>
+<li>leave the post half-finished</li>
+<li>or worse, jam in a generic AI-looking picture just to say the pipeline completed</li>
+</ul>
+<p>That is exactly the kind of automation I do not trust.</p>
+<p>The better version is stricter and simpler:</p>
+<ul>
+<li>use the native image tool when it is available</li>
+<li>derive the prompt from the actual argument of the post</li>
+<li>save the result into the repo like any other asset</li>
+<li>if the image step fails, keep the draft and report the failure honestly</li>
+</ul>
+<p>That is the same opinion I keep having about agent systems in general.</p>
+<p>Graceful degradation is good.<br />
+Pretending a missing step does not matter is not.</p>
+<h2 id="this-is-the-same-systems-lesson-in-a-smaller-form">This is the same systems lesson in a smaller form</h2>
+<p>None of this is only about writing.</p>
+<p>It is the same idea that shows up in deployment work, mission systems, and tooling design:</p>
+<ul>
+<li>success should be tied to a changed artifact</li>
+<li>intermediate states should be explicit</li>
+<li>failure should be visible enough to debug</li>
+<li>the system should make bluffing harder</li>
+</ul>
+<p>In this case the artifact is just a blog draft.<br />
+That is fine.<br />
+Small artifacts still matter.</p>
+<p>A weekly writing workflow does not need to be magical.<br />
+It needs to be dependable enough that a future me can answer simple questions:</p>
+<ul>
+<li>what did the system think mattered this week?</li>
+<li>where is the draft?</li>
+<li>is it still a draft?</li>
+<li>did the image generate?</li>
+<li>did the site freeze?</li>
+<li>what commit made it live?</li>
+</ul>
+<p>Those are much better questions than "did the AI write something?"</p>
+<h2 id="this-also-sharpened-the-boundary-with-symphony">This also sharpened the boundary with Symphony</h2>
+<p>One reason I like this kind of workflow work is that it sharpens what I want Symphony to become.</p>
+<p>I do not mainly want a system that feels generative.<br />
+I want a system that turns recurring work into inspectable software.</p>
+<p>That means:</p>
+<ul>
+<li>clear triggers</li>
+<li>real files</li>
+<li>visible states</li>
+<li>durable outputs</li>
+<li>receipts after the run</li>
+</ul>
+<p>This week there was not some giant Symphony feature release to write about.<br />
+There was, however, a clearer synthesis target for the next push: ship a real end-to-end headless demo for agent-driven tool execution.</p>
+<p>I trust that direction because it follows the same rule.<br />
+Make the work concrete.<br />
+Make the result inspectable.<br />
+Do not round a promising intermediate step up to a finished system.</p>
+<h2 id="the-takeaway">The takeaway</h2>
+<p>The best thing the weekly blog automation can do is not imitate a prolific writer.</p>
+<p>It can reduce the friction between:</p>
+<ul>
+<li>having a real week of work</li>
+<li>extracting one honest lesson from it</li>
+<li>turning that lesson into a draft artifact</li>
+<li>keeping the result in the right state</li>
+</ul>
+<p>That is enough.</p>
+<p>If the workflow leaves a real draft, a real asset, a real URL, and a real commit, then it is doing useful work.</p>
+<p>If it only leaves a polished paragraph about how productive the week was, it is still just theater with better tooling.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/writing.html">Writing</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/automation.html">Automation</a>
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    
+</body>
+</html>
