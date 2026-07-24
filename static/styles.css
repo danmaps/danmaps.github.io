@@ -1,6 +1,7 @@
 /* Force a vertical scrollbar to always appear */
 html {
     overflow-y: scroll;
+    background-color: var(--page-bg);
 }
 
 :root {
@@ -216,6 +217,12 @@ th {
 /* Override the bg-dark class to make it black */
 .bg-dark {
     background-color: transparent !important;
+}
+
+body.bg-dark.home,
+body.bg-dark.tag-page,
+body.bg-dark.post-page {
+    background-color: var(--page-bg) !important;
 }
 
 hr {
