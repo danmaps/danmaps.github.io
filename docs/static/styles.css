@@ -3,11 +3,39 @@ html {
     overflow-y: scroll;
 }
 
+:root {
+    --page-bg: #02060d;
+    --page-bg-soft: #08111e;
+    --panel-bg: rgba(6, 12, 22, 0.9);
+    --panel-bg-strong: rgba(4, 9, 17, 0.96);
+    --panel-border: rgba(136, 188, 255, 0.16);
+    --panel-border-strong: rgba(136, 188, 255, 0.28);
+    --text-primary: #f4f8ff;
+    --text-muted: #99adc8;
+    --text-soft: #cad6e8;
+    --accent: #77b9ff;
+    --accent-strong: #a6d5ff;
+    --accent-wash: rgba(119, 185, 255, 0.12);
+    --surface-shadow: 0 24px 72px rgba(0, 0, 0, 0.36);
+}
+
+body {
+    background:
+        radial-gradient(circle at top center, rgba(62, 118, 196, 0.2), transparent 34%),
+        linear-gradient(180deg, #02050b 0%, #040912 48%, #02060d 100%);
+    color: var(--text-primary);
+}
+
 body.home {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #000;
+}
+
+body.home,
+body.tag-page,
+body.post-page {
+    background-color: var(--page-bg);
 }
 
 body.home main.home-main {
@@ -40,7 +68,7 @@ body.home main.home-main {
 
 
 blockquote {
-    border-left: 4px solid #569cd6;
+    border-left: 4px solid var(--accent);
     padding-left: 1em;
     color: #bbbbbb;
     font-style: italic;
@@ -121,18 +149,19 @@ pre code {
 .post-tags {
     margin-bottom: 0em;
     font-size: 0.9em;
-    color: #ff0000;
+    color: var(--text-soft);
 }
 
 .post-tag {
-    background-color: #1c1c1c;
-    color: #ddd;
+    background-color: rgba(10, 18, 32, 0.92);
+    color: var(--accent-strong);
     padding: 5px 8px;
-    border-radius: 4px;
+    border-radius: 999px;
     font-size: 0.8em;
     margin-left: 5px;
     display: inline-block;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--panel-border);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 a.post-tag {
@@ -144,7 +173,8 @@ a.post-tag:hover {
 }
 
 .post-tag:hover {
-    background-color: #666;
+    background-color: var(--accent-wash);
+    border-color: var(--panel-border-strong);
     color: #fff;
 }
 
@@ -177,16 +207,19 @@ th {
 
 
 #footer-container, #header-container {
-    background-color: #1c1c1c !important;
+    background-color: rgba(6, 11, 20, 0.82) !important;
     padding: 1em;
-    border-radius: 10px;
+    border-radius: 18px;
+    border: 1px solid var(--panel-border);
+    box-shadow: var(--surface-shadow);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
 }
 
 
 /* Override the bg-dark class to make it black */
 .bg-dark {
-    background-color: #000 !important;
-    
+    background-color: transparent !important;
 }
 
 hr {
@@ -196,94 +229,111 @@ hr {
 /* Homepage facelift inspired by the rich post reading look */
 body.home,
 body.tag-page {
-    background-color: #07090d;
+    background-color: var(--page-bg);
 }
 
 body.home #header-container,
 body.home #footer-container,
+body.post-page #header-container,
+body.post-page #footer-container,
 body.tag-page #header-container,
 body.tag-page #footer-container {
-    background: rgba(7, 10, 16, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    box-shadow: none;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    background:
+        linear-gradient(180deg, rgba(8, 15, 28, 0.95), rgba(4, 9, 17, 0.94)) !important;
 }
 
 body.home .home-link,
 body.home .home-link:hover,
+body.post-page .home-link,
+body.post-page .home-link:hover,
 body.tag-page .home-link,
 body.tag-page .home-link:hover {
     text-decoration: none;
 }
 
 body.home .home-link h2,
+body.post-page .home-link h2,
 body.tag-page .home-link h2 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
-    color: #f5f8ff;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-primary);
 }
 
 body.home .about-link,
+body.post-page .about-link,
 body.tag-page .about-link {
-    border-color: rgba(120, 190, 255, 0.55);
-    color: #d9edff;
-    background: rgba(108, 180, 238, 0.08);
+    border-color: var(--panel-border-strong);
+    color: var(--accent-strong);
+    background: rgba(9, 18, 34, 0.78);
+    border-radius: 999px;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 body.home .about-link:hover,
+body.post-page .about-link:hover,
 body.tag-page .about-link:hover {
-    background: rgba(108, 180, 238, 0.2);
-    border-color: rgba(160, 220, 255, 0.8);
+    background: var(--accent-wash);
+    border-color: rgba(166, 213, 255, 0.74);
     color: #ffffff;
 }
 
 body.home main.home-main,
-body.tag-page main.home-main {
-    max-width: 880px;
+body.tag-page main.home-main,
+body.post-page main.post-main {
+    max-width: 960px;
     margin: 1.25rem auto 2rem;
-    padding: 0 0.75rem;
+    padding: 0 0.85rem;
 }
 
 .tag-page-lead {
-    margin: 0 auto 1rem;
-    padding: 1rem 0.1rem 0.35rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 auto 1.2rem;
+    padding: 1.5rem 1.25rem 1.25rem;
+    border: 1px solid var(--panel-border);
+    border-radius: 28px;
+    background:
+        linear-gradient(180deg, rgba(9, 18, 33, 0.95), rgba(5, 10, 18, 0.96));
+    box-shadow: var(--surface-shadow);
 }
 
 .tag-page-kicker {
     margin: 0;
-    color: #8bc8ff;
-    font-size: 0.78rem;
+    color: var(--accent);
+    font-size: 0.74rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     font-weight: 650;
 }
 
 .tag-page-title {
     margin: 0.25rem 0 0;
-    color: #f7fbff;
-    font-size: clamp(1.35rem, 3.4vw, 1.9rem);
-    line-height: 1.2;
+    color: var(--text-primary);
+    font-size: clamp(1.6rem, 4vw, 2.35rem);
+    line-height: 1.08;
     font-weight: 760;
+    max-width: 12ch;
 }
 
 .tag-page-backline {
-    margin: 0.45rem 0 0;
+    margin: 0.75rem 0 0;
 }
 
 .tag-back-link {
-    color: #b9daf5;
+    color: var(--text-soft);
     text-decoration: none;
-    border-bottom: 1px solid rgba(185, 218, 245, 0.4);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
 }
 
 .tag-back-link:hover {
     color: #e3f1ff;
     text-decoration: none;
-    border-bottom-color: rgba(227, 241, 255, 0.7);
 }
 
 .tag-empty-state {
@@ -293,91 +343,107 @@ body.tag-page main.home-main {
 
 .home-feed {
     display: grid;
-    gap: 0.95rem;
+    gap: 1.15rem;
 }
 
 .home-post-card {
     position: relative;
-    padding: 1.1rem 1.15rem 1.2rem;
-    border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    background: rgba(8, 13, 22, 0.9);
-    box-shadow: none;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    padding: 1.5rem 1.45rem 1.5rem;
+    border-radius: 28px;
+    border: 1px solid var(--panel-border);
+    background:
+        linear-gradient(180deg, rgba(8, 16, 29, 0.96), rgba(4, 10, 18, 0.98));
+    box-shadow: var(--surface-shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.home-post-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(143, 201, 255, 0.55), transparent);
+    opacity: 0.8;
 }
 
 .home-post-card:hover {
-    transform: none;
-    border-color: rgba(130, 196, 255, 0.3);
-    box-shadow: none;
+    transform: translateY(-2px);
+    border-color: var(--panel-border-strong);
+    background:
+        linear-gradient(180deg, rgba(10, 21, 38, 0.98), rgba(5, 11, 21, 0.99));
 }
 
 .home-post-topline {
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.85rem;
 }
 
 .home-post-date {
-    color: #89bde2;
-    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.045em;
+    letter-spacing: 0.16em;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     text-transform: uppercase;
 }
 
 .home-post-title {
     margin: 0;
-    font-size: clamp(1.2rem, 2.35vw, 1.5rem);
-    line-height: 1.32;
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.45rem, 3vw, 2.25rem);
+    line-height: 1.1;
+    font-weight: 760;
+    letter-spacing: -0.035em;
+    max-width: 18ch;
 }
 
 .home-post-link {
-    color: #f2f7ff;
+    color: var(--text-primary);
     text-decoration: none;
 }
 
 .home-post-link:hover {
-    color: #9fd4ff;
+    color: var(--accent-strong);
     text-decoration: none;
 }
 
 .home-post-tags {
-    margin-top: 0.75rem;
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.42rem;
+    gap: 0.5rem;
 }
 
 .home-post-tag {
     display: inline-block;
-    padding: 0.22rem 0.56rem;
-    border-radius: 2px;
-    border: 1px solid rgba(136, 191, 236, 0.28);
-    background: rgba(116, 184, 241, 0.1);
-    color: #bde4ff;
-    font-size: 0.74rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--panel-border);
+    background: rgba(9, 17, 31, 0.84);
+    color: var(--accent-strong);
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
     text-decoration: none;
 }
 
 .home-post-tag:hover {
     text-decoration: none;
     color: #ebf7ff;
-    border-color: rgba(183, 227, 255, 0.62);
-    background: rgba(116, 184, 241, 0.2);
+    border-color: var(--panel-border-strong);
+    background: var(--accent-wash);
 }
 
 @media (max-width: 768px) {
     body.home main.home-main,
-    body.tag-page main.home-main {
-        padding: 0 0.5rem;
+    body.tag-page main.home-main,
+    body.post-page main.post-main {
+        padding: 0 0.55rem;
     }
 
     .home-post-card {
-        padding: 0.95rem 0.9rem 0.95rem;
-        border-radius: 2px;
+        padding: 1.2rem 1rem 1.2rem;
+        border-radius: 22px;
     }
 
     .home-post-date {
@@ -386,5 +452,11 @@ body.tag-page main.home-main {
 
     .tag-page-lead {
         margin-bottom: 0.85rem;
+        padding: 1.2rem 1rem 1rem;
+        border-radius: 22px;
+    }
+
+    .home-post-title {
+        font-size: clamp(1.3rem, 7vw, 1.75rem);
     }
 }

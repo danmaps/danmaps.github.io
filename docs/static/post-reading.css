@@ -16,7 +16,7 @@
     padding: 2rem 1.5rem 4rem;
     line-height: 1.8;
     font-size: 1.125rem;
-    color: #e8e6e3;
+    color: #dce6f6;
 }
 
 /* --- Typography --- */
@@ -27,7 +27,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #ffffff;
+    color: #f6f9ff;
     margin-top: 2.5em;
     margin-bottom: 0.6em;
     line-height: 1.25;
@@ -52,7 +52,7 @@
 .post-reading p,
 .post-reading li {
     font-family: Georgia, 'Times New Roman', serif;
-    color: #d4d0cb;
+    color: #d4ddef;
 }
 
 .post-reading p {
@@ -60,15 +60,15 @@
 }
 
 .post-reading a {
-    color: #6cb4ee;
+    color: #8fc9ff;
     text-decoration: underline;
-    text-decoration-color: rgba(108, 180, 238, 0.3);
+    text-decoration-color: rgba(143, 201, 255, 0.34);
     text-underline-offset: 3px;
     transition: text-decoration-color 0.2s;
 }
 
 .post-reading a:hover {
-    text-decoration-color: rgba(108, 180, 238, 0.8);
+    text-decoration-color: rgba(143, 201, 255, 0.9);
 }
 
 .post-reading strong {
@@ -93,18 +93,18 @@
 }
 
 .post-reading li::marker {
-    color: #6cb4ee;
+    color: #8fc9ff;
 }
 
 /* --- Blockquotes / Pull quotes --- */
 .post-reading blockquote {
-    border-left: 3px solid #6cb4ee;
-    background: rgba(108, 180, 238, 0.05);
+    border-left: 3px solid #8fc9ff;
+    background: rgba(143, 201, 255, 0.06);
     padding: 1.25em 1.5em;
     margin: 2em 0;
     border-radius: 0 8px 8px 0;
     font-style: italic;
-    color: #b8b4af;
+    color: #c3d2e7;
 }
 
 .post-reading blockquote p {
@@ -119,7 +119,7 @@
 .post-reading blockquote strong {
     font-style: normal;
     font-size: 1.15em;
-    color: #e8e6e3;
+    color: #ecf3ff;
     display: block;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.4;
@@ -136,8 +136,8 @@
 }
 
 .post-reading .callout-info {
-    border-left: 4px solid #6cb4ee;
-    background: rgba(108, 180, 238, 0.04);
+    border-left: 4px solid #8fc9ff;
+    background: rgba(143, 201, 255, 0.05);
 }
 
 .post-reading .callout-warning {
@@ -146,8 +146,8 @@
 }
 
 .post-reading .callout-success {
-    border-left: 4px solid #4caf7d;
-    background: rgba(76, 175, 125, 0.04);
+    border-left: 4px solid #6fb8ff;
+    background: rgba(111, 184, 255, 0.05);
 }
 
 /* --- Figures & images --- */
@@ -187,7 +187,7 @@
     background: rgba(255, 255, 255, 0.06);
     padding: 0.2em 0.4em;
     border-radius: 4px;
-    color: #e0ddd8;
+    color: #e7eefc;
 }
 
 .post-reading pre {
@@ -263,7 +263,7 @@
 }
 
 .post-reading sup a {
-    color: #6cb4ee;
+    color: #8fc9ff;
     text-decoration: none;
     font-weight: 600;
 }
@@ -271,46 +271,97 @@
 /* --- Post header --- */
 .post-hero {
     max-width: 680px;
-    margin: 0 auto 0.95rem;
-    padding: 1.1rem 1.15rem 1.2rem;
-    border-radius: 3px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    background: rgba(8, 13, 22, 0.9);
+    margin: 0 auto 1rem;
+    padding: 1.15rem 1.15rem 1.5rem;
+    border-radius: 28px;
+    border: 1px solid rgba(136, 188, 255, 0.18);
+    background:
+        linear-gradient(180deg, rgba(9, 18, 33, 0.96), rgba(4, 9, 17, 0.98));
+    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.36);
+    text-align: center;
 }
 
 .post-hero h1 {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: clamp(1.45rem, 3.5vw, 2rem);
+    font-size: clamp(2rem, 4.8vw, 3.55rem);
     font-weight: 760;
-    letter-spacing: -0.015em;
-    line-height: 1.24;
+    letter-spacing: -0.05em;
+    line-height: 1.03;
     color: #f2f7ff;
     margin: 0;
+    text-wrap: balance;
+}
+
+.post-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+    color: #cad6e8;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.post-back-link::before {
+    content: "←";
+    margin-right: 0.7rem;
+    font-size: 1rem;
+}
+
+.post-back-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.post-kicker-row {
+    margin-bottom: 0.95rem;
+}
+
+.post-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.38rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(143, 201, 255, 0.2);
+    background: rgba(111, 184, 255, 0.12);
+    color: #d4eaff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 .post-meta-bar {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 0.65em;
-    margin-top: 0.58rem;
+    margin-top: 1rem;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 0.8rem;
-    color: #89bde2;
-    letter-spacing: 0.045em;
+    font-size: 0.78rem;
+    color: #99adc8;
+    letter-spacing: 0.16em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     text-transform: uppercase;
     font-weight: 600;
 }
 
 .post-meta-bar time {
-    color: #89bde2;
+    color: #99adc8;
 }
 
 .post-meta-bar .reading-time {
-    color: #89bde2;
+    color: #99adc8;
 }
 
 .post-meta-bar .separator {
-    color: rgba(137, 189, 226, 0.85);
+    color: rgba(153, 173, 200, 0.85);
 }
 
 /* --- Scroll progress bar --- */
@@ -319,7 +370,7 @@
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(to right, #6cb4ee, #a78bfa);
+    background: linear-gradient(to right, #77b9ff, #c8e4ff);
     width: 0%;
     z-index: 9999;
     transition: width 0.1s linear;
@@ -333,9 +384,9 @@
 }
 
 .post-toc details {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
+    background: rgba(7, 13, 24, 0.82);
+    border: 1px solid rgba(136, 188, 255, 0.12);
+    border-radius: 18px;
     padding: 1em 1.25em;
     margin-bottom: 0.75em;
 }
@@ -348,7 +399,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #999;
+    color: #99adc8;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -390,7 +441,7 @@
 }
 
 .post-toc a:hover {
-    color: #6cb4ee;
+    color: #8fc9ff;
 }
 
 .post-toc .toc-h3 {
@@ -402,34 +453,36 @@
     max-width: 680px;
     margin: 0 auto;
     padding: 2rem 1.5rem 3rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(136, 188, 255, 0.1);
 }
 
 .post-tags-footer .post-tag {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #aaa;
+    background: rgba(9, 17, 31, 0.84);
+    border: 1px solid rgba(136, 188, 255, 0.16);
+    color: #a6d5ff;
     padding: 0.4em 0.8em;
-    border-radius: 6px;
-    font-size: 0.8rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
     display: inline-block;
     transition: all 0.2s;
     text-decoration: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .post-tags-footer .post-tag:hover {
-    background: rgba(108, 180, 238, 0.1);
-    border-color: rgba(108, 180, 238, 0.3);
-    color: #6cb4ee;
+    background: rgba(119, 185, 255, 0.12);
+    border-color: rgba(166, 213, 255, 0.34);
+    color: #eff7ff;
 }
 
 /* --- Responsive --- */
 @media (max-width: 720px) {
     .post-hero h1 {
-        font-size: clamp(1.25rem, 7vw, 1.6rem);
+        font-size: clamp(1.7rem, 9vw, 2.35rem);
     }
     
     .post-reading {
@@ -463,8 +516,14 @@
 
     .post-hero {
         margin-bottom: 0.8rem;
-        padding-top: 0.95rem;
-        padding-bottom: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1.2rem;
+        border-radius: 22px;
+    }
+
+    .post-back-link {
+        margin-bottom: 1.2rem;
+        font-size: 0.73rem;
     }
 }
 

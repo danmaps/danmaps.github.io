@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
+{% block body_class %}post-page{% endblock %}
+{% block main_class %}post-main{% endblock %}
 
 {% block extra_head %}
 <link
@@ -10,28 +12,34 @@
     crossorigin=""
 >
 <link rel="stylesheet" href="{{ url_for('static', filename='map-embed.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='post-reading.css') }}">
 {% endblock %}
 
 {% block content %}
 <style>
     {{ pygments_css | safe }}
 </style>
-<div class="container bg-dark text-light">
-    <article>
-        
-        <h1 class="text-light">{{ title }}</h1>
-        <!-- Post content -->
-        {{ content | safe }}
-        <!-- Display the tags at the bottom -->
-        {% if tag_objs %}
-        <p class="post-tags text-light">
-            {% for tag in tag_objs %}
-                <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %} {% endif %}
-            {% endfor %}
-        </p>
-        {% endif %}
-    </article>
-</div>
+<header class="post-hero post-hero-legacy">
+    <a href="{{ url_for('index') }}" class="post-back-link">Back to blog</a>
+    {% if tag_objs %}
+    <div class="post-kicker-row">
+        <span class="post-kicker">{{ tag_objs[0].name }}</span>
+    </div>
+    {% endif %}
+    <h1>{{ title }}</h1>
+</header>
+
+<article class="post-reading post-reading-legacy">
+    {{ content | safe }}
+</article>
+
+{% if tag_objs %}
+<footer class="post-tags-footer">
+    {% for tag in tag_objs %}
+        <a class="post-tag tag-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+    {% endfor %}
+</footer>
+{% endif %}
 
 <script src="{{ url_for('static', filename='copy-code.js') }}"></script>
 
