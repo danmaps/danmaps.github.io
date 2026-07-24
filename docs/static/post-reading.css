@@ -102,7 +102,7 @@
     background: rgba(143, 201, 255, 0.06);
     padding: 1.25em 1.5em;
     margin: 2em 0;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
     font-style: italic;
     color: #c3d2e7;
 }
@@ -129,8 +129,9 @@
 /* Use in markdown: <div class="callout"> ... </div> */
 .post-reading .callout {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border: 0;
+    border-left: 3px solid rgba(143, 201, 255, 0.45);
+    border-radius: 0;
     padding: 1.5em 1.75em;
     margin: 2em 0;
 }
@@ -154,7 +155,7 @@
 .post-reading img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 0;
     margin: 2em 0;
     display: block;
 }
@@ -168,7 +169,7 @@
     width: calc(100% + 4rem);
     max-width: calc(100% + 4rem);
     margin: 0;
-    border-radius: 8px;
+    border-radius: 0;
 }
 
 .post-reading figcaption {
@@ -186,19 +187,19 @@
     font-size: 0.85em;
     background: rgba(255, 255, 255, 0.06);
     padding: 0.2em 0.4em;
-    border-radius: 4px;
+    border-radius: 2px;
     color: #e7eefc;
 }
 
 .post-reading pre {
     margin: 2em -1rem;
     padding: 1.25em 1.5em;
-    border-radius: 8px;
+    border-radius: 0;
     overflow-x: auto;
     font-size: 0.875rem;
     line-height: 1.6;
     background: #111 !important;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 0;
 }
 
 .post-reading pre code {
@@ -240,7 +241,7 @@
 .post-reading hr {
     border: none;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+    background: rgba(255,255,255,0.12);
     margin: 3em 0;
 }
 
@@ -273,11 +274,10 @@
     max-width: 680px;
     margin: 0 auto 1rem;
     padding: 1.15rem 1.15rem 1.5rem;
-    border-radius: 28px;
-    border: 1px solid rgba(136, 188, 255, 0.18);
-    background:
-        linear-gradient(180deg, rgba(9, 18, 33, 0.96), rgba(4, 9, 17, 0.98));
-    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.36);
+    border-radius: 0;
+    border: 0;
+    background: #06101c;
+    box-shadow: none;
     text-align: center;
 }
 
@@ -325,9 +325,9 @@
     align-items: center;
     justify-content: center;
     padding: 0.38rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid rgba(143, 201, 255, 0.2);
-    background: rgba(111, 184, 255, 0.12);
+    border-radius: 2px;
+    border: 0;
+    background: #0b1726;
     color: #d4eaff;
     font-size: 0.72rem;
     font-weight: 700;
@@ -370,7 +370,7 @@
     top: 0;
     left: 0;
     height: 3px;
-    background: linear-gradient(to right, #77b9ff, #c8e4ff);
+    background: #77b9ff;
     width: 0%;
     z-index: 9999;
     transition: width 0.1s linear;
@@ -384,9 +384,9 @@
 }
 
 .post-toc details {
-    background: rgba(7, 13, 24, 0.82);
-    border: 1px solid rgba(136, 188, 255, 0.12);
-    border-radius: 18px;
+    background: #06101c;
+    border: 0;
+    border-radius: 0;
     padding: 1em 1.25em;
     margin-bottom: 0.75em;
 }
@@ -457,11 +457,11 @@
 }
 
 .post-tags-footer .post-tag {
-    background: rgba(9, 17, 31, 0.84);
-    border: 1px solid rgba(136, 188, 255, 0.16);
+    background: #0b1726;
+    border: 0;
     color: #a6d5ff;
     padding: 0.4em 0.8em;
-    border-radius: 999px;
+    border-radius: 2px;
     font-size: 0.74rem;
     margin-right: 0.5em;
     margin-bottom: 0.5em;
@@ -475,7 +475,6 @@
 
 .post-tags-footer .post-tag:hover {
     background: rgba(119, 185, 255, 0.12);
-    border-color: rgba(166, 213, 255, 0.34);
     color: #eff7ff;
 }
 
@@ -518,7 +517,7 @@
         margin-bottom: 0.8rem;
         padding-top: 1rem;
         padding-bottom: 1.2rem;
-        border-radius: 22px;
+        border-radius: 0;
     }
 
     .post-back-link {

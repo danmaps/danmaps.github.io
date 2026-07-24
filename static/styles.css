@@ -6,23 +6,21 @@ html {
 :root {
     --page-bg: #02060d;
     --page-bg-soft: #08111e;
-    --panel-bg: rgba(6, 12, 22, 0.9);
-    --panel-bg-strong: rgba(4, 9, 17, 0.96);
-    --panel-border: rgba(136, 188, 255, 0.16);
-    --panel-border-strong: rgba(136, 188, 255, 0.28);
+    --panel-bg: #06101c;
+    --panel-bg-strong: #040911;
+    --panel-border: rgba(136, 188, 255, 0.12);
+    --panel-border-strong: rgba(136, 188, 255, 0.24);
     --text-primary: #f4f8ff;
     --text-muted: #99adc8;
     --text-soft: #cad6e8;
     --accent: #77b9ff;
     --accent-strong: #a6d5ff;
     --accent-wash: rgba(119, 185, 255, 0.12);
-    --surface-shadow: 0 24px 72px rgba(0, 0, 0, 0.36);
+    --surface-shadow: none;
 }
 
 body {
-    background:
-        radial-gradient(circle at top center, rgba(62, 118, 196, 0.2), transparent 34%),
-        linear-gradient(180deg, #02050b 0%, #040912 48%, #02060d 100%);
+    background: var(--page-bg);
     color: var(--text-primary);
 }
 
@@ -55,7 +53,7 @@ body.home main.home-main {
     pointer-events: none;
     z-index: -1;
     opacity: 0.55;
-    background: radial-gradient(circle at top right, rgba(34, 153, 255, 0.25), rgba(0, 0, 0, 0.85));
+    background: #02060d;
     filter: saturate(140%);
 }
 
@@ -153,14 +151,14 @@ pre code {
 }
 
 .post-tag {
-    background-color: rgba(10, 18, 32, 0.92);
+    background-color: #0b1726;
     color: var(--accent-strong);
     padding: 5px 8px;
-    border-radius: 999px;
+    border-radius: 2px;
     font-size: 0.8em;
     margin-left: 5px;
     display: inline-block;
-    border: 1px solid var(--panel-border);
+    border: 0;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -184,8 +182,8 @@ table {
     width: 100%;
     margin-bottom: 1em;
     border: 1px solid #4b5563; /* Slightly thinner border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border-radius: 0;
+    box-shadow: none;
 }
 
 th, td {
@@ -207,13 +205,11 @@ th {
 
 
 #footer-container, #header-container {
-    background-color: rgba(6, 11, 20, 0.82) !important;
+    background-color: var(--panel-bg-strong) !important;
     padding: 1em;
-    border-radius: 18px;
-    border: 1px solid var(--panel-border);
+    border-radius: 0;
+    border: 0;
     box-shadow: var(--surface-shadow);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
 }
 
 
@@ -238,8 +234,7 @@ body.post-page #header-container,
 body.post-page #footer-container,
 body.tag-page #header-container,
 body.tag-page #footer-container {
-    background:
-        linear-gradient(180deg, rgba(8, 15, 28, 0.95), rgba(4, 9, 17, 0.94)) !important;
+    background: var(--panel-bg-strong) !important;
 }
 
 body.home .home-link,
@@ -265,10 +260,10 @@ body.tag-page .home-link h2 {
 body.home .about-link,
 body.post-page .about-link,
 body.tag-page .about-link {
-    border-color: var(--panel-border-strong);
+    border-color: transparent;
     color: var(--accent-strong);
-    background: rgba(9, 18, 34, 0.78);
-    border-radius: 999px;
+    background: #0b1726;
+    border-radius: 2px;
     padding: 0.45rem 0.95rem;
     font-size: 0.76rem;
     letter-spacing: 0.12em;
@@ -294,10 +289,9 @@ body.post-page main.post-main {
 .tag-page-lead {
     margin: 0 auto 1.2rem;
     padding: 1.5rem 1.25rem 1.25rem;
-    border: 1px solid var(--panel-border);
-    border-radius: 28px;
-    background:
-        linear-gradient(180deg, rgba(9, 18, 33, 0.95), rgba(5, 10, 18, 0.96));
+    border: 0;
+    border-radius: 0;
+    background: var(--panel-bg);
     box-shadow: var(--surface-shadow);
 }
 
@@ -349,29 +343,22 @@ body.post-page main.post-main {
 .home-post-card {
     position: relative;
     padding: 1.5rem 1.45rem 1.5rem;
-    border-radius: 28px;
-    border: 1px solid var(--panel-border);
-    background:
-        linear-gradient(180deg, rgba(8, 16, 29, 0.96), rgba(4, 10, 18, 0.98));
+    border-radius: 0;
+    border: 0;
+    border-left: 2px solid transparent;
+    background: var(--panel-bg);
     box-shadow: var(--surface-shadow);
     overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .home-post-card::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(143, 201, 255, 0.55), transparent);
-    opacity: 0.8;
+    content: none;
 }
 
 .home-post-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--panel-border-strong);
-    background:
-        linear-gradient(180deg, rgba(10, 21, 38, 0.98), rgba(5, 11, 21, 0.99));
+    border-left-color: var(--accent);
+    background: #071422;
 }
 
 .home-post-topline {
@@ -416,9 +403,9 @@ body.post-page main.post-main {
 .home-post-tag {
     display: inline-block;
     padding: 0.28rem 0.7rem;
-    border-radius: 999px;
-    border: 1px solid var(--panel-border);
-    background: rgba(9, 17, 31, 0.84);
+    border-radius: 2px;
+    border: 0;
+    background: #0b1726;
     color: var(--accent-strong);
     font-size: 0.72rem;
     font-weight: 600;
@@ -430,7 +417,6 @@ body.post-page main.post-main {
 .home-post-tag:hover {
     text-decoration: none;
     color: #ebf7ff;
-    border-color: var(--panel-border-strong);
     background: var(--accent-wash);
 }
 
@@ -443,7 +429,7 @@ body.post-page main.post-main {
 
     .home-post-card {
         padding: 1.2rem 1rem 1.2rem;
-        border-radius: 22px;
+        border-radius: 0;
     }
 
     .home-post-date {
@@ -453,7 +439,7 @@ body.post-page main.post-main {
     .tag-page-lead {
         margin-bottom: 0.85rem;
         padding: 1.2rem 1rem 1rem;
-        border-radius: 22px;
+        border-radius: 0;
     }
 
     .home-post-title {
