@@ -20,13 +20,14 @@
     crossorigin=""
 >
 <link rel="stylesheet" href="/static/map-embed.css">
+<link rel="stylesheet" href="/static/post-reading.css">
 
 
     <!-- Prism CSS (for code highlighting) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
 </head>
-<body class="bg-dark ">
+<body class="bg-dark post-page">
     
     <header class="bg-dark py-3">
         <div class="container bg-dark", id="header-container">
@@ -39,7 +40,7 @@
         </div>
     </header>
 
-    <main class="container my-4 ">
+    <main class="container my-4 post-main">
         
 <style>
     pre { line-height: 125%; }
@@ -126,12 +127,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
 .codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
 </style>
-<div class="container bg-dark text-light">
-    <article>
-        
-        <h1 class="text-light">A Deployment Is Not Done Until the Running System Changes</h1>
-        <!-- Post content -->
-        <p><img src="/static/images/deployment-runtime-truth-hero.png" alt="Editorial illustration of a split operations room where successful build signals contrast with a live system still serving the old state" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
+<header class="post-hero post-hero-legacy">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">Systems</span>
+    </div>
+    
+    <h1>A Deployment Is Not Done Until the Running System Changes</h1>
+</header>
+
+<article class="post-reading post-reading-legacy">
+    <p><img src="/static/images/deployment-runtime-truth-hero.png" alt="Editorial illustration of a split operations room where successful build signals contrast with a live system still serving the old state" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
 <p>This week I spent some time getting <code>resume-tailor</code> into a more real state on my homelab.</p>
 <p>That included Docker deployment work, wiring the web app to the API cleanly, getting assisted tailoring working with a server-side model key, and restoring <code>.docx</code> and PDF export behavior after it broke.</p>
 <p>The technical details were specific.<br />
@@ -264,22 +271,21 @@ Built is not deployed.<br />
 Restarted is not deployed.</p>
 <p>Changed behavior, verified live, with evidence:<br />
 that is deployed.</p>
-        <!-- Display the tags at the bottom -->
-        
-        <p class="post-tags text-light">
-            
-                <a class="post-tag tag-link" href="/tag/systems.html">Systems</a> 
-            
-                <a class="post-tag tag-link" href="/tag/deployment.html">Deployment</a> 
-            
-                <a class="post-tag tag-link" href="/tag/ai.html">AI</a> 
-            
-                <a class="post-tag tag-link" href="/tag/work.html">Work</a>
-            
-        </p>
-        
-    </article>
-</div>
+</article>
+
+
+<footer class="post-tags-footer">
+    
+        <a class="post-tag tag-link" href="/tag/systems.html">Systems</a>
+    
+        <a class="post-tag tag-link" href="/tag/deployment.html">Deployment</a>
+    
+        <a class="post-tag tag-link" href="/tag/ai.html">AI</a>
+    
+        <a class="post-tag tag-link" href="/tag/work.html">Work</a>
+    
+</footer>
+
 
 <script src="/static/copy-code.js"></script>
 

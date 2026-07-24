@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
+{% block body_class %}post-page{% endblock %}
+{% block main_class %}post-main{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='post-reading.css') }}">
@@ -13,6 +15,12 @@
 
 <!-- Post header -->
 <header class="post-hero">
+    <a href="{{ url_for('index') }}" class="post-back-link">Back to blog</a>
+    {% if tag_objs %}
+    <div class="post-kicker-row">
+        <span class="post-kicker">{{ tag_objs[0].name }}</span>
+    </div>
+    {% endif %}
     <h1>{{ title }}</h1>
     <div class="post-meta-bar">
         {% if date %}
