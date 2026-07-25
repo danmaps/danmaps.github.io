@@ -1,8 +1,7 @@
 ---
 title: "How I Decide Between a Scheduled Task and an Agent"
-date: 2026-06-22
+date: 2026-07-25
 tags:
-  - Draft
   - AI
   - automation
   - systems
