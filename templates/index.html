@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}
-Danny McVey
-{% endblock %}
-
+{% block title %}Danny McVey{% endblock %}
 {% block body_class %}home{% endblock %}
 {% block main_class %}home-main{% endblock %}
 
@@ -12,30 +9,44 @@ Danny McVey
 {% endblock %}
 
 {% block content %}
-<section class="home-feed" aria-label="Published posts">
-  {% for post in posts %}
-  {% if 'Stub' not in post.tags and 'Draft' not in post.tags and 'Unlisted' not in post.tags %}
-  <article class="home-post-card">
-    <div class="home-post-topline">
-      <span class="home-post-date">{{ post.date.strftime('%B %d, %Y').replace(' 0', ' ') }}</span>
-    </div>
-    <h2 class="home-post-title">
-      <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-link">{{ post.title }}</a>
-    </h2>
-    {% if post.tag_objs %}
-    <div class="home-post-tags">
-      {% for tag in post.tag_objs %}
-      <a class="home-post-tag" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
-      {% endfor %}
-    </div>
+<section class="home-hero">
+  <h1 class="home-hero-headline">I like to <span class="home-hero-accent" id="home-hero-rotator" data-words="build things,tinker,experiment,break stuff,geek out">build things</span></h1>
+  <p class="home-hero-tagline">Maps, agents, tools, and experiments. Writing about what I learn along the way.</p>
+</section>
+
+<section class="home-latest-section" aria-label="Published posts">
+  <div class="home-latest-header">
+    <h2 class="home-latest-label">Latest</h2>
+    <a href="{{ url_for('index') }}" class="home-view-all">View all posts &rarr;</a>
+  </div>
+  <div class="home-feed">
+    {% set ns = namespace(count=0) %}
+    {% for post in posts %}
+    {% if 'Stub' not in post.tags and 'Draft' not in post.tags and 'Unlisted' not in post.tags and ns.count < 6 %}
+    {% set ns.count = ns.count + 1 %}
+    <article class="home-post-card">
+      <div class="home-post-topline">
+        {% if post.tag_objs %}
+        <a class="home-post-tag home-post-tag-primary" href="{{ url_for('tag', tag_slug_value=post.tag_objs[0].slug) }}">{{ post.tag_objs[0].name }}</a>
+        {% endif %}
+        <span class="home-post-date">&bull; {{ post.date.strftime('%b %d, %Y').replace(' 0', ' ') }}</span>
+      </div>
+      <h2 class="home-post-title">
+        <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-link">{{ post.title }}</a>
+      </h2>
+      {% if post.excerpt %}
+      <p class="home-post-excerpt">{{ post.excerpt }}</p>
+      {% endif %}
+      <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-cta">Read &rarr;</a>
+    </article>
     {% endif %}
-  </article>
-  {% endif %}
-  {% endfor %}
+    {% endfor %}
+  </div>
 </section>
 {% endblock %}
 
 {% block extra_scripts %}
 {{ super() }}
 <script type="module" src="{{ url_for('static', filename='home-splash.js') }}"></script>
+<script src="{{ url_for('static', filename='home-rotator.js') }}" defer></script>
 {% endblock %}

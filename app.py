@@ -131,12 +131,30 @@ def _parse_post_file(filename: str) -> dict | None:
     tags = _normalize_tags(metadata.get('tags', []))
     tag_objs = [{"name": t, "slug": tag_slug(t)} for t in tags if t not in UNPUBLISHED_TAGS]
 
+    # Extract first non-empty prose paragraph as excerpt
+    excerpt = ""
+    for line in body.splitlines():
+        line = line.strip()
+        # Skip headings, images, tables, blockquotes, list items, and raw HTML blocks
+        if not line or line[0] in '#!|<>-*+':
+            continue
+        # Strip inline markdown links and emphasis for plain text
+        clean = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', line)
+        clean = re.sub(r'[*_`]{1,3}', '', clean)
+        # Skip lines that are still mostly HTML tags
+        if clean.startswith('<') or re.match(r'^\s*<', clean):
+            continue
+        if len(clean) > 30:
+            excerpt = clean[:180].rstrip() + ('...' if len(clean) > 180 else '')
+            break
+
     return {
         'name': filename[:-3],
         'title': title,
         'date': date_obj,
         'tags': tags,
         'tag_objs': tag_objs,
+        'excerpt': excerpt,
     }
 
 
@@ -296,4 +314,3 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     # Bind to 0.0.0.0 to make the server accessible externally
     app.run(host='0.0.0.0', port=port)
-
