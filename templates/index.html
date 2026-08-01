@@ -43,6 +43,23 @@
     {% endfor %}
   </div>
 </section>
+
+{% if tag_stats %}
+<section class="home-tag-section" aria-label="Browse tags">
+  <div class="home-latest-header home-tag-header">
+    <div>
+      <h2 class="home-latest-label">Browse by tag</h2>
+      <p class="home-tag-intro">Jump straight into recurring themes, from GIS and agents to systems, tools, and writing.</p>
+    </div>
+    <a href="{{ url_for('tags') }}" class="home-view-all">See all tags &rarr;</a>
+  </div>
+  <div class="home-tag-preview">
+    {% for tag in tag_stats[:10] %}
+    <a class="home-post-tag home-tag-preview-pill" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }} <span>{{ tag.count }}</span></a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 {% endblock %}
 
 {% block extra_scripts %}

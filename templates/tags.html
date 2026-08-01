@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Tags{% endblock %}
+{% block body_class %}tag-page{% endblock %}
+{% block main_class %}home-main{% endblock %}
+
+{% block content %}
+<section class="tag-page-lead">
+  <p class="tag-page-kicker">Tag index</p>
+  <h1 class="tag-page-title">Browse by topic</h1>
+  <p class="tags-page-summary">A quick way to find clusters of posts. Bigger tags mean more published posts.</p>
+  <p class="tag-page-backline"><a class="tag-back-link" href="{{ url_for('index') }}">Back to homepage</a></p>
+</section>
+
+{% if tag_stats %}
+<section class="tag-cloud-panel" aria-label="Tag cloud">
+  <div class="tag-cloud">
+    {% for tag in tag_stats %}
+    <a
+      class="tag-cloud-link"
+      href="{{ url_for('tag', tag_slug_value=tag.slug) }}"
+      style="--tag-scale: {{ '%.3f'|format(tag.weight) }};"
+    >{{ tag.name }} <span>{{ tag.count }}</span></a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="tag-table-panel" aria-label="Tag table">
+  <div class="tag-table-wrap">
+    <table class="tag-summary-table">
+      <thead>
+        <tr>
+          <th>Tag</th>
+          <th>Posts</th>
+          <th>Latest post</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tag in tag_stats %}
+        <tr>
+          <td><a class="tag-table-link" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a></td>
+          <td>{{ tag.count }}</td>
+          <td>
+            <a class="tag-table-post-link" href="{{ url_for('post', post_name=tag.latest_post.name) }}">{{ tag.latest_post.title }}</a>
+            <div class="tag-table-date">{{ tag.latest_date.strftime('%b %d, %Y').replace(' 0', ' ') }}</div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% else %}
+<p class="tag-empty-state">No published tags yet.</p>
+{% endif %}
+{% endblock %}

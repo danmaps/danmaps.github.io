@@ -170,16 +170,67 @@ def _list_posts() -> list[dict]:
     return posts
 
 
+def _published_posts(posts: list[dict] | None = None) -> list[dict]:
+    posts = posts if posts is not None else _list_posts()
+    return [post for post in posts if not any(tag in UNPUBLISHED_TAGS for tag in post.get('tags', []))]
+
+
+def _tag_index(posts: list[dict] | None = None) -> list[dict]:
+    posts = _published_posts(posts)
+    tag_map: dict[str, dict] = {}
+
+    for post in posts:
+        for tag in post.get('tag_objs', []):
+            entry = tag_map.setdefault(
+                tag["slug"],
+                {
+                    "name": tag["name"],
+                    "slug": tag["slug"],
+                    "count": 0,
+                    "latest_post": post,
+                    "latest_date": post["date"],
+                },
+            )
+            entry["count"] += 1
+            if post["date"] > entry["latest_date"]:
+                entry["latest_post"] = post
+                entry["latest_date"] = post["date"]
+
+    tag_stats = sorted(tag_map.values(), key=lambda item: (-item["count"], item["name"].lower()))
+    if not tag_stats:
+        return tag_stats
+
+    min_count = min(item["count"] for item in tag_stats)
+    max_count = max(item["count"] for item in tag_stats)
+    spread = max_count - min_count
+
+    for item in tag_stats:
+        item["weight"] = 0.55 if spread == 0 else 0.55 + ((item["count"] - min_count) / spread) * 0.85
+
+    return tag_stats
+
+
 @app.route('/')
 def index():
     posts = _list_posts()
-    return render_template('index.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
+    return render_template(
+        'index.html',
+        posts=posts,
+        tag_stats=_tag_index(posts),
+        UNPUBLISHED_TAGS=UNPUBLISHED_TAGS,
+    )
 
 
 @app.route('/all-posts.html')
 def all_posts():
     posts = _list_posts()
     return render_template('all_posts.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
+
+
+@app.route('/tags.html')
+def tags():
+    posts = _list_posts()
+    return render_template('tags.html', tag_stats=_tag_index(posts))
 
 
 @app.route('/drafts')

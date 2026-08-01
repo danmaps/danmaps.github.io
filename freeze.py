@@ -45,6 +45,12 @@ def all_posts():
 
 
 @freezer.register_generator
+def tags():
+    """Freeze the tags index page."""
+    yield {}
+
+
+@freezer.register_generator
 def tag():
     """Freeze all tag pages."""
     slugs = {}
