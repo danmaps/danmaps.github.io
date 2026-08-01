@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}All Posts{% endblock %}
+{% block body_class %}tag-page{% endblock %}
+{% block main_class %}home-main{% endblock %}
+
+{% block content %}
+<section class="tag-page-lead">
+  <p class="tag-page-kicker">Archive</p>
+  <h1 class="tag-page-title">All Posts</h1>
+  <p class="tag-page-backline"><a class="tag-back-link" href="{{ url_for('index') }}">Back to homepage</a></p>
+</section>
+
+<section class="home-feed" aria-label="Published posts archive">
+  {% for post in posts %}
+    {% if 'Stub' not in post.tags and 'Draft' not in post.tags and 'Unlisted' not in post.tags %}
+    <article class="home-post-card">
+      <div class="home-post-topline">
+        {% if post.tag_objs %}
+        <a class="home-post-tag home-post-tag-primary" href="{{ url_for('tag', tag_slug_value=post.tag_objs[0].slug) }}">{{ post.tag_objs[0].name }}</a>
+        {% endif %}
+        <span class="home-post-date">&bull; {{ post.date.strftime('%b %d, %Y').replace(' 0', ' ') }}</span>
+      </div>
+      <h2 class="home-post-title">
+        <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-link">{{ post.title }}</a>
+      </h2>
+      {% if post.excerpt %}
+      <p class="home-post-excerpt">{{ post.excerpt }}</p>
+      {% endif %}
+      <a href="{{ url_for('post', post_name=post['name']) }}" class="home-post-cta">Read &rarr;</a>
+    </article>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endblock %}

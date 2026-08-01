@@ -39,6 +39,12 @@ def drafts():
 
 
 @freezer.register_generator
+def all_posts():
+    """Freeze the published archive page."""
+    yield {}
+
+
+@freezer.register_generator
 def tag():
     """Freeze all tag pages."""
     slugs = {}
@@ -121,4 +127,3 @@ def _ensure_nojekyll():
 if __name__ == "__main__":
     freezer.freeze()
     _ensure_nojekyll()
-

@@ -176,6 +176,12 @@ def index():
     return render_template('index.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
 
 
+@app.route('/all-posts.html')
+def all_posts():
+    posts = _list_posts()
+    return render_template('all_posts.html', posts=posts, UNPUBLISHED_TAGS=UNPUBLISHED_TAGS)
+
+
 @app.route('/drafts')
 def drafts_redirect():
     """Back-compat redirect to the canonical drafts URL."""
