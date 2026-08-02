@@ -2,11 +2,9 @@
 title: "Define Success Before the System Does"
 date: 2026-04-15
 tags:
-  - AI
-  - evaluation
-  - systems
-  - agents
-  - governance
+- AI
+- Systems
+- Agents
 layout: rich
 ---
 

@@ -1,7 +1,9 @@
 ---
 date: 2026-03-12
 tags:
-- draft
+- Draft
+- Work
+- Systems
 title: Everything Is Software
 layout: rich
 ---

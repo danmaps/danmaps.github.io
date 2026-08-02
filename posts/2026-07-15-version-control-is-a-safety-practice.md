@@ -2,10 +2,9 @@
 title: Version Control Is a Safety Practice
 date: 2026-07-15
 tags:
-  - GitHub
-  - work
-  - systems
-  - safety
+- GitHub
+- Work
+- Systems
 summary: "Version control matters far beyond software engineering because it makes change safer, improves traceability, and reduces the operational risk of shared technical work."
 layout: rich
 ---

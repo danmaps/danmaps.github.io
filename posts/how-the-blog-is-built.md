@@ -2,8 +2,9 @@
 title: How the Blog Is Built
 date: 2025-05-15
 tags:
-  - Meta
-  - Workflow
+- Meta
+- Writing
+- Systems
 layout: rich
 ---
 

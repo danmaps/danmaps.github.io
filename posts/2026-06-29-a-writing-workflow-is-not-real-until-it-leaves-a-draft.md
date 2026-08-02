@@ -2,11 +2,10 @@
 title: A Writing Workflow Is Not Real Until It Leaves a Draft
 date: 2026-06-29
 tags:
-  - Draft
-  - writing
-  - systems
-  - automation
-  - AI
+- Draft
+- Writing
+- Systems
+- Automation
 summary: "This week the useful progress was not writing more. It was tightening the weekly blog pipeline so it leaves a real draft, keeps honest state, and produces artifacts that can be reviewed instead of just generating prose on a schedule."
 layout: rich
 ---

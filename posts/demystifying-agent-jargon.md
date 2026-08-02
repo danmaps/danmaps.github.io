@@ -2,9 +2,9 @@
 title: Demystifying Agent Jargon So You Can Actually Use This Stuff
 date: 2026-02-17
 tags:
-  - AI
-  - Agents
-  - Workflow
+- AI
+- Agents
+- Systems
 layout: rich
 ---
 

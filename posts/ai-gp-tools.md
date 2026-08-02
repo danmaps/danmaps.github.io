@@ -1,9 +1,8 @@
 ---
 date: 2024-09-09
 tags:
-- ai
-- arcgis
-- gis
+- AI
+- GIS
 
 title: AI enhanced GP tools in ArcGIS Pro
 layout: rich

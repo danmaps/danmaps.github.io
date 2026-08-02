@@ -64,19 +64,102 @@ POSTS_DIR = os.path.join(BASE_DIR, 'posts')
 BETA_BUILD_DIR = os.path.join(BASE_DIR, 'build', 'beta')
 
 UNPUBLISHED_TAGS = {"Stub", "Draft", "Unlisted"}
+CANONICAL_TAGS = {
+    "ai": "AI",
+    "agentic engineering": "Agents",
+    "agents": "Agents",
+    "arcgis": "GIS",
+    "arcgis pro": "GIS",
+    "automation": "Automation",
+    "blogging": "Writing",
+    "career": "Career",
+    "careers": "Career",
+    "consulting": "Work",
+    "data": "Data",
+    "data engineering": "Data",
+    "databases": "Data",
+    "deployment": "Systems",
+    "developer-tools": "GitHub",
+    "education": "Python",
+    "enterprise": "Work",
+    "evaluation": "Systems",
+    "geoprocessing": "GIS",
+    "geometry": "Data",
+    "gis": "GIS",
+    "git": "GitHub",
+    "github": "GitHub",
+    "governance": "Systems",
+    "guardrails": "Systems",
+    "health": "Health",
+    "homelab": "Systems",
+    "javascript": "Python",
+    "llm": "AI",
+    "mapping": "GIS",
+    "meta": "Meta",
+    "models": "AI",
+    "motivation": "Productivity",
+    "notebooks": "Python",
+    "on-prem": "AI",
+    "open-source": "Python",
+    "operations": "Systems",
+    "ops": "Systems",
+    "orchestration": "Systems",
+    "personal": "Personal",
+    "pipelines": "Data",
+    "planning": "Productivity",
+    "product": "Product",
+    "productivity": "Productivity",
+    "programming": "Python",
+    "python": "Python",
+    "rag": "AI",
+    "reliability": "Systems",
+    "resilience": "Systems",
+    "safety": "Systems",
+    "series": "AI",
+    "side-projects": "Personal",
+    "software": "Systems",
+    "spatial": "GIS",
+    "spatial-analysis": "GIS",
+    "streamlit": "Python",
+    "strategy": "Productivity",
+    "stub": "Stub",
+    "symphony": "Systems",
+    "systems": "Systems",
+    "systems thinking": "Systems",
+    "technology": "AI",
+    "teamwork": "Work",
+    "tooling": "GitHub",
+    "tools": "Productivity",
+    "unlisted": "Unlisted",
+    "ux": "Product",
+    "workflow": "Automation",
+    "workflows": "Automation",
+    "work": "Work",
+    "workplace": "Work",
+    "writing": "Writing",
+    "draft": "Draft",
+}
 
 
 def _normalize_tags(raw_tags) -> list[str]:
-    # Make tags proper case, if the tag is not already all caps
-    tags = [tag.title() if isinstance(tag, str) and not tag.isupper() else tag for tag in (raw_tags or [])]
+    status_tags: list[str] = []
+    topical_tags: list[str] = []
 
-    # a few canonical replacements
-    tags = [t.replace("Arcgis Pro", "ArcGIS Pro") if isinstance(t, str) else t for t in tags]
-    tags = [t.replace("Ai", "AI") if isinstance(t, str) else t for t in tags]
-    tags = [t.replace("Gis", "GIS") if isinstance(t, str) else t for t in tags]
+    for raw_tag in raw_tags or []:
+        tag = str(raw_tag).strip()
+        if not tag:
+            continue
 
-    # filter empties + coerce to strings
-    return [str(t).strip() for t in tags if str(t).strip()]
+        canonical = CANONICAL_TAGS.get(tag.lower())
+        if canonical is None:
+            canonical = tag if tag.isupper() else tag.title()
+
+        target = status_tags if canonical in UNPUBLISHED_TAGS else topical_tags
+        if canonical not in target:
+            target.append(canonical)
+
+    # Keep draft-state tags first and cap the overall tag count to four.
+    return status_tags + topical_tags[: max(0, 4 - len(status_tags))]
 
 
 def tag_slug(tag: str) -> str:

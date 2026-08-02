@@ -2,12 +2,10 @@
 title: "From Prompt to Production: Making AI-Generated Code Actually Usable"
 date: 2026-04-24
 tags:
-  - AI
-  - automation
-  - GIS
-  - systems
-  - guardrails
-  - software
+- AI
+- Automation
+- GIS
+- Systems
 summary: "AI-generated code becomes genuinely useful only when it is wrapped in context, validation, guardrails, and human review."
 layout: rich
 ---

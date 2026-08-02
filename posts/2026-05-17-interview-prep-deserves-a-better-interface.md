@@ -3,11 +3,10 @@ title: Interview Prep Deserves a Better Interface
 date: 2026-05-17
 layout: rich
 tags:
-  - Draft
-  - AI
-  - work
-  - systems
-  - product
+- Draft
+- AI
+- Product
+- Work
 ---
 
 I have spent plenty of time using AI in the now-familiar ways:

@@ -3,8 +3,7 @@ date: 2025-12-16
 tags:
 - AI
 - GIS
-- workflows
-- automation
+- Automation
 title: A GIS Analyst From the Future
 layout: rich
 ---

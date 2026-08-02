@@ -1,9 +1,8 @@
 ---
 date: 2024-08-13
 tags:
-- gis
-- python
-- open-source
+- GIS
+- Python
 
 title: Open source alternatives to ArcPy
 layout: rich

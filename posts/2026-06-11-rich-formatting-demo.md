@@ -2,8 +2,8 @@
 title: Rich Formatting Demo
 date: 2026-06-11
 tags:
-  - Draft
-  - Meta
+- Draft
+- Meta
 layout: rich
 ---
 

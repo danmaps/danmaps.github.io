@@ -2,10 +2,8 @@
 title: "Trust layers and value layers in agentic engineering"
 date: 2026-03-01
 tags:
-  - Agentic engineering
-  - Agents
-  - Reliability
-  - Ops
+- Agents
+- Systems
 layout: rich
 ---
 

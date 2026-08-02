@@ -1,7 +1,7 @@
 ---
 date: 2024-08-02
 tags:
-- personal
+- Personal
 title: About me
 layout: rich
 ---

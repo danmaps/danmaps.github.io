@@ -2,11 +2,9 @@
 title: "Curves in GIS: Everywhere and Barely Supported"
 date: 2026-06-02
 tags:
-  - Draft
-  - GIS
-  - geometry
-  - data
-  - spatial
+- Draft
+- GIS
+- Data
 summary: "Curves in GIS feel exotic until you realize one of the most common operations in the field—buffering—creates them constantly, even as many common GIS formats barely support true curved geometry."
 layout: rich
 ---

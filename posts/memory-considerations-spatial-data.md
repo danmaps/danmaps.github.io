@@ -2,8 +2,8 @@
 title: Considerations for Spatial Data That Doesn't Fit in Memory
 date: 2024-09-27
 tags:
-    - data
-    - gis
+- Data
+- GIS
 layout: rich
 ---
 

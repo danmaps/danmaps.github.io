@@ -1,10 +1,8 @@
 ---
 date: 2024-08-20
 tags:
-- programming
-- python
-- teamwork
-- notebooks
+- Python
+- Work
 title: Sharing Python Tools - Practical Solutions and Considerations
 layout: rich
 ---

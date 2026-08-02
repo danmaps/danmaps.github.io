@@ -2,11 +2,10 @@
 title: A Deployment Is Not Done Until the Running System Changes
 date: 2026-06-22
 tags:
-  - Draft
-  - systems
-  - deployment
-  - AI
-  - work
+- Draft
+- Systems
+- AI
+- Work
 summary: "The most useful technical lesson from this week was simple: a repo update, a successful build, and a restarted stack do not mean the running system actually changed. If the behavior matters, you need proof from the live runtime."
 ---
 

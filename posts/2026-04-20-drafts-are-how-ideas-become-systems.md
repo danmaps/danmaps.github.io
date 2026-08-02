@@ -2,11 +2,9 @@
 title: "Drafts Are How Ideas Become Systems"
 date: 2026-04-20
 tags:
-  - Draft
-  - AI
-  - workflow
-  - writing
-  - systems
+- Draft
+- Writing
+- Systems
 layout: rich
 ---
 

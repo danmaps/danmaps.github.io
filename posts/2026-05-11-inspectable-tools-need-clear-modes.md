@@ -2,11 +2,10 @@
 title: Inspectable Tools Still Need Clear Modes
 date: 2026-05-11
 tags:
-  - Draft
-  - GIS
-  - AI
-  - product
-  - work
+- Draft
+- GIS
+- AI
+- Product
 layout: rich
 ---
 

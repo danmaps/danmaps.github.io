@@ -47,6 +47,15 @@ Push the draft to the repo before publishing unless Danny says otherwise.
 
 The site hides these from the homepage, but they may still exist in the generated site if someone knows the URL.
 
+## Tag rules
+
+Keep tags tight:
+- maximum `4` tags total per post, including `Draft` / `Stub` / `Unlisted`
+- prefer this canonical set: `AI`, `GIS`, `Systems`, `Automation`, `Agents`, `Work`, `Career`, `Product`, `Productivity`, `Data`, `Python`, `GitHub`, `Writing`, `Personal`, `Health`, `Meta`
+- avoid near-duplicates like `Work` + `Workplace` or `Workflow` + `Workflows`
+
+If a new tag idea is close to an existing one, collapse it into the existing tag instead of growing the taxonomy.
+
 ## Publishing workflow
 
 ### Draft a post
@@ -115,6 +124,4 @@ Advanced note:
 ## Safety rule
 
 Do not publish automatically unless Danny explicitly asks.
-Drafting is fine. Publishing is a separate decision.
-nny explicitly asks.
 Drafting is fine. Publishing is a separate decision.

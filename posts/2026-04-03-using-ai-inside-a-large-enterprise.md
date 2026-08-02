@@ -2,12 +2,10 @@
 title: "Trying to use AI inside a large enterprise without going numb"
 date: 2026-04-03
 tags:
-  - Draft
-  - AI
-  - enterprise
-  - GIS
-  - systems
-  - homelab
+- Draft
+- AI
+- GIS
+- Work
 layout: rich
 ---
 

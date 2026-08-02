@@ -1,9 +1,8 @@
 ---
 date: 2025-02-17
 tags:
-- productivity
-- strategy
-- work
+- Productivity
+- Work
 title: High-Leverage Focus - Maximizing Impact
 layout: rich
 ---

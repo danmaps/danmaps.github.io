@@ -1,9 +1,9 @@
 ---
 date: 2024-09-05
 tags:
-- ai
-- gis
-- automation
+- AI
+- GIS
+- Automation
 title: Empowering Geospatial Workflows with Generative AI
 layout: rich
 ---

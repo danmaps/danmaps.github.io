@@ -2,11 +2,10 @@
 title: Mission Systems Need Receipts
 date: 2026-06-08
 tags:
-  - Draft
-  - AI
-  - systems
-  - orchestration
-  - work
+- Draft
+- AI
+- Systems
+- Work
 summary: "Recent Symphony work reinforced a simple opinion I trust more every week: if an agent system cannot leave behind clear files, artifacts, and failure states, it is not doing operational work yet. It is just producing vibes with extra steps."
 layout: rich
 ---

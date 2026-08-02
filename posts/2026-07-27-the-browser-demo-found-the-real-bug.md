@@ -2,11 +2,10 @@
 title: The Browser Demo Found the Real Bug
 date: 2026-07-27
 tags:
-  - Draft
-  - GIS
-  - systems
-  - product
-  - automation
+- Draft
+- GIS
+- Systems
+- Product
 summary: "Recent Spatial Workbench work reinforced a practical rule I trust more every week: a demo only counts if it exercises the real system path. The browser headless demo surfaced a live runtime dependency that tests and local setup had been quietly masking."
 layout: rich
 ---

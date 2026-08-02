@@ -2,11 +2,10 @@
 title: Why Systems Like Scout Matter for the Kind of Software I Want to Build
 date: 2026-06-05
 tags:
-  - Draft
-  - AI
-  - Agents
-  - GIS
-  - work
+- Draft
+- AI
+- GIS
+- Work
 summary: "After about six months of living with OpenClaw, systems like Microsoft Scout read to me less like distant demos and more like confirmation that recurring operational rituals are turning into software. The interesting work is not magic assistants. It is inspectable workflows, callable tools, and agent-friendly systems that can earn trust."
 layout: rich
 ---

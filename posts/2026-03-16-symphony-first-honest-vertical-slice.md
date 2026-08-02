@@ -1,12 +1,10 @@
 ---
 date: 2026-03-16
 tags:
-  - Draft
-  - AI
-  - Agents
-  - side-projects
-  - systems
-  - homelab
+- Draft
+- AI
+- Agents
+- Systems
 title: "Symphony and the first honest vertical slice"
 layout: rich
 ---

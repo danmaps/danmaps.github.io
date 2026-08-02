@@ -2,10 +2,9 @@
 date: 2026-01-30
 tags:
 - AI
-- side-projects
-- productivity
-- gis
-- javascript
+- Personal
+- Product
+- Productivity
 title: "Vibe coding CamReview: a trail cam app I actually use"
 layout: rich
 ---

@@ -2,11 +2,10 @@
 title: Spatial Tools Need a Better Boundary
 date: 2026-06-01
 tags:
-  - Draft
-  - GIS
-  - product
-  - systems
-  - work
+- Draft
+- GIS
+- Product
+- Systems
 summary: "A recent round of planning clarified something useful for me: a spatial tool project does not need to become a full platform to be strategically valuable. Sometimes the right move is to make the execution boundary sharper instead of making the product broader."
 layout: rich
 ---

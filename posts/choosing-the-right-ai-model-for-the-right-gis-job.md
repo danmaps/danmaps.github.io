@@ -3,12 +3,10 @@ title: "Choosing the Right AI Model for the Right GIS Job"
 subtitle: "Real case studies in GIS automation, not leaderboard chasing"
 date: 2026-02-22
 tags:
-  - Unlisted
-  - AI
-  - GIS
-  - Automation
-  - Models
-  - Series
+- Unlisted
+- AI
+- GIS
+- Systems
 layout: rich
 ---
 

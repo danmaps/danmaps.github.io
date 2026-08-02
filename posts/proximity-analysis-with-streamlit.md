@@ -6,10 +6,9 @@ categories:
 date: 2024-07-01
 summary: Learn how to automate proximity analysis in GIS using Python.
 tags:
-- gis
-- python
-- streamlit
-- spatial-analysis
+- GIS
+- Python
+- Data
 thumbnail: static/images/thumbnails/proximity-analysis.png
 title: Automating Proximity Analysis in Streamlit with Open Source Python
 layout: rich

@@ -2,10 +2,10 @@
 title: Version Control Reduces Risk
 date: 2026-05-25
 tags:
-  - GitHub
-  - automation
-  - work
-  - systems
+- GitHub
+- Automation
+- Work
+- Systems
 summary: "A good GitHub and version control workflow for analysts and operational teams should reduce risk, improve collaboration, and make automation more sustainable, not force everyone to cosplay as a software engineer."
 layout: rich
 ---

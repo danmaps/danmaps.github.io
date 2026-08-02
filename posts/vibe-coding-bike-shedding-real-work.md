@@ -2,9 +2,8 @@
 date: 2025-12-12
 tags:
 - AI
-- productivity
-- strategy
-- work
+- Productivity
+- Work
 title: Vibe Coding, Bike Shedding, and the Real Work
 layout: rich
 ---

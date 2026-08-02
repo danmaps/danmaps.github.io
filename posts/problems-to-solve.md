@@ -2,10 +2,9 @@
 title: Solving the right problems
 date: 2024-09-26
 tags:
-    - stub
-    - work
-    - personal
-    - motivation
+- Stub
+- Work
+- Personal
 layout: rich
 ---
 

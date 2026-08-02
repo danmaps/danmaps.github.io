@@ -2,11 +2,8 @@
 title: The Input Path Is Part of the System
 date: 2026-07-13
 tags:
-  - Draft
-  - systems
-  - orchestration
-  - Symphony
-  - operations
+- Draft
+- Systems
 summary: "This week's useful work was a reminder that inputs, provenance, attachments, version context, and scaffolded artifacts are not side details. They are part of whether a workflow is honest enough to trust."
 layout: rich
 ---

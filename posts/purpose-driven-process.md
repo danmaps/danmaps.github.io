@@ -2,9 +2,9 @@
 title: Purpose-Driven Process
 date: 2024-09-26
 tags:
-    - productivity
-    - work
-    - stub
+- Stub
+- Productivity
+- Work
 layout: rich
 ---
 

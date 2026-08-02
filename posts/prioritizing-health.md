@@ -2,8 +2,8 @@
 title: Prioritizing Health as a Knowledge Worker
 date: 2024-08-01
 tags:
-    - health
-    - productivity
+- Health
+- Productivity
 layout: rich
 ---
 While knowledge work, particularly in fields like Data analysis or Software Engineering, is intellectually stimulating, it can take a toll on your physical health. The cognitive demands are high, but the physical demands---or rather, the lack thereof---pose their own challenges. Balancing mental and physical well-being is essential for long-term success and productivity.

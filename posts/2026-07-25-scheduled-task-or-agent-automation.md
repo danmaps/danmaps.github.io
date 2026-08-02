@@ -2,10 +2,10 @@
 title: "How I Decide Between a Scheduled Task and an Agent"
 date: 2026-07-25
 tags:
-  - AI
-  - automation
-  - systems
-  - workflow
+- AI
+- Automation
+- Systems
+- Agents
 summary: "A lot of automation choices get overcomplicated because people reach for an agent when they really need a boring scheduled task, or build a rigid job where the work actually needs judgment. The useful question is not whether AI is available. It is what shape of automation matches the job."
 layout: rich
 ---

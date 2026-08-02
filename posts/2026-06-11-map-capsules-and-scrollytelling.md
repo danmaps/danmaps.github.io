@@ -2,11 +2,10 @@
 title: Map capsules and scrollytelling for GIS workflow writeups
 date: 2026-06-11
 tags:
-  - Draft
-  - GIS
-  - AI
-  - mapping
-  - workflow
+- Draft
+- GIS
+- AI
+- Product
 layout: rich
 ---
 

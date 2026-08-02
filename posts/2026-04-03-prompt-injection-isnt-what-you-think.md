@@ -2,11 +2,10 @@
 title: "Prompt injection isn’t what you think"
 date: 2026-04-03
 tags:
-  - Draft
-  - AI
-  - GIS
-  - systems
-  - agents
+- Draft
+- AI
+- GIS
+- Systems
 layout: rich
 ---
 

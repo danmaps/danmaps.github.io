@@ -2,9 +2,8 @@
 date: 2025-04-23
 tags:
 - AI
-- career
-- productivity
-- technology
+- Career
+- Productivity
 title: Too Easy to Start - AI Tools Shifted My Bottleneck from Building to Shipping
 layout: rich
 ---

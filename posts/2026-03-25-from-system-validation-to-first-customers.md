@@ -2,12 +2,10 @@
 title: "After the system works, the real job is finding the first customer"
 date: 2026-03-25
 tags:
-  - Draft
-  - AI
-  - systems
-  - GIS
-  - product
-  - consulting
+- Draft
+- AI
+- GIS
+- Product
 layout: rich
 ---
 

@@ -1,9 +1,9 @@
 ---
 date: 2024-10-09
 tags:
-- tools
-- productivity
-- work
+- Productivity
+- Work
+- Personal
 title: Creating a Virtual Numpad with AutoHotKey
 layout: rich
 ---

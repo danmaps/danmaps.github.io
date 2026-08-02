@@ -1,11 +1,9 @@
 ---
 date: 2026-04-27
 tags:
-- AI
 - Draft
-- planning
-- productivity
-- systems
+- AI
+- Productivity
 title: AI Needs Real Work
 layout: rich
 ---

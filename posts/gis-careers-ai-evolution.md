@@ -1,10 +1,9 @@
 ---
 date: 2025-03-11
 tags:
-- gis
-- ai
-- work
-- technology
+- GIS
+- AI
+- Career
 title: The Evolution of GIS Careers in the Age of Advanced AI
 layout: rich
 ---

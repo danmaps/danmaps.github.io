@@ -1,10 +1,8 @@
 ---
 date: 2026-02-24
 tags:
-  - Programming
-  - Python
-  - Education
-  - AI
+- Python
+- AI
 
 title: "Thinking like a programmer"
 layout: rich

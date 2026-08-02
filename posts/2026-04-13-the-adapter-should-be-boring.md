@@ -2,12 +2,9 @@
 title: "The adapter should be boring"
 date: 2026-04-13
 tags:
-  - Draft
-  - AI
-  - systems
-  - orchestration
-  - Symphony
-  - evaluation
+- Draft
+- AI
+- Systems
 layout: rich
 ---
 

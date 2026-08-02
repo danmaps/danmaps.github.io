@@ -3,10 +3,9 @@ title: GitHub Copilot Teaches Git by Guiding Decisions
 date: 2026-06-17
 layout: rich
 tags:
-  - AI
-  - Git
-  - Developer-Tools
-  - UX
+- AI
+- GitHub
+- Work
 ---
 
 <img src="/static/images/copilot-git-decisions-hero.png" alt="Editorial illustration of branching Git workflow paths laid out like a guided transit map with decision points" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />

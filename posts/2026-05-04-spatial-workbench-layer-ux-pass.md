@@ -1,11 +1,10 @@
 ---
 date: 2026-05-04
 tags:
-  - Draft
-  - GIS
-  - AI
-  - product
-  - work
+- Draft
+- GIS
+- AI
+- Product
 title: Spatial Workbench Needed a Layer UX Pass Before Anything Smarter
 layout: rich
 ---

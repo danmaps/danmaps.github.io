@@ -2,12 +2,9 @@
 title: "Symphony needs evals before autonomy"
 date: 2026-04-06
 tags:
-  - Draft
-  - AI
-  - systems
-  - orchestration
-  - Symphony
-  - evaluation
+- Draft
+- AI
+- Systems
 layout: rich
 ---
 

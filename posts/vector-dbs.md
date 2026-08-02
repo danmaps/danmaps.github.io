@@ -1,10 +1,9 @@
 ---
 date: 2024-08-18
 tags:
-- Programming
 - AI
-- Databases
 - Data
+- Python
 title: What are Vector Databases?
 layout: rich
 ---

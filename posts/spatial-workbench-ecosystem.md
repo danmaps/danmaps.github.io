@@ -2,9 +2,9 @@
 title: Toward a Spatial Workbench Ecosystem
 date: 2026-02-16
 tags:
-  - GIS
-  - AI
-  - Agents
+- GIS
+- AI
+- Product
 layout: rich
 ---
 

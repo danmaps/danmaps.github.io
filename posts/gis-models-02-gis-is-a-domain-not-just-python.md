@@ -4,12 +4,10 @@ series: "Choosing the Right AI Model for the Right GIS Job"
 series_index: 2
 date: 2026-02-22
 tags:
-  - Unlisted
-  - AI
-  - GIS
-  - Data
-  - Automation
-  - Models
+- Unlisted
+- AI
+- GIS
+- Data
 layout: rich
 ---
 

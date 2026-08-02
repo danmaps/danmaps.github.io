@@ -2,9 +2,8 @@
 date: 2025-03-25
 tags:
 - AI
-- career
-- productivity
-- technology
+- Career
+- Productivity
 title: Adapt or Get Left Behind - The New AI Skillset
 layout: rich
 ---

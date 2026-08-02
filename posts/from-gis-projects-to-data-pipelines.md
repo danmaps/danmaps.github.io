@@ -1,11 +1,10 @@
 ---
 date: 2025-12-29
 tags:
-- gis
-- data engineering
-- pipelines
-- careers
-- systems thinking
+- GIS
+- Data
+- Systems
+- Career
 title: From GIS Projects to Data Pipelines
 layout: rich
 ---

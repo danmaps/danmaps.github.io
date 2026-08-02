@@ -2,11 +2,10 @@
 title: "Fixing the freeze guardrail by admitting generated files are part of the product"
 date: 2026-03-25
 tags:
-  - Draft
-  - blogging
-  - systems
-  - tooling
-  - GitHub
+- Draft
+- Writing
+- Systems
+- GitHub
 layout: rich
 ---
 

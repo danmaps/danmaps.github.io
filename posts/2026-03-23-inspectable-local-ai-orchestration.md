@@ -1,11 +1,9 @@
 ---
 date: 2026-03-23
 tags:
-  - AI
-  - systems
-  - orchestration
-  - Symphony
-  - Draft
+- Draft
+- AI
+- Systems
 title: AI Orchestration Gets Real When You Can Inspect the Work
 layout: rich
 ---

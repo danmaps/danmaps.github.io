@@ -2,12 +2,10 @@
 title: "I Let an AI Write My GIS Workflow. Here's What Broke."
 date: 2026-04-24
 tags:
-  - AI
-  - GIS
-  - ArcGIS
-  - automation
-  - guardrails
-  - geoprocessing
+- AI
+- GIS
+- Automation
+- Systems
 summary: "AI can generate GIS workflow code, but the real story starts when that code meets projections, schemas, and production execution."
 layout: rich
 ---

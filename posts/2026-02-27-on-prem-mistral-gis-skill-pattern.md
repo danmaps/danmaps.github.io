@@ -4,12 +4,9 @@
 title: "A practical GIS skill pattern for on-prem Mistral (and other local LLMs)"
 date: 2026-02-27
 tags:
-  - GIS
-  - LLM
-  - On-Prem
-  - RAG
-  - ArcGIS
-  - Draft
+- Draft
+- AI
+- GIS
 layout: rich
 ---
 

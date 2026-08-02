@@ -2,10 +2,10 @@
 title: "Agent vs Skill vs Deterministic Tool: a practical decision guide"
 date: 2026-02-23
 tags:
-  - AI
-  - Agents
-  - Workflow
-  - Draft
+- Draft
+- AI
+- Agents
+- Systems
 layout: rich
 ---
 

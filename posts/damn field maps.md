@@ -1,9 +1,8 @@
 ---
 date: 2024-08-21
 tags:
-- python
-- gis
-- arcgis
+- GIS
+- Python
 title: Field Mapping Frustrations in GIS - Automating Spatial Joins
 layout: rich
 ---

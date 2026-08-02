@@ -1,9 +1,9 @@
 ---
 date: 2026-02-11
 tags:
-  - ai
-  - gis
-  - work
+- AI
+- Work
+- Productivity
 title: Removing Work Is the Real AI Leverage
 layout: rich
 ---

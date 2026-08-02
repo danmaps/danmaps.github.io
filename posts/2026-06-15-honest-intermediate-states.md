@@ -2,11 +2,10 @@
 title: Honest Intermediate States Make Better Systems
 date: 2026-06-15
 tags:
-  - Draft
-  - AI
-  - systems
-  - workflow
-  - writing
+- Draft
+- AI
+- Systems
+- Writing
 summary: "A lot of the most useful work I did this week had the same shape: make the in-between state real. Drafts that can be shared without pretending they are finished, memory that can be revised instead of rediscovered, and mission systems that preserve intake and failure context instead of flattening everything into a fake success."
 layout: rich
 ---
