@@ -277,6 +277,12 @@ body.tag-page .about-link {
     text-transform: uppercase;
 }
 
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
 body.home .about-link:hover,
 body.post-page .about-link:hover,
 body.tag-page .about-link:hover {
@@ -399,11 +405,6 @@ body.post-page main.post-main {
     padding-top: 0.5rem;
 }
 
-.home-tag-section {
-    margin: 1.35rem 0 2rem;
-    padding-top: 0.25rem;
-}
-
 .home-latest-header {
     display: flex;
     align-items: baseline;
@@ -434,90 +435,6 @@ body.post-page main.post-main {
     text-decoration: none;
 }
 
-.home-tag-intro {
-    margin: 0.45rem 0 0;
-    max-width: 52ch;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
-}
-
-.home-tag-disclosure {
-    border: 1px solid var(--panel-border);
-    background: var(--panel-bg);
-}
-
-.home-tag-summary {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 1.15rem;
-    cursor: pointer;
-}
-
-.home-tag-summary::-webkit-details-marker {
-    display: none;
-}
-
-.home-tag-summary-copy {
-    min-width: 0;
-}
-
-.home-tag-summary .home-latest-label {
-    margin-bottom: 0;
-}
-
-.home-tag-toggle {
-    flex-shrink: 0;
-    color: var(--accent);
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.home-tag-disclosure[open] .home-tag-toggle::before {
-    content: "Close";
-}
-
-.home-tag-disclosure:not([open]) .home-tag-toggle::before {
-    content: "Open";
-}
-
-.home-tag-toggle {
-    font-size: 0;
-}
-
-.home-tag-panel {
-    padding: 0 1.15rem 1.15rem;
-    border-top: 1px solid var(--panel-border);
-}
-
-.home-tag-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0.95rem 0 0.85rem;
-}
-
-.home-tag-preview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-}
-
-.home-tag-preview-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--panel-bg);
-    border: 1px solid var(--panel-border);
-}
-
-.home-tag-preview-pill span {
-    color: var(--text-muted);
-    font-size: 0.92em;
-}
 
 /* ── Card grid ────────────────────────────────────────── */
 .home-feed {
@@ -765,21 +682,9 @@ body.post-page main.post-main {
         gap: 0.6rem;
     }
 
-    .home-tag-summary {
-        align-items: flex-start;
-        padding: 0.95rem 1rem;
-    }
-
-    .home-tag-panel {
-        padding: 0 1rem 1rem;
-    }
-
-    .home-tag-actions {
-        justify-content: flex-start;
-    }
-
-    .home-tag-preview {
-        gap: 0.55rem;
+    .site-nav {
+        gap: 0.45rem;
+        flex-wrap: wrap;
     }
 
     .tag-cloud-panel,

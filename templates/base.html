@@ -24,7 +24,8 @@
         <div class="container bg-dark", id="header-container">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="{{ url_for('index') }}" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav>
+                <nav class="site-nav">
+                    <a href="{{ url_for('tags') }}" class="about-link btn btn-outline-light">Tags</a>
                     <a href="{{ url_for('post', post_name='about-me') }}" class="about-link btn btn-outline-light">About Me</a>
                 </nav>
             </div>
