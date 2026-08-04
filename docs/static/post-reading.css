@@ -400,6 +400,29 @@
     pointer-events: none;
 }
 
+/* Fade post content into the top browser chrome instead of chasing
+   a single "correct" viewport edge across in-app browsers. */
+body.post-page::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(env(safe-area-inset-top, 0px) + 5.5rem);
+    z-index: 9998;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2, 6, 13, 0.98) 0%,
+            rgba(2, 6, 13, 0.92) calc(env(safe-area-inset-top, 0px) + 1.1rem),
+            rgba(2, 6, 13, 0.58) calc(env(safe-area-inset-top, 0px) + 3.2rem),
+            rgba(2, 6, 13, 0) 100%
+        );
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
 /* --- Table of contents --- */
 .post-toc {
     max-width: 680px;
