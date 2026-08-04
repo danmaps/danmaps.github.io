@@ -387,36 +387,44 @@
 }
 
 /* --- Scroll progress bar --- */
+body.post-page {
+    --post-top-safe: env(safe-area-inset-top, 0px);
+    --post-top-band-height: calc(var(--post-top-safe) + 6.4rem);
+    --post-progress-offset: calc(var(--post-top-safe) + 0.9rem);
+}
+
 .scroll-progress {
     position: fixed;
-    top: 0;
+    top: var(--post-progress-offset);
     left: 0;
     right: auto;
     height: 3px;
     background: #77b9ff;
     width: 0%;
     z-index: 9999;
+    box-shadow: 0 0 18px rgba(119, 185, 255, 0.3);
     transition: width 0.1s linear;
     pointer-events: none;
 }
 
-/* Fade post content into the top browser chrome instead of chasing
-   a single "correct" viewport edge across in-app browsers. */
+/* Treat the top browser chrome as part of the reading layout so the
+   progress bar sits inside a dimmed band instead of below it. */
 body.post-page::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: calc(env(safe-area-inset-top, 0px) + 5.5rem);
+    height: var(--post-top-band-height);
     z-index: 9998;
     pointer-events: none;
     background:
         linear-gradient(
             180deg,
-            rgba(2, 6, 13, 0.98) 0%,
-            rgba(2, 6, 13, 0.92) calc(env(safe-area-inset-top, 0px) + 1.1rem),
-            rgba(2, 6, 13, 0.58) calc(env(safe-area-inset-top, 0px) + 3.2rem),
+            rgba(2, 6, 13, 0.995) 0%,
+            rgba(2, 6, 13, 0.995) calc(var(--post-progress-offset) - 0.2rem),
+            rgba(2, 6, 13, 0.94) calc(var(--post-progress-offset) + 0.65rem),
+            rgba(2, 6, 13, 0.7) calc(var(--post-progress-offset) + 2.15rem),
             rgba(2, 6, 13, 0) 100%
         );
     -webkit-backdrop-filter: blur(10px);
