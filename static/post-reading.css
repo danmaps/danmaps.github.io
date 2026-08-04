@@ -391,11 +391,13 @@
     position: fixed;
     top: 0;
     left: 0;
+    right: auto;
     height: 3px;
     background: #77b9ff;
     width: 0%;
     z-index: 9999;
     transition: width 0.1s linear;
+    pointer-events: none;
 }
 
 /* --- Table of contents --- */
