@@ -137,7 +137,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
         
         <span class="separator">·</span>
-        <span class="reading-time">5 min read</span>
+        <span class="reading-time">8 min read</span>
         
     </div>
 </header>
@@ -152,19 +152,52 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <!-- Article body -->
 <article class="post-reading">
-    <p>This was a very small bug.</p>
+    <p>This started as a very small bug.</p>
 <p>That is part of why I liked it.</p>
 <p>On iPhone Safari, the reading progress bar on my blog could overlap content instead of sitting cleanly at the very top of the screen.</p>
-<p>The fix was not dramatic.<br />
+<p>The first fix was not dramatic.<br />
 It was mostly about telling the page the truth:</p>
 <ul>
 <li>the viewport is not the same thing as the comfortable content band</li>
 <li>iOS safe-area behavior is part of the layout contract</li>
 <li>a fixed UI element still belongs to the page architecture</li>
 </ul>
-<p>In practice, that meant enabling <code>viewport-fit=cover</code> in the base template so Safari could place the fixed progress bar against the true top edge of the viewport instead of treating the layout more conservatively.</p>
+<p>In practice, that meant changing the base template viewport meta tag from:</p>
+<p><code>width=device-width, initial-scale=1.0</code></p>
+<p>to:</p>
+<p><code>width=device-width, initial-scale=1.0, viewport-fit=cover</code></p>
+<p>and tightening the progress-bar CSS so it behaved like a real fixed edge element:</p>
+<ul>
+<li><code>top: 0</code></li>
+<li><code>left: 0</code></li>
+<li><code>right: auto</code></li>
+<li><code>height: 3px</code></li>
+<li><code>pointer-events: none</code></li>
+</ul>
+<p>The important part was <code>viewport-fit=cover</code>.<br />
+Without it, Safari was still treating the top of the page as a safer, more padded band.<br />
+With it, the browser would actually let the page occupy the full device viewport, which meant the progress bar could sit on the true edge instead of drifting into content space.</p>
 <p>That is a tiny implementation detail.<br />
 It is also a useful design lesson.</p>
+<p>It was also not the end of the story.</p>
+<p>After I made the change, rebuilt the site, and pushed the draft, the next screenshot back from the phone was basically:</p>
+<p>"cool, now it is pinned to a different wrong top."</p>
+<p>Safari in isolation was one thing.<br />
+Safari inside Telegram's in-app browser was another.<br />
+The bar was now hugging the absolute viewport edge while the in-app browser chrome created its own visual top band above the content.</p>
+<p>So the bug went from:</p>
+<ul>
+<li>the progress bar can overlap content on iPhone Safari</li>
+</ul>
+<p>to:</p>
+<ul>
+<li>the progress bar is technically at the real top edge</li>
+<li>the real top edge is not always the visually correct edge</li>
+<li>mobile web work loves making those two facts your problem</li>
+</ul>
+<p>That second failure is the part I actually want to remember.<br />
+The first fix was right.<br />
+It just was not the whole environment yet.</p>
 <h2 id="small-interface-bugs-often-reveal-the-real-mental-model">Small interface bugs often reveal the real mental model</h2>
 <p>I like bugs like this because they usually expose a mismatch between two models:</p>
 <ul>
@@ -185,6 +218,14 @@ They have:</p>
 <p>So a component that feels visually trivial on desktop can become slightly wrong on mobile in a way that reveals a deeper truth:</p>
 <p><strong>the viewport is not a neutral box.</strong></p>
 <p>It is a negotiated surface.</p>
+<p>And sometimes it is negotiated twice:</p>
+<ul>
+<li>once by the browser engine</li>
+<li>once again by the container app embedding that browser</li>
+</ul>
+<p>That is what the repeated failure exposed.<br />
+I was not debugging a top edge.<br />
+I was debugging a stack of competing ideas about where the top edge even is.</p>
 <p>If you ignore that, the UI may still look correct in your development environment while being subtly wrong in the place that actually matters.</p>
 <h2 id="a-fixed-element-is-still-part-of-layout-not-an-overlay-exemption">A fixed element is still part of layout, not an overlay exemption</h2>
 <p>I think people sometimes treat tiny fixed UI as if it lives outside the real design system.</p>
@@ -208,6 +249,11 @@ It is part of the usability story.</p>
 <p>That was the real issue here.<br />
 The progress bar was not broken because it was large or complicated.<br />
 It was broken because it was pretending not to participate in the same spatial rules as the rest of the interface.</p>
+<p>The implementation details made that obvious in a useful way.<br />
+I did not end up changing some elaborate component logic.<br />
+I changed page-level assumptions in <code>templates/base.html</code> and a few guardrail styles in <code>static/post-reading.css</code>.</p>
+<p>That is a good smell test for bugs like this.<br />
+If the problem shows up in a tiny component, but the fix lives in the document contract and the shared reading CSS, then the component was never the whole story.</p>
 <h2 id="the-browser-was-being-more-honest-than-my-default-assumptions">The browser was being more honest than my default assumptions</h2>
 <p>One reason I keep trusting practical bugfix work is that it forces precision.</p>
 <p>It is easy to say things like:</p>
@@ -226,6 +272,12 @@ They are not operationally precise.</p>
 <li>with what interaction behavior?</li>
 </ul>
 <p>This time, the answer was partly in the viewport meta tag, not in the progress bar styles alone.</p>
+<p>And even after that, the next honest question was:</p>
+<ul>
+<li>top of which viewport?</li>
+<li>under which browser chrome?</li>
+<li>in standalone Safari or an in-app browser wrapper?</li>
+</ul>
 <p>That matters because it is a good reminder that UI bugs often do not live exactly where they appear.</p>
 <p>The visible symptom was the bar.<br />
 The real correction was broader.<br />
@@ -248,6 +300,11 @@ And apparently it is true in a one-pixel-tall reading bar too.</p>
 <p>The top of the screen matters.<br />
 The first scroll matters.<br />
 The way a fixed element behaves near browser chrome matters.</p>
+<p>The repeated-failure part matters too.</p>
+<p>One reason mobile web dev has a reputation is that you can absolutely fix the bug you saw and still be wrong in the next runtime context.<br />
+Not because the first fix was fake, but because the environment changed shape again.</p>
+<p>That can feel ridiculous when you are dealing with a three-pixel bar.<br />
+Unfortunately, it is also real engineering information.</p>
 <p>That does not mean every tiny UI issue deserves a dramatic essay.<br />
 It just means the edge cases are often where a product reveals whether it was built from screenshots or from lived use.</p>
 <p>For writing surfaces especially, I think this matters more than people admit.</p>
@@ -263,6 +320,7 @@ It should not behave like an afterthought on the platform where a huge amount of
 It is not the whole point.</p>
 <p>The better lesson is:</p>
 <p><strong>environment assumptions are part of the interface.</strong></p>
+<p>And if the environment is layered, the assumptions are layered too.</p>
 <p>If a design depends on:</p>
 <ul>
 <li>a particular browser behavior</li>
@@ -285,6 +343,14 @@ That applies to:</p>
 </ul>
 <p>Different domains, same principle.</p>
 <p>When the environment shapes the behavior, the environment is part of the system.</p>
+<p>Sometimes the system includes the embarrassing little sequence where:</p>
+<ol>
+<li>you fix the CSS</li>
+<li>the real fix is the viewport meta tag</li>
+<li>the next screenshot shows an in-app browser making "top" ambiguous again</li>
+</ol>
+<p>I do not even think that is a side story.<br />
+That is the story.</p>
 <h2 id="my-current-rule">My current rule</h2>
 <p>Here is the version I want to keep:</p>
 <p><strong>if a UI element depends on the edge of the screen, then the edge conditions are part of the component.</strong></p>
