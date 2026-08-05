@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Getting Hands-On Is Part of the AI Work</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/tags.html" class="about-link btn btn-outline-light">Tags</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">AI</span>
+    </div>
+    
+    <h1>Getting Hands-On Is Part of the AI Work</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-08-04">August 4, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>In a Copilot for Excel meeting today, someone asked a good question.</p>
+<p>Would it be easier to manually fix the formatting, like adding percentage signs where they were missing?</p>
+<p>Or would it be better to keep prompting until the model got the result exactly right?</p>
+<p>That sounds like a tiny workflow decision.</p>
+<p>I do not think it is tiny.</p>
+<p>I think it gets at something important about how these tools are supposed to fit into real work.</p>
+<h2 id="the-wrong-goal-is-never-touch-it">The wrong goal is "never touch it"</h2>
+<p>There is a tempting fantasy around AI tools:</p>
+<ul>
+<li>write one perfect prompt</li>
+<li>get one perfect output</li>
+<li>never touch the work yourself</li>
+</ul>
+<p>That fantasy is neat.<br />
+It is also not how most good work happens.</p>
+<p>Sometimes another prompt is obviously the right move.<br />
+If the structure is wrong, the logic is wrong, or the model misunderstood the task, you should absolutely push the work back through the tool instead of cleaning up a bad result by hand.</p>
+<p>But sometimes the work is already basically correct.<br />
+The table is useful.<br />
+The analysis is right.<br />
+The output is 90 percent there.</p>
+<p>At that point, insisting on prompt purity can become its own kind of inefficiency.</p>
+<p>If the only thing left is a little formatting cleanup, it may actually be better to open the file, touch the cells, add the percentage signs, and move on with your life.</p>
+<h2 id="hands-on-does-not-mean-failure">Hands-on does not mean failure</h2>
+<p>I think people sometimes treat manual intervention as if it proves the AI workflow failed.</p>
+<p>I think that is backwards.</p>
+<p>Getting hands-on with the output is often part of the quality control.</p>
+<p>It is how you:</p>
+<ul>
+<li>notice whether the result actually makes sense</li>
+<li>catch subtle weirdness the model did not understand</li>
+<li>make judgment calls that are too small or contextual to deserve another full generation pass</li>
+<li>stay connected to the real artifact instead of only the prompt</li>
+</ul>
+<p>That last part matters a lot.</p>
+<p>If you only ever interact with AI work through prompts, it becomes very easy to stop really seeing the result.<br />
+You start managing the machine instead of examining the work.</p>
+<p>That is one of the fastest paths to slop.</p>
+<h2 id="a-little-friction-is-sometimes-the-healthy-part">A little friction is sometimes the healthy part</h2>
+<p>One thing I keep noticing with AI tools is that they remove friction so aggressively that you can lose the benefits friction used to provide.</p>
+<p>Old friction was not always bad.<br />
+Sometimes it was the thing that forced you to look closely.</p>
+<p>When a person has to manually fix a handful of spreadsheet cells, rewrite a heading, trim a paragraph, or adjust a chart label, they are not just "doing what the AI should have done."</p>
+<p>They are re-entering the work.</p>
+<p>They are checking:</p>
+<ul>
+<li>what the tool actually produced</li>
+<li>whether the result still matches the intent</li>
+<li>whether the output feels trustworthy enough to keep</li>
+</ul>
+<p>That is not waste.<br />
+That is part of the process.</p>
+<h2 id="the-better-workflow-question">The better workflow question</h2>
+<p>So the real question is not:</p>
+<p>"Should I ever manually clean up AI output?"</p>
+<p>The real question is:</p>
+<p>"Where is the boundary between re-prompting and editing?"</p>
+<p>I think the answer looks something like this:</p>
+<ul>
+<li>if the model got the task wrong, re-prompt</li>
+<li>if the structure is wrong, re-prompt</li>
+<li>if the logic is wrong, re-prompt</li>
+<li>if the output is basically right and only needs human finish work, touch it yourself</li>
+</ul>
+<p>That is not anti-AI.<br />
+That is just a healthier division of labor.</p>
+<p>The tool gets you most of the way there.<br />
+You provide the last-mile judgment.</p>
+<h2 id="touching-the-work-keeps-taste-alive">Touching the work keeps taste alive</h2>
+<p>Part of what people are worried about when they talk about AI slop is not just correctness.</p>
+<p>It is deadness.</p>
+<p>Outputs that are technically acceptable but visibly unloved.<br />
+Work that nobody really inspected.<br />
+Results that were generated, accepted, and shipped without anyone putting their hands on them.</p>
+<p>I do not think the solution is to reject AI assistance.</p>
+<p>I think the solution is to stay in contact with the artifact.</p>
+<p>Read the spreadsheet.<br />
+Fix the label.<br />
+Adjust the sentence.<br />
+Move the chart.<br />
+Question the summary.</p>
+<p>Even if it is slightly slower.</p>
+<p>Especially if it is slightly slower.</p>
+<p>That little bit of contact may be the thing that keeps the process honest.</p>
+<h2 id="the-point-is-not-prompt-purity">The point is not prompt purity</h2>
+<p>I do not want a workflow where the human is reduced to prompt vending.</p>
+<p>I want a workflow where the tool accelerates the boring parts, but the person still applies judgment, taste, and responsibility at the end.</p>
+<p>Sometimes that means writing a better prompt.</p>
+<p>Sometimes that means changing the percentage signs yourself.</p>
+<p>The goal is not to avoid touching the work.</p>
+<p>The goal is to get to good work faster without mentally checking out along the way.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/product.html">Product</a>
+    
+    <a class="post-tag" href="/tag/work.html">Work</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>
