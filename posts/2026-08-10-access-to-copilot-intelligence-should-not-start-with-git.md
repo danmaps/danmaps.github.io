@@ -2,7 +2,6 @@
 title: Access to Copilot Intelligence Should Not Start With Git
 date: 2026-08-10
 tags:
-- Draft
 - AI
 - GitHub
 - Work
