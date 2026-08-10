@@ -15,6 +15,8 @@ I keep coming back to a product distinction that feels obvious once you say it o
 
 **people do not usually want version control. They want access to intelligence.**
 
+<img src="/static/images/copilot-intelligence-should-not-start-with-git-hero.png" alt="Editorial surrealist illustration of a small person facing a bright portal while branching folders and repository-like rails recede into the background as supporting infrastructure" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 That sounds anti-Git. It is not.
 
 I still think version control is one of the best safety practices a technical team can adopt. I wrote that directly a few weeks ago, and I still believe it. History, rollback, review, and traceability matter.
