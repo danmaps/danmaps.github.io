@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Access to Copilot Intelligence Should Not Start With Git</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/tags.html" class="about-link btn btn-outline-light">Tags</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">AI</span>
+    </div>
+    
+    <h1>Access to Copilot Intelligence Should Not Start With Git</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-08-10">August 10, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">5 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>I keep coming back to a product distinction that feels obvious once you say it out loud:</p>
+<p><strong>people do not usually want version control. They want access to intelligence.</strong></p>
+<p>That sounds anti-Git. It is not.</p>
+<p>I still think version control is one of the best safety practices a technical team can adopt. I wrote that directly a few weeks ago, and I still believe it. History, rollback, review, and traceability matter.</p>
+<p>But when you are trying to help non-technical or semi-technical people benefit from tools like GitHub Copilot, teaching version control as the first big hurdle is often a category error.</p>
+<p>It front-loads the wrong difficulty.</p>
+<h2 id="the-thing-people-are-actually-reaching-for">The thing people are actually reaching for</h2>
+<p>When most people say they want "Copilot," they usually do not mean:</p>
+<ul>
+<li>I want to understand branching strategy</li>
+<li>I want to think about commit boundaries</li>
+<li>I want to manage remotes and pull behavior</li>
+<li>I want to internalize the mental model of Git</li>
+</ul>
+<p>What they usually mean is something more like:</p>
+<ul>
+<li>I want help making sense of this work</li>
+<li>I want a smart assistant while I am doing it</li>
+<li>I want to ask questions in plain language</li>
+<li>I want useful suggestions without needing a specialist beside me</li>
+<li>I want to move faster without feeling lost</li>
+</ul>
+<p>That is an intelligence request, not a version control request.</p>
+<p>The mistake is treating the safety substrate as the product itself.</p>
+<h2 id="git-is-valuable-but-it-is-not-the-desire">Git is valuable, but it is not the desire</h2>
+<p>This is where technical people often get tripped up.</p>
+<p>We know version control is useful, so we start building the whole story around why the learner should care about commits, diffs, repos, and branches. We are not wrong exactly. We are just starting too far down the stack.</p>
+<p>For a beginner, especially one whose job is not "software developer," that framing can sound like:</p>
+<p>"Before you get the smart assistant you wanted, please first adopt an entire culture of technical workflow."</p>
+<p>That is a lot to ask.</p>
+<p>In many cases, it is enough friction to kill the whole adoption path.</p>
+<p>And worse, it confuses the user's real goal. They did not show up asking for a safer artifact history. They showed up asking for better thinking support.</p>
+<h2 id="the-product-layers-should-be-separated">The product layers should be separated</h2>
+<p>I think this is the more useful way to frame it:</p>
+<ol>
+<li><strong>The intelligence layer</strong></li>
+<li><strong>The safety layer</strong></li>
+</ol>
+<p>The intelligence layer is what the user experiences directly.<br />
+It helps them write, decide, summarize, transform, inspect, and move work forward.</p>
+<p>The safety layer protects that work.<br />
+It captures history, makes rollback possible, preserves context, and creates a trail someone else can follow later.</p>
+<p>Both matter.<br />
+But they are not the same thing, and they should not necessarily arrive in the same order.</p>
+<p>For non-technical users, the product often works better when the intelligence layer is immediate and the safety layer is either:</p>
+<ul>
+<li>mostly invisible at first</li>
+<li>gently introduced in context</li>
+<li>or managed by the system until the user actually needs to think about it</li>
+</ul>
+<p>That is different from pretending history does not matter.<br />
+It is about not making infrastructure the first emotional experience of the tool.</p>
+<h2 id="github-copilot-is-one-shape-not-the-whole-idea">GitHub Copilot is one shape, not the whole idea</h2>
+<p>GitHub Copilot is powerful partly because it lives close to the work.<br />
+That is a real advantage.</p>
+<p>When the work already lives in files, repos, pull requests, issues, and review flows, Copilot can attach intelligence to an existing operational system. That makes the suggestions more grounded and the workflow more useful.</p>
+<p>But I think there is a trap in over-generalizing from that success.</p>
+<p>It is easy to look at GitHub Copilot and conclude that the path to useful AI assistance for everyone is:</p>
+<ol>
+<li>put the work in GitHub</li>
+<li>teach enough Git and repository behavior</li>
+<li>then let people access the intelligence</li>
+</ol>
+<p>That makes sense for software teams.<br />
+It is much shakier for everyone else.</p>
+<p>An operations team, analyst team, field team, or internal process team may benefit enormously from copilot-style help without ever wanting to inhabit the full GitHub mental model.</p>
+<p>They may need:</p>
+<ul>
+<li>guidance</li>
+<li>editing help</li>
+<li>workflow memory</li>
+<li>structured drafting</li>
+<li>decision support</li>
+<li>automation scaffolding</li>
+</ul>
+<p>without wanting their first lesson to be merge anxiety.</p>
+<h2 id="the-right-abstraction-might-be-safe-work-not-git-work">The right abstraction might be "safe work," not "Git work"</h2>
+<p>I suspect the better product abstraction for many people is not "learn version control so you can use an assistant."</p>
+<p>It is:</p>
+<p><strong>do your work in a place where the assistant is useful and the system keeps it safe.</strong></p>
+<p>That safety might still be implemented with Git underneath.<br />
+In fact, a lot of the time it probably should be.</p>
+<p>But the product promise should be about safe progress, not repository literacy.</p>
+<p>This feels increasingly important as AI moves into domains where the user is not primarily a programmer.</p>
+<p>If the real win is better judgment on demand, then the system should meet people at the level of tasks, documents, workflows, decisions, and outputs. Not force everyone to mentally descend into source-control mechanics before the value shows up.</p>
+<h2 id="teach-the-judgment-first-surface-the-mechanics-later">Teach the judgment first, surface the mechanics later</h2>
+<p>One reason I found GitHub Copilot's Git guidance interesting is that it teaches through decisions instead of through a lecture.</p>
+<p>I think that same principle applies here too.</p>
+<p>If a user eventually does need version control concepts, the best moment to introduce them is probably in context:</p>
+<ul>
+<li>when a checkpoint would reduce fear</li>
+<li>when a change should be reviewed</li>
+<li>when two versions need comparison</li>
+<li>when a rollback becomes useful</li>
+<li>when a handoff requires traceability</li>
+</ul>
+<p>That is when the concept earns its keep.</p>
+<p>Teaching Git as abstract initiation before any real value arrives is often just ceremony.</p>
+<p>Teaching safe habits at the moment they solve an immediate problem is education.</p>
+<h2 id="the-takeaway">The takeaway</h2>
+<p>For non-technical people, "access to Copilot" and "adopt GitHub workflow culture" should not be treated as the same request.</p>
+<p>Version control is still worth having.<br />
+It may even be essential underneath.</p>
+<p>But if what people actually want is copilot intelligence, then the job is to give them that intelligence with as little unnecessary ceremony as possible, while building the safety layer under or around the experience.</p>
+<p>In other words:</p>
+<p>Do not make people earn the assistant by passing a Git quiz.</p>
+<p>Let them feel the intelligence first.<br />
+Then introduce the structure that makes it durable.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/github.html">GitHub</a>
+    
+    <a class="post-tag" href="/tag/work.html">Work</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>
