@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dark globe favicon">
-  <rect width="64" height="64" rx="14" fill="#0F1720"/>
-  <circle cx="32" cy="32" r="19" fill="#16313A" stroke="#8FE7E1" stroke-width="3"/>
-  <ellipse cx="32" cy="32" rx="10" ry="19" fill="none" stroke="#8FE7E1" stroke-width="2.4"/>
-  <ellipse cx="32" cy="32" rx="19" ry="8" fill="none" stroke="#8FE7E1" stroke-width="2.4"/>
-  <path d="M13 32h38M19 22.5h26M19 41.5h26" fill="none" stroke="#8FE7E1" stroke-width="2.4" stroke-linecap="round"/>
-  <circle cx="25" cy="25" r="2.2" fill="#F3E7C7"/>
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#2D9AA0" stroke-width="3"/>
+  <ellipse cx="32" cy="32" rx="10" ry="19" fill="none" stroke="#2D9AA0" stroke-width="2.4"/>
+  <ellipse cx="32" cy="32" rx="19" ry="8" fill="none" stroke="#2D9AA0" stroke-width="2.4"/>
+  <path d="M13 32h38M19 22.5h26M19 41.5h26" fill="none" stroke="#2D9AA0" stroke-width="2.4" stroke-linecap="round"/>
 </svg>
