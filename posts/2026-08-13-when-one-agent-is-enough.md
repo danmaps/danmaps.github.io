@@ -1,122 +1,117 @@
 ---
-title: "When One Agent Is Enough"
+title: "The New Craft of Collaborating With AI"
 date: 2026-08-13
 tags:
 - Draft
 - AI
-- Agents
+- Systems
 - Work
-summary: "A GIS permit workflow became a useful early case study in AI adoption: the biggest win was not fanning work out across specialist agents, but keeping one continuous thread in one context while reserving the irreversible final edit for the human."
+summary: "The most useful AI boundary in real work is often not full automation but collaboration: let the system set you up to move quickly and confidently, while the human keeps the irreversible step."
 layout: rich
 ---
 
-*How a GIS team adopted agentic AI for a real permit workflow — and learned that the biggest early win was knowing when* not *to fan work out across a roster of specialist agents.*
+I am getting more interested in a narrower and more practical question than "what can AI do?"
 
----
+The better question is:
 
-## Executive summary
+**what is the right working relationship between me and the system?**
 
-A GIS analyst received four Temporary Entry Permit exhibits and needed a map to remove the corresponding work areas from an authoritative geodatabase. The environment offered a full cast of specialist AI agents: an orchestrator, a logistics researcher, an engineer, validators, a documentarian. The instinct, which is common in early agent adoption, was to delegate aggressively. Instead, the work was completed by a single agent working in one continuous context, with the analyst reserving the one irreversible step for themselves.
+I keep seeing people frame AI adoption as a question of replacement.
+Can it do the whole task?
+Can it finish the work without me?
+Can I hand it over and stay out of the loop?
 
-The outcome was simple and concrete: a new, correctly sourced editing map with four parcel bookmarks, produced in a single tight session, backed up, verified against the source of truth, and documented for audit. The adoption lesson was the part worth keeping: for a task that is really one idea, orchestration is overhead, not value.
+That is sometimes the right question.
+But in a lot of real work, it is the wrong one.
 
----
+This week I had a useful reminder of that while working through an internal permitting exercise in ArcGIS Pro.
 
-## 1. Context: the team and the tool
+The interesting decision was not whether the AI could complete the task end to end.
+It was that I deliberately did **not** want it to.
 
-**The team.** A GIS and MPO group maintaining authoritative transmission and permit data in ArcGIS Pro, backed by dated consolidated geodatabases. Their work is high-stakes in a quiet way: the data they edit becomes the record that other departments, agencies, and legal processes rely on.
+I wanted something more precise.
+I wanted the system to set me up to do the work quickly and almost effortlessly, while I kept control of the actual irreversible edit.
 
-**The tool.** A newly adopted agentic AI assistant embedded in their ArcGIS Pro environment, able to read files, run arcpy, and delegate to a roster of purpose-built sub-agents with evocative names and clear specialties. To a team early in adoption, that roster is the shiny object. It looks like the whole point.
+That boundary turned out to matter a lot.
 
-**The trigger task.** A Friday ZIP containing four PDF exhibits, Clark, Guiang, Williams, and Y&S, each identifying a parcel by an APN hidden in the filename whose work areas should be removed. The request was straightforward: make me a map so I can remove these from the latest data.
+## The useful outcome was setup, not completion
 
----
+What I needed was not a magic autonomous finish.
 
-## 2. The adoption fork
+I needed:
 
-Here is the decision every team faces in its first weeks with agents, made concrete. The task decomposes so cleanly into specialist assignments:
+- the right map in ArcGIS Pro
+- the right features in view
+- the right bookmarks already staged
+- enough structure that I could step in and make the edit confidently
 
-| Step | The "obvious" agent to delegate to |
-|------|------------------------------------|
-| Plan the workflow | Orchestrator |
-| Read and scope the four PDFs | Documentation agent |
-| Find the newest consolidated gdb | Logistics agent |
-| Confirm parcel schema and APN field | Validation agent |
-| Write the arcpy to build the map | Engineering agent |
-| Estimate the join cost | Performance agent |
+Nothing more, nothing less.
 
-It reads like a staffing plan. That neatness is the adoption trap. A task that looks like six specialties was really one idea wearing six hats, and splitting the hats across six contexts means paying to glue them back onto the same head.
+That is a more modest ambition than "AI completed the workflow," but it is also much more useful.
 
----
+It removed friction.
+It removed hunting.
+It removed setup cost.
+It removed a bunch of boring spatial orientation work that usually burns time before the real decision even starts.
 
-## 3. The approach that was actually taken
+And because the system stopped at the boundary instead of crossing it, I still knew exactly what I was authoring.
 
-The agent pulled the thread directly, end to end, in one context:
+## The human boundary is where the trust lives
 
-> filename `..._471-112-05-00-5` → APN `471-112-05-00-5` → matching row in `rp_Ownership_Listing` → owner **CLARK** as a sanity check → work areas intersecting that parcel, OIDs `21` and `23` → parcel extent → padded bookmark **Clark (471-112-05-00-5)**.
+I think this is one of the more important boundaries in practical AI work.
 
-Then it staged the editing surface: a new map, layers bound to the newest `08122026` geodatabase, parcels plus work areas plus structures, and four bookmarks, one per exhibit. It backed up the project first, saved, reopened from disk to verify, and wrote a checkpoint. It did not delete anything. The irreversible cut was left to the analyst.
+There is a big difference between:
 
----
+- **AI did the work for me**
+- **AI prepared the work so I could do it cleanly**
 
-## 4. Why this was the better adoption pattern
+The second one is not a compromise.
+In a lot of serious environments, it is the better pattern.
 
-**Finding 1: Delegation shines for separate context. This was one continuous trace.** Each step's output was the next step's literal input. There was no seam where a second agent could add value that a first did not already hold. Agentic delegation pays off when a step needs a different context or authority. It taxes you when it merely re-cuts a thread you already own.
+It preserves speed without pretending accountability disappeared.
+It gives you leverage without making the authorship muddy.
+It keeps the irreversible step attached to the human who understands the consequences.
 
-**Finding 2: The value lived in the connective tissue, which delegation severs.** The whole task pivoted on a five-word insight: the APN is in the filename. Held in one mind, it could be reused four times with zero restatement. Split across a PDF agent and a join agent, it would have to be summarized and re-hydrated, and summaries are where decisive details quietly die.
+That is the boundary I want more of.
 
-**Finding 3: Handoffs cost more than the work.** Steps that finish in three tool calls do not justify a briefing, a cold context-window start, and a re-read to re-trust the result. Early adopters routinely under-price this overhead because the roster feels productive.
+## I am less interested in autonomy than in collaboration
 
-**Finding 4: Fewer agent boundaries mean fewer error surfaces.** Six briefings are six chances to mis-paraphrase the newest gdb or transpose an OID. One context has no internal borders to smuggle mistakes across.
+This feels like a new craft I am still learning.
 
-**Finding 5: Verification by artifact beat verification by committee.** Confidence came from reopening the saved `.aprx` and confirming four layers and four bookmarks, ground truth in seconds, not from a validator agent's sign-off.
+The skill is not just prompting well.
+It is not just knowing which model is smart.
+It is not even just building the tool.
 
----
+The skill is learning how to collaborate with AI in a way that is proportionate to the work.
 
-## 5. Where delegation would have been right
+Sometimes that means full automation.
+Sometimes that means asking for analysis.
+Sometimes that means letting the system draft a structure, create a first pass, or set up an environment.
+And sometimes, like here, it means having the AI prepare the exact surface I need so I can do the real work faster and with less drag.
 
-This is a hybrid adoption model, not a rejection of agents. Delegation earns its keep when a step needs a genuinely separate context or authority:
+That is not failure to automate enough.
+That is better judgment about where the machine should stop.
 
-- a governance or compliance check before a destructive write, reasoning from its own policy corpus
-- a security review with its own threat model
-- a broad exploration across unrelated subsystems that would blow out the main context
-- parallel investigations you can run while doing other work
+## The most useful AI often leaves the last move to you
 
-The useful question is not whether a step can be delegated. It is whether it needs a different context, or whether you are just fanning out a thread you already hold. Pay for the handoff only when the answer is the former.
+There is a version of the AI story that is obsessed with completion.
+Finish the task.
+Remove the human.
+Close the loop.
 
-On the next task, a scripted deletion that trips a governance rule, routing to the compliance agent first would be exactly right.
+I think a lot of the better real-world story is about positioning instead.
 
----
+Get me to the right place.
+Put the right evidence in front of me.
+Set the stage.
+Reduce the wasted motion.
+Then let me make the move that actually matters.
 
-## 6. The human boundary
+That is what happened here.
+The value was not that the AI completed the work.
+The value was that it made the work feel almost ready before I touched it.
 
-Distinct from the agent-versus-agent question, the workflow built everything up to the edit and stopped. Removing features from a system of record is irreversible and accountable, so that stroke was reserved for the analyst.
+I think that is a more honest and more durable model of adoption than a lot of the louder autonomy rhetoric.
 
-Healthy AI adoption draws this line on purpose. The machine sets the table. The human takes the bite. That is how authorship and accountability stay real.
-
----
-
-## 7. Guardrails that made fast, direct adoption safe
-
-- **Back up before you touch.** A `.backups\\..._preTEPmap_*.aprx` file was written before any change.
-- **Bind to the source of truth.** The work targeted the newest `08122026` consolidated geodatabase.
-- **Verify by reopening.** Trust the artifact you can re-read, not the log line.
-- **Leave an audit trail.** A checkpoint captured APNs, work-area OIDs, and decisions so the work stayed reproducible.
-
-Direct speed is only responsible when the reversible steps are made truly reversible. These rails are what let a team move fast without betting the record.
-
----
-
-## 8. Adoption takeaways for the team
-
-1. **Do not equate more agents with more value.** The roster is a capability, not a quota. Orchestration has real overhead. Spend it deliberately.
-2. **Match the tool to the shape of the work.** One bright thread means one agent and one context. Genuinely separate contexts mean delegate. Irreversible acts mean human.
-3. **Instrument trust, not ceremony.** Verify against ground truth by reopening the artifact. Do not mistake a chain of agent sign-offs for correctness.
-4. **Bake in reversibility.** Backups, source-of-truth binding, and checkpoints are what make aggressive automation culturally acceptable.
-5. **Keep the last cut human, on purpose.** Adoption sticks when people trust that the AI will not quietly make the irreversible decision for them.
-
-The most important early-adoption win here was not a clever automation. It was the judgment to do a one-idea task as one agent, reserve the roster for work that truly needs it, and keep a human hand on the pen for the stroke that cannot be undone.
-
----
-
-*Companion artifact: `checkpoint_remove_tep_work_areas_*.md` — the concrete inputs, OIDs, and decisions behind the map this case study reflects on.*
+The machine set me up.
+I kept the pen.

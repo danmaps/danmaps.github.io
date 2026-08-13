@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <title>When One Agent Is Enough</title>
+    <title>The New Craft of Collaborating With AI</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -132,14 +132,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="post-kicker">AI</span>
     </div>
     
-    <h1>When One Agent Is Enough</h1>
+    <h1>The New Craft of Collaborating With AI</h1>
     <div class="post-meta-bar">
         
         <time datetime="2026-08-13">August 13, 2026</time>
         
         
         <span class="separator">·</span>
-        <span class="reading-time">7 min read</span>
+        <span class="reading-time">3 min read</span>
         
     </div>
 </header>
@@ -154,104 +154,79 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <!-- Article body -->
 <article class="post-reading">
-    <p><em>How a GIS team adopted agentic AI for a real permit workflow — and learned that the biggest early win was knowing when</em> not <em>to fan work out across a roster of specialist agents.</em></p>
-<hr />
-<h2 id="executive-summary">Executive summary</h2>
-<p>A GIS analyst received four Temporary Entry Permit exhibits and needed a map to remove the corresponding work areas from an authoritative geodatabase. The environment offered a full cast of specialist AI agents: an orchestrator, a logistics researcher, an engineer, validators, a documentarian. The instinct, which is common in early agent adoption, was to delegate aggressively. Instead, the work was completed by a single agent working in one continuous context, with the analyst reserving the one irreversible step for themselves.</p>
-<p>The outcome was simple and concrete: a new, correctly sourced editing map with four parcel bookmarks, produced in a single tight session, backed up, verified against the source of truth, and documented for audit. The adoption lesson was the part worth keeping: for a task that is really one idea, orchestration is overhead, not value.</p>
-<hr />
-<h2 id="1-context-the-team-and-the-tool">1. Context: the team and the tool</h2>
-<p><strong>The team.</strong> A GIS and MPO group maintaining authoritative transmission and permit data in ArcGIS Pro, backed by dated consolidated geodatabases. Their work is high-stakes in a quiet way: the data they edit becomes the record that other departments, agencies, and legal processes rely on.</p>
-<p><strong>The tool.</strong> A newly adopted agentic AI assistant embedded in their ArcGIS Pro environment, able to read files, run arcpy, and delegate to a roster of purpose-built sub-agents with evocative names and clear specialties. To a team early in adoption, that roster is the shiny object. It looks like the whole point.</p>
-<p><strong>The trigger task.</strong> A Friday ZIP containing four PDF exhibits, Clark, Guiang, Williams, and Y&amp;S, each identifying a parcel by an APN hidden in the filename whose work areas should be removed. The request was straightforward: make me a map so I can remove these from the latest data.</p>
-<hr />
-<h2 id="2-the-adoption-fork">2. The adoption fork</h2>
-<p>Here is the decision every team faces in its first weeks with agents, made concrete. The task decomposes so cleanly into specialist assignments:</p>
-<table>
-<thead>
-<tr>
-<th>Step</th>
-<th>The "obvious" agent to delegate to</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Plan the workflow</td>
-<td>Orchestrator</td>
-</tr>
-<tr>
-<td>Read and scope the four PDFs</td>
-<td>Documentation agent</td>
-</tr>
-<tr>
-<td>Find the newest consolidated gdb</td>
-<td>Logistics agent</td>
-</tr>
-<tr>
-<td>Confirm parcel schema and APN field</td>
-<td>Validation agent</td>
-</tr>
-<tr>
-<td>Write the arcpy to build the map</td>
-<td>Engineering agent</td>
-</tr>
-<tr>
-<td>Estimate the join cost</td>
-<td>Performance agent</td>
-</tr>
-</tbody>
-</table>
-<p>It reads like a staffing plan. That neatness is the adoption trap. A task that looks like six specialties was really one idea wearing six hats, and splitting the hats across six contexts means paying to glue them back onto the same head.</p>
-<hr />
-<h2 id="3-the-approach-that-was-actually-taken">3. The approach that was actually taken</h2>
-<p>The agent pulled the thread directly, end to end, in one context:</p>
-<blockquote>
-<p>filename <code>..._471-112-05-00-5</code> → APN <code>471-112-05-00-5</code> → matching row in <code>rp_Ownership_Listing</code> → owner <strong>CLARK</strong> as a sanity check → work areas intersecting that parcel, OIDs <code>21</code> and <code>23</code> → parcel extent → padded bookmark <strong>Clark (471-112-05-00-5)</strong>.</p>
-</blockquote>
-<p>Then it staged the editing surface: a new map, layers bound to the newest <code>08122026</code> geodatabase, parcels plus work areas plus structures, and four bookmarks, one per exhibit. It backed up the project first, saved, reopened from disk to verify, and wrote a checkpoint. It did not delete anything. The irreversible cut was left to the analyst.</p>
-<hr />
-<h2 id="4-why-this-was-the-better-adoption-pattern">4. Why this was the better adoption pattern</h2>
-<p><strong>Finding 1: Delegation shines for separate context. This was one continuous trace.</strong> Each step's output was the next step's literal input. There was no seam where a second agent could add value that a first did not already hold. Agentic delegation pays off when a step needs a different context or authority. It taxes you when it merely re-cuts a thread you already own.</p>
-<p><strong>Finding 2: The value lived in the connective tissue, which delegation severs.</strong> The whole task pivoted on a five-word insight: the APN is in the filename. Held in one mind, it could be reused four times with zero restatement. Split across a PDF agent and a join agent, it would have to be summarized and re-hydrated, and summaries are where decisive details quietly die.</p>
-<p><strong>Finding 3: Handoffs cost more than the work.</strong> Steps that finish in three tool calls do not justify a briefing, a cold context-window start, and a re-read to re-trust the result. Early adopters routinely under-price this overhead because the roster feels productive.</p>
-<p><strong>Finding 4: Fewer agent boundaries mean fewer error surfaces.</strong> Six briefings are six chances to mis-paraphrase the newest gdb or transpose an OID. One context has no internal borders to smuggle mistakes across.</p>
-<p><strong>Finding 5: Verification by artifact beat verification by committee.</strong> Confidence came from reopening the saved <code>.aprx</code> and confirming four layers and four bookmarks, ground truth in seconds, not from a validator agent's sign-off.</p>
-<hr />
-<h2 id="5-where-delegation-would-have-been-right">5. Where delegation would have been right</h2>
-<p>This is a hybrid adoption model, not a rejection of agents. Delegation earns its keep when a step needs a genuinely separate context or authority:</p>
+    <p>I am getting more interested in a narrower and more practical question than "what can AI do?"</p>
+<p>The better question is:</p>
+<p><strong>what is the right working relationship between me and the system?</strong></p>
+<p>I keep seeing people frame AI adoption as a question of replacement.<br />
+Can it do the whole task?<br />
+Can it finish the work without me?<br />
+Can I hand it over and stay out of the loop?</p>
+<p>That is sometimes the right question.<br />
+But in a lot of real work, it is the wrong one.</p>
+<p>This week I had a useful reminder of that while working through an internal permitting exercise in ArcGIS Pro.</p>
+<p>The interesting decision was not whether the AI could complete the task end to end.<br />
+It was that I deliberately did <strong>not</strong> want it to.</p>
+<p>I wanted something more precise.<br />
+I wanted the system to set me up to do the work quickly and almost effortlessly, while I kept control of the actual irreversible edit.</p>
+<p>That boundary turned out to matter a lot.</p>
+<h2 id="the-useful-outcome-was-setup-not-completion">The useful outcome was setup, not completion</h2>
+<p>What I needed was not a magic autonomous finish.</p>
+<p>I needed:</p>
 <ul>
-<li>a governance or compliance check before a destructive write, reasoning from its own policy corpus</li>
-<li>a security review with its own threat model</li>
-<li>a broad exploration across unrelated subsystems that would blow out the main context</li>
-<li>parallel investigations you can run while doing other work</li>
+<li>the right map in ArcGIS Pro</li>
+<li>the right features in view</li>
+<li>the right bookmarks already staged</li>
+<li>enough structure that I could step in and make the edit confidently</li>
 </ul>
-<p>The useful question is not whether a step can be delegated. It is whether it needs a different context, or whether you are just fanning out a thread you already hold. Pay for the handoff only when the answer is the former.</p>
-<p>On the next task, a scripted deletion that trips a governance rule, routing to the compliance agent first would be exactly right.</p>
-<hr />
-<h2 id="6-the-human-boundary">6. The human boundary</h2>
-<p>Distinct from the agent-versus-agent question, the workflow built everything up to the edit and stopped. Removing features from a system of record is irreversible and accountable, so that stroke was reserved for the analyst.</p>
-<p>Healthy AI adoption draws this line on purpose. The machine sets the table. The human takes the bite. That is how authorship and accountability stay real.</p>
-<hr />
-<h2 id="7-guardrails-that-made-fast-direct-adoption-safe">7. Guardrails that made fast, direct adoption safe</h2>
+<p>Nothing more, nothing less.</p>
+<p>That is a more modest ambition than "AI completed the workflow," but it is also much more useful.</p>
+<p>It removed friction.<br />
+It removed hunting.<br />
+It removed setup cost.<br />
+It removed a bunch of boring spatial orientation work that usually burns time before the real decision even starts.</p>
+<p>And because the system stopped at the boundary instead of crossing it, I still knew exactly what I was authoring.</p>
+<h2 id="the-human-boundary-is-where-the-trust-lives">The human boundary is where the trust lives</h2>
+<p>I think this is one of the more important boundaries in practical AI work.</p>
+<p>There is a big difference between:</p>
 <ul>
-<li><strong>Back up before you touch.</strong> A <code>.backups\\..._preTEPmap_*.aprx</code> file was written before any change.</li>
-<li><strong>Bind to the source of truth.</strong> The work targeted the newest <code>08122026</code> consolidated geodatabase.</li>
-<li><strong>Verify by reopening.</strong> Trust the artifact you can re-read, not the log line.</li>
-<li><strong>Leave an audit trail.</strong> A checkpoint captured APNs, work-area OIDs, and decisions so the work stayed reproducible.</li>
+<li><strong>AI did the work for me</strong></li>
+<li><strong>AI prepared the work so I could do it cleanly</strong></li>
 </ul>
-<p>Direct speed is only responsible when the reversible steps are made truly reversible. These rails are what let a team move fast without betting the record.</p>
-<hr />
-<h2 id="8-adoption-takeaways-for-the-team">8. Adoption takeaways for the team</h2>
-<ol>
-<li><strong>Do not equate more agents with more value.</strong> The roster is a capability, not a quota. Orchestration has real overhead. Spend it deliberately.</li>
-<li><strong>Match the tool to the shape of the work.</strong> One bright thread means one agent and one context. Genuinely separate contexts mean delegate. Irreversible acts mean human.</li>
-<li><strong>Instrument trust, not ceremony.</strong> Verify against ground truth by reopening the artifact. Do not mistake a chain of agent sign-offs for correctness.</li>
-<li><strong>Bake in reversibility.</strong> Backups, source-of-truth binding, and checkpoints are what make aggressive automation culturally acceptable.</li>
-<li><strong>Keep the last cut human, on purpose.</strong> Adoption sticks when people trust that the AI will not quietly make the irreversible decision for them.</li>
-</ol>
-<p>The most important early-adoption win here was not a clever automation. It was the judgment to do a one-idea task as one agent, reserve the roster for work that truly needs it, and keep a human hand on the pen for the stroke that cannot be undone.</p>
-<hr />
-<p><em>Companion artifact: <code>checkpoint_remove_tep_work_areas_*.md</code> — the concrete inputs, OIDs, and decisions behind the map this case study reflects on.</em></p>
+<p>The second one is not a compromise.<br />
+In a lot of serious environments, it is the better pattern.</p>
+<p>It preserves speed without pretending accountability disappeared.<br />
+It gives you leverage without making the authorship muddy.<br />
+It keeps the irreversible step attached to the human who understands the consequences.</p>
+<p>That is the boundary I want more of.</p>
+<h2 id="i-am-less-interested-in-autonomy-than-in-collaboration">I am less interested in autonomy than in collaboration</h2>
+<p>This feels like a new craft I am still learning.</p>
+<p>The skill is not just prompting well.<br />
+It is not just knowing which model is smart.<br />
+It is not even just building the tool.</p>
+<p>The skill is learning how to collaborate with AI in a way that is proportionate to the work.</p>
+<p>Sometimes that means full automation.<br />
+Sometimes that means asking for analysis.<br />
+Sometimes that means letting the system draft a structure, create a first pass, or set up an environment.<br />
+And sometimes, like here, it means having the AI prepare the exact surface I need so I can do the real work faster and with less drag.</p>
+<p>That is not failure to automate enough.<br />
+That is better judgment about where the machine should stop.</p>
+<h2 id="the-most-useful-ai-often-leaves-the-last-move-to-you">The most useful AI often leaves the last move to you</h2>
+<p>There is a version of the AI story that is obsessed with completion.<br />
+Finish the task.<br />
+Remove the human.<br />
+Close the loop.</p>
+<p>I think a lot of the better real-world story is about positioning instead.</p>
+<p>Get me to the right place.<br />
+Put the right evidence in front of me.<br />
+Set the stage.<br />
+Reduce the wasted motion.<br />
+Then let me make the move that actually matters.</p>
+<p>That is what happened here.<br />
+The value was not that the AI completed the work.<br />
+The value was that it made the work feel almost ready before I touched it.</p>
+<p>I think that is a more honest and more durable model of adoption than a lot of the louder autonomy rhetoric.</p>
+<p>The machine set me up.<br />
+I kept the pen.</p>
 </article>
 
 <!-- Tags -->
@@ -260,7 +235,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     
     <a class="post-tag" href="/tag/ai.html">AI</a>
     
-    <a class="post-tag" href="/tag/agents.html">Agents</a>
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
     
     <a class="post-tag" href="/tag/work.html">Work</a>
     
