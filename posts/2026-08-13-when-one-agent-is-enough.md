@@ -1,5 +1,5 @@
 ---
-title: "The New Craft of Collaborating With AI"
+title: "The Machine Set Me Up. I Kept the Pen."
 date: 2026-08-13
 tags:
 - Draft
@@ -11,6 +11,8 @@ layout: rich
 ---
 
 I am getting more interested in a narrower and more practical question than "what can AI do?"
+
+<img src="/static/images/the-machine-set-me-up-i-kept-the-pen-hero.png" alt="Editorial illustration of a map workspace where AI has staged the right view and bookmarks while a human hand keeps the final pen stroke" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 The better question is:
 
