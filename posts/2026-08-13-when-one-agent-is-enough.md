@@ -1,5 +1,5 @@
 ---
-title: "The Machine Set Me Up. I Kept the Pen."
+title: "AI Can Set the Stage. I Still Make the Call."
 date: 2026-08-13
 tags:
 - Draft
@@ -12,7 +12,7 @@ layout: rich
 
 I am getting more interested in a narrower and more practical question than "what can AI do?"
 
-<img src="/static/images/the-machine-set-me-up-i-kept-the-pen-hero.png" alt="Editorial illustration of a map workspace where AI has staged the right view and bookmarks while a human hand keeps the final pen stroke" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+<img src="/static/images/the-machine-set-me-up-i-kept-the-pen-hero.png" alt="Editorial illustration of a GIS workspace where AI has prepared the right map view and bookmarks while the human remains responsible for the final decision" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 The better question is:
 
@@ -115,5 +115,5 @@ The value was that it made the work feel almost ready before I touched it.
 
 I think that is a more honest and more durable model of adoption than a lot of the louder autonomy rhetoric.
 
-The machine set me up.
-I kept the pen.
+The AI set the stage.
+I still made the call.
