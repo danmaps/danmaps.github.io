@@ -12,7 +12,7 @@ layout: rich
 
 I am getting more interested in a narrower and more practical question than "what can AI do?"
 
-<img src="/static/images/the-machine-set-me-up-i-kept-the-pen-hero.png" alt="Editorial illustration of a GIS workspace where AI has prepared the right map view and bookmarks while the human remains responsible for the final decision" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+<img src="/static/images/ai-can-set-the-stage-i-still-make-the-call-hero.jpg" alt="Control-room style GIS illustration showing a prepared map and a human hand hovering over the final commit lever" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 The better question is:
 
