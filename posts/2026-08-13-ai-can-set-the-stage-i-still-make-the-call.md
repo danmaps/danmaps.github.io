@@ -2,7 +2,6 @@
 title: "AI Can Set the Stage. I Still Make the Call."
 date: 2026-08-13
 tags:
-- Draft
 - AI
 - Systems
 - Work
