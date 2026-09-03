@@ -2,7 +2,6 @@
 title: "Programming for Cartographers"
 date: 2026-09-03
 tags:
-- Draft
 - GIS
 - Python
 - Cartography

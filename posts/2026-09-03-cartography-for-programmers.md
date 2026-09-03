@@ -2,10 +2,9 @@
 title: "Cartography for Programmers"
 date: 2026-09-03
 tags:
-- Draft
 - GIS
 - Cartography
-- Software
+- Systems
 summary: "Spatial software is not finished when the geometry API works. Programmers also need to learn how cartographers think about reference systems, distortion, classification, hierarchy, and the argument a map makes."
 layout: rich
 ---
