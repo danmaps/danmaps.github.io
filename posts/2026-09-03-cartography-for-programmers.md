@@ -10,6 +10,8 @@ summary: "Spatial software is not finished when the geometry API works. Programm
 layout: rich
 ---
 
+<img src="/static/images/cartography-for-programmers-hero.png" alt="Retro-futurist coordinate grid with glowing points, polygons, map layers, and projection arcs assembling into a viewport" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 Programmers are often comfortable with spatial data right up until they have to make a map.
 
 The API is not the hard part. A point is a point. A polygon is a polygon. GeoJSON is readable. The query runs.

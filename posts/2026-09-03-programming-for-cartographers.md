@@ -10,6 +10,8 @@ summary: "You do not need to learn how to think like a programmer from scratch. 
 layout: rich
 ---
 
+<img src="/static/images/programming-for-cartographers-hero.png" alt="Retro-futurist layers of maps, coordinate lines, and geometric blocks transforming into a luminous software pipeline" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 There is a particular kind of anxiety that shows up when a cartographer decides to learn programming.
 
 They open a Python tutorial and meet variables, types, functions, loops, and objects as if these are entirely new ideas. The tutorial assumes a blank slate. But the cartographer's mind is not blank. It is already full of parameters, inputs, transformations, dependencies, geometry, and output rules.
