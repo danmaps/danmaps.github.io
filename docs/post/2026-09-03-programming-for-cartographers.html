@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Programming for Cartographers</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/tags.html" class="about-link btn btn-outline-light">Tags</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">GIS</span>
+    </div>
+    
+    <h1>Programming for Cartographers</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-09-03">September 3, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">9 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>There is a particular kind of anxiety that shows up when a cartographer decides to learn programming.</p>
+<p>They open a Python tutorial and meet variables, types, functions, loops, and objects as if these are entirely new ideas. The tutorial assumes a blank slate. But the cartographer's mind is not blank. It is already full of parameters, inputs, transformations, dependencies, geometry, and output rules.</p>
+<p>The problem is usually not a lack of programming intuition.</p>
+<p>It is a translation problem.</p>
+<p>If you have built a ModelBuilder workflow, written a field calculation, chained geoprocessing tools, or repeatedly repaired a broken layer by changing one parameter at a time, you have already practiced a large part of programming. You learned the concepts through a map interface instead of a text editor.</p>
+<p>You do not need to learn how to think like a programmer from scratch. You need to translate concepts you already understand.</p>
+<p>Consider a familiar chain:</p>
+<pre><code class="language-text">
+Select → Buffer → Intersect → Calculate Field → Export
+</code></pre>
+
+<p>It has inputs, operations, intermediate results, and an output. Programming gives us a language for expressing that workflow, generalizing it, repeating it, and testing it.</p>
+<h2 id="you-were-programming-already">You were programming already</h2>
+<p>ModelBuilder makes the connection easy to see. A model has inputs, operations, dependencies, and outputs. One tool runs only after another tool has produced the data it needs. A parameter changes the result. A broken connection stops the workflow.</p>
+<p>That is a program, even if the interface lets you draw it.</p>
+<p>Field calculations are programs too. A condition such as “if this field is null, use this other value” is a conditional. A calculation that combines two fields is an expression. Applying it to every row is iteration.</p>
+<p>The graphical interface does not remove the logic. It hides some of the syntax.</p>
+<p>This is useful because syntax is often the least important part of learning to program. The durable skill is understanding what state exists, what transformation should happen next, and how to tell whether the result is trustworthy.</p>
+<h2 id="variables-are-the-things-you-name-so-the-workflow-can-continue">Variables are the things you name so the workflow can continue</h2>
+<p>In GIS, you already work with named things:</p>
+<ul>
+<li>a source feature class</li>
+<li>a selected layer</li>
+<li>a workspace path</li>
+<li>a buffer distance</li>
+<li>a date range</li>
+<li>an output table</li>
+</ul>
+<p>In Python, these become variables:</p>
+<pre><code class="language-python">
+roads = "data/roads.gpkg"
+distance = 500
+output = "outputs/roads_buffered.gpkg"
+</code></pre>
+
+<p>The variable is not the data itself. It is a name that lets you refer to a value later. That is exactly what an output connection in a geoprocessing model does: it gives a later step a reliable handle on the result of an earlier step.</p>
+<p>The important habit is the same in both environments: name things according to their role. <code>roads_buffered_for_schools</code> tells you more than <code>layer3</code>. Good names make a workflow inspectable before you run it.</p>
+<h2 id="types-are-the-shape-of-your-assumptions">Types are the shape of your assumptions</h2>
+<p>GIS users encounter types constantly, although software does not always explain them clearly. A text field is not interchangeable with a numeric field. A date is not the same thing as a string that happens to look like a date. A geometry is not a table, and a layer is not necessarily the same thing as the dataset behind it.</p>
+<p>Programming makes these distinctions explicit.</p>
+<pre><code class="language-python">
+district_name = "North"       # string
+buffer_distance = 1000        # integer
+include_parks = True          # boolean
+</code></pre>
+
+<p>Many frustrating errors are type errors in disguise. A distance stored as text cannot behave reliably like a number. A missing geometry cannot be treated like a valid polygon. A list of features is not one feature.</p>
+<p>Learning types is not memorizing an abstract taxonomy. It is learning to ask a GIS question earlier: what kind of thing is this, and what operations make sense for it?</p>
+<h2 id="a-geoprocessing-tool-is-basically-a-function">A geoprocessing tool is basically a function</h2>
+<p>A function takes inputs, does something defined, and returns a result. That description could appear in the documentation for almost any geoprocessing tool.</p>
+<pre><code class="language-python">
+buffered_roads = buffer(roads, distance=500)
+</code></pre>
+
+<p>The exact syntax varies by library, but the mental model is familiar. The tool has parameters. Some are required. Some have defaults. The output can become the input to another operation.</p>
+<p>Once you see tools as functions, a script becomes less mysterious. It is a written workflow in which the connections are visible in the code.</p>
+<p>That visibility is valuable. A model can show the broad shape of a process. Code can show the small decisions inside each step: how a path is constructed, how nulls are handled, what gets logged, and what happens when an output already exists.</p>
+<h2 id="assignment-is-capturing-the-result">Assignment is capturing the result</h2>
+<p>Running a tool is only half the operation. The next question is: where does its result go?</p>
+<p>In a graphical workflow, the answer is an output node. In code, it is assignment:</p>
+<pre><code class="language-python">
+selected = select_by_attribute(parcels, "status = 'active'")
+buffered = buffer(selected, distance=250)
+</code></pre>
+
+<p>The right-hand side runs the operation. The left-hand side gives the result a name.</p>
+<p>This is the basic rhythm of a script:</p>
+<ol>
+<li>get a value</li>
+<li>transform it</li>
+<li>assign the result</li>
+<li>pass it downstream</li>
+</ol>
+<p>It is the same chain you have built many times in GIS. Code simply makes the chain portable and easier to repeat.</p>
+<h2 id="conditionals-are-the-decisions-inside-the-workflow">Conditionals are the decisions inside the workflow</h2>
+<p>GIS workflows are full of branching logic:</p>
+<ul>
+<li>if a field is null, calculate a fallback</li>
+<li>if a layer exists, update it; otherwise create it</li>
+<li>if a feature is inside the study area, include it</li>
+<li>if a district has no records, report that explicitly</li>
+</ul>
+<p>In Python:</p>
+<pre><code class="language-python">
+if parcel["owner_name"] is None:
+    parcel["owner_name"] = "Unknown"
+</code></pre>
+
+<p>The syntax is new. The decision is not.</p>
+<p>The useful shift is to stop thinking of conditionals as programming ceremony. They are simply places where your workflow has more than one valid path. Writing those paths down makes hidden assumptions visible.</p>
+<h2 id="loops-are-iteration-with-a-name">Loops are iteration with a name</h2>
+<p>When someone says “loop,” a GIS professional can reasonably ask: loop over what?</p>
+<p>That is exactly the right question. You might iterate over:</p>
+<ul>
+<li>features in a feature class</li>
+<li>files in a folder</li>
+<li>layers in a map</li>
+<li>dates in a reporting period</li>
+<li>districts in a region</li>
+</ul>
+<pre><code class="language-python">
+for district in districts:
+    create_report(district)
+</code></pre>
+
+<p>Batch tools and iterators have always provided this capability through a user interface. Code gives you control over the iteration: filtering items first, collecting results, handling an individual failure, or stopping when a validation rule is violated.</p>
+<p>The loop is not the clever part. Choosing the correct collection and deciding what should happen for every item is the real GIS judgment.</p>
+<p>ModelBuilder's iterators are graphical loops. “Iterate Feature Classes,” “Iterate Rows,” and “Iterate Field Values” all express the same basic idea as a <code>for</code> loop: get one item, apply an operation, and continue until the collection is exhausted.</p>
+<h2 id="lists-and-dictionaries-turn-repetition-into-structure">Lists and dictionaries turn repetition into structure</h2>
+<p>A list is an ordered collection. A dictionary maps names to values. Both are useful when a workflow starts repeating itself.</p>
+<pre><code class="language-python">
+districts = ["North", "South", "Central"]
+
+settings = {
+    "distance": 500,
+    "unit": "meters",
+    "include_inactive": False,
+}
+</code></pre>
+
+<p>Instead of writing three nearly identical operations, you can represent the things that vary as data. That makes the workflow easier to change and easier to test.</p>
+<p>This is one of the first moments when scripting feels substantially different from clicking. You stop encoding every operation separately and start describing a pattern that applies across many inputs.</p>
+<h2 id="objects-are-features-geometries-layers-and-maps-with-behavior">Objects are features, geometries, layers, and maps with behavior</h2>
+<p>Object-oriented programming can sound especially distant from cartography. It becomes less distant if you start with the things you already manipulate.</p>
+<p>A feature has geometry and attributes. A layer has data, a name, a renderer, and visibility properties. A map contains layers and an extent. These are not just bags of values. They have relationships and operations.</p>
+<p>That is the intuition behind objects: data and the behavior associated with that data can travel together.</p>
+<p>You do not need to master every object-oriented pattern to write useful GIS software. You do need to recognize when a recurring thing in your workflow deserves a clear representation instead of a loose collection of variables.</p>
+<h2 id="errors-are-the-unhappy-paths-you-already-know-exist">Errors are the unhappy paths you already know exist</h2>
+<p>Every GIS analyst has seen the happy path fail:</p>
+<ul>
+<li>the input path is wrong</li>
+<li>the schema is not what you expected</li>
+<li>a lock prevents an overwrite</li>
+<li>a projection is missing</li>
+<li>a geometry is invalid</li>
+<li>an output already exists</li>
+</ul>
+<p>Programming calls these errors and exceptions, but the underlying reality is familiar. A robust workflow does not pretend that inputs are perfect. It decides how to detect failure, explain it, and recover where recovery makes sense.</p>
+<p>The goal is not to catch every error and continue blindly. Sometimes the correct behavior is to stop with a useful message. “The process failed” is not useful. “The parcels layer has no <code>parcel_id</code> field, so the report cannot be generated” is useful.</p>
+<h2 id="abstraction-is-how-a-one-off-workflow-becomes-a-tool">Abstraction is how a one-off workflow becomes a tool</h2>
+<p>The progression usually looks something like this:</p>
+<p><strong>Manual GIS → ModelBuilder → scripts → libraries and applications</strong></p>
+<p>Each step moves a little more of the workflow out of your immediate attention.</p>
+<p>Manual work is flexible but repetitive. A model captures the sequence. A script adds control, testing, logging, and reuse. A library or application gives the workflow a stable interface for other people and other systems.</p>
+<p>Abstraction is not about making a workflow impressive. It is about deciding which details should remain configurable and which should become reliable defaults.</p>
+<p>If you have run the same ten-step process twenty times, you probably do not need to become a software engineer before improving it. You need to identify the repeated structure and give it a name.</p>
+<p>That name might eventually look like this:</p>
+<pre><code class="language-python">
+find_affected_parcels(roads, parcels, distance)
+</code></pre>
+
+<p>The five underlying operations still exist. They are simply packaged behind an interface that can be reused. This is how a script becomes a library, and how a library becomes software.</p>
+<h2 id="the-translation-is-the-advantage">The translation is the advantage</h2>
+<p>Cartographers already think in relationships. They ask what belongs inside what, what connects to what, what is visible at a given scale, and what changes when the reference system changes. Those are powerful programming instincts.</p>
+<p>The move into code does not discard that way of thinking. It gives it another medium.</p>
+<p>The next time a programming tutorial introduces a variable, think of a named layer or output. When it introduces a function, think of a geoprocessing tool. When it introduces a loop, think of an iterator over features or files. When it introduces an exception, think of the last time a workflow failed because the real data did not match the assumed data.</p>
+<p>The syntax will still take practice. That part is unavoidable.</p>
+<p>But the reasoning is already familiar. You have been programming through maps for years.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/python.html">Python</a>
+    
+    <a class="post-tag" href="/tag/cartography.html">Cartography</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>
