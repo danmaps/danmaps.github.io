@@ -237,3 +237,5 @@ The next time a programming tutorial introduces a variable, think of a named lay
 The syntax will still take practice. That part is unavoidable.
 
 But the reasoning is already familiar. You have been programming through maps for years.
+
+If this was useful, you can [support the work on Ko-fi](https://ko-fi.com/dannymcvey).

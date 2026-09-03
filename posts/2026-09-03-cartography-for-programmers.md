@@ -205,3 +205,5 @@ That is the useful bridge between the two disciplines. Cartography can be unders
 The map is the rendered result of that language. Once the decisions are explicit, they can be generated, tested, diffed, explained, and recreated by software. That is a much more useful foundation for spatial applications—and for AI-assisted GIS—than the idea that a model simply “makes a map.”
 
 *The framing of this essay was inspired by Luke Haas, “Music Theory for Programmers,” RunJS (August 17, 2026): https://runjs.app/blog/music-theory-for-programmers.*
+
+If this was useful, you can [support the work on Ko-fi](https://ko-fi.com/dannymcvey).
