@@ -367,14 +367,35 @@ body.post-page main.post-main {
     color: var(--accent);
 }
 
-/* Rotating hero word */
+/* Rotating hero word. A slow, clipped color sweep gives the active word a
+   little of the "feel" treatment without turning the whole headline into a
+   moving banner. */
 .home-hero-accent.is-rotating {
     position: relative;
+    display: inline-block;
     text-align: left;
+    background: linear-gradient(
+        105deg,
+        var(--text-primary) 20%,
+        #5faeff 40%,
+        #a8d5ff 50%,
+        #5faeff 60%,
+        var(--text-primary) 80%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: home-hero-accent-sweep 7s ease-in-out infinite;
     transition: opacity 0.42s ease, transform 0.42s ease;
     will-change: opacity, transform;
     opacity: 1;
     transform: translateY(0);
+}
+
+@keyframes home-hero-accent-sweep {
+    0%, 100% { background-position: 100% 50%; }
+    50% { background-position: 0% 50%; }
 }
 
 .home-hero-accent.is-rotating.is-swapping {
@@ -386,6 +407,8 @@ body.post-page main.post-main {
     .home-hero-accent.is-rotating {
         transition: opacity 0.3s ease;
         transform: none;
+        animation: none;
+        background-position: 50% 50%;
     }
     .home-hero-accent.is-rotating.is-swapping {
         transform: none;
