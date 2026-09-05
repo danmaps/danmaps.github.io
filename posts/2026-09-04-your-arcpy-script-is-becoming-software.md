@@ -9,6 +9,8 @@ summary: "ArcPy scripts have a habit of becoming software. A practical guide to 
 layout: rich
 ---
 
+<img src="/static/images/your-arcpy-script-is-becoming-software-hero.jpg" alt="A cinematic desert mountain landscape at sunset with translucent GIS map layers floating above the terrain" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 Most ArcPy projects don't start as software projects.
 
 They start because you have a job to do.
@@ -53,8 +55,6 @@ and discover that your 30-line ArcPy script has become 900 lines of software.
 Nobody ever made a conscious decision to build software.
 
 It just happened.
-
-<img src="/static/images/your-arcpy-script-is-becoming-software-hero.jpg" alt="A cinematic desert mountain landscape at sunset with translucent GIS map layers floating above the terrain" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
 ## The awkward middle ground of GIS development
 
