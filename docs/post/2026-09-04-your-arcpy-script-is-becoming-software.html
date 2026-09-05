@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Your ArcPy Script Is Becoming Software. Treat It Like Software.</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/tags.html" class="about-link btn btn-outline-light">Tags</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">GIS</span>
+    </div>
+    
+    <h1>Your ArcPy Script Is Becoming Software. Treat It Like Software.</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-09-04">September 4, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">8 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Most ArcPy projects don't start as software projects.</p>
+<p>They start because you have a job to do.</p>
+<p>Maybe you need to buffer several thousand features, intersect them with another layer, calculate a few fields, and write the result to a geodatabase. You open ArcGIS Pro, create a Python file, import <code>arcpy</code>, and start working.</p>
+<pre><code class="language-python">
+import arcpy
+
+input_fc = r"C:\GIS\Projects\Vegetation\Data.gdb\Trees"
+output_fc = r"C:\GIS\Projects\Vegetation\Data.gdb\Tree_Buffer"
+
+arcpy.analysis.Buffer(input_fc, output_fc, "100 Feet")
+</code></pre>
+
+<p>It works.</p>
+<p>Great.</p>
+<p>Then somebody asks for one more thing.</p>
+<p>You add it.</p>
+<p>Then you need to run the workflow against a different geodatabase, so you add another path.</p>
+<p>Then you need some logging.</p>
+<p>Then somebody else needs to run it.</p>
+<p>Then the output schema changes.</p>
+<p>Then it needs to run every week.</p>
+<p>Six months later, you open:</p>
+<pre><code class="language-text">
+vegetation_analysis_final_v2_WORKING.py
+</code></pre>
+
+<p>and discover that your 30-line ArcPy script has become 900 lines of software.</p>
+<p>Nobody ever made a conscious decision to build software.</p>
+<p>It just happened.</p>
+<p><img src="/static/images/your-arcpy-script-is-becoming-software-hero.jpg" alt="A cinematic desert mountain landscape at sunset with translucent GIS map layers floating above the terrain" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
+<h2 id="the-awkward-middle-ground-of-gis-development">The awkward middle ground of GIS development</h2>
+<p>There's a huge amount of GIS code living in the space between a throwaway script and a professionally maintained application.</p>
+<p>GIS analysts are especially likely to end up here.</p>
+<p>ArcGIS makes it remarkably easy to start automating. You can copy a Python snippet from geoprocessing history, change a few parameters, and suddenly you've eliminated an hour of manual work.</p>
+<p>That's a feature, not a problem.</p>
+<p>The problem starts when successful scripts accumulate responsibilities without accumulating structure.</p>
+<p>A single file starts handling:</p>
+<ul>
+<li>file paths</li>
+<li>configuration</li>
+<li>geoprocessing</li>
+<li>business logic</li>
+<li>logging</li>
+<li>validation</li>
+<li>error handling</li>
+<li>output naming</li>
+<li>environment settings</li>
+<li>notifications</li>
+</ul>
+<p>Eventually, changing one thing means being afraid of three other things.</p>
+<p>The script hasn't necessarily become bad.</p>
+<p>It has simply outgrown the architecture it started with.</p>
+<h2 id="the-moment-a-script-becomes-software">The moment a script becomes software</h2>
+<p>There's no magic line count where this happens.</p>
+<p>A 1,500-line script can occasionally be perfectly reasonable. A 100-line script can already be painful to maintain.</p>
+<p>I think the better signal is <strong>responsibility</strong>.</p>
+<p>Your script is becoming software when you start asking questions like:</p>
+<ul>
+<li>How does somebody configure this without editing the source code?</li>
+<li>How do I know what happened when it fails?</li>
+<li>How do I test this without running an expensive geoprocessing operation every time?</li>
+<li>How can another developer understand this six months from now?</li>
+<li>How do I run the same workflow in development and production?</li>
+<li>How do I change one piece without breaking everything else?</li>
+</ul>
+<p>At that point, adding more functions to the same <code>.py</code> file doesn't really solve the problem.</p>
+<p>The project needs structure.</p>
+<h2 id="start-by-getting-configuration-out-of-your-code">Start by getting configuration out of your code</h2>
+<p>Hard-coded paths are probably the most recognizable ArcPy example.</p>
+<pre><code class="language-python">
+workspace = r"\\server\department\production\Vegetation.gdb"
+buffer_distance = "100 Feet"
+output_name = "Tree_Buffer"
+</code></pre>
+
+<p>There's nothing inherently wrong with constants.</p>
+<p>The problem is mixing things that describe <strong>this particular execution environment</strong> with the code that describes <strong>what the workflow does</strong>.</p>
+<p>Instead, configuration can live somewhere explicit:</p>
+<pre><code class="language-yaml">
+workspace: "\\\\server\\department\\production\\Vegetation.gdb"
+buffer_distance: "100 Feet"
+output_name: "Tree_Buffer"
+</code></pre>
+
+<p>Now your Python code can ask for configuration instead of secretly containing it.</p>
+<p>That matters when you want:</p>
+<pre><code class="language-text">
+local.yaml
+test.yaml
+production.yaml
+</code></pre>
+
+<p>It also means somebody can change an input path without modifying the program itself.</p>
+<p>That's a small architectural decision with a surprisingly large payoff.</p>
+<h2 id="print-eventually-stops-being-enough"><code>print()</code> eventually stops being enough</h2>
+<p>I love <code>print()</code>.</p>
+<p>There is absolutely nothing wrong with this:</p>
+<pre><code class="language-python">
+print("Starting buffer...")
+</code></pre>
+
+<p>for a small script you're running interactively.</p>
+<p>But once a workflow runs unattended, or somebody else needs to diagnose it, you start wanting more information.</p>
+<pre><code class="language-text">
+2026-09-04 08:03:12 INFO Starting vegetation workflow
+2026-09-04 08:03:13 INFO Input features: 18,422
+2026-09-04 08:03:13 INFO Buffer distance: 100 Feet
+2026-09-04 08:04:51 INFO Buffer completed
+2026-09-04 08:04:52 ERROR Failed writing output to production geodatabase
+</code></pre>
+
+<p>Python's standard <code>logging</code> module already solves this problem.</p>
+<p>The important change isn't really <code>print()</code> to <code>logging</code>.</p>
+<p>It's recognizing that <strong>observability is part of the program</strong>.</p>
+<p>Once other people depend on your automation, knowing what happened matters almost as much as making it happen.</p>
+<h2 id="separate-gis-operations-from-business-logic">Separate GIS operations from business logic</h2>
+<p>This is one of the biggest improvements I've made to how I structure ArcPy projects.</p>
+<p>Consider logic like:</p>
+<pre><code class="language-python">
+def output_name(source_name, distance):
+    return f"{source_name}_buffer_{distance}"
+</code></pre>
+
+<p>There is nothing GIS-specific about that function.</p>
+<p>It doesn't need ArcGIS Pro.</p>
+<p>It doesn't need a license.</p>
+<p>It doesn't need <code>arcpy</code>.</p>
+<p>It can be tested by ordinary Python:</p>
+<pre><code class="language-python">
+def test_output_name():
+    assert output_name("poles", 100) == "poles_buffer_100"
+</code></pre>
+
+<p>Now compare that with:</p>
+<pre><code class="language-python">
+arcpy.analysis.Buffer(...)
+</code></pre>
+
+<p>That genuinely depends on ArcPy.</p>
+<p>Keeping those concerns separate gives you a useful boundary:</p>
+<pre><code class="language-text">
+Pure Python
+    |
+    | configuration
+    | validation
+    | naming
+    | transformations
+    | business rules
+    |
+    v
+ArcPy boundary
+    |
+    | Buffer
+    | Intersect
+    | Spatial Join
+    | geodatabase I/O
+    |
+    v
+GIS outputs
+</code></pre>
+
+<p>The goal isn't to abstract ArcPy away.</p>
+<p>ArcPy is useful precisely because it gives us access to ArcGIS.</p>
+<p>The goal is to avoid making <strong>everything else</strong> dependent on ArcPy unnecessarily.</p>
+<p>That makes testing faster, reasoning easier, and maintenance much less painful.</p>
+<h2 id="give-the-project-somewhere-to-grow">Give the project somewhere to grow</h2>
+<p>Eventually, I want the directory itself to communicate how the project works.</p>
+<p>Something like:</p>
+<pre><code class="language-text">
+my-arcpy-project/
+├── README.md
+├── pyproject.toml
+├── config/
+│   ├── example.yaml
+│   └── local.yaml
+├── scripts/
+│   └── run_workflow.py
+├── src/
+│   └── my_project/
+│       ├── config.py
+│       ├── logging_config.py
+│       └── workflows/
+│           └── buffer_features.py
+└── tests/
+    ├── test_config.py
+    └── test_workflow_helpers.py
+</code></pre>
+
+<p>This may look like more complexity than:</p>
+<pre><code class="language-text">
+script.py
+</code></pre>
+
+<p>Technically, it is.</p>
+<p>But it's <strong>organized complexity</strong>.</p>
+<p>That's the trade.</p>
+<p>As projects grow, complexity doesn't disappear because we refuse to create folders. It just gets compressed into increasingly difficult files.</p>
+<p>A good project structure gives that complexity somewhere sensible to live.</p>
+<h2 id="ai-coding-agents-make-this-more-important-not-less">AI coding agents make this more important, not less</h2>
+<p>There's another reason I've been thinking about this lately.</p>
+<p>I use AI coding tools increasingly often.</p>
+<p>It's tempting to think these tools reduce the need for project structure because an AI model can understand messy code for us.</p>
+<p>I've found almost the opposite.</p>
+<p>Coding agents are much more useful when the repository communicates its expectations.</p>
+<p>A file like:</p>
+<pre><code class="language-text">
+AGENTS.md
+</code></pre>
+
+<p>can tell an agent things a Python file can't.</p>
+<p>For example:</p>
+<ul>
+<li>this project targets ArcGIS Pro on Windows</li>
+<li>ArcPy is only available in the ArcGIS Pro Python environment</li>
+<li>don't assume Linux-style paths</li>
+<li>keep pure Python logic outside ArcPy-dependent modules where practical</li>
+<li>don't modify production geodatabases in tests</li>
+<li>configuration belongs in YAML, not source code</li>
+<li>generated outputs shouldn't be committed</li>
+<li>run pure Python tests before ArcPy integration tests</li>
+</ul>
+<p>That context helps both humans and machines.</p>
+<p>The agent doesn't have to rediscover the architecture every time it touches the repository.</p>
+<p>And neither do I.</p>
+<h2 id="dont-overcorrect">Don't overcorrect</h2>
+<p>There is an opposite failure mode here.</p>
+<p>You can absolutely turn a 60-line ArcPy script into a ridiculous architecture involving dependency injection, abstract factories, twelve interfaces, Docker, Kubernetes, and an event bus.</p>
+<p>Please don't.</p>
+<p>If your script:</p>
+<ol>
+<li>reads one feature class,</li>
+<li>buffers it,</li>
+<li>writes another feature class,</li>
+</ol>
+<p>then maybe <code>buffer.py</code> is exactly the architecture you need.</p>
+<p>The goal isn't to make GIS scripts look like enterprise software.</p>
+<p>The goal is to notice when something <strong>has already become software</strong> and give it enough structure to remain understandable.</p>
+<p>That's it.</p>
+<h2 id="the-starter-i-kept-rebuilding">The starter I kept rebuilding</h2>
+<p>I noticed that I was repeatedly making the same decisions when starting ArcPy projects:</p>
+<pre><code class="language-text">
+src/
+config/
+scripts/
+tests/
+logging
+.gitignore
+pyproject.toml
+AGENTS.md
+</code></pre>
+
+<p>None of these pieces is particularly exciting.</p>
+<p>That's kind of the point.</p>
+<p>They're the boring scaffolding I want in place before I start solving the interesting GIS problem.</p>
+<p>So I packaged my preferred setup as <strong>ArcPy Project Starter</strong>.</p>
+<p>It's a small, opinionated project template for ArcGIS Pro developers and GIS analysts who are moving from one-off Python scripts toward maintainable automation.</p>
+<p>It includes:</p>
+<ul>
+<li>an ArcPy-friendly Python project structure</li>
+<li>YAML configuration</li>
+<li>centralized logging</li>
+<li>an example reusable workflow</li>
+<li>separation between pure Python tests and ArcPy-dependent execution</li>
+<li>ArcGIS Pro-aware Git configuration</li>
+<li>guidance for AI coding agents</li>
+</ul>
+<p>It's <strong>$15, one time</strong>.</p>
+<p>If that saves you even one round of creating <code>script_final_v2_WORKING.py</code>, I figure we're even.</p>
+<p><a href="https://dannymcvey.com/products/arcpy-project-starter/">Get ArcPy Project Starter →</a></p>
+<h2 id="the-larger-lesson">The larger lesson</h2>
+<p>GIS gives us unusually powerful building blocks.</p>
+<p>A geoprocessing tool that represents years of engineering can be invoked with a single Python function call. That makes it possible to build genuinely useful automation very quickly.</p>
+<p>But successful automation tends to grow.</p>
+<p>That's a good problem.</p>
+<p>The trick is recognizing when the thing you wrote to avoid clicking the same button 400 times has become something people depend on.</p>
+<p>At that point, don't throw it away and start over.</p>
+<p>Give it a configuration file.</p>
+<p>Give it logs.</p>
+<p>Give it tests where tests make sense.</p>
+<p>Give it a project structure.</p>
+<p>Give the next developer some instructions.</p>
+<p>Your ArcPy script became software.</p>
+<p>Congratulations.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/python.html">Python</a>
+    
+    <a class="post-tag" href="/tag/product.html">Product</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+            <p><a href="https://ko-fi.com/dannymcvey" target="_blank" rel="noopener noreferrer">Support this work on Ko-fi</a></p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>
