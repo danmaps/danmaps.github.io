@@ -2,11 +2,10 @@
 title: "Your ArcPy Script Is Becoming Software. Treat It Like Software."
 date: 2026-09-04
 tags:
-- Draft
 - GIS
 - Python
 - Product
-summary: "ArcPy scripts have a habit of quietly becoming software. A practical guide to recognizing that transition and adding just enough structure: configuration, logging, testing boundaries, and a project layout that can grow with the work."
+summary: "ArcPy scripts have a habit of becoming software. A practical guide to recognizing that transition and adding just enough structure: configuration, logging, testing boundaries, and a project layout that can grow with the work."
 layout: rich
 ---
 
@@ -392,7 +391,7 @@ But successful automation tends to grow.
 
 That's a good problem.
 
-The trick is recognizing when the thing you wrote to avoid clicking the same button 400 times has quietly become something people depend on.
+The trick is recognizing when the thing you wrote to avoid clicking the same button 400 times has become something people depend on.
 
 At that point, don't throw it away and start over.
 
