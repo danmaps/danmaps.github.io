@@ -377,7 +377,7 @@ It includes:
 - ArcGIS Pro-aware Git configuration
 - guidance for AI coding agents
 
-It's **$15, one time**.
+It's **$29, one time**.
 
 If that saves you even one round of creating `script_final_v2_WORKING.py`, I figure we're even.
 
