@@ -742,6 +742,11 @@ body.post-page main.post-main {
         padding: 0.85rem;
     }
 
+    .site-nav {
+        gap: 0.35rem;
+        flex-wrap: nowrap;
+    }
+
     body.home .home-link h2,
     body.post-page .home-link h2,
     body.tag-page .home-link h2 {
@@ -751,7 +756,7 @@ body.post-page main.post-main {
     body.home .about-link,
     body.post-page .about-link,
     body.tag-page .about-link {
-        padding: 0.42rem 0.68rem;
-        font-size: 0.68rem;
+        padding: 0.42rem 0.58rem;
+        font-size: 0.65rem;
     }
 }
