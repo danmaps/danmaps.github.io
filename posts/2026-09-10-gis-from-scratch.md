@@ -1,5 +1,5 @@
 ---
-title: "GIS from scratch: learning web mapping with vanilla JavaScript"
+title: "GIS from Scratch: Reinventing Web GIS Without External Libraries"
 date: 2026-09-10
 layout: rich
 tags:
