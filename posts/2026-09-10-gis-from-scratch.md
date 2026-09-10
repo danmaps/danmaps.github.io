@@ -81,7 +81,7 @@ The braces create an **object**, a collection of named properties. `cx` and `cy`
 
 For now, we treat longitude and latitude as ordinary x and y values. The map unit is a degree. That is an explicit simplification for drawing and interaction, not a suitable distance measurement system.
 
-This interaction model is usually called a **slippy map**: you grab the map itself, drag it continuously, and zoom without replacing the whole page.
+This interaction model is usually called a **slippy map**: you grab the map itself, drag it continuously, and zoom without replacing the whole page. Google Maps made that pattern feel normal on the web after its 2005 launch, and it helped make page-at-a-time maps from the MapQuest era feel dated.
 
 ANYWAY... to draw a point, measure its offset from the view center, multiply by the scale, and add the screen center. Subtract the y offset because screen y runs downward:
 
