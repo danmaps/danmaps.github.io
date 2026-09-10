@@ -2,7 +2,7 @@ from flask_frozen import Freezer
 from app import app, POSTS_DIR, UNPUBLISHED_TAGS, tag_slug, BETA_BUILD_DIR
 import os
 
-# Publish the static site into /docs so GitHub Pages can serve it from the master branch.
+# Publish the static site into /docs so GitHub Pages can serve it from the main branch.
 # (User/Org Pages work best from the default branch + /docs.)
 app.config["FREEZER_DESTINATION"] = "docs"
 
