@@ -1,5 +1,6 @@
 from flask import Flask, render_template, abort, send_from_directory
 import markdown
+from html import escape
 from pygments.formatters import HtmlFormatter
 import os
 import re
@@ -35,10 +36,11 @@ class CodeHiliteWithLanguagePreprocessor(Preprocessor):
                     language = line.strip('`')
                     if not language:
                         language = 'text'  # Default to 'text' if no language is provided
-                    new_lines.append(f'<pre><code class="language-{language}">')
+                    new_lines.append(f'<pre><code class="language-{escape(language, quote=True)}">')
                     in_code_block = True
             elif in_code_block:
-                new_lines.append(line)
+                # Fenced HTML/JS is sample text, never executable page markup.
+                new_lines.append(escape(line, quote=False))
             else:
                 new_lines.append(line)
         
