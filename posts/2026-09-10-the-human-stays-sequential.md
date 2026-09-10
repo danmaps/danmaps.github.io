@@ -51,6 +51,13 @@ The workflow starts to look like a pipeline:
 - **Implementation is parallel.** Agents work on separate tasks concurrently.
 - **Review is sequential.** I examine the results and decide what belongs.
 
+<figure>
+  <a href="/static/images/the-human-stays-sequential-workflow.png">
+    <img src="/static/images/the-human-stays-sequential-workflow.png" alt="Before: one agent implements tasks one after another. After: four agents work on staggered, overlapping tasks while one human defines and reviews them sequentially." width="1536" height="1024" loading="lazy" style="width: 100%; height: auto;" />
+  </a>
+  <figcaption>Same goal, different workflow: implementation overlaps while human definition and review remain sequential. The timing labels are illustrative, not a measured or guaranteed speedup. Open the image for a larger view.</figcaption>
+</figure>
+
 These are not three clean phases. I might stop defining a new task to review a finished one, then send it back for changes while I look at another. Later tasks can keep running throughout.
 
 That feels like a more useful mental model than "AI writes code faster." It explains both the leverage and the constraint.

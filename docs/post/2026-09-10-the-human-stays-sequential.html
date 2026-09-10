@@ -140,7 +140,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
         
         <span class="separator">·</span>
-        <span class="reading-time">5 min read</span>
+        <span class="reading-time">6 min read</span>
         
     </div>
 </header>
@@ -179,6 +179,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Implementation is parallel.</strong> Agents work on separate tasks concurrently.</li>
 <li><strong>Review is sequential.</strong> I examine the results and decide what belongs.</li>
 </ul>
+<figure>
+  <a href="/static/images/the-human-stays-sequential-workflow.png">
+    <img src="/static/images/the-human-stays-sequential-workflow.png" alt="Before: one agent implements tasks one after another. After: four agents work on staggered, overlapping tasks while one human defines and reviews them sequentially." width="1536" height="1024" loading="lazy" style="width: 100%; height: auto;" />
+  </a>
+  <figcaption>Same goal, different workflow: implementation overlaps while human definition and review remain sequential. The timing labels are illustrative, not a measured or guaranteed speedup. Open the image for a larger view.</figcaption>
+</figure>
+
 <p>These are not three clean phases. I might stop defining a new task to review a finished one, then send it back for changes while I look at another. Later tasks can keep running throughout.</p>
 <p>That feels like a more useful mental model than "AI writes code faster." It explains both the leverage and the constraint.</p>
 <p>If work comes back faster than I can review it, adding another agent mostly gives me a longer queue.</p>
