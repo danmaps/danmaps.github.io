@@ -1,10 +1,10 @@
 ---
-title: "GIS from scratch: learning web mapping with vanilla JavaScript"
+title: "GIS from Scratch: Reinventing Web GIS Without External Libraries"
 date: 2026-09-10
 layout: rich
 tags:
   - GIS
-  - Systems
+  - Javascript
 ---
 
 Most of my web maps begin with a pile of abstractions already in place. I create a map, add a layer, attach an event handler, and call a query method. A few lines later, I can pan, zoom, identify a feature, and inspect its attributes. That is exactly what I want from a good mapping library.
