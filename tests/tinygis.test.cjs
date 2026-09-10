@@ -138,7 +138,10 @@ test("zero-length line segments are handled", () => {
 });
 test("widget scripts and JavaScript article snippets parse", () => {
   const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)];
-  scripts.forEach((s) => new vm.Script(s[1]));
+  scripts.forEach((s) => {
+    if (s[0].startsWith('<script id="basemap-config" type="application/json">')) JSON.parse(s[1]);
+    else new vm.Script(s[1]);
+  });
   const article = fs.readFileSync(
     "posts/2026-09-10-gis-from-scratch.md",
     "utf8",

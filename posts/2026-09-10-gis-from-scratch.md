@@ -113,7 +113,9 @@ Now we can translate in both directions. Draw a feature: map to screen. Interpre
 
 **Try this:** enable map dragging and move the basemap to the right. Watch the extent. Then click somewhere to read the coordinate conversion.
 
-For clarity, this example uses a dark CARTO basemap instead of the sample features. **The tiles are an external dependency**, included so you can recognize where you are as the extent changes. They require internet access and a browser-visible basemap key. The drawing and navigation code still uses only browser APIs. CARTO tiles use Web Mercator, so this widget applies the projection from section 7: its internal map units are projected metres, while the extent readout shows longitude and latitude. The code examples above still use degrees. Other widgets do not load these tiles.
+For clarity, this example uses a dark CARTO basemap instead of the sample features. **The tiles are an external dependency**, included so you can recognize where you are as the extent changes. Examples 3–5 and the final lab draw their features over the same basemap. These widgets use Web Mercator internally to align with the tiles; the code examples above still use degrees. Section 7 explains the projection. The synthetic index and projection-comparison experiments keep their grids.
+
+The standalone HTML includes the public basemap key when downloaded from the deployed site. Tiles require internet access; feature drawing, selection, and export still work offline. The drawing and navigation code uses only browser APIs.
 
 <figure class="gis-experiment">
 <iframe data-tinygis title="Experiment 2: pan, zoom and inspect the map extent" src="../static/gis-from-scratch/tinygis.html?lesson=view" loading="lazy" height="610"></iframe>
@@ -347,7 +349,7 @@ We have not built an R-tree. We have made the reason for spatial indexing observ
 
 ## 7. Make the projection a function
 
-So far, we have treated longitude and latitude as x and y. That was enough to expose the view transformation. It was never a claim that degrees were a uniform distance grid.
+The early code examples treated longitude and latitude as x and y. That was enough to expose the view transformation. It was never a claim that degrees were a uniform distance grid. The basemap widgets already use the projection below to align features with CARTO tiles.
 
 Now give the map a second coordinate transformation. Source coordinates remain longitude and latitude. Before drawing, project them to a working coordinate system. Then convert those projected coordinates into screen pixels.
 

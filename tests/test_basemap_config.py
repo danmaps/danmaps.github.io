@@ -20,9 +20,12 @@ class BasemapConfigTests(unittest.TestCase):
                 target = Path('docs/static/gis-from-scratch/basemap-config.json')
                 target.parent.mkdir(parents=True)
                 target.write_text('{"key":""}')
+                html = target.with_name('tinygis.html')
+                html.write_text('<script id="basemap-config" type="application/json">{"key": ""}</script>')
                 with patch.dict(os.environ, {'CARTO_BASEMAP_KEY': 'test-"key'}):
                     module.inject()
                 self.assertEqual(json.loads(target.read_text()), {'key': 'test-"key'})
+                self.assertEqual(json.loads(html.read_text().split('>', 1)[1].split('</script>')[0]), {'key': 'test-"key'})
                 with patch.dict(os.environ, {'CARTO_BASEMAP_KEY': ''}):
                     with self.assertRaises(SystemExit):
                         module.inject()

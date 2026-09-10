@@ -297,6 +297,7 @@
         </p></noscript
       >
     </main>
+    <script id="basemap-config" type="application/json">{"key": ""}</script>
     <script id="gis-core">
       // Pure functions, shared by the experiments and the Node checks. No packages.
       const TinyGIS = (() => {
@@ -657,6 +658,7 @@
         };
         let mode = new URLSearchParams(location.search).get("lesson") || "lab";
         if (!modes[mode]) mode = "lab";
+        const hasBasemap = ["view", "layers", "identify", "query", "lab"].includes(mode);
         $("title").textContent = modes[mode][0];
         $("intro").textContent = modes[mode][1];
         let data = G.sampleData(),
@@ -664,7 +666,7 @@
           view = { cx: 0, cy: 0, scale: 1 },
           width = 600,
           height = 300,
-          mercator = mode === "view";
+          mercator = hasBasemap;
         let pointSize = 6,
           layerVisibility = { Point: true, LineString: true, Polygon: true },
           active = false,
@@ -676,14 +678,19 @@
           pixel = [300, 120];
         const canvas = $("map"),
           ctx = canvas.getContext("2d");
-        // Only Example 2 loads external data. No mapping library is used.
+        // Geographic lessons load external tiles. No mapping library is used.
         const tiles = new Map();
         let basemapKey = "", basemapStatus = "Loading basemap configuration…";
-        if (mode === "view") {
-          $("legend").hidden = true;
+        if (hasBasemap) {
+          if (mode === "view") $("legend").hidden = true;
+          const featureCaption = mode === "view" ? "" : $("caption").textContent.trim() + " ";
           $("caption").innerHTML = 'External dependency included for clarity: CARTO Dark Matter tiles. Requires internet access. © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · © <a href="https://carto.com/attributions">CARTO</a>.';
-          fetch("./basemap-config.json")
+          $("caption").prepend(document.createTextNode(featureCaption));
+          // Deployment embeds the public key so the downloaded HTML works on file://.
+          const embedded = JSON.parse($("basemap-config").textContent);
+          (embedded.key ? Promise.resolve(embedded) : fetch("./basemap-config.json")
             .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+          )
             .then((config) => {
               basemapKey = typeof config.key === "string" ? config.key : "";
               basemapStatus = basemapKey ? "" : "Basemap unavailable: no deployment key. Navigation still works.";
@@ -884,6 +891,10 @@
             "panel",
           ])
             colors[key] = style.getPropertyValue("--" + key).trim();
+          // Feature styling must stay legible over dark tiles in either device theme.
+          if (hasBasemap) Object.assign(colors, {
+            ink: "#eef3fc", blue: "#87b8ff", selected: "#ffab83", zone: "#79c8b5",
+          });
         }
         function gridLines(step) {
           const a = G.toMap([0, height], view, width, height),
@@ -1018,7 +1029,8 @@
             return;
           }
           const step = 10 ** Math.floor(Math.log10(70 / view.scale));
-          gridLines(step);
+          if (hasBasemap) drawBasemap();
+          else gridLines(step);
           data.features.forEach((f, i) =>
             drawGeometry(f.geometry, selected.has(i)),
           );
