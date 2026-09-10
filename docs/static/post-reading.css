@@ -339,6 +339,10 @@
 }
 
 .post-kicker-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
     margin-bottom: 0.95rem;
 }
 
@@ -355,7 +359,15 @@
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    text-decoration: none;
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.post-kicker:hover,
+.post-kicker:focus-visible {
+    background: rgba(119, 185, 255, 0.12);
+    color: #eff7ff;
+    text-decoration: none;
 }
 
 .post-meta-bar {

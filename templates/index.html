@@ -26,9 +26,9 @@
     {% set ns.count = ns.count + 1 %}
     <article class="home-post-card">
       <div class="home-post-topline">
-        {% if post.tag_objs %}
-        <a class="home-post-tag home-post-tag-primary" href="{{ url_for('tag', tag_slug_value=post.tag_objs[0].slug) }}">{{ post.tag_objs[0].name }}</a>
-        {% endif %}
+        {% for tag in post.tag_objs %}
+        <a class="home-post-tag home-post-tag-primary" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+        {% endfor %}
         <span class="home-post-date">&bull; {{ post.date.strftime('%b %d, %Y').replace(' 0', ' ') }}</span>
       </div>
       <h2 class="home-post-title">

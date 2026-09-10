@@ -23,7 +23,9 @@
     <a href="{{ url_for('index') }}" class="post-back-link">Back to blog</a>
     {% if tag_objs %}
     <div class="post-kicker-row">
-        <span class="post-kicker">{{ tag_objs[0].name }}</span>
+        {% for tag in tag_objs %}
+        <a class="post-kicker" href="{{ url_for('tag', tag_slug_value=tag.slug) }}">{{ tag.name }}</a>
+        {% endfor %}
     </div>
     {% endif %}
     <h1>{{ title }}</h1>
