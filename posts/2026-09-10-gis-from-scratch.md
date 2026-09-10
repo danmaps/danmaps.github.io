@@ -17,8 +17,6 @@ This is an attempt to close that gap. We are going to build a small web GIS usin
 <link rel="stylesheet" href="../static/gis-from-scratch/article.css">
 <script defer src="../static/gis-from-scratch/embeds.js"></script>
 
-<p class="gis-draft">Working draft · Interactive tutorial</p>
-
 If you know GIS but are new to JavaScript, you have the right starting point. You already understand extents, features, selections, and coordinate systems. We will give those ideas names in code, then make them do something you can see.
 
 Each experiment below stands on its own. Change a control, predict the result, and check what happened. You can also [open the finished tiny GIS](../static/gis-from-scratch/tinygis.html) or <a href="../static/gis-from-scratch/tinygis.html" download="tinygis.html">download the complete HTML file</a>. The download opens directly in a browser. No installation or development server is needed.
