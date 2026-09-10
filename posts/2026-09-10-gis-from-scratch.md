@@ -111,7 +111,9 @@ function toMap([px, py], view, width, height) {
 
 Now we can translate in both directions. Draw a feature: map to screen. Interpret a click: screen to map.
 
-**Try this:** enable map dragging and move the features to the right. Watch the extent. Then click somewhere to read the coordinate conversion.
+**Try this:** enable map dragging and move the basemap to the right. Watch the extent. Then click somewhere to read the coordinate conversion.
+
+For clarity, this example uses a dark CARTO basemap instead of the sample features. **The tiles are an external dependency**, included so you can recognize where you are as the extent changes. They require internet access and a browser-visible basemap key. The drawing and navigation code still uses only browser APIs. CARTO tiles use Web Mercator, so this widget applies the projection from section 7: its internal map units are projected metres, while the extent readout shows longitude and latitude. The code examples above still use degrees. Other widgets do not load these tiles.
 
 <figure class="gis-experiment">
 <iframe data-tinygis title="Experiment 2: pan, zoom and inspect the map extent" src="../static/gis-from-scratch/tinygis.html?lesson=view" loading="lazy" height="610"></iframe>

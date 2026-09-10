@@ -664,7 +664,7 @@
           view = { cx: 0, cy: 0, scale: 1 },
           width = 600,
           height = 300,
-          mercator = false;
+          mercator = mode === "view";
         let pointSize = 6,
           layerVisibility = { Point: true, LineString: true, Polygon: true },
           active = false,
@@ -676,6 +676,68 @@
           pixel = [300, 120];
         const canvas = $("map"),
           ctx = canvas.getContext("2d");
+        // Only Example 2 loads external data. No mapping library is used.
+        const tiles = new Map();
+        let basemapKey = "", basemapStatus = "Loading basemap configuration…";
+        if (mode === "view") {
+          $("legend").hidden = true;
+          $("caption").innerHTML = 'External dependency included for clarity: CARTO Dark Matter tiles. Requires internet access. © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · © <a href="https://carto.com/attributions">CARTO</a>.';
+          fetch("./basemap-config.json")
+            .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+            .then((config) => {
+              basemapKey = typeof config.key === "string" ? config.key : "";
+              basemapStatus = basemapKey ? "" : "Basemap unavailable: no deployment key. Navigation still works.";
+              render();
+            })
+            .catch(() => {
+              basemapStatus = "Basemap unavailable offline. Navigation still works.";
+              render();
+            });
+        }
+        function drawBasemap() {
+          ctx.fillStyle = "#151515";
+          ctx.fillRect(0, 0, width, height);
+          // XYZ tile edges are in Web Mercator metres, matching this view.
+          const world = 2 * Math.PI * 6378137;
+          view.scale = Math.max(256 / world, Math.min(256 * 2 ** 20 / world, view.scale));
+          view.cx = ((view.cx + world / 2) % world + world) % world - world / 2;
+          view.cy = Math.max(-world / 2, Math.min(world / 2, view.cy));
+          const z = Math.max(0, Math.min(20, Math.round(Math.log2(world * view.scale / 256))));
+          const n = 2 ** z, size = world / n;
+          const left = view.cx - width / (2 * view.scale);
+          const top = view.cy + height / (2 * view.scale);
+          if (basemapKey) {
+            const xmin = Math.floor((left + world / 2) / size);
+            const xmax = Math.floor((left + width / view.scale + world / 2) / size);
+            const ymin = Math.max(0, Math.floor((world / 2 - top) / size));
+            const ymax = Math.min(n - 1, Math.floor((world / 2 - top + height / view.scale) / size));
+            for (let x = xmin; x <= xmax; x++) for (let y = ymin; y <= ymax; y++) {
+              const wrapped = ((x % n) + n) % n;
+              const id = `${z}/${wrapped}/${y}`;
+              let tile = tiles.get(id);
+              if (!tile) {
+                tile = new Image();
+                tiles.set(id, tile);
+                tile.onload = () => requestAnimationFrame(render);
+                tile.onerror = () => {
+                  basemapStatus = "Some basemap tiles could not load. Navigation still works.";
+                  requestAnimationFrame(render);
+                };
+                tile.src = `https://a.basemaps.cartocdn.com/dark_all/${id}.png?key=${encodeURIComponent(basemapKey)}`;
+              }
+              if (tile.complete && tile.naturalWidth) {
+                const [px, py] = G.toScreen([x * size - world / 2, world / 2 - y * size], view, width, height);
+                ctx.drawImage(tile, px, py, size * view.scale + 0.5, size * view.scale + 0.5);
+              }
+            }
+            // Bound memory without retrying failed tiles on every frame.
+            while (tiles.size > 512) tiles.delete(tiles.keys().next().value);
+          }
+          if (basemapStatus) {
+            ctx.fillStyle = "#fff";
+            ctx.fillText(basemapStatus, 12, 24, width - 24);
+          }
+        }
         function say(text) {
           $("readout").textContent = text;
         }
@@ -845,6 +907,11 @@
           readColors();
           ctx.clearRect(0, 0, width, height);
           ctx.font = "13px system-ui";
+          if (mode === "view") {
+            drawBasemap();
+            extentReadout();
+            return; // No sample features, labels, or feature grid in Example 2.
+          }
           if (mode === "pixels") {
             ctx.strokeStyle = colors.line;
             ctx.lineWidth = 0.5;
@@ -990,7 +1057,7 @@
           const a = map([0, height]),
             b = map([width, 0]);
           say(
-            `xmin ${a[0].toFixed(5)} · ymin ${a[1].toFixed(5)}\nxmax ${b[0].toFixed(5)} · ymax ${b[1].toFixed(5)}\n${view.scale.toFixed(0)} CSS pixels per map unit (degree)`,
+            `Longitude / latitude extent\nxmin ${a[0].toFixed(5)} · ymin ${a[1].toFixed(5)}\nxmax ${b[0].toFixed(5)} · ymax ${b[1].toFixed(5)}\n${view.scale.toPrecision(4)} CSS pixels per projected metre (Web Mercator)`,
           );
         }
         function updateTable() {
