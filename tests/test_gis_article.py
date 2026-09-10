@@ -28,6 +28,7 @@ class ArticleTests(unittest.TestCase):
         client = app.test_client()
         response = client.get(f'/post/{SLUG}.html')
         self.assertEqual(response.status_code, 200)
+        self.assertNotIn('Working draft · Interactive tutorial', response.text)
         parsed = Tags(); parsed.feed(response.text)
         self.assertEqual(len(parsed.frames), 8)
         self.assertEqual(len({f['title'] for f in parsed.frames}), 8)
