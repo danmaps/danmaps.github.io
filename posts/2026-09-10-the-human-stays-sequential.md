@@ -2,7 +2,6 @@
 title: The Human Stays Sequential
 date: 2026-09-10
 tags:
-- Draft
 - AI
 - Agents
 - Systems
