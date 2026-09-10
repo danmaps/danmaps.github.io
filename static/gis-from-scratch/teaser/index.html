@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>GIS from scratch · portrait teaser</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f3f0e8;
+      }
+      body {
+        font-family: "DejaVu Sans", sans-serif;
+        color: #182b38;
+      }
+      code,
+      pre,
+      .monospace {
+        font-family: "DejaVu Sans Mono", monospace;
+      }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+      .brand { position: absolute; top: 100px; left: 84px; font-size: 28px; letter-spacing: 4px; font-weight: 700; }
+      .edition { position: absolute; top: 104px; right: 84px; font-size: 24px; color: #50606b; }
+      .rule { position: absolute; top: 168px; left: 84px; width: 912px; height: 2px; background: #bec6c6; }
+      .caption { position: absolute; top: 234px; left: 84px; width: 912px; }
+      .eyebrow { font-size: 27px; letter-spacing: 3px; font-weight: 700; color: #265fc0; margin-bottom: 28px; }
+      h1, h2 { font-size: 100px; line-height: 1.08; letter-spacing: -5px; font-weight: 700; }
+      .line { display: block; }
+      .blue { color: #265fc0; }
+      .subtitle { font-size: 34px; line-height: 1.45; margin-top: 30px; color: #50606b; }
+      #intro h1 { font-size: 98px; }
+      #map-panel { position: absolute; top: 700px; left: 84px; width: 912px; height: 708px; border: 2px solid #bec6c6; border-radius: 20px; background: #fffefa; overflow: hidden; }
+      .map-label { position: absolute; top: 30px; left: 32px; font-size: 24px; color: #50606b; letter-spacing: 2px; }
+      #map { position: absolute; top: 90px; left: 5px; width: 900px; height: 560px; }
+      #map-world { transform-origin: 450px 280px; }
+      #zoom-anchor { position: absolute; top: 374px; left: 499px; width: 32px; height: 32px; }
+      #zoom-anchor::before, #zoom-anchor::after { content: ""; position: absolute; background: #182b38; box-shadow: 0 0 0 2px #fffefa; }
+      #zoom-anchor::before { left: 14px; top: 0; width: 4px; height: 32px; }
+      #zoom-anchor::after { left: 0; top: 14px; width: 32px; height: 4px; }
+      .point-label { font-size: 23px; font-weight: 700; fill: #182b38; }
+      .map-footer { position: absolute; bottom: 22px; left: 32px; font-size: 21px; color: #50606b; }
+      #coordinates { position: absolute; top: 556px; left: 84px; width: 912px; font-size: 38px; }
+      #coordinate-value { color: #265fc0; font-weight: 700; }
+      .detail { position: absolute; top: 1480px; left: 84px; width: 912px; }
+      .detail h3 { font-size: 39px; line-height: 1.25; margin-bottom: 20px; letter-spacing: -1px; }
+      .detail p { font-size: 30px; line-height: 1.5; color: #50606b; }
+      #export-card { position: absolute; top: 780px; left: 134px; width: 812px; padding: 46px; border: 2px solid #265fc0; border-radius: 18px; background: #fffefa; box-shadow: 0 24px 70px #182b3830; }
+      .file-name { font-size: 40px; font-weight: 700; margin-bottom: 26px; color: #265fc0; }
+      .file-type { font-size: 25px; margin-bottom: 30px; color: #50606b; }
+      .file-row { border-top: 2px solid #dce0dc; padding: 22px 0; display: flex; justify-content: space-between; font-size: 27px; }
+      .file-row strong { color: #b23b16; }
+      .file-count { margin-top: 24px; font-size: 28px; font-weight: 700; }
+      #outro { position: absolute; inset: 210px 84px 260px; background: #f3f0e8; }
+      #outro .eyebrow { margin-top: 130px; }
+      #outro h2 { font-size: 130px; line-height: 1.03; margin-top: 45px; }
+      #outro .subtitle { font-size: 42px; margin-top: 50px; color: #182b38; }
+      .stack { position: absolute; top: 950px; font-size: 32px; line-height: 1.8; color: #265fc0; }
+      .end-note { position: absolute; top: 1160px; font-size: 34px; line-height: 1.5; }
+      .footer { position: absolute; bottom: 112px; left: 84px; width: 912px; display: flex; justify-content: space-between; font-size: 24px; color: #50606b; }
+      #progress { position: absolute; bottom: 0; left: 0; width: 1080px; height: 12px; background: #265fc0; transform-origin: left; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-no-timeline
+      data-start="0"
+      data-duration="25"
+      data-fps="30"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="brand">GIS FROM SCRATCH</div>
+      <div class="edition monospace">VANILLA JS</div>
+      <div class="rule"></div>
+
+      <section id="intro" class="clip caption" data-start="0" data-duration="4" data-track-index="1">
+        <div class="eyebrow">BUILD THE PARTS YOU USUALLY IMPORT</div>
+        <h1><span class="line">A web GIS.</span><span class="line blue">Zero mapping</span><span class="line blue">libraries.</span></h1>
+      </section>
+      <section id="coordinate-caption" class="clip caption" data-start="4" data-duration="4" data-track-index="1">
+        <div class="eyebrow">01 / COORDINATES</div>
+        <h2><span class="line">Start with</span><span class="line blue">a point.</span></h2>
+      </section>
+      <section id="pan-caption" class="clip caption" data-start="8" data-duration="3.5" data-track-index="1">
+        <div class="eyebrow">02 / PAN</div>
+        <h2><span class="line">Move the view.</span><span class="line blue">Not the data.</span></h2>
+      </section>
+      <section id="zoom-caption" class="clip caption" data-start="11.5" data-duration="3.5" data-track-index="1">
+        <div class="eyebrow">03 / ZOOM</div>
+        <h2><span class="line">Same geometry.</span><span class="line blue">New scale.</span></h2>
+      </section>
+      <section id="select-caption" class="clip caption" data-start="15" data-duration="3.5" data-track-index="1">
+        <div class="eyebrow">04 / SELECTION</div>
+        <h2><span class="line">Which points</span><span class="line blue">are inside?</span></h2>
+      </section>
+      <section id="export-caption" class="clip caption" data-start="18.5" data-duration="3.5" data-track-index="1">
+        <div class="eyebrow">05 / EXPORT</div>
+        <h2><span class="line">Take the result</span><span class="line blue">with you.</span></h2>
+      </section>
+
+      <div id="coordinates" class="clip monospace" data-start="4" data-duration="4" data-track-index="3">
+        <span id="coordinate-value">[-117.21, 34.06]</span> → pixels
+      </div>
+      <div id="map-panel" class="clip" data-start="0" data-duration="18.5" data-track-index="0">
+        <div class="map-label">LONGITUDE / LATITUDE</div>
+        <svg id="map" viewBox="0 0 900 560" role="img" aria-label="Animated diagram of the tutorial's synthetic features near Redlands">
+          <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#e1e6e4" stroke-width="1.5" />
+            </pattern>
+          </defs>
+          <g id="map-world" data-layout-allow-overflow>
+            <rect x="-900" y="-560" width="2700" height="1680" fill="url(#grid)" />
+            <g id="geography"></g>
+            <g id="sites"></g>
+            <g id="selection"></g>
+          </g>
+        </svg>
+        <div id="zoom-anchor" class="clip" data-start="11.5" data-duration="3.5" data-track-index="3" aria-label="Fixed zoom anchor"></div>
+        <div class="map-footer">SYNTHETIC TEACHING DATA · ANIMATED WALKTHROUGH</div>
+      </div>
+
+      <section id="intro-detail" class="clip detail" data-start="0" data-duration="4" data-track-index="0">
+        <h3>HTML. CSS. JavaScript. Canvas.</h3>
+        <p>The browser has the pieces. Build the map.</p>
+      </section>
+      <section id="coordinate-detail" class="clip detail" data-start="4" data-duration="4" data-track-index="2">
+        <h3>Geographic coordinates → screen coordinates</h3>
+        <p>Longitude becomes x. Latitude becomes y.</p>
+      </section>
+      <section id="pan-detail" class="clip detail" data-start="8" data-duration="3.5" data-track-index="2">
+        <h3>Change the center. Redraw.</h3>
+        <p>The stored coordinates stay the same.</p>
+      </section>
+      <section id="zoom-detail" class="clip detail" data-start="11.5" data-duration="3.5" data-track-index="2">
+        <h3>Change the pixels per map unit.</h3>
+        <p>Keep the location under the pointer fixed.</p>
+      </section>
+      <section id="select-detail" class="clip detail" data-start="15" data-duration="3.5" data-track-index="2">
+        <h3>A, C, F selected. The hole stays empty.</h3>
+        <p>Inside the outer ring. Outside the hole.</p>
+      </section>
+      <section id="export-detail" class="clip detail" data-start="18.5" data-duration="3.5" data-track-index="2">
+        <h3>Selected features → GeoJSON</h3>
+        <p>Keep the geometry and the attributes.</p>
+      </section>
+      <div id="export-card" class="clip" data-start="18.5" data-duration="3.5" data-track-index="3">
+        <div class="file-name monospace">selected.geojson</div>
+        <div class="file-type monospace">GeoJSON FeatureCollection</div>
+        <div class="file-row"><strong>Site A</strong><span class="monospace">-117.21, 34.06</span></div>
+        <div class="file-row"><strong>Site C</strong><span class="monospace">-117.145, 34.06</span></div>
+        <div class="file-row"><strong>Site F</strong><span class="monospace">-117.23, 34.04</span></div>
+        <div class="file-count">3 features · geometry + attributes</div>
+      </div>
+
+      <section id="outro" class="clip" data-start="22" data-duration="3" data-track-index="4">
+        <div class="eyebrow">UNDERSTAND WHAT YOUR MAP IS DOING.</div>
+        <h2><span class="line">GIS from</span><span class="line blue">scratch.</span></h2>
+        <p class="subtitle"><span class="line">Learning web mapping</span><span class="line">with vanilla JavaScript</span></p>
+        <div class="stack monospace"><span class="line">COORDINATES → PAN → ZOOM</span><span class="line">SELECT → EXPORT</span></div>
+        <p class="end-note"><span class="line">A small GIS.</span><span class="line">The fundamentals, made visible.</span></p>
+      </section>
+      <div class="footer"><span>danmaps.github.io</span><span>LEARN BY BUILDING</span></div>
+      <div id="progress"></div>
+    </div>
+
+    <script>
+      "use strict";
+
+      // Frozen teaching geometry from tinygis.html's sampleData(), not real assets.
+      const outer = [[-117.23, 34.02], [-117.12, 34.02], [-117.12, 34.1],
+        [-117.17, 34.13], [-117.23, 34.08], [-117.23, 34.02]];
+      const hole = [[-117.19, 34.055], [-117.19, 34.08], [-117.16, 34.08],
+        [-117.16, 34.055], [-117.19, 34.055]];
+      const route = [[-117.245, 34.045], [-117.21, 34.095],
+        [-117.17, 34.115], [-117.1, 34.11]];
+      const sites = [
+        ["A", -117.21, 34.06], ["B", -117.175, 34.065],
+        ["C", -117.145, 34.06], ["D", -117.235, 34.115],
+        ["E", -117.125, 34.12], ["F", -117.23, 34.04],
+      ];
+      const screen = ([x, y]) => [450 + (x + 117.175) * 3600, 280 - (y - 34.075) * 3600];
+      const path = (points) => points.map((point, i) => `${i ? "L" : "M"}${screen(point).join(",")}`).join(" ");
+      const svg = (tag, attributes, parent) => {
+        const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+        document.getElementById(parent).append(element);
+        return element;
+      };
+      svg("path", {
+        d: `${path(outer)} Z ${path(hole)} Z`, fill: "#d6e8de",
+        stroke: "#428275", "stroke-width": 3, "fill-rule": "evenodd",
+      }, "geography");
+      svg("path", {
+        d: path(route), fill: "none", stroke: "#687f91",
+        "stroke-width": 4, "stroke-dasharray": "10 8",
+      }, "geography");
+      sites.forEach(([id, lon, lat]) => {
+        const [cx, cy] = screen([lon, lat]);
+        svg("circle", { id: `site-${id}`, cx, cy, r: 9, fill: "#265fc0", stroke: "#fffefa", "stroke-width": 3 }, "sites");
+        const label = svg("text", { x: cx + 16, y: cy - 14, class: "point-label" }, "sites");
+        label.textContent = id;
+        if (["A", "C", "F"].includes(id)) {
+          svg("circle", { id: `ring-${id}`, cx, cy, r: 18, fill: "none", stroke: "#b23b16", "stroke-width": 3 }, "selection");
+        }
+      });
+
+      // Native, paused WAAPI animations: HyperFrames seeks all of these per frame.
+      function animate(selector, keyframes, start, duration, easing = "cubic-bezier(.22,.7,.25,1)") {
+        const animation = document.querySelector(selector).animate(keyframes, {
+          delay: start * 1000, duration: duration * 1000, easing, fill: "both", iterations: 1,
+        });
+        animation.pause();
+      }
+      document.querySelectorAll(".caption, .detail, #outro").forEach((element) => {
+        animate(`#${element.id}`, [
+          { opacity: 0, transform: "translateY(26px)" },
+          { opacity: 1, transform: "translateY(0px)" },
+        ], Number(element.dataset.start), 0.4);
+      });
+      animate("#coordinates", [{ opacity: 0 }, { opacity: 1 }], 4.3, 0.5);
+      animate("#map-panel", [
+        { opacity: 0, transform: "translateY(32px)" },
+        { opacity: 1, transform: "translateY(0px)" },
+      ], 0, 0.7);
+      animate("#geography", [
+        { opacity: 0.8, offset: 0 }, { opacity: 0.8, offset: 0.48 },
+        { opacity: 0.15, offset: 0.58 }, { opacity: 0.15, offset: 0.85 },
+        { opacity: 1, offset: 1 },
+      ], 0, 8);
+      animate("#site-A", [
+        { r: "9px", offset: 0 }, { r: "16px", offset: 0.25 },
+        { r: "16px", offset: 0.75 }, { r: "9px", offset: 1 },
+      ], 4.4, 3);
+      animate("#map-world", [
+        { transform: "translate(0px, 0px) scale(1)", offset: 0 },
+        { transform: "translate(60px, 20px) scale(1)", offset: 0.32, easing: "ease-out" },
+        { transform: "translate(60px, 20px) scale(1)", offset: 0.60, easing: "ease-in-out" },
+        { transform: "translate(60px, 20px) scale(1.35)", offset: 1 },
+      ], 8.4, 5.8, "linear");
+      ["A", "C", "F"].forEach((id, index) => {
+        animate(`#site-${id}`, [{ fill: "#265fc0" }, { fill: "#b23b16" }], 15.6 + index * 0.2, 0.35);
+        animate(`#ring-${id}`, [{ opacity: 0, r: "26px" }, { opacity: 1, r: "18px" }], 15.6 + index * 0.2, 0.6);
+      });
+      animate("#export-card", [
+        { opacity: 0, transform: "translateY(50px)" },
+        { opacity: 1, transform: "translateY(0px)" },
+      ], 18.7, 0.6);
+      animate("#progress", [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], 0, 25, "linear");
+    </script>
+  </body>
+</html>
