@@ -232,7 +232,7 @@ def process_data(df, lat_col, lon_col, distance_threshold, id_col=None):
 
         # 6. Filter these points to only include those within the exact distance threshold
         precise_matches = possible_matches[
-            possible_matches.distance(row.geometry) <= distance_threshold
+            possible_matches.distance(row.geometry) &lt;= distance_threshold
         ]
 
         # 7. Exclude the point itself from the results

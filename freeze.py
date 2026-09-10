@@ -120,11 +120,15 @@ def _ensure_nojekyll():
         with open(os.path.join(dest, ".nojekyll"), "w", encoding="utf-8") as f:
             f.write("")
 
-        # Legacy artifact: older /drafts route froze to docs/drafts (no extension).
-        # We now serve drafts at /drafts.html. Remove the old file if it exists.
-        legacy = os.path.join(dest, "drafts")
-        if os.path.isfile(legacy):
-            os.remove(legacy)
+        # Keep the canonical drafts page as /drafts.html, and provide the
+        # extensionless URL promised by the blog as a static directory redirect.
+        # GitHub Pages serves directory indexes but does not run Flask redirects.
+        drafts_dir = os.path.join(dest, "drafts")
+        if os.path.isfile(drafts_dir):
+            os.remove(drafts_dir)
+        os.makedirs(drafts_dir, exist_ok=True)
+        with open(os.path.join(drafts_dir, "index.html"), "w", encoding="utf-8") as f:
+            f.write("""<!doctype html><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0; url=../drafts.html\"><script>location.replace('../drafts.html')</script><a href=\"../drafts.html\">View drafts</a>""")
     except OSError:
         # Non-fatal; freezing succeeded but Pages might behave oddly.
         pass

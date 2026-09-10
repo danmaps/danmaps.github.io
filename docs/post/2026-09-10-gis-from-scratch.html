@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>GIS from scratch: learning web mapping with vanilla JavaScript</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #75715e } /* Comment */
+.codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
+.codehilite .esc { color: #f8f8f2 } /* Escape */
+.codehilite .g { color: #f8f8f2 } /* Generic */
+.codehilite .k { color: #66d9ef } /* Keyword */
+.codehilite .l { color: #ae81ff } /* Literal */
+.codehilite .n { color: #f8f8f2 } /* Name */
+.codehilite .o { color: #f92672 } /* Operator */
+.codehilite .x { color: #f8f8f2 } /* Other */
+.codehilite .p { color: #f8f8f2 } /* Punctuation */
+.codehilite .ch { color: #75715e } /* Comment.Hashbang */
+.codehilite .cm { color: #75715e } /* Comment.Multiline */
+.codehilite .cp { color: #75715e } /* Comment.Preproc */
+.codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
+.codehilite .c1 { color: #75715e } /* Comment.Single */
+.codehilite .cs { color: #75715e } /* Comment.Special */
+.codehilite .gd { color: #f92672 } /* Generic.Deleted */
+.codehilite .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #f8f8f2 } /* Generic.Error */
+.codehilite .gh { color: #f8f8f2 } /* Generic.Heading */
+.codehilite .gi { color: #a6e22e } /* Generic.Inserted */
+.codehilite .go { color: #66d9ef } /* Generic.Output */
+.codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #75715e } /* Generic.Subheading */
+.codehilite .gt { color: #f8f8f2 } /* Generic.Traceback */
+.codehilite .kc { color: #66d9ef } /* Keyword.Constant */
+.codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
+.codehilite .kn { color: #f92672 } /* Keyword.Namespace */
+.codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
+.codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
+.codehilite .kt { color: #66d9ef } /* Keyword.Type */
+.codehilite .ld { color: #e6db74 } /* Literal.Date */
+.codehilite .m { color: #ae81ff } /* Literal.Number */
+.codehilite .s { color: #e6db74 } /* Literal.String */
+.codehilite .na { color: #a6e22e } /* Name.Attribute */
+.codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
+.codehilite .nc { color: #a6e22e } /* Name.Class */
+.codehilite .no { color: #66d9ef } /* Name.Constant */
+.codehilite .nd { color: #a6e22e } /* Name.Decorator */
+.codehilite .ni { color: #f8f8f2 } /* Name.Entity */
+.codehilite .ne { color: #a6e22e } /* Name.Exception */
+.codehilite .nf { color: #a6e22e } /* Name.Function */
+.codehilite .nl { color: #f8f8f2 } /* Name.Label */
+.codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
+.codehilite .nx { color: #a6e22e } /* Name.Other */
+.codehilite .py { color: #f8f8f2 } /* Name.Property */
+.codehilite .nt { color: #f92672 } /* Name.Tag */
+.codehilite .nv { color: #f8f8f2 } /* Name.Variable */
+.codehilite .ow { color: #f92672 } /* Operator.Word */
+.codehilite .pm { color: #f8f8f2 } /* Punctuation.Marker */
+.codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
+.codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
+.codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
+.codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
+.codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
+.codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
+.codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
+.codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #e6db74 } /* Literal.String.Char */
+.codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
+.codehilite .se { color: #ae81ff } /* Literal.String.Escape */
+.codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #e6db74 } /* Literal.String.Other */
+.codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
+.codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
+.codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/tags.html" class="about-link btn btn-outline-light">Tags</a>
+                    <a href="/post/about-me.html" class="about-link btn btn-outline-light">About Me</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        <span class="post-kicker">GIS</span>
+    </div>
+    
+    <h1>GIS from scratch: learning web mapping with vanilla JavaScript</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-09-10">September 10, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">21 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>Most of my web maps begin with a pile of abstractions already in place. I create a map, add a layer, attach an event handler, and call a query method. A few lines later, I can pan, zoom, identify a feature, and inspect its attributes. That is exactly what I want from a good mapping library.</p>
+<p>But I can use that library for years without explaining what happens between a geographic coordinate and the pixel I click.</p>
+<p>This is an attempt to close that gap. We are going to build a small web GIS using HTML, CSS, vanilla JavaScript, Canvas, and GeoJSON. No ArcGIS Maps SDK, MapLibre, Leaflet, OpenLayers, Turf, React, or npm packages in the map. The constraint is simple: <strong>if the browser does not already know how to do it, we have to write it.</strong></p>
+<p><link rel="stylesheet" href="../static/gis-from-scratch/article.css"></p>
+<script defer src="../static/gis-from-scratch/embeds.js"></script>
+
+<p class="gis-draft">Working draft · Interactive tutorial</p>
+
+<p>If you know GIS but are new to JavaScript, you have the right starting point. You already understand extents, features, selections, and coordinate systems. We will give those ideas names in code, then make them do something you can see.</p>
+<p>Each experiment below stands on its own. Change a control, predict the result, and check what happened. You can also <a href="../static/gis-from-scratch/tinygis.html">open the finished tiny GIS</a> or <a href="../static/gis-from-scratch/tinygis.html" download="tinygis.html">download the complete HTML file</a>. The download opens directly in a browser. No installation or development server is needed.</p>
+<p>The sample features sit near Redlands, California, but they are invented teaching data. The study area is not a real hazard boundary. Its awkward shape and its hole are there to make our assumptions visible.</p>
+<h2 id="1-start-with-a-point-and-a-blank-canvas">1. Start with a point and a blank canvas</h2>
+<p>A canvas is a rectangular drawing surface. It does not know about feature classes, spatial references, or layers. It knows how to paint pixels.</p>
+<p>Create a file called <code>first-point.html</code>, paste this complete example into it, and open it in your browser:</p>
+<pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;My first point&lt;/title&gt;
+&lt;canvas id="map" width="600" height="300"&gt;
+  A blue point at pixel 300, 120.
+&lt;/canvas&gt;
+&lt;script&gt;
+  const canvas = document.querySelector("#map");
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = "#265fc0";
+  ctx.beginPath();
+  ctx.arc(300, 120, 6, 0, Math.PI * 2);
+  ctx.fill();
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>There are three languages in play throughout this project. HTML supplies elements such as the canvas and buttons. CSS controls their appearance. JavaScript reads data and responds to actions. This first file only needs HTML and JavaScript.</p>
+<p><code>const</code> gives a value a name. Here, <code>canvas</code> refers to the element whose ID is <code>map</code>; <code>ctx</code> refers to its drawing context. A dot accesses a property or method: <code>ctx.fillStyle</code> is a setting, while <code>ctx.fill()</code> calls an operation. The parentheses contain arguments to that operation.</p>
+<p>Read <code>arc(300, 120, 6, 0, Math.PI * 2)</code> as: draw a circular arc centered at x = 300, y = 120, with radius 6, from angle zero through one full turn. <code>beginPath()</code> starts a new path, and <code>fill()</code> paints its interior. Nothing in that instruction means “geographic point.”</p>
+<p><strong>Try this:</strong> move y toward 300. Which direction should the point move?</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 1: move a point in canvas pixel coordinates" src="../static/gis-from-scratch/tinygis.html?lesson=pixels" loading="lazy" height="470"></iframe>
+<figcaption>The sliders use a logical 600 × 300 canvas. Its displayed size adapts to your screen.</figcaption>
+</figure>
+
+<p>Down. The browser puts the origin in the upper-left corner. Increasing y moves toward the bottom. Remember that when we introduce northings.</p>
+<p>The rest of the code samples are focused excerpts, not instructions to keep appending code to <code>first-point.html</code>. Use the complete download when you want to change the working application. Search it for the function names shown here. That keeps each explanation small without hiding the supporting code.</p>
+<h2 id="2-invent-a-map-view">2. Invent a map view</h2>
+<p>In GIS, the map extent tells us what portion of the data we can see. We can describe the same view with a center and a scale:</p>
+<pre><code class="language-javascript">
+const view = {
+  cx: -117.18,
+  cy: 34.07,
+  scale: 2000
+};
+</code></pre>
+
+<p>The braces create an <strong>object</strong>, a collection of named properties. <code>cx</code> and <code>cy</code> locate the view center in map coordinates. <code>scale</code> is the number of CSS pixels per map unit. It is not a representative fraction such as 1:24,000.</p>
+<p>For now, we treat longitude and latitude as ordinary x and y values. The map unit is a degree. That is an explicit simplification for drawing and interaction, not a suitable distance measurement system.</p>
+<p>To draw a point, measure its offset from the view center, multiply by the scale, and add the screen center. Subtract the y offset because screen y runs downward:</p>
+<pre><code class="language-javascript">
+function toScreen([x, y], view, width, height) {
+  return [
+    width / 2 + (x - view.cx) * view.scale,
+    height / 2 - (y - view.cy) * view.scale
+  ];
+}
+</code></pre>
+
+<p>A <code>function</code> defines an operation we can reuse. The parameters are its inputs; <code>return</code> supplies its result. Square brackets create an <strong>array</strong>, an ordered list. In the parameter list, <code>[x, y]</code> unpacks the incoming coordinate pair into two names. JavaScript calls that destructuring. It saves us from repeatedly writing <code>coordinate[0]</code> and <code>coordinate[1]</code>.</p>
+<p>We use one scale for both axes. Scaling x and y independently would squeeze the geometry to fit the canvas. Instead, the download fits the data by choosing whichever axis needs more room and leaving space on the other axis. Equal degree spacing still does not mean equal ground distance.</p>
+<p>The inverse transformation is just as useful:</p>
+<pre><code class="language-javascript">
+function toMap([px, py], view, width, height) {
+  return [
+    view.cx + (px - width / 2) / view.scale,
+    view.cy - (py - height / 2) / view.scale
+  ];
+}
+</code></pre>
+
+<p>Now we can translate in both directions. Draw a feature: map to screen. Interpret a click: screen to map.</p>
+<p><strong>Try this:</strong> enable map dragging and move the features to the right. Watch the extent. Then click somewhere to read the coordinate conversion.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 2: pan, zoom and inspect the map extent" src="../static/gis-from-scratch/tinygis.html?lesson=view" loading="lazy" height="610"></iframe>
+<figcaption>Dragging is opt-in so the map does not capture your scrolling as you read. With the canvas focused, arrow keys pan, + and − zoom, and Home resets the extent.</figcaption>
+</figure>
+
+<p>When the features move right, the view center moves west. Their stored coordinates do not change. The relationship between map coordinates and screen coordinates changes.</p>
+<p>A drag gives us a displacement in pixels. Divide by the scale to get its displacement in map units:</p>
+<pre><code class="language-javascript">
+// dx and dy are the pointer's movement since the previous event.
+view.cx -= dx / view.scale;
+view.cy += dy / view.scale;
+render();
+</code></pre>
+
+<p><code>-=</code> means “subtract this amount from the current value.” <code>+=</code> adds to it. <code>render()</code> is our own function that clears the canvas and redraws the features using the updated view. Canvas does not redraw the map just because a JavaScript value changed.</p>
+<p>Zooming changes <code>scale</code>. A pleasant zoom also keeps the location under the pointer in the same place. Convert the pointer to map coordinates before and after changing scale, then move the center by the difference:</p>
+<pre><code class="language-javascript">
+const before = toMap(pointer, view, width, height);
+view.scale *= 1.5;
+const after = toMap(pointer, view, width, height);
+view.cx += before[0] - after[0];
+view.cy += before[1] - after[1];
+render();
+</code></pre>
+
+<p>The download packages that idea as <code>zoomAt()</code> and limits the scale to keep extreme zoom values manageable. It also uses pointer capture so an enabled drag can finish outside the canvas, and handles cancellation so a touch interruption does not leave the map stuck dragging. These details do not change the geometry, but they do change whether the map feels usable. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events">MDN’s pointer-event documentation</a> explains those browser behaviors.</p>
+<h2 id="3-give-the-drawing-some-geography">3. Give the drawing some geography</h2>
+<p>A feature needs geometry and attributes. GeoJSON already expresses that combination in a format JavaScript can read:</p>
+<pre><code class="language-javascript">
+const site = {
+  type: "Feature",
+  id: "A",
+  properties: {
+    name: "Site A",
+    status: "Needs inspection"
+  },
+  geometry: {
+    type: "Point",
+    coordinates: [-117.21, 34.06]
+  }
+};
+</code></pre>
+
+<p>You can read the object from the outside inward. <code>site.geometry.coordinates</code> reaches the coordinate array. <code>site.properties.status</code> reaches an attribute. Text has quotes; numeric coordinates do not.</p>
+<p>GeoJSON’s position order is longitude, latitude, with optional altitude. The <a href="https://datatracker.ietf.org/doc/html/rfc7946">GeoJSON specification</a> uses WGS 84 geographic coordinates. A file containing State Plane eastings and northings needs coordinate transformation before it fits this convention. Renaming its extension to <code>.geojson</code> does not do that work.</p>
+<p>A <code>FeatureCollection</code> groups features in a <code>features</code> array. A small layer renderer can loop over them:</p>
+<pre><code class="language-javascript">
+for (const feature of data.features) {
+  drawGeometry(feature.geometry);
+}
+</code></pre>
+
+<p><code>for...of</code> visits each value in an array. <code>feature</code> refers to a different feature on each trip through the loop. <code>drawGeometry()</code> is our function, not a hidden browser mapping API.</p>
+<p>That function branches on the geometry type. Points become circles. Lines visit a sequence of vertices. Polygons close those paths and fill their interiors. Here is the path helper from the download:</p>
+<pre><code class="language-javascript">
+function pathLine(coords, close = false) {
+  coords.forEach((p, i) =&gt; {
+    const [x, y] = screen(p);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  if (close) ctx.closePath();
+}
+</code></pre>
+
+<p><code>forEach()</code> runs a function for every array item. The arrow <code>=&gt;</code> introduces that short function, whose inputs are the coordinate <code>p</code> and its position <code>i</code> in the array. JavaScript starts counting at zero. <code>===</code> tests equality. So the first vertex moves the pen without drawing; the later vertices draw connected segments. <code>screen()</code> wraps our coordinate transformation.</p>
+<p>A polygon can have a hole. Its first ring is the exterior; subsequent rings describe holes. We add all the rings to one path before filling:</p>
+<pre><code class="language-javascript">
+ctx.beginPath();
+polygon.coordinates.forEach(ring =&gt; pathLine(ring, true));
+ctx.fill("evenodd");
+ctx.stroke();
+</code></pre>
+
+<p>The browser’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill">even-odd fill rule</a> leaves the interior ring unpainted for our valid simple polygon. Filling every ring independently would paint over the hole. That is a rendering error with a spatial consequence.</p>
+<p><strong>Try this:</strong> hide the polygon, then bring it back. Open the editor and change Site A’s longitude from <code>-117.21</code> to <code>-117.11</code>. Predict which way it moves before applying the data.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 3: GeoJSON geometry, visibility and editable source data" src="../static/gis-from-scratch/tinygis.html?lesson=layers" loading="lazy" height="720"></iframe>
+<figcaption>Restore sample data resets the experiment. Invalid input leaves the previous map in place and reports the problem.</figcaption>
+</figure>
+
+<p>The download supports Point, LineString, Polygon, and their Multi variants. It validates coordinate ranges, basic nesting, ring closure, and input size. It does not repair invalid topology or support GeometryCollection, null geometries, or antimeridian-crossing rings. Those are useful places to stop a teaching project, provided we say so.</p>
+<p>There is still no special layer object. There is an array of features, visibility settings, a symbol size, and a rendering function. A mature layer API adds a great deal of useful behavior to those basic ingredients.</p>
+<h2 id="4-ask-what-is-under-the-pointer">4. Ask what is under the pointer</h2>
+<p>A canvas remembers painted pixels. It does not remember that a particular blue circle belongs to Site A. To identify a feature, we have to ask the data.</p>
+<p>For points, the question is: how close is the click to the point’s <strong>screen position</strong>?</p>
+<pre><code class="language-javascript">
+const [sx, sy] = screen(site.geometry.coordinates);
+const distance = Math.hypot(sx - clickX, sy - clickY);
+const hit = distance &lt;= pointSize + 5;
+</code></pre>
+
+<p><code>Math.hypot()</code> calculates the length of those x and y differences together. We add a five-pixel allowance around the point symbol. That makes a small point easier to click.</p>
+<p>The choice of units matters. A tolerance of five pixels stays usable as you zoom. A tolerance of 0.001 degrees changes its on-screen size with the map scale. The line test works similarly, using distance to each transformed segment and a six-pixel tolerance.</p>
+<p>For polygons, convert the click back into map coordinates and ask whether that location falls inside the rings. Our test uses a ray-crossing idea: imagine a horizontal ray extending right from the point. Each crossing of a ring boundary toggles an inside/outside flag.</p>
+<pre><code class="language-javascript">
+function inRing([x, y], ring) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i &lt; ring.length; j = i++) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+    if ((yi &gt; y) !== (yj &gt; y) &amp;&amp;
+        x &lt; (xj - xi) * (y - yi) / (yj - yi) + xi) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+</code></pre>
+
+<p>This is the densest sample in the article. Read it geometrically first. The first condition asks whether the edge straddles the ray’s y coordinate. The second asks whether its crossing is to the right of the point. Only then do we flip the flag.</p>
+<p><code>let</code> allows us to assign a different value to a name. <code>!inside</code> means the opposite Boolean value. <code>&amp;&amp;</code> requires both conditions to be true, and skips the second when the first is false. That also keeps a horizontal edge out of the division. The loop keeps both endpoints of an edge available, including the closing edge.</p>
+<p>A polygon test needs one more decision: the point must be in the exterior and outside every hole. Exact boundary behavior needs an explicit policy too. In this tiny GIS, the outer boundary is included and hole boundaries are excluded. <code>inPolygon()</code> handles those cases separately from <code>inRing()</code>, using a small numerical tolerance in the input coordinate units. This is a deliberately limited planar predicate, not a replacement for a robust GIS geometry engine.</p>
+<p><strong>Try this:</strong> click an empty part of the hole. Then select Site B, which sits inside that hole. A point can exist there even though the area excludes its location.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 4: identify points, lines, polygon interiors and holes" src="../static/gis-from-scratch/tinygis.html?lesson=identify" loading="lazy" height="850"></iframe>
+<figcaption>Features drawn later are tested first. Points can therefore be identified above the polygon beneath them. The table is an alternative way to inspect a feature.</figcaption>
+</figure>
+
+<p>Once we have the feature, its attributes are ordinary text. The download inserts them with <code>textContent</code>, so an imported attribute containing HTML is displayed as text rather than interpreted as page content. Finding the right feature was the spatial part. Presenting its attributes is a separate interface task.</p>
+<h2 id="5-make-selection-an-ordinary-value">5. Make selection an ordinary value</h2>
+<p>A desktop GIS gives selection a lot of visual weight. Our selected state can be a <code>Set</code>: a collection of unique values.</p>
+<pre><code class="language-javascript">
+const selected = new Set();
+selected.add(2);
+selected.has(2); // true
+selected.clear();
+</code></pre>
+
+<p>The download stores positions in the current feature array rather than trusting imported feature IDs to be present and unique. Reloading data clears the selection. That is sufficient for a read-only experiment; an editor that inserts and removes features would need a more durable identity policy.</p>
+<p>During rendering, <code>selected.has(index)</code> decides whether a feature gets the orange selection symbol. Changing the symbol does not change the geometry. Changing the selection does not delete the unselected records.</p>
+<p>An attribute query is a test on properties. A spatial query is a test on geometry. For our example, the useful question is: <strong>which Point features are in the study area?</strong></p>
+<pre><code class="language-javascript">
+selected.clear();
+
+data.features.forEach((feature, index) =&gt; {
+  if (feature.geometry.type !== "Point") return;
+  if (inPolygon(feature.geometry.coordinates, studyArea.geometry.coordinates)) {
+    selected.add(index);
+  }
+});
+</code></pre>
+
+<p>Here, <code>!==</code> means “not equal.” The early <code>return</code> skips this callback for anything that is not a Point. It does not stop the entire loop. The download extends the same test to all Polygon and MultiPolygon query areas, selecting points that match any of them. MultiPoint features are rendered and identifiable, but this selection exercise deliberately queries individual Point features only.</p>
+<p>Before writing a polygon test, we might be tempted to select by the polygon’s bounding box. That is useful for finding candidates. It is not the same spatial relationship.</p>
+<p><strong>Try this:</strong> run both queries. The bounding box returns A, B, C, E, and F. The polygon returns A, C, and F. What disqualifies B? What disqualifies E?</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 5: compare bounding-box and point-in-polygon selection" src="../static/gis-from-scratch/tinygis.html?lesson=query" loading="lazy" height="900"></iframe>
+<figcaption>B is in the hole. E is beyond the sloping exterior edge. F sits on the included outer boundary. The dashed rectangle shows the bounding box when that query is active.</figcaption>
+</figure>
+
+<p>These queries inspect the full dataset. Panning away from a point, or hiding a geometry type in the final lab, does not remove it from the query. A production interface should make choices like “visible features only” explicit rather than letting display state silently redefine the analysis.</p>
+<h2 id="6-let-the-query-earn-an-index">6. Let the query earn an index</h2>
+<p>A loop over six points is easy to understand. A loop over fifty thousand points is still easy to understand; it just does more work. If we repeat the query against many areas, that work multiplies.</p>
+<p>The question is where the wasted work lives. A point on the other side of the map cannot be inside this small query envelope. Why inspect it?</p>
+<p>A uniform grid gives us a first spatial index. Divide the plane into cells and store a list of point indices in each occupied cell. These lines, inside <code>makeGrid()</code>, assign each point to a cell:</p>
+<pre><code class="language-javascript">
+const key = `${Math.floor(point[0] / cellSize)},${Math.floor(point[1] / cellSize)}`;
+if (!cells.has(key)) cells.set(key, []);
+cells.get(key).push(id);
+</code></pre>
+
+<p><code>cells</code> is a JavaScript <code>Map</code>, a key/value collection. This particular capital-M Map has nothing inherently geographic about it. Our keys are cell addresses such as <code>4,5</code>, and the values are arrays of point indices. Backticks create a string that can insert expressions using <code>${...}</code>. <code>Math.floor()</code> rounds down to the cell’s integer coordinate, including for negative values.</p>
+<p>A query finds the cells overlapped by its envelope, gathers their point indices, and performs the actual test on those candidates:</p>
+<pre><code class="language-javascript">
+const grid = makeGrid(points, 100);
+const bounds = [420, 420, 580, 580];
+const candidates = gridCandidates(grid, bounds);
+const hits = candidates.filter(id =&gt; inBox(points[id], bounds));
+</code></pre>
+
+<p><code>filter()</code> returns only the items that pass its test. The grid has reduced the search space; it has not answered the spatial question by itself. For a polygon query, we would follow candidate retrieval with the polygon predicate instead.</p>
+<p>This experiment uses a rectangular query and deterministic synthetic points on a 1,000-unit square. That keeps the measured work easy to see without claiming a production benchmark.</p>
+<p><strong>Try this:</strong> compare 1,000 and 50,000 points. Look at candidate counts before looking at milliseconds. Then compare the cost of building the grid with the cost of just scanning once.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 6: measure a full scan against a uniform-grid query" src="../static/gis-from-scratch/tinygis.html?lesson=index" loading="lazy" height="790"></iframe>
+<figcaption>Both methods query the same points and check that their results agree. Timings come from your browser, exclude drawing, and separate index construction from querying.</figcaption>
+</figure>
+
+<p>The grid can cost more than it saves for one small query. It becomes useful when we reuse it for enough queries over unchanged data. If points move, we have to update or rebuild it. Large query envelopes also reduce its advantage.</p>
+<p>We have not built an R-tree. We have made the reason for spatial indexing observable: avoid detailed work on features that cannot qualify. That is a more useful starting point than adding an index merely because “GIS data should have one.”</p>
+<h2 id="7-make-the-projection-a-function">7. Make the projection a function</h2>
+<p>So far, we have treated longitude and latitude as x and y. That was enough to expose the view transformation. It was never a claim that degrees were a uniform distance grid.</p>
+<p>Now give the map a second coordinate transformation. Source coordinates remain longitude and latitude. Before drawing, project them to a working coordinate system. Then convert those projected coordinates into screen pixels.</p>
+<p>For spherical Web Mercator, the forward transformation is compact:</p>
+<pre><code class="language-javascript">
+function project([lon, lat]) {
+  const R = 6378137;
+  const maxLat = 85.05112878;
+  const clampedLat = Math.max(-maxLat, Math.min(maxLat, lat));
+  const phi = clampedLat * Math.PI / 180;
+  return [
+    R * lon * Math.PI / 180,
+    R * Math.log(Math.tan(Math.PI / 4 + phi / 2))
+  ];
+}
+</code></pre>
+
+<p><code>R</code> is the sphere radius in metres. The trigonometric functions use radians, so we convert degrees first. Clamping keeps latitude away from the poles, where Mercator’s y value grows without bound. The limit here matches the familiar square Web Mercator world extent. The download’s <code>project()</code> accepts a second argument to switch this transformation on or off.</p>
+<p>This is the spherical formula, not general-purpose projection support. <a href="https://proj.org/en/stable/operations/projections/webmerc.html">PROJ’s Web Mercator reference</a> describes the same distinction from ellipsoidal Mercator.</p>
+<p><strong>Try this:</strong> switch the display. Compare the rectangle around the equator with the one at 60° north. Each spans 20° of longitude and 10° of latitude.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Experiment 7: compare longitude-latitude drawing with Web Mercator" src="../static/gis-from-scratch/tinygis.html?lesson=projection" loading="lazy" height="550"></iframe>
+<figcaption>The geographic grid changes shape because its coordinates are transformed. Projected metres are not automatically ground-distance metres.</figcaption>
+</figure>
+
+<p>The higher-latitude rectangle gets taller in Mercator. That is a visible consequence of the nonlinear y transformation. It does not make the rectangle larger on Earth.</p>
+<p>There are now three spaces to keep straight: source longitude/latitude, projected map coordinates, and screen pixels. Identification follows the transformations backward. Export should preserve the original geographic coordinates rather than accidentally writing projected metres into GeoJSON.</p>
+<p>This is why a spatial reference is more than a label. It tells us how to interpret numbers, and a projection changes those numbers according to a defined relationship. Assigning a name to the canvas would accomplish neither.</p>
+<h2 id="8-put-the-pieces-together-then-save-something">8. Put the pieces together, then save something</h2>
+<p>The final lab combines the earlier pieces. Open data, choose visibility and point size, pan and zoom, identify a feature, make an attribute or spatial selection, and export it. It uses the direct longitude/latitude display from the early experiments; the projection comparison remains a separate lesson.</p>
+<p>Reading a local file starts with browser APIs:</p>
+<pre><code class="language-javascript">
+const text = await file.text();
+const nextData = JSON.parse(text);
+validateGeoJSON(nextData);
+data = nextData;
+selected.clear();
+fit();
+</code></pre>
+
+<p><code>file</code> is the file chosen through the input control. <code>await</code> pauses this async handler until its text is available. <code>JSON.parse()</code> turns that text into objects and arrays. The validation happens before replacing the current data, so a bad file does not erase a working map. In the download, a <code>try...catch</code> reports parsing and validation failures next to the map.</p>
+<p><strong>Try this:</strong> select by polygon, export the three selected points, and open that exported file back in the lab. The result should contain A, C, and F. Its polygon has disappeared because it was the query area, not part of the selected result.</p>
+<figure class="gis-experiment">
+<iframe data-tinygis title="Final lab: load, inspect, query and export GeoJSON with vanilla JavaScript" src="../static/gis-from-scratch/tinygis.html?lesson=lab" loading="lazy" height="1100"></iframe>
+<figcaption>Files are read locally. Export includes the selected features and their original attributes and coordinates. Restore sample data brings back the complete example.</figcaption>
+</figure>
+
+<p>Creating the result is mostly ordinary data handling:</p>
+<pre><code class="language-javascript">
+const result = {
+  type: "FeatureCollection",
+  features: data.features.filter((feature, index) =&gt; selected.has(index))
+};
+
+const blob = new Blob(
+  [JSON.stringify(result, null, 2)],
+  { type: "application/geo+json" }
+);
+const url = URL.createObjectURL(blob);
+</code></pre>
+
+<p><code>JSON.stringify()</code> reverses parsing: it turns the selected objects into text. The final <code>2</code> asks for readable indentation. A <code>Blob</code> holds the output bytes. The object URL lets a download link refer to those bytes without uploading them to a server. The working <code>download()</code> function creates the link, clicks it, and releases the URL afterward.</p>
+<p>If nothing is selected, the exported FeatureCollection is empty. That is a valid result, not a reason to silently export everything. The readout states how many features were exported. To keep the load exercise focused on drawable data, this demo rejects empty collections on import and explains why.</p>
+<p>The file input, Canvas drawing surface, and download are enough to close a small GIS workflow. The important relationship is that the data, the view, and the selection are separate values. Moving the view does not move the data. Styling the selection does not change the query. Saving the result does not depend on which features happen to be on-screen.</p>
+<h2 id="what-i-want-this-exercise-to-leave-behind">What I want this exercise to leave behind</h2>
+<p>I do not want to build a bad version of QGIS in my spare time. This stops well before rasters, editing, topology repair, labels, services, geodatabases, most projections, or serious symbology. Even this small version has boundary policies, malformed data, display scaling, pointer behavior, and performance tradeoffs to think about.</p>
+<p>Those details are part of the value. Some capabilities that feel substantial in a desktop interface have a small core. Others become complicated as soon as we ask them to handle messy input or unusual geometry. Both outcomes tell us something about the tools we already use.</p>
+<p>For your next experiment, change one thing you can predict. Move a coordinate in the GeoJSON. Change the point-picking tolerance. Make the index’s query envelope cover almost the entire dataset. Choose a different policy for a point on a hole boundary, and update the checks along with the code.</p>
+<p>Then explain what changed in GIS terms and in JavaScript terms. If you can trace a point from its stored coordinate to its screen position, back through a click, into a selection, and out to a file, you have something more useful than a new mapping API recipe. You can explain the mechanisms that the recipe normally leaves out.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/gis.html">GIS</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+            <p><a href="https://ko-fi.com/dannymcvey" target="_blank" rel="noopener noreferrer">Support this work on Ko-fi</a></p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>

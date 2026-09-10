@@ -190,7 +190,7 @@ CreateNumpadKeys() {
     )
     Hotkey "~*Alt up", OnAltUp, "On"            ; Create hotkey for when Alt is released. 
     for key, num in keyMap {                    ; for-loop each key, value in keyMap.
-        Hotkey "CapsLock & " key, remap, "On"   ; Create hotkeys with CapsLock as the modifier.
+        Hotkey "CapsLock &amp; " key, remap, "On"   ; Create hotkeys with CapsLock as the modifier.
     }
 
     static remap(ThisKey) {

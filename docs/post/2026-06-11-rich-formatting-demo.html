@@ -222,7 +222,7 @@ print(buffered.head())
 
 <p>JavaScript:</p>
 <pre><code class="language-javascript">
-document.querySelectorAll('pre code').forEach((block) => {
+document.querySelectorAll('pre code').forEach((block) =&gt; {
   const lang = block.className.replace('language-', '') || 'text';
   const btn = document.createElement('button');
   btn.textContent = 'Copy';

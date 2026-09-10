@@ -208,7 +208,7 @@ git status --porcelain
 <p>This forces the decision upfront: Is the workspace clean? Should you commit first? It prevents the panic of merging an uncertain state.</p>
 <p><strong>Step 2: Perform the merge</strong></p>
 <pre><code class="language-bash">
-git -C <main-worktree-path> merge <topic-branch>
+git -C &lt;main-worktree-path&gt; merge &lt;topic-branch&gt;
 </code></pre>
 
 <p>Clean, explicit. No flags, no force-pushing. Just a deliberate merge that respects the history.</p>
@@ -220,7 +220,7 @@ git diff --name-only --diff-filter=U
 
 # Read each file
 # Resolve by preserving intent of both sides
-git add <resolved-file>
+git add &lt;resolved-file&gt;
 
 # Commit the merge
 git commit --no-edit
@@ -233,7 +233,7 @@ git commit --no-edit
 git status --porcelain
 
 # Confirm the topic branch is now an ancestor
-git merge-base --is-ancestor <topic-branch> HEAD
+git merge-base --is-ancestor &lt;topic-branch&gt; HEAD
 </code></pre>
 
 <p>This validates that the merge actually worked. It prevents the "did it work?" doubt that makes beginners nervous.</p>
