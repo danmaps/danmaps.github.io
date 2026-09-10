@@ -213,6 +213,27 @@ th {
     box-shadow: var(--surface-shadow);
 }
 
+/* Keep the shared site header geometry independent of Bootstrap's breakpoint
+   and button defaults, matching dannymcvey.com. */
+#header-container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+}
+
+.site-nav .about-link {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    border: 0;
+    line-height: normal;
+    font-weight: 400;
+}
+
 
 /* Override the bg-dark class to make it black */
 .bg-dark {
@@ -713,5 +734,24 @@ body.post-page main.post-main {
     .tag-cloud-panel,
     .tag-table-panel {
         padding: 1rem;
+    }
+}
+
+@media (max-width: 430px) {
+    #header-container {
+        padding: 0.85rem;
+    }
+
+    body.home .home-link h2,
+    body.post-page .home-link h2,
+    body.tag-page .home-link h2 {
+        font-size: 1rem;
+    }
+
+    body.home .about-link,
+    body.post-page .about-link,
+    body.tag-page .about-link {
+        padding: 0.42rem 0.68rem;
+        font-size: 0.68rem;
     }
 }
