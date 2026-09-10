@@ -1,9 +1,8 @@
 ---
-title: "GIS from Scratch: Reinventing Web GIS Without External Libraries"
+title: "GIS from scratch: learning web mapping with vanilla JavaScript"
 date: 2026-09-10
 layout: rich
 tags:
-  - Draft
   - GIS
   - Systems
 ---

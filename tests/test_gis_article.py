@@ -28,7 +28,6 @@ class ArticleTests(unittest.TestCase):
         client = app.test_client()
         response = client.get(f'/post/{SLUG}.html')
         self.assertEqual(response.status_code, 200)
-        self.assertNotIn('Working draft · Interactive tutorial', response.text)
         parsed = Tags(); parsed.feed(response.text)
         self.assertEqual(len(parsed.frames), 8)
         self.assertEqual(len({f['title'] for f in parsed.frames}), 8)
@@ -45,10 +44,10 @@ class ArticleTests(unittest.TestCase):
             with client.get('/static/gis-from-scratch/' + asset) as result:
                 self.assertEqual(result.status_code, 200)
 
-    def test_draft_is_listed_only_as_draft(self):
+    def test_published_post_is_listed_in_public_indexes(self):
         client = app.test_client()
         for path in ['/', '/all-posts.html', '/tag/gis.html', '/tag/systems.html']:
-            self.assertNotIn(SLUG, client.get(path).text)
-        self.assertIn(SLUG, client.get('/drafts.html').text)
+            self.assertIn(SLUG, client.get(path).text)
+        self.assertNotIn(SLUG, client.get('/drafts.html').text)
 
 if __name__ == '__main__': unittest.main()
