@@ -11,7 +11,7 @@ layout: rich
 
 <img src="/static/images/your-arcpy-script-is-becoming-software-hero.jpg" alt="A cinematic desert mountain landscape at sunset with translucent GIS map layers floating above the terrain" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
 
-Looking for the starter? [ArcPy Project Starter →↗](https://dannymcvey.com/products/arcpy-project-starter/)
+Want to make the next AI-assisted change safer? [Get the AI-Safe ArcPy Kit →↗](https://dannymcvey.com/products/arcpy-project-starter/)
 
 Most ArcPy projects don't start as software projects.
 
@@ -363,9 +363,9 @@ That's kind of the point.
 
 They're the boring scaffolding I want in place before I start solving the interesting GIS problem.
 
-So I packaged my preferred setup as **ArcPy Project Starter**.
+So I packaged my preferred setup as **ArcPy Project Starter**—a practical way to make the next AI-assisted change safer.
 
-It's a small, opinionated project template for ArcGIS Pro developers and GIS analysts who are moving from one-off Python scripts toward maintainable automation.
+It's a small, opinionated refactor kit for GIS analysts with messy ArcPy scripts who want a coding agent to help without turning a working workflow into a fragile one.
 
 It includes:
 
@@ -381,7 +381,7 @@ It's **$29, one time**.
 
 If that saves you even one round of creating `script_final_v2_WORKING.py`, I figure we're even.
 
-[Get ArcPy Project Starter →](https://dannymcvey.com/products/arcpy-project-starter/)
+[Make your ArcPy script AI-safe →](https://dannymcvey.com/products/arcpy-project-starter/)
 
 ## The larger lesson
 
