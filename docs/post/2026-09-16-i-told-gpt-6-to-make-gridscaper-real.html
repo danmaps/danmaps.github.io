@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>I Told GPT-6 to Make GridScaper Real</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
+.codehilite .esc { color: #F8F8F2 } /* Escape */
+.codehilite .g { color: #F8F8F2 } /* Generic */
+.codehilite .k { color: #66D9EF } /* Keyword */
+.codehilite .l { color: #AE81FF } /* Literal */
+.codehilite .n { color: #F8F8F2 } /* Name */
+.codehilite .o { color: #FF4689 } /* Operator */
+.codehilite .x { color: #F8F8F2 } /* Other */
+.codehilite .p { color: #F8F8F2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
+.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
+.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
+.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
+.codehilite .go { color: #66D9EF } /* Generic.Output */
+.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
+.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
+.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
+.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
+.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
+.codehilite .kt { color: #66D9EF } /* Keyword.Type */
+.codehilite .ld { color: #E6DB74 } /* Literal.Date */
+.codehilite .m { color: #AE81FF } /* Literal.Number */
+.codehilite .s { color: #E6DB74 } /* Literal.String */
+.codehilite .na { color: #A6E22E } /* Name.Attribute */
+.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
+.codehilite .nc { color: #A6E22E } /* Name.Class */
+.codehilite .no { color: #66D9EF } /* Name.Constant */
+.codehilite .nd { color: #A6E22E } /* Name.Decorator */
+.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
+.codehilite .ne { color: #A6E22E } /* Name.Exception */
+.codehilite .nf { color: #A6E22E } /* Name.Function */
+.codehilite .nl { color: #F8F8F2 } /* Name.Label */
+.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
+.codehilite .nx { color: #A6E22E } /* Name.Other */
+.codehilite .py { color: #F8F8F2 } /* Name.Property */
+.codehilite .nt { color: #FF4689 } /* Name.Tag */
+.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
+.codehilite .ow { color: #FF4689 } /* Operator.Word */
+.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
+.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
+.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
+.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
+.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
+.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
+.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
+.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
+.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
+.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
+.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
+.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
+.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
+.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
+.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
+.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="https://dannymcvey.com" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/" class="about-link btn btn-outline-light">Blog</a>
+                    <a href="https://github.com/danmaps" class="about-link btn btn-outline-light">GitHub</a>
+                    <a href="https://www.linkedin.com/in/dannymcvey" class="about-link btn btn-outline-light">LinkedIn</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        
+        <a class="post-kicker" href="/tag/ai.html">AI</a>
+        
+        <a class="post-kicker" href="/tag/personal.html">Personal</a>
+        
+        <a class="post-kicker" href="/tag/product.html">Product</a>
+        
+    </div>
+    
+    <h1>I Told GPT-6 to Make GridScaper Real</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-09-16">September 16, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">4 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p>In mid-2025, I was using AI to play with catenary curves.</p>
+<p>A catenary is the shape a hanging wire makes between two points. I was interested in the math, but I was also interested in the feeling of manipulating it. So I made a small 2D simulator in an Observable notebook. It was an experiment: adjust the poles, watch the curve change, see the relationship between the numbers and the shape.</p>
+<p>Then I wondered what would happen if I put it in 3D.</p>
+<p>I threw the idea at Three.js and started making a little game. Townscaper was an obvious inspiration. I wanted something you could poke at without needing a mission or a tutorial. Power poles, wires, terrain, a little town.</p>
+<p>The birds came next.</p>
+<p>Birds would land on the lines. If you moved the pole they were perched on, they would startle and fly away. It was a tiny interaction, but it gave the scene a pulse. The wires were no longer just geometry. Something could notice what you did.</p>
+<p>I went back and forth with GPT-4 and Opus 4.6 in VS Code, which were state of the art at the time, and co-wrote a bunch of JavaScript. I was not building a serious game studio pipeline. I was following a curiosity and learning what the tools could help me make.</p>
+<p>Then I moved on.</p>
+<p>The repository sat there, unvisited. A small curiosity from a particular moment in the history of AI-assisted coding. I was glad it existed, but I did not expect it to become anything.</p>
+<h2 id="make-it-real">“Make it real”</h2>
+<p>In September 2026, GPT-6 arrived, and I remembered the game.</p>
+<p>Late one night, I asked ChatGPT to riff on concept art for an upgrade. I wanted to see the world more clearly: small towns, electrical infrastructure, atmosphere, a little whimsy. The images were immediately more compelling than the old prototype. They gave me something specific to chase.</p>
+<p>The next day, I pointed GPT-6 at the repository through the GitHub Copilot CLI and gave it a short instruction:</p>
+<blockquote>
+<p>make it real</p>
+</blockquote>
+<p>The progress was hard to believe.</p>
+<p>Within minutes, the old experiment was turning into a real place. The visuals improved dramatically. The scene had depth and mood. The game started to feel like a world instead of a technical demonstration.</p>
+<p>The important change was not only that the model could write more code. It was that I could finally see the gap between the thing in my head and the thing on the screen closing quickly enough to stay motivated.</p>
+<p>That has changed what I think is possible for me to build.</p>
+<p>I have spent years collecting ideas that were larger than my available time or implementation capacity. GridScaper made the new situation tangible. I can describe a direction, inspect the result, correct it, and keep going. I still have to make decisions. I still have to test things. I still have to notice when the model has made something brittle or ugly. But the cost of trying an idea has fallen dramatically.</p>
+<p>Astra is making it happen. I am directing, testing, refining, and occasionally staring at the screen because the result is much better than I expected.</p>
+<h2 id="a-game-about-infrastructure">A game about infrastructure</h2>
+<p>GridScaper is still a game about power lines and poles, which is a strange subject for a cozy world-building game. That is part of why I like it.</p>
+<p>I work with electrical infrastructure professionally, and I have always found it more interesting than people give it credit for. Utility structures shape the places we live, but most of the time we look through them. GridScaper gives me a way to make that infrastructure visible, tactile, and playful.</p>
+<p>The little details matter. A bird landing on a wire. A shop coming to life when the power is restored. The sound of a town settling into itself. A landscape that feels designed without feeling sterile.</p>
+<p>The next pieces are already taking shape. I am working on sound. A level designer is in progress. I want to make it possible to build and explore different kinds of places without losing the quiet, slightly odd character of the original experiment.</p>
+<p>I have no doubt I can get those working now. That confidence is new.</p>
+<p>A year ago, I was delighted that a bird could fly away when I moved a wire.</p>
+<p>I still am.</p>
+<p>The recent past was good. The present feels truly futuristic.</p>
+<p>I love this.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/personal.html">Personal</a>
+    
+    <a class="post-tag" href="/tag/product.html">Product</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+            <p><a href="https://ko-fi.com/dannymcvey" target="_blank" rel="noopener noreferrer">Support this work on Ko-fi</a></p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>
