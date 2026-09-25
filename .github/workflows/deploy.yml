@@ -39,6 +39,7 @@ jobs:
     - name: Build the site
       run: |
         ./scripts/freeze_and_stage.sh
+        python scripts/build_latest_posts_feed.py
 
     - name: Inject public basemap configuration into deployment artifact
       env:
