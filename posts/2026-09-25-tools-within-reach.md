@@ -2,7 +2,6 @@
 title: "Tools Within Reach"
 date: 2026-09-25
 tags:
-  - Draft
   - AI
   - Systems
   - Career
