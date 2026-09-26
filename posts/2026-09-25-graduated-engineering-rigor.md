@@ -10,6 +10,8 @@ summary: "AI makes tiny bespoke apps cheap enough to be disposable. Engineering 
 layout: rich
 ---
 
+<img src="/static/images/graduated-engineering-rigor-hero.jpg" alt="Futuristic abstract scene with colorful 3D icons, cards, spheres, and cubes streaming toward a sleek architectural structure against a dark background with glowing lines and geometric orbits" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 I think a lot of software governance starts from the wrong premise: if something is an app, it should be engineered like an app.
 
 That made more sense when software was expensive to create.
