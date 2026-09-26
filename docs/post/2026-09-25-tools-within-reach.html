@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>Tools Within Reach</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
+.codehilite .esc { color: #F8F8F2 } /* Escape */
+.codehilite .g { color: #F8F8F2 } /* Generic */
+.codehilite .k { color: #66D9EF } /* Keyword */
+.codehilite .l { color: #AE81FF } /* Literal */
+.codehilite .n { color: #F8F8F2 } /* Name */
+.codehilite .o { color: #FF4689 } /* Operator */
+.codehilite .x { color: #F8F8F2 } /* Other */
+.codehilite .p { color: #F8F8F2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
+.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
+.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
+.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
+.codehilite .go { color: #66D9EF } /* Generic.Output */
+.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
+.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
+.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
+.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
+.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
+.codehilite .kt { color: #66D9EF } /* Keyword.Type */
+.codehilite .ld { color: #E6DB74 } /* Literal.Date */
+.codehilite .m { color: #AE81FF } /* Literal.Number */
+.codehilite .s { color: #E6DB74 } /* Literal.String */
+.codehilite .na { color: #A6E22E } /* Name.Attribute */
+.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
+.codehilite .nc { color: #A6E22E } /* Name.Class */
+.codehilite .no { color: #66D9EF } /* Name.Constant */
+.codehilite .nd { color: #A6E22E } /* Name.Decorator */
+.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
+.codehilite .ne { color: #A6E22E } /* Name.Exception */
+.codehilite .nf { color: #A6E22E } /* Name.Function */
+.codehilite .nl { color: #F8F8F2 } /* Name.Label */
+.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
+.codehilite .nx { color: #A6E22E } /* Name.Other */
+.codehilite .py { color: #F8F8F2 } /* Name.Property */
+.codehilite .nt { color: #FF4689 } /* Name.Tag */
+.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
+.codehilite .ow { color: #FF4689 } /* Operator.Word */
+.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
+.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
+.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
+.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
+.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
+.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
+.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
+.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
+.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
+.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
+.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
+.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
+.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
+.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
+.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
+.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark", id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="https://dannymcvey.com" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav">
+                    <a href="/" class="about-link btn btn-outline-light">Blog</a>
+                    <a href="https://github.com/danmaps" class="about-link btn btn-outline-light">GitHub</a>
+                    <a href="https://www.linkedin.com/in/dannymcvey" class="about-link btn btn-outline-light">LinkedIn</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        
+        <a class="post-kicker" href="/tag/ai.html">AI</a>
+        
+        <a class="post-kicker" href="/tag/systems.html">Systems</a>
+        
+        <a class="post-kicker" href="/tag/career.html">Career</a>
+        
+    </div>
+    
+    <h1>Tools Within Reach</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-09-25">September 25, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">8 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p><img src="/static/images/tools-within-reach-hero.jpg" alt="Surreal illustration of a hand reaching toward a floating geometric block above wavy terrain, grid lines, and orbiting dots" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
+<p>I have spent a lot of time making software without ever fully matching the traditional profile of a software developer.</p>
+<p>I do not have a computer science degree. My job title has never been Software Engineer. My formal career grew out of GIS. At the same time, I write Python, build web applications, use APIs, design automated workflows, deploy code, work in GitHub, use CI/CD, and think constantly about how software should behave when other people depend on it.</p>
+<p>For a long time, I saw the mismatch between my title and my work mostly as a career problem. It still is sometimes. Formal software roles often ask for a degree, a sequence of previous engineering titles, or years spent doing nothing but production software development.</p>
+<p>Lately I have started to see another side of it.</p>
+<p>I learned many software-development tools from outside the traditional pipeline. I remember what GitHub looked like before it felt ordinary. I remember when a repository, a branch, a pull request, a package manager, a deployment pipeline, or a terminal command all seemed like things that belonged to another profession.</p>
+<p>That perspective has become useful because a lot of people I work with are standing near the same boundary.</p>
+<p>They are highly technical in their own domains. They understand maps, infrastructure, operations, planning, engineering, science, data, policy, or field work. They know where the friction is. They know what a bad result looks like. They know which edge cases matter because they live with them.</p>
+<p>They may never have been shown how much software-making capability is already within reach.</p>
+<h2 id="the-boundary-around-software-has-always-been-partly-cultural">The boundary around software has always been partly cultural</h2>
+<p>Software development has real depth. Good engineering requires judgment about architecture, security, testing, maintainability, failure, performance, and consequences. Those skills matter more as software becomes important, shared, or difficult to reverse.</p>
+<p>The tools around software development also grew up inside a profession with its own vocabulary and assumptions.</p>
+<p>A developer can say, "Open a PR, add a test, pin the dependency, and let CI run," and every part of that sentence may feel routine.</p>
+<p>To someone outside that culture, it can sound like a foreign language.</p>
+<p>The surprising thing is how often the individual concepts become understandable once somebody explains why they exist.</p>
+<p>A repository is a place where the work and its history live together.</p>
+<p>A branch gives you a safe place to change something.</p>
+<p>A pull request creates a moment to inspect that change before it becomes part of the main system.</p>
+<p>A test records behavior you want to preserve.</p>
+<p>A deployment process moves software from your workspace to somewhere other people can use it.</p>
+<p>None of those explanations require a computer science degree to understand. They require an introduction.</p>
+<p>That distinction matters.</p>
+<p>A lot of people have spent years assuming these tools were farther away than they really were.</p>
+<h2 id="domain-experts-already-possess-something-valuable">Domain experts already possess something valuable</h2>
+<p>When someone opens a blank code editor for the first time, the screen may look empty. Their understanding of the problem is not empty.</p>
+<p>A GIS analyst may know exactly why a spatial workflow breaks on multipart features.</p>
+<p>An engineer may know which measurements are trustworthy and which ones need context.</p>
+<p>A planner may understand the political and operational constraints behind a seemingly simple map.</p>
+<p>An operations specialist may know the manual process everyone hates, the weird exceptions nobody documented, and the exact moment where a spreadsheet stops being enough.</p>
+<p>That knowledge is difficult to manufacture.</p>
+<p>It is also a strong foundation for software.</p>
+<p>When people talk about learning to code, the conversation often starts with syntax. Syntax matters, but syntax is only one piece of the work. Useful software starts with understanding what should happen, what should never happen, what information matters, and how a person will actually use the result.</p>
+<p>Domain experts often arrive with those answers already forming in their heads.</p>
+<p>The blank editor is less blank than it looks.</p>
+<h2 id="github-is-one-of-the-doors-i-want-to-show-people">GitHub is one of the doors I want to show people</h2>
+<p>GitHub is a good example of a tool that can feel strangely gatekept even when nobody is actively guarding it.</p>
+<p>For developers, it is infrastructure. For many people outside software development, it is a website full of source code, unfamiliar terminology, and people who seem to know rules that were never explained.</p>
+<p>Once someone gets a useful introduction, GitHub can become much more concrete.</p>
+<p>It is where an idea can have a history.</p>
+<p>It is where a script can stop living as <code>final_v2_really_final.py</code> on a shared drive.</p>
+<p>It is where an issue can capture a problem before the solution is obvious.</p>
+<p>It is where an AI coding agent can work against a real project instead of an isolated chat.</p>
+<p>It is where automated checks can run every time something changes.</p>
+<p>It is where a small personal tool can gradually become a maintained piece of software.</p>
+<p>I do not expect everyone I show GitHub to become enthusiastic about Git internals. That is not the goal.</p>
+<p>The goal is to make the tool legible enough that they can decide whether it helps them.</p>
+<h2 id="ai-shortened-the-distance-between-curiosity-and-a-working-result">AI shortened the distance between curiosity and a working result</h2>
+<p>Generative AI has changed this boundary quickly.</p>
+<p>A curious domain expert can now ask questions in the middle of the work instead of stopping to search for a course that might explain the right concept three chapters later.</p>
+<p>They can ask:</p>
+<ul>
+<li>What does this Git error mean?</li>
+<li>How should I organize this small Python project?</li>
+<li>Turn this repeated workflow into a function.</li>
+<li>Write a test for this behavior.</li>
+<li>Explain this API response.</li>
+<li>Help me make this script safer before it edits production data.</li>
+<li>What would I need to deploy this so someone else can use it?</li>
+</ul>
+<p>That feedback loop is powerful.</p>
+<p>The person still needs judgment. They still need to recognize when the stakes are high, when a generated answer is suspicious, when they need review, and when they are operating outside their depth.</p>
+<p>AI makes experimentation cheaper. It also makes guardrails more important.</p>
+<p>That is why I keep becoming interested in frameworks.</p>
+<h2 id="frameworks-let-people-start-with-better-defaults">Frameworks let people start with better defaults</h2>
+<p>A newcomer should not have to invent software architecture before they can automate a useful task.</p>
+<p>They should be able to start inside a structure that already contains some hard-earned lessons.</p>
+<p>That might mean:</p>
+<ul>
+<li>an opinionated project starter</li>
+<li>a safe folder structure</li>
+<li>version control from the beginning</li>
+<li>tests around destructive operations</li>
+<li>reusable agent instructions</li>
+<li>explicit validation before a tool runs</li>
+<li>clear separation between choosing an action and executing it</li>
+<li>a small set of supported patterns instead of infinite freedom</li>
+</ul>
+<p>I think of these as rails for software-making.</p>
+<p>They do not remove the need for engineering. They package some engineering knowledge into defaults, constraints, and reusable patterns.</p>
+<p>A woodworking beginner can make something useful much sooner with a square, a jig, and a good set of plans. They still need to respect the saw.</p>
+<p>Software can work the same way.</p>
+<p>A good framework lets someone focus first on the problem they understand while inheriting safer ways to structure the solution.</p>
+<h2 id="making-software-is-becoming-a-larger-category-than-being-a-software-developer">Making software is becoming a larger category than being a software developer</h2>
+<p>This is the idea I keep coming back to.</p>
+<p>The profession of software engineering remains real and demanding. At the same time, the population of people who can make useful software is expanding.</p>
+<p>Those two groups do not have to be identical.</p>
+<p>A scientist who builds a reliable data-processing tool has made software.</p>
+<p>A GIS analyst who turns a repeated spatial workflow into a tested application has made software.</p>
+<p>An operations employee who creates a small internal tool around a painful process has made software.</p>
+<p>Some of those people may eventually want a software engineering career. Some will have no interest in that at all.</p>
+<p>Both outcomes are fine.</p>
+<p>Someone may learn enough Python to remove three hours of repetitive work every Friday and stop there.</p>
+<p>Someone else may build a web app for their team.</p>
+<p>Another person may discover that they love repositories, tests, APIs, and systems design, then decide to go much deeper.</p>
+<p>Access creates options.</p>
+<p>That is the part I care about.</p>
+<h2 id="curiosity-is-the-prerequisite-i-care-about-most">Curiosity is the prerequisite I care about most</h2>
+<p>I am increasingly less interested in asking whether someone is "technical."</p>
+<p>That label hides too much.</p>
+<p>I am more interested in whether they are curious enough to keep pulling on a thread.</p>
+<p>Could this be automated?</p>
+<p>Why do we do this manually?</p>
+<p>What is an API, exactly?</p>
+<p>What happens if I clone this repository?</p>
+<p>Could these two systems talk to each other?</p>
+<p>Could I build a tiny version of this idea myself?</p>
+<p>What would make this safe enough for someone else to use?</p>
+<p>Those questions can travel surprisingly far now.</p>
+<p>My role, as I see it, is not to tell every domain expert that they should become a programmer.</p>
+<p>I want to shine a light on the tools that are already nearby. I want to explain some of the vocabulary. I want to provide frameworks that make the first steps safer. I want to show what I have learned from using these tools on real problems.</p>
+<p>Then people can take what is useful and leave the rest.</p>
+<p>Some will automate one task. Some will make applications. Some will contribute to repositories. Some will decide they would rather keep using software than make it.</p>
+<p>All of those are reasonable choices.</p>
+<p>The important thing is that the choice becomes visible.</p>
+<p>If you know a problem deeply and you are curious enough to keep asking how things work, you may already have more of what you need to make software than you think.</p>
+<p>The rest is increasingly within reach.</p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+    <a class="post-tag" href="/tag/career.html">Career</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+            <p><a href="https://ko-fi.com/dannymcvey" target="_blank" rel="noopener noreferrer">Support this work on Ko-fi</a></p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+</body>
+</html>

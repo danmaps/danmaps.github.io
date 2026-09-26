@@ -9,6 +9,8 @@ summary: "Domain experts already know real problems. With curiosity, frameworks,
 layout: rich
 ---
 
+<img src="/static/images/tools-within-reach-hero.jpg" alt="Surreal illustration of a hand reaching toward a floating geometric block above wavy terrain, grid lines, and orbiting dots" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" />
+
 I have spent a lot of time making software without ever fully matching the traditional profile of a software developer.
 
 I do not have a computer science degree. My job title has never been Software Engineer. My formal career grew out of GIS. At the same time, I write Python, build web applications, use APIs, design automated workflows, deploy code, work in GitHub, use CI/CD, and think constantly about how software should behave when other people depend on it.
