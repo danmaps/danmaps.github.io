@@ -2,7 +2,6 @@
 title: "Graduated Engineering Rigor"
 date: 2026-09-25
 tags:
-  - Draft
   - AI
   - Systems
   - Work
