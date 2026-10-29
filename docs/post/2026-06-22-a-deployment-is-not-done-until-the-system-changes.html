@@ -23,33 +23,7 @@
 >
 <link rel="stylesheet" href="/static/map-embed.css">
 <link rel="stylesheet" href="/static/post-reading.css">
-
-
-    <!-- Prism CSS (for code highlighting) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-</head>
-<body class="bg-dark post-page">
-    
-    <header class="bg-dark py-3">
-        <div class="container bg-dark" id="header-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <a href="https://dannymcvey.com/" class="home-link text-light"><h2>Danny McVey</h2></a>
-                <nav class="site-nav" aria-label="Primary navigation">
-                    <a href="https://dannymcvey.com/#gis-agent-skills" class="about-link btn btn-outline-light">GIS Agent Skills</a>
-                    <a href="https://dannymcvey.com/experiments/" class="about-link btn btn-outline-light">Experiments</a>
-                    <a href="/" class="about-link btn btn-outline-light">Blog</a>
-                    <a href="https://github.com/danmaps" class="about-link btn btn-outline-light">GitHub</a>
-                    <a href="https://dannymcvey.com/contact/" class="about-link about-link-cta btn btn-outline-light">Contact</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="container my-4 post-main">
-        
-<style>
-    pre { line-height: 125%; }
+<style>pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -132,9 +106,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
 .codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
 .codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
-.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */
-</style>
-<header class="post-hero post-hero-legacy">
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark" id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="https://dannymcvey.com/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="https://dannymcvey.com/#gis-agent-skills" class="about-link btn btn-outline-light">GIS Agent Skills</a>
+                    <a href="https://dannymcvey.com/experiments/" class="about-link btn btn-outline-light">Experiments</a>
+                    <a href="/" class="about-link btn btn-outline-light">Blog</a>
+                    <a href="https://github.com/danmaps" class="about-link btn btn-outline-light">GitHub</a>
+                    <a href="https://dannymcvey.com/contact/" class="about-link about-link-cta btn btn-outline-light">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
     <a href="/" class="post-back-link">Back to blog</a>
     
     <div class="post-kicker-row">
@@ -148,9 +150,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     </div>
     
     <h1>A Deployment Is Not Done Until the Running System Changes</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-06-22">June 22, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">6 min read</span>
+        
+    </div>
 </header>
 
-<article class="post-reading post-reading-legacy">
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
     <p><img src="/static/images/deployment-runtime-truth-hero.png" alt="Editorial illustration of a split operations room where successful build signals contrast with a live system still serving the old state" style="width:100%; display:block; margin: 12px 0 18px 0; border-radius: 12px;" /></p>
 <p>This week I spent some time getting <code>resume-tailor</code> into a more real state on my homelab.</p>
 <p>That included Docker deployment work, wiring the web app to the API cleanly, getting assisted tailoring working with a server-side model key, and restoring <code>.docx</code> and PDF export behavior after it broke.</p>
@@ -160,7 +180,7 @@ The lesson was broader.</p>
 <p><strong>a deployment is not done until the running system changes.</strong></p>
 <p>That sounds obvious.<br />
 It is amazing how easy it is to forget in practice.</p>
-<h2>There are several fake definitions of "deployed"</h2>
+<h2 id="there-are-several-fake-definitions-of-deployed">There are several fake definitions of "deployed"</h2>
 <p>A lot of us still use sloppy stand-ins for deployment success:</p>
 <ul>
 <li>the code was merged</li>
@@ -178,7 +198,7 @@ And yet the live API was still returning <code>404</code> for the export routes.
 <p>From a distance, that looks contradictory.<br />
 It is not.<br />
 It just means the system you think you updated is not always the system that is actually serving requests.</p>
-<h2>Repo state is not runtime truth</h2>
+<h2 id="repo-state-is-not-runtime-truth">Repo state is not runtime truth</h2>
 <p>One of the more useful debugging habits is separating three things that people casually collapse into one:</p>
 <ul>
 <li>repo state</li>
@@ -199,7 +219,7 @@ You can have a container that restarted but is still serving behavior you did no
 The fix was not just "build again."<br />
 The reliable fix was to force the relevant service to rebuild without cache and recreate the running container so the new image actually became the active runtime.</p>
 <p>That is the kind of issue that makes you suspicious in a healthy way.</p>
-<h2>A successful build is still only a hypothesis</h2>
+<h2 id="a-successful-build-is-still-only-a-hypothesis">A successful build is still only a hypothesis</h2>
 <p>This is the part I want to remember.</p>
 <p>A build step is not proof of live behavior.<br />
 It is a hypothesis about live behavior.</p>
@@ -217,7 +237,7 @@ So is a green container status.</p>
 <p>That sounds a little boring.<br />
 Good.<br />
 Boring verification is better than confident fiction.</p>
-<h2>The system should prove itself at the seam that matters</h2>
+<h2 id="the-system-should-prove-itself-at-the-seam-that-matters">The system should prove itself at the seam that matters</h2>
 <p>What I like about this lesson is that it scales beyond Docker.</p>
 <p>The exact same pattern shows up in a lot of software work:</p>
 <ul>
@@ -247,7 +267,7 @@ It is "did the externally relevant behavior change in the place I care about?"</
 <li>here is the artifact the user can now download</li>
 </ul>
 <p>That is much closer to truth.</p>
-<h2>This is not just ops advice</h2>
+<h2 id="this-is-not-just-ops-advice">This is not just ops advice</h2>
 <p>I do not really see this as a narrow DevOps lesson.</p>
 <p>It feels connected to a broader rule that keeps showing up in my AI and systems work:</p>
 <p><strong>do not confuse internal process with delivered reality.</strong></p>
@@ -262,7 +282,7 @@ I think stricter is good here.</p>
 <p>We already have enough layers that can make progress look more finished than it is.<br />
 The answer is not more narration.<br />
 It is better checks.</p>
-<h2>What I want more systems to do</h2>
+<h2 id="what-i-want-more-systems-to-do">What I want more systems to do</h2>
 <p>I want more of my tools to make this kind of proof easier by default.</p>
 <p>Not in a giant enterprise dashboard sense.<br />
 Just in the practical sense of leaving behind the evidence that answers the obvious follow-up questions.</p>
@@ -276,7 +296,7 @@ It is useful for internal tools.<br />
 It is useful for agent systems.</p>
 <p>If an agent says it deployed something, I do not mainly want a polished summary.<br />
 I want a receipt that survives contact with reality.</p>
-<h2>The takeaway</h2>
+<h2 id="the-takeaway">The takeaway</h2>
 <p>The most useful progress I made this week was not just getting <code>resume-tailor</code> more operational.<br />
 It was being reminded that "updated" has layers, and the only layer that really counts is the one the running system can prove.</p>
 <p>Merged is not deployed.<br />
@@ -286,20 +306,21 @@ Restarted is not deployed.</p>
 that is deployed.</p>
 </article>
 
+<!-- Tags -->
 
 <footer class="post-tags-footer">
     
-        <a class="post-tag tag-link" href="/tag/systems.html">Systems</a>
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
     
-        <a class="post-tag tag-link" href="/tag/ai.html">AI</a>
+    <a class="post-tag" href="/tag/ai.html">AI</a>
     
-        <a class="post-tag tag-link" href="/tag/work.html">Work</a>
+    <a class="post-tag" href="/tag/work.html">Work</a>
     
 </footer>
 
 
 <script src="/static/copy-code.js"></script>
-
+<script src="/static/post-reading.js"></script>
 
     </main>
 

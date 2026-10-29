@@ -53,7 +53,6 @@ Use YAML front matter like:
 ---
 title: Example Title
 date: 2026-03-16
-layout: rich
 tags:
   - Draft
   - AI
@@ -63,10 +62,10 @@ tags:
 
 ## Standard article layout
 
-- New articles must include `layout: rich` in front matter, including drafts, unless Danny explicitly requests a different layout.
-- This selects `templates/post_rich.html` and loads `static/post-reading.js`, providing the dynamic scroll progress bar, generated table of contents, publication date, and reading-time display.
-- Omitting `layout` selects the legacy template. Do not omit it for a standard article or copy a legacy post's metadata without adding it.
-- Before publishing, verify the rendered article includes `.scroll-progress`, the contents navigation, and `post-reading.js`; check that the bar advances when scrolling and that the hero image still displays.
+- All articles automatically use `templates/post.html`, with the scroll progress bar, generated table of contents, publication date, reading time, and map embed support.
+- No `layout` field is required. Existing `layout: rich` or `layout: default` metadata is tolerated but does not change rendering.
+- `templates/post_rich.html` is only a compatibility alias. Make article layout changes in `post.html`; do not introduce separate reading layouts or gate features on front matter.
+- Before publishing, verify the progress bar advances when scrolling, contents links work when the post has multiple headings, and images and map embeds still display.
 
 ## Filename contract
 
