@@ -17,6 +17,7 @@ Each post is a Markdown file with YAML front matter:
 ---
 title: Example Title
 date: 2026-03-16
+layout: rich
 tags:
   - Draft
   - AI
@@ -25,6 +26,8 @@ tags:
 ```
 
 Then the body is plain Markdown.
+
+Use `layout: rich` for every new standard article, including drafts, unless a different layout is explicitly requested. It enables the scroll progress bar, automatic table of contents, publication date, and reading time. Without this field, the renderer uses the legacy article template.
 
 ## File naming
 
@@ -71,12 +74,12 @@ If a new tag idea is close to an existing one, collapse it into the existing tag
 
 ### Prepare to publish
 1. Remove `Draft` / `Stub` / `Unlisted` tags
-2. Verify title, date, and tags
+2. Verify title, date, tags, and `layout: rich`
 3. Freeze and stage generated output:
    ```bash
    ./scripts/freeze_and_stage.sh
    ```
-4. Review staged changes in `posts/` and `docs/`
+4. Review staged changes in `posts/` and `docs/`. Confirm the rendered post loads `post-reading.js`, the scroll progress bar advances as you scroll, the contents links work, and the hero image displays.
 5. Commit and push
 
 Why this matters:

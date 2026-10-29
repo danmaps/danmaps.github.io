@@ -1,6 +1,7 @@
 ---
 title: Trying to Work at a Pace I Can Keep
 date: 2026-10-29
+layout: rich
 tags:
   - AI
   - Work
