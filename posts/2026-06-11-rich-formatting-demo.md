@@ -59,15 +59,15 @@ Ordered:
 Nested:
 
 - Tools
-  - GIS tools
-    - Buffer
-    - Clip
-  - Dev tools
-    - git
-    - rg
+    - GIS tools
+        - Buffer
+        - Clip
+    - Dev tools
+        - git
+        - rg
 - Models
-  - Small / fast
-  - High-end reasoning
+    - Small / fast
+    - High-end reasoning
 
 ---
 
