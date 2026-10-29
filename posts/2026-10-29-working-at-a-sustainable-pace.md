@@ -2,12 +2,15 @@
 title: Trying to Work at a Pace I Can Keep
 date: 2026-10-29
 tags:
-  - Draft
   - AI
   - Work
   - Personal
 summary: "I get fulfillment from work and sidequests, but I am spread too thin. AI makes it easier to keep things moving, and harder to let myself stop."
 ---
+
+<figure>
+  <img src="/static/images/sustainable-pace-socal-hawk.gif" alt="An empty desk with four agent terminals, a laptop, steaming coffee, and a split keyboard. Beyond the window, a hawk occasionally glides over a Southern California native-plant hillside." width="960" height="640" fetchpriority="high" style="width: 100%; height: auto;" />
+</figure>
 
 I am spread too thin.
 
