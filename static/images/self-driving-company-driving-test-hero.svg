@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 840" role="img" aria-labelledby="title desc">
+<title id="title">The Self-Driving Company Needs a Driving Test</title>
+<desc id="desc">Dark blue highway at night, driver assistance controls and AI enterprise safety diagram, expressing progressive trust and safeguards.</desc>
+<defs>
+<linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#081622"/><stop offset=".5" stop-color="#123045"/><stop offset="1" stop-color="#07121b"/></linearGradient>
+<linearGradient id="road" x1=".5" x2=".5" y1="0" y2="1"><stop stop-color="#21455b"/><stop offset=".4" stop-color="#0e2534"/><stop offset="1" stop-color="#06111b"/></linearGradient>
+<linearGradient id="hud" x1="0" x2="1"><stop stop-color="#56d5ce"/><stop offset="1" stop-color="#b5f3e6"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#2a8197" stop-opacity=".45"/><stop offset="1" stop-color="#2a8197" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1600" height="840" fill="url(#sky)"/>
+<ellipse cx="985" cy="495" rx="580" ry="330" fill="url(#glow)"/>
+<!-- atmospheric horizon -->
+<path d="M0 405L95 392 190 402 280 384 400 402 540 373 690 407 850 385 1000 394 1095 363 1190 396 1340 373 1470 389 1600 355V840H0Z" fill="#091c2a"/>
+<g opacity=".65">
+<rect x="903" y="363" width="19" height="47" fill="#203b4d"/><rect x="928" y="345" width="29" height="65" fill="#29465a"/><rect x="964" y="325" width="15" height="85" fill="#24475c"/><rect x="986" y="352" width="26" height="58" fill="#36586b"/><rect x="1018" y="334" width="21" height="76" fill="#29485b"/><rect x="1050" y="349" width="36" height="61" fill="#2c4a60"/><rect x="1093" y="324" width="19" height="86" fill="#355a6f"/><rect x="1120" y="338" width="34" height="72" fill="#294b60"/>
+<g fill="#9ab9bd"><rect x="932" y="357" width="3" height="4"/><rect x="941" y="368" width="3" height="4"/><rect x="970" y="347" width="3" height="4"/><rect x="999" y="365" width="3" height="4"/><rect x="1026" y="355" width="3" height="4"/><rect x="1065" y="361" width="3" height="4"/><rect x="1101" y="349" width="3" height="4"/><rect x="1128" y="358" width="3" height="4"/></g>
+</g>
+<!-- roadway / vanishing point -->
+<path d="M755 415 860 415 1600 670 1600 840H0V670Z" fill="url(#road)"/>
+<path d="M765 418 240 840M855 418 1370 840" stroke="#52c6c8" stroke-width="6" stroke-opacity=".72"/>
+<path d="M750 418 0 685M860 418 1600 685" stroke="#afdef0" stroke-width="5" stroke-opacity=".3"/>
+<path d="M806 428 800 464M802 495 800 548M800 585 800 660" stroke="#c4dfe1" stroke-width="4" stroke-linecap="round" stroke-dasharray="18 22" opacity=".45"/>
+<path d="M735 475 863 475 906 495 690 495Z M670 520 926 520 978 546 620 546Z M570 584 1015 584 1084 620 500 620Z" fill="#48c7c5" opacity=".42"/>
+<!-- car ahead -->
+<g transform="translate(800 447)"><rect x="-42" y="-12" width="84" height="33" rx="10" fill="#10202f" stroke="#56818d" stroke-width="3"/><path d="M-29 -12 -20 -28H20L29 -12" fill="#172d3c" stroke="#56818d" stroke-width="3"/><rect x="-39" y="5" width="15" height="5" rx="2" fill="#ed6478"/><rect x="24" y="5" width="15" height="5" rx="2" fill="#ed6478"/></g>
+<!-- dashboard silhouette -->
+<path d="M0 680Q800 575 1600 680V840H0Z" fill="#06111a"/>
+<path d="M0 711Q800 640 1600 711" fill="none" stroke="#2e4a5b" stroke-width="8" opacity=".7"/>
+<rect x="370" y="674" width="860" height="125" rx="53" fill="#091e2b" stroke="#25657a" stroke-width="2"/>
+<g fill="none" stroke="#78e4df" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+<!-- cruise control -->
+<path d="M510 753a46 46 0 1 1 92 0" /><path d="M556 753l22 -25"/><circle cx="556" cy="753" r="6" fill="#78e4df"/><path d="M510 753h10m36 -45v13m46 32h-11"/>
+<!-- lane assist -->
+<path d="M757 776l20 -66m76 66 -20 -66"/><path d="M790 735h32l7 18v16h-48v-16z"/><path d="M790 770v5m32 -5v5"/><path d="M770 702l-4 14m68 -14 4 14"/>
+<!-- braking -->
+<rect x="1002" y="720" width="55" height="26" rx="6"/><path d="M1006 720l10 -16h27l10 16"/><path d="M1014 747q16 12 32 0m-47 16q31 18 62 0"/>
+</g>
+<path d="M565 785h490" fill="none" stroke="#67e6d5" stroke-width="4"/><circle cx="565" cy="785" r="8" fill="#0d2630" stroke="#82e9dc" stroke-width="3"/><circle cx="807" cy="785" r="8" fill="#0d2630" stroke="#82e9dc" stroke-width="3"/><circle cx="1055" cy="785" r="14" fill="#65d8c6"/><path d="m1049 785 4 4 9 -10" fill="none" stroke="#0c2a35" stroke-width="4"/>
+<path d="M0 840v-12a130 130 0 0 1 260 -5v17" fill="#0d1b26" stroke="#2c4759" stroke-width="18"/>
+<!-- mesh of enterprise agent systems -->
+<g stroke="#2c8194" stroke-opacity=".38" fill="none" stroke-width="2"><path d="M1030 255 1115 190 1242 225 1370 126 1500 168 1580 97M1115 190 1197 340 1315 285 1425 350 1550 285M1242 225 1315 285 1370 126M1425 350 1500 168 1550 285"/><path d="M1100 405C1170 290 1410 150 1590 115"/></g>
+<g fill="#4dcad0"><circle cx="1115" cy="190" r="5"/><circle cx="1242" cy="225" r="5"/><circle cx="1370" cy="126" r="5"/><circle cx="1500" cy="168" r="5"/><circle cx="1315" cy="285" r="5"/><circle cx="1425" cy="350" r="4"/><circle cx="1550" cy="285" r="5"/></g>
+<!-- enterprise governance schematic -->
+<g font-family="Arial, Helvetica, sans-serif" stroke-linecap="round" stroke-linejoin="round">
+<rect x="1290" y="64" width="148" height="116" rx="18" fill="#132d40" stroke="#76b2c2" stroke-width="2"/>
+<g stroke="#abc7d4" stroke-width="3" fill="none"><path d="M1320 147V109l22 -14 22 14v38M1365 147V86l18 -11 18 11v61M1310 148h103"/><path d="M1332 112h9m-9 17h9m38 -27h10m-10 19h10m-10 19h10"/></g>
+<path d="M1364 180v43" stroke="#73dfd5" stroke-width="4"/>
+<rect x="1322" y="225" width="84" height="76" rx="12" fill="#113a45" stroke="#67dcd0" stroke-width="3"/><text x="1364" y="274" text-anchor="middle" font-size="35" font-weight="bold" fill="#8ef3e7">AI</text>
+<path d="M1364 300v20m0 0h-155m155 0h158m-313 0v17m155 -17v17m158 -17v17" stroke="#67dcd0" stroke-width="3" fill="none"/>
+<rect x="1172" y="337" width="76" height="60" rx="12" fill="#173243" stroke="#6ba4b6" stroke-width="2"/><rect x="1326" y="337" width="76" height="60" rx="12" fill="#173243" stroke="#6ba4b6" stroke-width="2"/><rect x="1485" y="337" width="76" height="60" rx="12" fill="#173243" stroke="#6ba4b6" stroke-width="2"/>
+<path d="m1210 347 19 9v12q-3 13 -19 20 -16 -7 -19 -20v-12z" stroke="#9dd7da" stroke-width="2" fill="none"/><path d="m1201 367 8 7 13 -15" stroke="#9dd7da" stroke-width="2" fill="none"/>
+<path d="m1340 355 24 -9 24 9 -24 9z m0 10 24 9 24 -9m-48 10 24 9 24 -9" stroke="#9dd7da" stroke-width="2" fill="none"/>
+<path d="M1503 378v-13h11v13m8 0v-23h11v23m8 0v-32h11v32" stroke="#9dd7da" stroke-width="2" fill="none"/>
+</g>
+<!-- article text -->
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="75" y="140" font-weight="700" font-size="67" letter-spacing="-2" fill="#f4f7fa">The Self-Driving Company</text>
+<text x="75" y="225" font-weight="700" font-size="67" letter-spacing="-2" fill="#f4f7fa">Needs a Driving Test</text>
+<path d="M83 267v75" stroke="#45cbbd" stroke-width="5"/>
+<text x="111" y="293" font-size="30" fill="#bdcbd6">How enterprise AI earns trust through</text>
+<text x="111" y="333" font-size="30" fill="#bdcbd6">guardrails, verification, and risk management.</text>
+</g>
+</svg>
