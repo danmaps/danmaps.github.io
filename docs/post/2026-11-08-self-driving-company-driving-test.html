@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="darkreader-lock">
+    <title>The Self-Driving Company Needs a Driving Test</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="shortcut icon" href="/static/favicon.svg">
+
+    
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+>
+<link rel="stylesheet" href="/static/map-embed.css">
+<link rel="stylesheet" href="/static/post-reading.css">
+<style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #49483e }
+.codehilite .c { color: #959077 } /* Comment */
+.codehilite .err { color: #ED007E; background-color: #1E0010 } /* Error */
+.codehilite .esc { color: #F8F8F2 } /* Escape */
+.codehilite .g { color: #F8F8F2 } /* Generic */
+.codehilite .k { color: #66D9EF } /* Keyword */
+.codehilite .l { color: #AE81FF } /* Literal */
+.codehilite .n { color: #F8F8F2 } /* Name */
+.codehilite .o { color: #FF4689 } /* Operator */
+.codehilite .x { color: #F8F8F2 } /* Other */
+.codehilite .p { color: #F8F8F2 } /* Punctuation */
+.codehilite .ch { color: #959077 } /* Comment.Hashbang */
+.codehilite .cm { color: #959077 } /* Comment.Multiline */
+.codehilite .cp { color: #959077 } /* Comment.Preproc */
+.codehilite .cpf { color: #959077 } /* Comment.PreprocFile */
+.codehilite .c1 { color: #959077 } /* Comment.Single */
+.codehilite .cs { color: #959077 } /* Comment.Special */
+.codehilite .gd { color: #FF4689 } /* Generic.Deleted */
+.codehilite .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.codehilite .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.codehilite .gr { color: #F8F8F2 } /* Generic.Error */
+.codehilite .gh { color: #F8F8F2 } /* Generic.Heading */
+.codehilite .gi { color: #A6E22E } /* Generic.Inserted */
+.codehilite .go { color: #66D9EF } /* Generic.Output */
+.codehilite .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #959077 } /* Generic.Subheading */
+.codehilite .gt { color: #F8F8F2 } /* Generic.Traceback */
+.codehilite .kc { color: #66D9EF } /* Keyword.Constant */
+.codehilite .kd { color: #66D9EF } /* Keyword.Declaration */
+.codehilite .kn { color: #FF4689 } /* Keyword.Namespace */
+.codehilite .kp { color: #66D9EF } /* Keyword.Pseudo */
+.codehilite .kr { color: #66D9EF } /* Keyword.Reserved */
+.codehilite .kt { color: #66D9EF } /* Keyword.Type */
+.codehilite .ld { color: #E6DB74 } /* Literal.Date */
+.codehilite .m { color: #AE81FF } /* Literal.Number */
+.codehilite .s { color: #E6DB74 } /* Literal.String */
+.codehilite .na { color: #A6E22E } /* Name.Attribute */
+.codehilite .nb { color: #F8F8F2 } /* Name.Builtin */
+.codehilite .nc { color: #A6E22E } /* Name.Class */
+.codehilite .no { color: #66D9EF } /* Name.Constant */
+.codehilite .nd { color: #A6E22E } /* Name.Decorator */
+.codehilite .ni { color: #F8F8F2 } /* Name.Entity */
+.codehilite .ne { color: #A6E22E } /* Name.Exception */
+.codehilite .nf { color: #A6E22E } /* Name.Function */
+.codehilite .nl { color: #F8F8F2 } /* Name.Label */
+.codehilite .nn { color: #F8F8F2 } /* Name.Namespace */
+.codehilite .nx { color: #A6E22E } /* Name.Other */
+.codehilite .py { color: #F8F8F2 } /* Name.Property */
+.codehilite .nt { color: #FF4689 } /* Name.Tag */
+.codehilite .nv { color: #F8F8F2 } /* Name.Variable */
+.codehilite .ow { color: #FF4689 } /* Operator.Word */
+.codehilite .pm { color: #F8F8F2 } /* Punctuation.Marker */
+.codehilite .w { color: #F8F8F2 } /* Text.Whitespace */
+.codehilite .mb { color: #AE81FF } /* Literal.Number.Bin */
+.codehilite .mf { color: #AE81FF } /* Literal.Number.Float */
+.codehilite .mh { color: #AE81FF } /* Literal.Number.Hex */
+.codehilite .mi { color: #AE81FF } /* Literal.Number.Integer */
+.codehilite .mo { color: #AE81FF } /* Literal.Number.Oct */
+.codehilite .sa { color: #E6DB74 } /* Literal.String.Affix */
+.codehilite .sb { color: #E6DB74 } /* Literal.String.Backtick */
+.codehilite .sc { color: #E6DB74 } /* Literal.String.Char */
+.codehilite .dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #E6DB74 } /* Literal.String.Doc */
+.codehilite .s2 { color: #E6DB74 } /* Literal.String.Double */
+.codehilite .se { color: #AE81FF } /* Literal.String.Escape */
+.codehilite .sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.codehilite .si { color: #E6DB74 } /* Literal.String.Interpol */
+.codehilite .sx { color: #E6DB74 } /* Literal.String.Other */
+.codehilite .sr { color: #E6DB74 } /* Literal.String.Regex */
+.codehilite .s1 { color: #E6DB74 } /* Literal.String.Single */
+.codehilite .ss { color: #E6DB74 } /* Literal.String.Symbol */
+.codehilite .bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #A6E22E } /* Name.Function.Magic */
+.codehilite .vc { color: #F8F8F2 } /* Name.Variable.Class */
+.codehilite .vg { color: #F8F8F2 } /* Name.Variable.Global */
+.codehilite .vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.codehilite .vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.codehilite .il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+
+
+    <!-- Prism CSS (for code highlighting) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+</head>
+<body class="bg-dark post-page">
+    
+    <header class="bg-dark py-3">
+        <div class="container bg-dark" id="header-container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="https://dannymcvey.com/" class="home-link text-light"><h2>Danny McVey</h2></a>
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="https://dannymcvey.com/#gis-agent-skills" class="about-link btn btn-outline-light">GIS Agent Skills</a>
+                    <a href="https://dannymcvey.com/experiments/" class="about-link btn btn-outline-light">Experiments</a>
+                    <a href="/" class="about-link btn btn-outline-light">Blog</a>
+                    <a href="https://github.com/danmaps" class="about-link btn btn-outline-light">GitHub</a>
+                    <a href="https://dannymcvey.com/contact/" class="about-link about-link-cta btn btn-outline-light">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4 post-main">
+        
+<!-- Scroll progress indicator -->
+<div class="scroll-progress"></div>
+
+<!-- Post header -->
+<header class="post-hero">
+    <a href="/" class="post-back-link">Back to blog</a>
+    
+    <div class="post-kicker-row">
+        
+        <a class="post-kicker" href="/tag/ai.html">AI</a>
+        
+        <a class="post-kicker" href="/tag/agents.html">Agents</a>
+        
+        <a class="post-kicker" href="/tag/systems.html">Systems</a>
+        
+    </div>
+    
+    <h1>The Self-Driving Company Needs a Driving Test</h1>
+    <div class="post-meta-bar">
+        
+        <time datetime="2026-11-08">November 8, 2026</time>
+        
+        
+        <span class="separator">·</span>
+        <span class="reading-time">5 min read</span>
+        
+    </div>
+</header>
+
+<!-- Table of contents (auto-populated by JS) -->
+<nav class="post-toc">
+    <details>
+        <summary>Contents</summary>
+        <ol id="post-toc-list"></ol>
+    </details>
+</nav>
+
+<!-- Article body -->
+<article class="post-reading">
+    <p><img alt="A night highway seen through a driver's windshield, with cruise control, lane-keeping and emergency braking indicators alongside an enterprise AI safety diagram." src="/static/images/self-driving-company-driving-test-hero.svg" /></p>
+<p>Replit CEO Amjad Masad recently <a href="https://replit.com/blog/rise-of-self-driving-company">predicted that every Fortune 500 company will be a self-driving company by 2030</a>. In his vision, people set direction and remain accountable while AI agents handle more of the execution.</p>
+<p>I can see where he's going with this. I also think the driving analogy is worth taking a little further.</p>
+<p>Cars didn't go straight from a steering wheel and pedals to driving themselves. We got cruise control. Set a speed and the car maintains it, while you remain responsible for the road. Adaptive cruise control can manage following distance. Lane-keeping assist helps with steering. Systems like Subaru's EyeSight can apply the brakes when a collision looks likely.</p>
+<p>These features aren't one tidy progression toward autonomy. Emergency braking has a different job than cruise control. Some features help the driver perform a task. Others are there to reduce the consequences of a mistake. All of them have limitations.</p>
+<p>That's what makes the analogy useful for enterprise AI.</p>
+<h2 id="start-with-cruise-control">Start with cruise control</h2>
+<p>A scheduled script is a little like cruise control. You give it a specific job under reasonably predictable conditions. It repeats that work without needing your constant input.</p>
+<p>An AI copilot is closer to lane assist. It can help make progress, catch some mistakes, and suggest corrections. You're still supervising, and you can take over.</p>
+<p>Now we're asking agents to navigate longer stretches of work. They can interpret requests, choose tools, call other systems, and make decisions along the way. That's exciting. It also means they can misunderstand the destination and execute the wrong plan very efficiently.</p>
+<p>The question isn't whether an agent is smart enough to complete a task once. It's whether we understand the conditions under which we can trust it to do that work repeatedly.</p>
+<h2 id="where-are-the-brakes">Where are the brakes?</h2>
+<p>Replit makes a good case for an <em>Agent Habitat</em> with controlled access, human approvals, and security that scales with autonomy. I agree with that direction. The hard part is putting it into practice, workflow by workflow, inside organizations with existing systems and responsibilities.</p>
+<p>Imagine an agent that drafts a report for review. If it gets something wrong, a person has a chance to catch it before the report goes anywhere.</p>
+<p>Now imagine the same agent can update production records or send messages outside the organization. A similar mistake has very different consequences.</p>
+<p>Those tasks deserve different safeguards.</p>
+<p>One workflow might only require human review. Another might need restricted permissions, input validation, automatic tests, an execution log, and a way to undo changes. Some decisions should stay with people regardless of how capable the model becomes.</p>
+<p>I've been thinking about this while working on ways to package tasks for AI agents. Instructions are useful, but telling an agent to check its work isn't the same as having a check that actually runs. I want to know what it did, what evidence it produced, and whether the result meets the conditions I set.</p>
+<p>Automatic emergency braking doesn't work because the driver's manual says to avoid collisions. There's a separate mechanism designed to recognize a dangerous condition and intervene.</p>
+<p>Enterprise agents need the equivalent.</p>
+<h2 id="leadership-has-to-make-room-for-trust">Leadership has to make room for trust</h2>
+<p>This is a risk-management problem, and enterprise leadership has a big role to play.</p>
+<p>A blanket refusal to let agents act independently makes it difficult to learn what they can reliably do. Handing them broad access after a convincing demo is a gamble. There's a practical middle ground, but someone has to make room for it.</p>
+<p>Start with a low-risk workflow. Define success and assign ownership. Give the agent only the access it needs. Review what actually happened, including mistakes and the time spent checking or correcting its output. If it performs reliably, consider expanding its scope.</p>
+<p>A useful progression could look like this:</p>
+<ol>
+<li>An agent reads information and prepares an answer.</li>
+<li>It proposes a change, but a person approves the action.</li>
+<li>It makes limited, reversible changes on its own, with checks and an audit trail.</li>
+<li>Its authority grows only where the results and the consequences of failure justify it.</li>
+</ol>
+<p>This isn't a universal maturity ladder. Different workflows call for different levels of oversight. A draft meeting summary and a change to a production system shouldn't face identical requirements.</p>
+<p>Risk management has to account for the risk of doing nothing, too. People lose time to repetitive work. Useful ideas stay on the backlog. Organizations miss opportunities to learn how these systems behave in their own environments.</p>
+<p>Reasonable safeguards make experimentation possible. They also give leadership something more useful than enthusiasm or fear: evidence.</p>
+<h2 id="the-work-above-the-work">The work above the work</h2>
+<p>There's another obstacle I think gets overlooked. Plenty of business processes aren't actually documented in a way an agent could follow.</p>
+<p>The steps might live in someone's head. There are exceptions everyone on the team understands but nobody has written down. Approval rules might depend on context that never makes it into a ticket.</p>
+<p>As agents make execution cheaper, describing the work becomes more important. What is the actual goal? Which information is authoritative? What can be changed? What conditions should make the system stop and ask for help?</p>
+<p>People closest to the work need to help answer those questions. And somebody needs to maintain those answers as systems, policies, and expectations change.</p>
+<p>The organization has to learn how to delegate. That's work, too.</p>
+<h2 id="earn-the-next-mile">Earn the next mile</h2>
+<p>I don't know whether every Fortune 500 company will be self-driving by 2030. I do think we'll delegate more work to agents, and organizations will need to get much better at deciding what that delegation should look like.</p>
+<p>Cruise control is useful even if the car never drives itself. So is lane assist. So is emergency braking.</p>
+<p>The self-driving company can develop the same way: useful capabilities, clear limitations, dependable safeguards, and more responsibility as trust is earned.</p>
+<p>Brakes are part of what makes it possible to drive.</p>
+<hr />
+<p><em>This was prompted by <a href="https://replit.com/blog/rise-of-self-driving-company">Amjad Masad's “The Rise of the Self-Driving Company”</a>. Replit's article already recognizes the need for permissions, approvals, and governance. I'm especially interested in how enterprise leaders can make that progression practical.</em></p>
+</article>
+
+<!-- Tags -->
+
+<footer class="post-tags-footer">
+    
+    <a class="post-tag" href="/tag/ai.html">AI</a>
+    
+    <a class="post-tag" href="/tag/agents.html">Agents</a>
+    
+    <a class="post-tag" href="/tag/systems.html">Systems</a>
+    
+</footer>
+
+
+<script src="/static/copy-code.js"></script>
+<script src="/static/post-reading.js"></script>
+
+    </main>
+
+    <footer class="bg-dark py-3">
+        <div class="container text-center text-light", id="footer-container">
+            <p>&copy; <span id="copyright-year"></span> Danny McVey. All rights reserved.</p>
+            <p><a href="https://ko-fi.com/dannymcvey" target="_blank" rel="noopener noreferrer">Support this work on Ko-fi</a></p>
+        </div>
+    </footer>
+
+    <script>
+      (function(){
+        var el = document.getElementById('copyright-year');
+        if (el) el.textContent = new Date().getFullYear();
+      })();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+></script>
+<script src="/static/map-embed.js"></script>
+
+</body>
+</html>
